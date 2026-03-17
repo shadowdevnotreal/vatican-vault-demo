@@ -1,4 +1,0 @@
-Please bill this MasterCard: 
-5337502681227367
-
-Edited this file 8/19/14 to see if the crawl will pick up this credit card.
