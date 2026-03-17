@@ -1,0 +1,99 @@
+# Netlify configuration for Vatican Vault Demo Site
+# https://docs.netlify.com/configure-builds/file-based-configuration/
+
+[build]
+  # No build command needed - static HTML site
+  publish = "."
+
+  # Ignore build for specific branches if needed
+  ignore = "git diff --quiet $CACHED_COMMIT_REF $COMMIT_REF ."
+
+[build.environment]
+  # No special environment variables needed
+
+# Configure redirects and rewrites
+[[redirects]]
+  # Redirect root to index.html explicitly
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  # Handle clean URLs without .html extension (optional)
+  from = "/*"
+  to = "/:splat.html"
+  status = 200
+  conditions = {force = false}
+
+[[redirects]]
+  # Fallback for 404s - redirect to home
+  from = "/*"
+  to = "/index.html"
+  status = 404
+
+# Configure headers for security and performance
+[[headers]]
+  for = "/*"
+  [headers.values]
+    # Security headers
+    X-Frame-Options = "SAMEORIGIN"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+    # Cache control for HTML files (1 hour)
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=3600, must-revalidate"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/Sample_Outputs/*"
+  [headers.values]
+    # Longer cache for static reports
+    Cache-Control = "public, max-age=86400"
+
+[[headers]]
+  for = "/Promo/*"
+  [headers.values]
+    Cache-Control = "public, max-age=7200"
+
+# Pretty URLs configuration
+[build.processing]
+  skip_processing = false
+
+[build.processing.html]
+  pretty_urls = true
+
+# Context-specific settings
+[context.production]
+  publish = "."
+
+[context.deploy-preview]
+  publish = "."
+
+[context.branch-deploy]
+  publish = "."
+
+# Plugin configuration (if needed in future)
+# [[plugins]]
+#   package = "@netlify/plugin-sitemap"
+
+# Development server settings
+[dev]
+  command = "python -m http.server 8000"
+  port = 8000
+  publish = "."
+  autoLaunch = true
