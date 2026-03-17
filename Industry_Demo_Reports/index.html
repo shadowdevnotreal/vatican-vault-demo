@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vatican Vault - Industry Reports Index</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 36px;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+        .report-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .report-card {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .report-card:hover {
+            border-color: #667eea;
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
+            transform: translateY(-4px);
+        }
+        .report-card h3 {
+            font-size: 18px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        .report-card p {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+        .report-card .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 4px;
+        }
+        .info-box h4 {
+            color: #0066cc;
+            margin-bottom: 10px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ Vatican Vault</h1>
+        <div class="subtitle">Industry-Specific Forensic Reports</div>
+
+        <div class="info-box">
+            <h4>📊 Demo Report Collection</h4>
+            <p>This collection showcases Vatican Vault's industry-specific reporting capabilities.
+            Each report is tailored to the specific needs, terminology, and regulatory requirements
+            of its target audience.</p>
+            <p style="margin-top:10px;"><strong>Based on real data:</strong> 1,853 activities from actual Windows Timeline database (146 days of user activity)</p>
+        </div>
+
+        <h2 style="margin: 30px 0 20px 0; color:#1a1a1a;">Industry-Specific Reports</h2>
+        <div class="report-grid">
+
+            <a href="dfir_report.html" class="report-card" target="_blank">
+                <h3>DFIR (Digital Forensics & Incident Response)</h3>
+                <p>Specialized forensic report tailored for DFIR (Digital Forensics & Incident Response) use cases</p>
+                <span class="badge">DFIR</span>
+            </a>
+
+            <a href="law_enforcement_report.html" class="report-card" target="_blank">
+                <h3>Law Enforcement & Criminal Investigation</h3>
+                <p>Specialized forensic report tailored for Law Enforcement & Criminal Investigation use cases</p>
+                <span class="badge">LAW</span>
+            </a>
+
+            <a href="financial_report.html" class="report-card" target="_blank">
+                <h3>Financial Services & Regulatory</h3>
+                <p>Specialized forensic report tailored for Financial Services & Regulatory use cases</p>
+                <span class="badge">FINANCIAL</span>
+            </a>
+
+            <a href="irm_report.html" class="report-card" target="_blank">
+                <h3>Incident Response Management</h3>
+                <p>Specialized forensic report tailored for Incident Response Management use cases</p>
+                <span class="badge">IRM</span>
+            </a>
+
+            <a href="pentest_report.html" class="report-card" target="_blank">
+                <h3>Penetration Testing & Red Team</h3>
+                <p>Specialized forensic report tailored for Penetration Testing & Red Team use cases</p>
+                <span class="badge">PENTEST</span>
+            </a>
+
+            <a href="hr_employment_report.html" class="report-card" target="_blank">
+                <h3>HR & Employment Law</h3>
+                <p>Specialized forensic report tailored for HR & Employment Law use cases</p>
+                <span class="badge">HR</span>
+            </a>
+
+            <a href="enterprise_soc_report.html" class="report-card" target="_blank">
+                <h3>Enterprise SOC & Insider Threat</h3>
+                <p>Specialized forensic report tailored for Enterprise SOC & Insider Threat use cases</p>
+                <span class="badge">ENTERPRISE</span>
+            </a>
+
+            <a href="mssp_report.html" class="report-card" target="_blank">
+                <h3>MSSP & Multi-Tenant Forensics</h3>
+                <p>Specialized forensic report tailored for MSSP & Multi-Tenant Forensics use cases</p>
+                <span class="badge">MSSP</span>
+            </a>
+
+            <a href="healthcare_report.html" class="report-card" target="_blank">
+                <h3>Healthcare & HIPAA Compliance</h3>
+                <p>Specialized forensic report tailored for Healthcare & HIPAA Compliance use cases</p>
+                <span class="badge">HEALTHCARE</span>
+            </a>
+
+        </div>
+
+        <h2 style="margin: 40px 0 20px 0; color:#1a1a1a;">Generic Reports (for comparison)</h2>
+        <div class="report-grid">
+
+            <a href="generic_executive_report.html" class="report-card" target="_blank">
+                <h3>Executive Summary</h3>
+                <p>Standard forensic report template</p>
+                <span class="badge" style="background:#94a3b8;">EXECUTIVE</span>
+            </a>
+
+            <a href="generic_technical_report.html" class="report-card" target="_blank">
+                <h3>Technical Report</h3>
+                <p>Standard forensic report template</p>
+                <span class="badge" style="background:#94a3b8;">TECHNICAL</span>
+            </a>
+
+            <a href="generic_compliance_report.html" class="report-card" target="_blank">
+                <h3>Compliance Report</h3>
+                <p>Standard forensic report template</p>
+                <span class="badge" style="background:#94a3b8;">COMPLIANCE</span>
+            </a>
+
+        </div>
+
+        <div class="footer">
+            <p><strong>Vatican Vault v2.0</strong> - Digital Forensics Platform</p>
+            <p>Generated: 2026-03-01 23:34:44</p>
+            <p style="margin-top:10px; font-size:13px;">
+                Total Reports: 12 | Industry Templates: 9 | Generic Templates: 3
+            </p>
+        </div>
+    </div>
+</body>
+</html>

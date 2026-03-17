@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vatican Vault - Demo Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #0ea5e9 0%, #14b8a6 100%);
+            color: white;
+            padding: 50px 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .content {
+            padding: 40px;
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #f56565 0%, #ed8936 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 3px solid #c53030;
+        }
+
+        .warning h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .warning p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .warning code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .success {
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: white;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border: 3px solid #2f855a;
+        }
+
+        .success h2 {
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .success p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .success code {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
+        .links {
+            display: grid;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .link-card {
+            background: #f7fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .link-card:hover {
+            border-color: #0ea5e9;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(14, 165, 233, 0.2);
+        }
+
+        .link-card h3 {
+            color: #0ea5e9;
+            margin-bottom: 8px;
+            font-size: 1.3em;
+        }
+
+        .link-card p {
+            color: #4a5568;
+            line-height: 1.5;
+        }
+
+        .instructions {
+            background: #edf2f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .instructions h3 {
+            color: #1a202c;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .instructions ol {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin: 8px 0;
+            line-height: 1.6;
+            color: #1a202c;
+            font-weight: 500;
+        }
+
+        .instructions code {
+            color: #1a202c;
+            font-weight: bold;
+        }
+
+        .nav-bar {
+            background: rgba(14, 165, 233, 0.95);
+            border-bottom: 3px solid #14b8a6;
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            opacity: 0.85;
+        }
+
+        .nav-links a:hover {
+            opacity: 1;
+            text-decoration: underline;
+        }
+
+        .nav-links a.active {
+            opacity: 1;
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        .nav-logo {
+            font-weight: 700;
+            color: white;
+            font-size: 1.1em;
+        }
+
+        body {
+            display: block;
+            align-items: flex-start;
+            padding: 0;
+        }
+
+        .container {
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <div class="nav-logo">🔍 Vatican Vault</div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="VC_DEMO_INDEX.html">Demo Hub</a>
+                <a href="VC_Materials/VC_DEMO_PACKAGE.html">VC Package</a>
+                <a href="../Sample_Outputs/reports/20260228_034136/index.html">Test Reports</a>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div class="header">
+            <h1>🔍 Vatican Vault</h1>
+            <p>AI-Powered Forensic Analysis Platform</p>
+        </div>
+
+        <div class="content">
+            <div class="warning" id="fileWarning" style="display: none;">
+                <h2>⚠️ Action Required: Start HTTP Server</h2>
+                <p><strong>You're viewing this file directly.</strong> Demo reports require a local HTTP server to function properly due to browser security (CORS) restrictions.</p>
+
+                <div class="instructions">
+                    <h3>Quick Setup (Windows):</h3>
+                    <ol>
+                        <li>Double-click <code>START_DEMO_SERVER.bat</code> in this folder</li>
+                        <li>When the server starts, open your browser to <code>http://localhost:8000/</code></li>
+                        <li>This page will automatically reload with all links working</li>
+                    </ol>
+                </div>
+
+                <p><strong>Alternative (Command Line):</strong><br>
+                Open Command Prompt in this folder and run:<br>
+                <code>python -m http.server 8000</code></p>
+
+                <p>📖 <a href="WINDOWS_SETUP_INSTRUCTIONS.html" style="color: white; text-decoration: underline;" target="_blank" rel="noopener noreferrer">View detailed setup instructions</a></p>
+            </div>
+
+            <div class="success" id="httpSuccess" style="display: none;">
+                <h2>✅ HTTP Server Active - All Systems Go!</h2>
+                <p>You're viewing this via HTTP server. All demo reports and interactive features will work correctly.</p>
+            </div>
+
+            <h2 style="color: #2d3748; margin-bottom: 20px;">📚 Demo Materials</h2>
+
+            <div class="links">
+                <a href="VC_Materials/VC_DEMO_PACKAGE.html" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <h3>📦 Main Demo Package</h3>
+                    <p>Comprehensive demo overview, metrics, and capabilities showcase</p>
+                </a>
+
+                <a href="VC_Materials/VC_DEMO_REPORT_2026-02-28.html" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <h3>📊 Technical Demo Report</h3>
+                    <p>Detailed technical analysis and test results</p>
+                </a>
+
+                <a href="VC_Materials/VC_EXECUTIVE_SUMMARY.html" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <h3>📈 Executive Summary</h3>
+                    <p>High-level overview for stakeholders and investors</p>
+                </a>
+
+                <a href="Sample_Outputs/reports/20260228_034136/index.html" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <h3>🧪 Test Reports</h3>
+                    <p>Comprehensive test suite results and analysis</p>
+                </a>
+
+                <a href="Sample_Outputs/reports/20260228_034136/coverage_html/index.html" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <h3>📊 Coverage Report</h3>
+                    <p>Code coverage metrics and analysis</p>
+                </a>
+
+                <a href="Sample_Outputs/reports/20260228_034136/pytest_report.html" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <h3>🔬 Pytest Results</h3>
+                    <p>Detailed pytest execution results</p>
+                </a>
+
+                <a href="WINDOWS_SETUP_INSTRUCTIONS.html" class="link-card" target="_blank" rel="noopener noreferrer">
+                    <h3>📖 Setup Instructions</h3>
+                    <p>Complete guide for Windows users</p>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Detect protocol and show appropriate message
+        if (window.location.protocol === 'file:') {
+            document.getElementById('fileWarning').style.display = 'block';
+        } else {
+            document.getElementById('httpSuccess').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

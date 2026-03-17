@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Windows Setup Instructions - Vatican Vault Demo</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="windows-setup-instructions-vatican-vault-demo">Windows Setup Instructions - Vatican Vault Demo</h1>
+<h2 id="why-html-files-wont-open-directly">Why HTML Files Won't Open Directly</h2>
+<p>When you try to open HTML files directly using <code>file:///C:/Users/...</code> paths, modern browsers block:<br />
+- External JavaScript and CSS files (CORS security policy)<br />
+- Relative links between HTML files<br />
+- Dynamic content loading</p>
+<p>This causes <strong>blank pages</strong> or <strong>broken functionality</strong> in the demo reports.</p>
+<h2 id="solution-use-a-local-http-server">✅ Solution: Use a Local HTTP Server</h2>
+<h3 id="quick-start-windows">Quick Start (Windows)</h3>
+<ol>
+<li>
+<p><strong>Make sure Python is installed</strong><br />
+   - Open Command Prompt and type: <code>python --version</code><br />
+   - If not installed, download from: https://www.python.org/downloads/</p>
+</li>
+<li>
+<p><strong>Navigate to the Promo directory</strong><br />
+<code>cmd
+   cd C:\Users\Mishka\vatican_vault\Promo</code></p>
+</li>
+<li>
+<p><strong>Run the demo server</strong></p>
+</li>
+</ol>
+<p><strong>Option A: Use the batch file (easiest)</strong><br />
+<code>cmd
+   START_DEMO_SERVER.bat</code></p>
+<p><strong>Option B: Manual command</strong><br />
+<code>cmd
+   python -m http.server 8000</code></p>
+<ol start="4">
+<li><strong>Open your browser</strong> and navigate to:<br />
+   - <strong>Main Demo Package</strong>: http://localhost:8000/VC_Materials/VC_DEMO_PACKAGE.html<br />
+   - <strong>Test Reports</strong>: http://localhost:8000/Sample_Outputs/reports/20260228_034136/index.html<br />
+   - <strong>Coverage Report</strong>: http://localhost:8000/Sample_Outputs/reports/20260228_034136/coverage_html/index.html</li>
+</ol>
+<h2 id="urls-to-use">URLs to Use</h2>
+<p>Once the server is running, replace your <code>file://</code> URLs with these <code>http://localhost:8000/</code> URLs:</p>
+<table>
+<thead>
+<tr>
+<th>❌ File Protocol (Won't Work)</th>
+<th>✅ HTTP Server (Works!)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>file:///C:/Users/Mishka/vatican_vault/Promo/VC_Materials/VC_DEMO_PACKAGE.html</code></td>
+<td><code>http://localhost:8000/VC_Materials/VC_DEMO_PACKAGE.html</code></td>
+</tr>
+<tr>
+<td><code>file:///C:/Users/Mishka/vatican_vault/Promo/Sample_Outputs/reports/20260228_034136/index.html</code></td>
+<td><code>http://localhost:8000/Sample_Outputs/reports/20260228_034136/index.html</code></td>
+</tr>
+<tr>
+<td><code>file:///C:/Users/Mishka/vatican_vault/Promo/Sample_Outputs/reports/20260228_034136/coverage_html/index.html</code></td>
+<td><code>http://localhost:8000/Sample_Outputs/reports/20260228_034136/coverage_html/index.html</code></td>
+</tr>
+<tr>
+<td><code>file:///C:/Users/Mishka/vatican_vault/Promo/Sample_Outputs/reports/20260228_034136/pytest_report.html</code></td>
+<td><code>http://localhost:8000/Sample_Outputs/reports/20260228_034136/pytest_report.html</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="python-is-not-recognized">"Python is not recognized..."</h3>
+<ul>
+<li>Install Python from https://www.python.org/downloads/</li>
+<li>Make sure to check "Add Python to PATH" during installation</li>
+</ul>
+<h3 id="port-8000-already-in-use">Port 8000 already in use</h3>
+<p>Use a different port:</p>
+<div class="codehilite"><pre><span></span><code>python -m http.server 8001
+</code></pre></div>
+
+<p>Then use <code>http://localhost:8001/...</code> instead</p>
+<h3 id="still-seeing-blank-pages">Still seeing blank pages</h3>
+<ol>
+<li>Check browser console (F12) for errors</li>
+<li>Make sure you're using <code>http://localhost:8000/</code> not <code>file:///</code></li>
+<li>Try a different browser (Chrome, Firefox, Edge)</li>
+</ol>
+<h3 id="symlink-warnings-when-extracting">Symlink warnings when extracting</h3>
+<p>This is normal on Windows. The <code>latest</code> symlink might not work, but the actual reports at <code>reports/20260228_034136/</code> will work fine.</p>
+<h2 id="why-this-happens">Why This Happens</h2>
+<p>Modern web browsers enforce <strong>CORS (Cross-Origin Resource Sharing)</strong> security policies that prevent:<br />
+- Loading external resources from <code>file://</code> URLs<br />
+- JavaScript modules from local files<br />
+- Relative navigation between HTML files</p>
+<p>The solution is to serve files through HTTP (even locally), which browsers trust more than direct file access.</p>
+<h2 id="alternative-use-powershell">Alternative: Use PowerShell</h2>
+<p>If you prefer PowerShell:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd </span><span class="n">C</span><span class="p">:\</span><span class="n">Users</span><span class="p">\</span><span class="n">Mishka</span><span class="p">\</span><span class="n">vatican_vault</span><span class="p">\</span><span class="n">Promo</span>
+<span class="n">python</span> <span class="n">-m</span> <span class="n">http</span><span class="p">.</span><span class="n">server</span> <span class="n">8000</span>
+</code></pre></div>
+
+<p>Then open: http://localhost:8000/VC_Materials/VC_DEMO_PACKAGE.html</p>
+<hr />
+<p><strong>Need Help?</strong> If you encounter any issues, ensure:<br />
+1. Python 3.x is installed<br />
+2. You're in the correct directory (<code>Promo</code> folder)<br />
+3. Port 8000 is available<br />
+4. Your firewall allows local connections</p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>

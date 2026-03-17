@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Reports - User Behavior Analysis Platform v2</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="test-reports-user-behavior-analysis-platform-v2">Test Reports - User Behavior Analysis Platform v2</h1>
+<h2 id="latest-test-run">📊 Latest Test Run</h2>
+<p><strong>Generated:</strong> 2026-02-28 03:20:55<br />
+<strong>Test Suite:</strong> Standalone Demo Tests<br />
+<strong>Total Tests:</strong> 32<br />
+<strong>Status:</strong> ✅ ALL TESTS PASSED</p>
+<h3 id="test-results-summary">Test Results Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Total Tests</td>
+<td>32</td>
+</tr>
+<tr>
+<td>Passed</td>
+<td>32 ✓</td>
+</tr>
+<tr>
+<td>Failed</td>
+<td>0 ✗</td>
+</tr>
+<tr>
+<td>Skipped</td>
+<td>0 ⊘</td>
+</tr>
+<tr>
+<td>Success Rate</td>
+<td>100%</td>
+</tr>
+<tr>
+<td>Execution Time</td>
+<td>~13 seconds</td>
+</tr>
+</tbody>
+</table>
+<h3 id="code-coverage">Code Coverage</h3>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Coverage</td>
+<td>0.01%</td>
+</tr>
+<tr>
+<td>Covered Lines</td>
+<td>1 / 13,033</td>
+</tr>
+</tbody>
+</table>
+<p><em>Note: Low coverage is expected for demo tests as they don't exercise the main application code.</em></p>
+<h2 id="report-files">📁 Report Files</h2>
+<p>The test runner generates multiple report formats for comprehensive analysis:</p>
+<h3 id="1-interactive-html-report">1. Interactive HTML Report</h3>
+<p><strong>File:</strong> <code>reports/[timestamp]/index.html</code></p>
+<p>Enhanced interactive dashboard featuring:<br />
+- 📈 Real-time statistics with animated progress bars<br />
+- 🎨 Modern, responsive design<br />
+- 🔍 Expandable test suite details<br />
+- ⚡ Quick navigation to detailed reports</p>
+<h3 id="2-pytest-html-report">2. Pytest HTML Report</h3>
+<p><strong>File:</strong> <code>reports/[timestamp]/pytest_report.html</code></p>
+<p>Standard pytest-html report with:<br />
+- Detailed test execution logs<br />
+- Full stack traces for failures<br />
+- Environment information<br />
+- Test metadata</p>
+<h3 id="3-coverage-html-report">3. Coverage HTML Report</h3>
+<p><strong>File:</strong> <code>reports/[timestamp]/coverage_html/index.html</code></p>
+<p>Comprehensive code coverage visualization:<br />
+- Line-by-line coverage analysis<br />
+- Color-coded coverage indicators<br />
+- File-by-file breakdown<br />
+- Missing line highlights</p>
+<h3 id="4-junit-xml">4. JUnit XML</h3>
+<p><strong>File:</strong> <code>reports/[timestamp]/junit.xml</code></p>
+<p>Machine-readable test results for:<br />
+- CI/CD integration<br />
+- Test result aggregation<br />
+- Automated reporting<br />
+- Jenkins/GitLab CI compatibility</p>
+<h3 id="5-coverage-json">5. Coverage JSON</h3>
+<p><strong>File:</strong> <code>reports/[timestamp]/coverage.json</code></p>
+<p>Programmatic coverage data:<br />
+- Detailed coverage metrics<br />
+- File-level statistics<br />
+- Integration-ready format</p>
+<h2 id="running-tests">🚀 Running Tests</h2>
+<h3 id="quick-start">Quick Start</h3>
+<p>Run all tests and generate reports:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>tools/testing/run_tests_with_reports.py
+</code></pre></div>
+
+<h3 id="manual-pytest-commands">Manual Pytest Commands</h3>
+<p>Run specific test suites:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Run all standalone tests</span>
+python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>standalone_tests<span class="w"> </span>-v
+
+<span class="c1"># Run with coverage</span>
+python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>standalone_tests<span class="w"> </span>-v<span class="w"> </span>--cov<span class="o">=</span>standalone_tests<span class="w"> </span>--cov-report<span class="o">=</span>html
+
+<span class="c1"># Run specific test class</span>
+python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>standalone_tests<span class="w"> </span>-k<span class="w"> </span><span class="s2">&quot;TestBasicFunctionality&quot;</span><span class="w"> </span>-v
+
+<span class="c1"># Run with detailed output</span>
+python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>standalone_tests<span class="w"> </span>-v<span class="w"> </span>--tb<span class="o">=</span>long
+</code></pre></div>
+
+<h3 id="backend-tests">Backend Tests</h3>
+<p>To run backend unit tests (requires dependencies):</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>backend
+python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/unit<span class="w"> </span>-v
+</code></pre></div>
+
+<p>To run integration tests:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>backend
+python<span class="w"> </span>-m<span class="w"> </span>pytest<span class="w"> </span>tests/integration<span class="w"> </span>-v
+</code></pre></div>
+
+<h2 id="test-suites">📋 Test Suites</h2>
+<h3 id="standalone-demo-tests">Standalone Demo Tests</h3>
+<p>Located in: <code>standalone_tests/test_demo.py</code></p>
+<p><strong>Test Classes:</strong></p>
+<ol>
+<li>
+<p><strong>TestBasicFunctionality</strong> (5 tests)<br />
+   - Basic arithmetic operations<br />
+   - String manipulations</p>
+</li>
+<li>
+<p><strong>TestDataStructures</strong> (3 tests)<br />
+   - List operations<br />
+   - Dictionary operations<br />
+   - Set operations</p>
+</li>
+<li>
+<p><strong>TestTimestampGeneration</strong> (2 tests)<br />
+   - Timestamp creation<br />
+   - Date formatting</p>
+</li>
+<li>
+<p><strong>TestFileOperations</strong> (2 tests)<br />
+   - Path operations<br />
+   - Temp directory access</p>
+</li>
+<li>
+<p><strong>TestMathOperations</strong> (3 tests)<br />
+   - Power operations<br />
+   - Modulo operations<br />
+   - Floor division</p>
+</li>
+<li>
+<p><strong>TestBooleanLogic</strong> (3 tests)<br />
+   - AND operator<br />
+   - OR operator<br />
+   - NOT operator</p>
+</li>
+<li>
+<p><strong>TestExceptionHandling</strong> (3 tests)<br />
+   - ValueError handling<br />
+   - KeyError handling<br />
+   - ZeroDivisionError handling</p>
+</li>
+<li>
+<p><strong>TestPerformance</strong> (2 tests)<br />
+   - List comprehension performance<br />
+   - String concatenation performance</p>
+</li>
+<li>
+<p><strong>Parametrized Tests</strong> (9 tests)<br />
+   - Parametrized doubling tests (5 cases)<br />
+   - Parametrized string length tests (4 cases)</p>
+</li>
+</ol>
+<h2 id="test-coverage-goals">🎯 Test Coverage Goals</h2>
+<h3 id="current-coverage-targets">Current Coverage Targets</h3>
+<ul>
+<li><strong>Unit Tests:</strong> 80%+ coverage</li>
+<li><strong>Integration Tests:</strong> 60%+ coverage</li>
+<li><strong>Critical Paths:</strong> 95%+ coverage</li>
+</ul>
+<h3 id="improving-coverage">Improving Coverage</h3>
+<p>To improve test coverage:</p>
+<ol>
+<li>
+<p><strong>Write More Unit Tests</strong><br />
+<code>bash
+   # Add tests in backend/tests/unit/</code></p>
+</li>
+<li>
+<p><strong>Test Edge Cases</strong><br />
+   - Boundary conditions<br />
+   - Error scenarios<br />
+   - Invalid inputs</p>
+</li>
+<li>
+<p><strong>Integration Testing</strong><br />
+   - API endpoints<br />
+   - Database operations<br />
+   - External service integration</p>
+</li>
+</ol>
+<h2 id="configuration">🔧 Configuration</h2>
+<h3 id="pytest-configuration">Pytest Configuration</h3>
+<p>Main config: <code>backend/pytest.ini</code><br />
+Alternative: <code>pyproject.toml</code></p>
+<p>Key settings:<br />
+- Test discovery patterns<br />
+- Coverage options<br />
+- Parallel execution<br />
+- Markers for test categories</p>
+<h3 id="test-markers">Test Markers</h3>
+<p>Use markers to categorize tests:</p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">unit</span>  <span class="c1"># Fast, isolated tests</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">integration</span>  <span class="c1"># Slower, may need services</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">slow</span>  <span class="c1"># Long-running tests</span>
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">api</span>  <span class="c1"># API endpoint tests</span>
+</code></pre></div>
+
+<p>Run specific markers:</p>
+<div class="codehilite"><pre><span></span><code>pytest<span class="w"> </span>-m<span class="w"> </span>unit<span class="w">  </span><span class="c1"># Run only unit tests</span>
+pytest<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;not slow&quot;</span><span class="w">  </span><span class="c1"># Skip slow tests</span>
+</code></pre></div>
+
+<h2 id="cicd-integration">📈 CI/CD Integration</h2>
+<h3 id="github-actions-example">GitHub Actions Example</h3>
+<div class="codehilite"><pre><span></span><code><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Run Tests</span>
+<span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">|</span>
+<span class="w">    </span><span class="no">python tools/testing/run_tests_with_reports.py</span>
+
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Upload Test Reports</span>
+<span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/upload-artifact@v3</span>
+<span class="w">  </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">test-reports</span>
+<span class="w">    </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sample_Outputs/reports/</span>
+</code></pre></div>
+
+<h3 id="gitlab-ci-example">GitLab CI Example</h3>
+<div class="codehilite"><pre><span></span><code><span class="nt">test</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">script</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python tools/testing/run_tests_with_reports.py</span>
+<span class="w">  </span><span class="nt">artifacts</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">paths</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sample_Outputs/reports/</span>
+<span class="w">    </span><span class="nt">reports</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">junit</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Sample_Outputs/reports/*/junit.xml</span>
+</code></pre></div>
+
+<h2 id="troubleshooting">🐛 Troubleshooting</h2>
+<h3 id="common-issues">Common Issues</h3>
+<p><strong>Issue:</strong> Tests not found</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Solution: Check test file naming</span>
+<span class="c1"># Test files must start with &quot;test_&quot;</span>
+<span class="c1"># Test functions must start with &quot;test_&quot;</span>
+</code></pre></div>
+
+<p><strong>Issue:</strong> Import errors</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Solution: Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>backend/requirements.txt
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>backend/requirements-dev.txt
+</code></pre></div>
+
+<p><strong>Issue:</strong> Coverage too low</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Solution: Run with coverage report to see what&#39;s missing</span>
+pytest<span class="w"> </span>--cov<span class="o">=</span>.<span class="w"> </span>--cov-report<span class="o">=</span>term-missing
+</code></pre></div>
+
+<h2 id="additional-resources">📚 Additional Resources</h2>
+<ul>
+<li><a href="https://docs.pytest.org/">Pytest Documentation</a></li>
+<li><a href="https://coverage.readthedocs.io/">Coverage.py Documentation</a></li>
+<li><a href="https://pytest-html.readthedocs.io/">Pytest-HTML Plugin</a></li>
+</ul>
+<h2 id="report-screenshots">🎨 Report Screenshots</h2>
+<p>The interactive HTML reports feature:<br />
+- Modern gradient design<br />
+- Animated statistics<br />
+- Expandable test suites<br />
+- Mobile-responsive layout<br />
+- Dark mode compatible</p>
+<h2 id="notes">📝 Notes</h2>
+<ul>
+<li>Reports are timestamped for easy tracking</li>
+<li>Old reports are automatically cleaned before new runs</li>
+<li>All reports are gitignored to prevent repo bloat</li>
+<li>Coverage reports exclude test files themselves</li>
+</ul>
+<hr />
+<p><strong>Last Updated:</strong> 2026-02-28<br />
+<strong>Report Generator Version:</strong> 1.0<br />
+<strong>Platform:</strong> User Behavior Analysis v2.0</p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 07:05:42</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vatican Vault — Promo Package</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="vatican-vault-promo-package">Vatican Vault — Promo Package</h1>
+<p>This folder contains everything needed to demonstrate and present Vatican Vault.</p>
+<hr />
+<h2 id="for-investors-start-here">🎯 FOR INVESTORS: START HERE</h2>
+<p><strong>Complete VC Demo Package</strong>: Open <strong><a href="VC_DEMO_INDEX.html">VC_DEMO_INDEX.html</a></strong> for a comprehensive investor presentation with:</p>
+<ul>
+<li>📊 <strong>VC Materials</strong> - Investment summaries, business model, market analysis, financial projections</li>
+<li>🏢 <strong>Industry Demo Reports</strong> - 12 professional reports showcasing use cases (DFIR, SOC, Law Enforcement, Healthcare, etc.)</li>
+<li>📰 <strong>Articles</strong> - Platform history, comprehensive pitch, AI/ML use cases</li>
+<li>📈 <strong>Live Demo Reports</strong> - Pre-generated forensic analysis outputs</li>
+<li>🎮 <strong>Interactive Demos</strong> - Scripts and data to run live demonstrations</li>
+</ul>
+<p><strong>Quick Links:</strong><br />
+- <strong>60-Second Pitch</strong>: <a href="VC_Materials/EXECUTIVE_SUMMARY_VC.html">VC_Materials/EXECUTIVE_SUMMARY_VC.html</a><br />
+- <strong>1-Page Summary</strong>: <a href="VC_Materials/VC_EXECUTIVE_SUMMARY.html">VC_Materials/VC_EXECUTIVE_SUMMARY.html</a><br />
+- <strong>Full Report (10 pages)</strong>: <a href="VC_Materials/VC_DEMO_REPORT_2026-02-28.html">VC_Materials/VC_DEMO_REPORT_2026-02-28.html</a><br />
+- <strong>Interactive Package</strong>: <a href="VC_Materials/VC_DEMO_PACKAGE.html">VC_Materials/VC_DEMO_PACKAGE.html</a><br />
+- <strong>Industry Reports</strong>: <a href="Industry_Demo_Reports/index.html">Industry_Demo_Reports/index.html</a></p>
+<hr />
+<h2 id="contents">📦 Contents</h2>
+<h3 id="vc_materials-new">VC_Materials/ ⭐ NEW</h3>
+<p>Complete investor package with executive summaries and business analysis.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>VC_DEMO_PACKAGE.html</code></td>
+<td><strong>START HERE</strong> - Interactive HTML presentation with product overview, market analysis, traction metrics, and financial projections</td>
+</tr>
+<tr>
+<td><code>EXECUTIVE_SUMMARY_VC.html</code></td>
+<td>60-second pitch format - The opportunity, solution, traction, ask, and why now</td>
+</tr>
+<tr>
+<td><code>VC_EXECUTIVE_SUMMARY.html</code></td>
+<td>1-page investment summary with tables, metrics, competitive analysis, and financial projections</td>
+</tr>
+<tr>
+<td><code>VC_DEMO_REPORT_2026-02-28.html</code></td>
+<td>Comprehensive 10-page report covering technical validation, market research, competitive landscape, and detailed financials</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="industry_demo_reports-new">Industry_Demo_Reports/ ⭐ NEW</h3>
+<p>Professional HTML reports showcasing Vatican Vault for specific industries.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>index.html</code></td>
+<td><strong>START HERE</strong> - Browse all 12 industry-specific demo reports</td>
+</tr>
+<tr>
+<td><code>dfir_report.html</code></td>
+<td>Digital Forensics &amp; Incident Response investigation report</td>
+</tr>
+<tr>
+<td><code>enterprise_soc_report.html</code></td>
+<td>Enterprise Security Operations Center insider threat report</td>
+</tr>
+<tr>
+<td><code>law_enforcement_report.html</code></td>
+<td>Criminal investigation and evidence discovery report</td>
+</tr>
+<tr>
+<td><code>healthcare_report.html</code></td>
+<td>HIPAA compliance and patient data tracking report</td>
+</tr>
+<tr>
+<td><code>financial_report.html</code></td>
+<td>Financial services fraud detection and compliance report</td>
+</tr>
+<tr>
+<td><code>hr_employment_report.html</code></td>
+<td>HR employment investigation and workplace monitoring</td>
+</tr>
+<tr>
+<td><code>mssp_report.html</code></td>
+<td>Managed Security Service Provider client report</td>
+</tr>
+<tr>
+<td><code>pentest_report.html</code></td>
+<td>Penetration testing and security assessment report</td>
+</tr>
+<tr>
+<td><code>generic_executive_report.html</code></td>
+<td>Executive-level summary report</td>
+</tr>
+<tr>
+<td><code>generic_technical_report.html</code></td>
+<td>Technical analysis deep-dive report</td>
+</tr>
+<tr>
+<td><code>generic_compliance_report.html</code></td>
+<td>Compliance and regulatory audit report</td>
+</tr>
+<tr>
+<td><code>irm_report.html</code></td>
+<td>Incident Response Management report</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="articles">Articles/</h3>
+<p>Narrative documents for briefings, presentations, and publications.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>HISTORY.html</code></td>
+<td>The full history of Vatican Vault — from Microsoft Project Rome (2015) through Windows Timeline, Windows Recall, and the creation of this platform. A compelling read for any audience.</td>
+</tr>
+<tr>
+<td><code>PITCH.html</code></td>
+<td>A comprehensive industry pitch covering Vatican Vault's use cases across IT security, DFIR, law enforcement, military/intelligence, HR, healthcare, financial services, and more. Suitable for investors, executives, and technical audiences alike.</td>
+</tr>
+<tr>
+<td><code>ENTITY_EXTRACTION_USECASES.html</code></td>
+<td><strong>NEW!</strong> Comprehensive use cases for AI-powered entity extraction — from single desktop to enterprise scale. Includes ROI analysis, deployment models, and success stories across healthcare, finance, legal, and government sectors.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="demo_data">Demo_Data/</h3>
+<p>Real and synthetic sample data files for running demonstrations.</p>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Test System/ActivitiesCache.db</code></td>
+<td>Sample Windows Timeline SQLite database</td>
+</tr>
+<tr>
+<td><code>Test System/Behave_V1_Output/</code></td>
+<td>Sample chart outputs from v1 analysis</td>
+</tr>
+<tr>
+<td><code>Test System/WindowsTimeline_Output/</code></td>
+<td>Sample Windows Timeline export</td>
+</tr>
+<tr>
+<td><code>Vatican/</code></td>
+<td>Forensic reference materials, registry files, and knowledge base</td>
+</tr>
+<tr>
+<td><code>4SICSGeekLounge151.pcap</code></td>
+<td>Real-world PCAP file for network analysis demos (151 MB)</td>
+</tr>
+<tr>
+<td><code>test_sample.pcap</code></td>
+<td>Small synthetic PCAP for quick demos</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="demo_scripts">Demo_Scripts/</h3>
+<p>Python scripts for running live demonstrations.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>demo.py</code></td>
+<td>Comprehensive demo showing Timeline parsing, analytics, and reporting</td>
+</tr>
+<tr>
+<td><code>unified_parser.py</code></td>
+<td>Demonstrates auto-detection of database types</td>
+</tr>
+<tr>
+<td><code>entity_extraction_demo.py</code></td>
+<td><strong>NEW!</strong> Interactive demo of hybrid NLP entity extraction with real-time visualization, use cases, and scaling examples</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quick run:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>../venv/bin/activate<span class="w">   </span><span class="c1"># activate the virtual environment</span>
+python<span class="w"> </span>Demo_Scripts/demo.py
+
+<span class="c1"># NEW: Entity Extraction Demo</span>
+python<span class="w"> </span>Demo_Scripts/entity_extraction_demo.py
+</code></pre></div>
+
+<hr />
+<h3 id="demo_tests">Demo_Tests/</h3>
+<p>Automated tests used to verify the platform's capabilities.</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>test_demo.py</code></td>
+<td>End-to-end demonstration test suite</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Quick run:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="nb">source</span><span class="w"> </span>../venv/bin/activate
+pytest<span class="w"> </span>Demo_Tests/test_demo.py<span class="w"> </span>-v
+</code></pre></div>
+
+<hr />
+<h3 id="sample_outputs">Sample_Outputs/</h3>
+<p>Pre-generated output reports showing what Vatican Vault produces.</p>
+<p>Browse the <code>reports/</code> subdirectory for timestamped output folders — each contains HTML reports, JSON exports, and analysis summaries generated from the demo databases.</p>
+<hr />
+<h2 id="running-a-full-demo">Running a Full Demo</h2>
+<ol>
+<li>
+<p><strong>Install</strong> (one time):<br />
+<code>bash
+   cd ..   # from the Promo/ folder, go to project root
+   python setup.py</code></p>
+</li>
+<li>
+<p><strong>Activate virtual environment</strong>:<br />
+<code>bash
+   source ../venv/bin/activate</code></p>
+</li>
+<li>
+<p><strong>Run against sample Timeline database</strong>:<br />
+<code>bash
+   python ../vatican.py --path "Promo/Demo_Data/Test System/ActivitiesCache.db"</code></p>
+</li>
+<li>
+<p><strong>Run interactive menu</strong>:<br />
+<code>bash
+   python ../vatican_vault.py</code></p>
+</li>
+<li>
+<p><strong>Run the demo script</strong>:<br />
+<code>bash
+   python Promo/Demo_Scripts/demo.py</code></p>
+</li>
+</ol>
+<hr />
+<h2 id="for-presentations">For Presentations</h2>
+<h3 id="for-investors-vcs-angels-strategic-partners">For Investors (VCs, Angels, Strategic Partners)</h3>
+<ol>
+<li><strong>Open VC_DEMO_INDEX.html</strong> - Complete investor package homepage</li>
+<li><strong>Start with 60-second pitch</strong> - VC_Materials/EXECUTIVE_SUMMARY_VC.html</li>
+<li><strong>Show industry reports</strong> - Industry_Demo_Reports/index.html</li>
+<li><strong>Run live demo</strong> - Demo_Scripts/entity_extraction_demo.py</li>
+<li><strong>Deep dive</strong> - VC_Materials/VC_DEMO_REPORT_2026-02-28.html</li>
+</ol>
+<h3 id="for-technical-audiences-ctos-security-teams">For Technical Audiences (CTOs, Security Teams)</h3>
+<ul>
+<li>Use <strong>HISTORY.html</strong> to explain the "why" — the story of how Windows became an activity logger and why that matters</li>
+<li>Use <strong>PITCH.html</strong> to explain the "what" — how Vatican Vault turns that data into intelligence, and who benefits</li>
+<li>Use <strong>Industry_Demo_Reports/</strong> for specific use case demonstrations</li>
+<li>Use the <strong>Sample_Outputs/</strong> reports for live visual demonstrations</li>
+<li>Use the <strong>Demo_Data/</strong> files for live analysis demonstrations</li>
+</ul>
+<h3 id="for-enterprise-buyers-cisos-compliance-officers">For Enterprise Buyers (CISOs, Compliance Officers)</h3>
+<ul>
+<li>Start with <strong>Industry_Demo_Reports/</strong> matching their vertical (healthcare, financial, SOC, etc.)</li>
+<li>Show <strong>ENTITY_EXTRACTION_USECASES.html</strong> for AI/ML capabilities and ROI analysis</li>
+<li>Demonstrate compliance features with <strong>Sample_Outputs/</strong> reports</li>
+<li>Run live demo with their data (if available)</li>
+</ul>
+<hr />
+<p><em>Vatican Vault — Your Windows PC is keeping secrets. Let's uncover them.</em></p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>

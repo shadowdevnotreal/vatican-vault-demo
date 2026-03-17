@@ -1,0 +1,16 @@
+Here's an example of code to send a file using the fastest protocol found in the previous script, copy the file from a set location, create a log file, and add it to the file being sent out in Windows batch language:
+
+It sets the destination host and file path as variables.
+It sets a list of protocols (SSH, FTP, SMB, NFS) and ports to be tested.
+It initializes variables for the fastest protocol and transfer time.
+The code then loops through each of the protocols in the list.
+For each protocol, it runs a ping command to the destination host and captures the elapsed time (the time it takes for the echo request to return) as a string.
+The elapsed time string is then processed to remove the "ms" unit and converted to a number.
+The code then checks if the fastest protocol and transfer time have been set. If not, it sets the current protocol and transfer time as the fastest.
+If the fastest protocol and transfer time have already been set, the code checks if the current transfer time is less than the fastest. If so, it updates the fastest protocol and transfer time with the current values.
+The loop then moves on to the next protocol.
+After all protocols have been tested, the code outputs the fastest protocol and transfer time.
+
+Note: The scp, ftp, net use, mount, and umount commands may need to be installed and/or included in the PATH environment variable on the Windows machine in order for this code to work correctly.
+
+https://www.buymeacoffee.com/notarealdev

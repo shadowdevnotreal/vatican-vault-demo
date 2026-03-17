@@ -1,0 +1,52 @@
+========================================
+  VATICAN VAULT - DEMO QUICK START
+========================================
+
+IMPORTANT: HTML files won't open correctly by double-clicking them!
+
+WHY?
+----
+Modern browsers block local file access (file://) due to security
+restrictions (CORS policy). This causes blank pages and broken links.
+
+SOLUTION (WINDOWS)
+------------------
+1. Double-click: START_DEMO_SERVER.bat
+2. Wait for your browser to open automatically
+3. Navigate to: http://localhost:8000/
+
+That's it! All demo reports will now work correctly.
+
+MANUAL METHOD
+-------------
+Open Command Prompt in this folder and run:
+   python -m http.server 8000
+
+Then open your browser to: http://localhost:8000/
+
+AVAILABLE PAGES
+---------------
+- Demo Hub: http://localhost:8000/
+- Main Demo Package: http://localhost:8000/VC_Materials/VC_DEMO_PACKAGE.html
+- Test Reports: http://localhost:8000/Sample_Outputs/reports/20260228_034136/index.html
+- Coverage Report: http://localhost:8000/Sample_Outputs/reports/20260228_034136/coverage_html/index.html
+
+TROUBLESHOOTING
+---------------
+Problem: "Python is not recognized"
+Solution: Install Python from https://www.python.org/downloads/
+          Make sure to check "Add Python to PATH" during installation
+
+Problem: Port 8000 already in use
+Solution: Use a different port: python -m http.server 8001
+          Then use http://localhost:8001/ instead
+
+Problem: Still seeing blank pages
+Solution: Make sure you're using http://localhost:8000/ NOT file:///
+
+NEED HELP?
+----------
+Read the detailed guide: WINDOWS_SETUP_INSTRUCTIONS.html
+(Also needs to be viewed via HTTP server)
+
+========================================

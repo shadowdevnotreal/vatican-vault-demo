@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vatican Vault</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="vatican-vault">Vatican Vault</h1>
+<h2 id="intelligence-hidden-in-plain-sight-unlocking-windows-activity-data-across-every-industry">Intelligence Hidden in Plain Sight — Unlocking Windows Activity Data Across Every Industry</h2>
+<hr />
+<blockquote>
+<p>Every Windows PC is a witness. Vatican Vault is the interpreter.</p>
+</blockquote>
+<hr />
+<h2 id="the-opportunity">The Opportunity</h2>
+<p>There are over <strong>1.4 billion active Windows devices</strong> in the world. Every one of them running Windows 10 or 11 has been quietly recording a detailed log of user behavior — applications launched, files accessed, websites visited, documents opened — stored in a structured SQLite database called <code>ActivitiesCache.db</code>. Devices running Microsoft Recall capture something even more remarkable: <strong>visual screenshots of everything displayed on screen</strong>, indexed with AI-powered OCR, every few seconds.</p>
+<p>This data is not hidden. It requires no special hardware, no network tap, no endpoint agent. It is sitting on the device, structured, queryable, and waiting to be understood.</p>
+<p>The problem is not the data. The problem is that until Vatican Vault, <strong>no comprehensive tool existed to read it intelligently</strong>.</p>
+<p>Vatican Vault is the platform that changes that.</p>
+<hr />
+<h2 id="what-vatican-vault-does">What Vatican Vault Does</h2>
+<p>Vatican Vault is an AI-powered forensic analysis and behavioral intelligence platform that ingests Windows Timeline databases (<code>ActivitiesCache.db</code>), Windows Recall snapshots (<code>ukg.db</code>), and network traffic captures (PCAP/PCAPNG), and transforms them into actionable intelligence through:</p>
+<ul>
+<li><strong>Timeline reconstruction</strong> — Precise, minute-by-minute activity replay</li>
+<li><strong>Entity extraction</strong> — Automatic identification of people, organizations, credentials, IP addresses, financial data, and 20+ other entity types from all activity records</li>
+<li><strong>Behavioral analytics</strong> — Machine learning models that detect anomalies, cluster behavior patterns, and forecast risk</li>
+<li><strong>Sensitive data detection</strong> — Automatic flagging of credentials, PII, financial data, and regulated content captured in activity records or screenshots</li>
+<li><strong>Network correlation</strong> — Cross-reference on-device activity against captured network traffic</li>
+<li><strong>Professional reporting</strong> — Executive summaries, technical analyses, compliance-ready exports, and evidentiary-quality HTML/PDF reports</li>
+</ul>
+<p>Vatican Vault runs locally on any machine. No cloud dependency. No data leaves the device unless the operator explicitly exports it. No subscription required for core functionality.</p>
+<hr />
+<h2 id="industry-applications">Industry Applications</h2>
+<h3 id="enterprise-it-security-operations">Enterprise IT &amp; Security Operations</h3>
+<p><strong>The Challenge</strong>: Security teams manage thousands of endpoints with limited visibility into user-level behavior. Traditional SIEM tools capture network events and log aggregates — but miss the granular picture of what users actually did on their machines. When an incident occurs, reconstruction is expensive, slow, and often incomplete.</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>Instant incident reconstruction</strong>: Given any endpoint, Vatican Vault generates a minute-by-minute timeline of user activity in seconds, without deploying an agent or touching the live system</li>
+<li><strong>Insider threat detection</strong>: Behavioral anomaly models identify unusual access patterns, off-hours activity, bulk file access, and data staging consistent with data exfiltration</li>
+<li><strong>Data loss investigation</strong>: Track exactly which files were accessed, when, by which application, and whether they were subsequently deleted</li>
+<li><strong>Credential exposure</strong>: Recall screenshot analysis automatically flags sessions where API keys, passwords, or authentication tokens were visible on screen — a critical audit capability for developer and admin workstations</li>
+<li><strong>Zero-footprint analysis</strong>: Forensic analysis of a database copy leaves no trace on the live endpoint</li>
+</ul>
+<p><strong>Business Value</strong>: Reduce mean-time-to-investigate (MTTI) from days to hours. Enable security teams of five to analyze incidents that previously required external DFIR consultants.</p>
+<hr />
+<h3 id="digital-forensics-incident-response-dfir">Digital Forensics &amp; Incident Response (DFIR)</h3>
+<p><strong>The Challenge</strong>: DFIR practitioners routinely spend 60–80% of their investigation time on data acquisition, parsing, and timeline construction — before any actual analysis begins. Tool fragmentation means analysts must master dozens of specialized parsers, correlate output from disparate formats, and manually build timelines that should be automatic.</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>Unified artifact parser</strong>: One tool handles Timeline, Recall, and PCAP — no more context-switching between tools</li>
+<li><strong>Automated timeline generation</strong>: Click-to-HTML forensic timelines with source attribution, confidence indicators, and direct links back to raw database records</li>
+<li><strong>Entity relationship mapping</strong>: Automatic knowledge graph construction showing which people, organizations, and assets appear across the activity record</li>
+<li><strong>Cross-artifact correlation</strong>: Correlate on-device application activity with network traffic — show that the file access at 14:32 was followed by a DNS lookup to a cloud storage provider at 14:34</li>
+<li><strong>Evidentiary exports</strong>: Reports formatted for legal proceedings, with chain-of-custody metadata and raw data appendices</li>
+<li><strong>STIX 2.1 and MISP integration</strong>: Export entity and IOC data directly to threat intelligence platforms</li>
+</ul>
+<p><strong>Business Value</strong>: Cut investigation timelines by 50–70%. Enable junior analysts to produce work previously requiring senior specialists. Handle higher caseloads without proportional headcount increases.</p>
+<hr />
+<h3 id="law-enforcement-criminal-investigations">Law Enforcement &amp; Criminal Investigations</h3>
+<p><strong>The Challenge</strong>: Law enforcement agencies executing search warrants on computers face enormous challenges. The volume of data on modern PCs is overwhelming. Investigators need to quickly answer specific questions — "was this person at this computer at this time?", "did they access this file?", "what were they doing in the hours before the incident?" — without spending weeks on forensic analysis.</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>Rapid activity reconstruction</strong>: Generate a complete, human-readable timeline of everything that occurred on a seized device in minutes, not days</li>
+<li><strong>Alibi verification and refutation</strong>: Precise timestamps for every user action enable investigators to confirm or challenge claims about a person's whereabouts and activities</li>
+<li><strong>Evidence of intent</strong>: Document access to specific files (instructions, communications, target research) that establish intent and premeditation</li>
+<li><strong>Corroborating witness</strong>: Recall screenshot analysis provides visual evidence of what the user saw — confirming that they viewed specific content, opened specific messages, or visited specific websites</li>
+<li><strong>Keyword and entity search</strong>: Search the complete activity record for names, addresses, phone numbers, financial account numbers, or any other entity of interest — without reviewing files manually</li>
+<li><strong>Child exploitation investigations</strong>: Surface evidence of access to specific content types based on file paths, application names, and OCR-extracted text from Recall</li>
+</ul>
+<p><strong>Business Value</strong>: Faster case development. Richer evidentiary record. Reduced reliance on expensive private DFIR contractors for preliminary analysis.</p>
+<hr />
+<h3 id="military-intelligence">Military &amp; Intelligence</h3>
+<p><strong>The Challenge</strong>: In classified and sensitive environments, insider threats are among the most dangerous risks. A trusted person with legitimate access who decides to steal, leak, or sabotage has built-in cover. Traditional DLP (Data Loss Prevention) tools are evadable. Activity monitoring agents can be disabled or detected. Air-gapped environments may prohibit network-based monitoring entirely.</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>Post-incident forensics without live monitoring</strong>: When a suspected leak is discovered, Vatican Vault analyzes the suspect workstation's activity database to reconstruct exactly what was accessed, copied, and transmitted — without any prior monitoring infrastructure</li>
+<li><strong>Anomaly detection at classification boundaries</strong>: Identify users who accessed classified materials outside their normal operational pattern — off-hours, from unusual applications, in unusual volumes</li>
+<li><strong>Recall analysis for need-to-know enforcement</strong>: Recall screenshot analysis can identify what classified information was visible on screen, enabling need-to-know audits even for air-gapped systems</li>
+<li><strong>Exfiltration reconstruction</strong>: Correlate file access events with removable media insertion events, network activity windows, and application launches to build a complete exfiltration timeline</li>
+<li><strong>Counter-intelligence support</strong>: Entity extraction across activity records can surface previously unknown relationships — a contractor who searched for a competitor's name, or a staff member who researched specific targets</li>
+</ul>
+<p><strong>Business Value</strong>: Close the visibility gap on insider threats that network monitoring cannot see. Enable rapid damage assessment following a suspected compromise.</p>
+<hr />
+<h3 id="human-resources-employment-law">Human Resources &amp; Employment Law</h3>
+<p><strong>The Challenge</strong>: Employment disputes, misconduct investigations, and termination decisions increasingly turn on digital evidence — "did the employee take company files?", "was the employee working during claimed work hours?", "did they share confidential information with a competitor?" HR and legal teams lack tools to answer these questions quickly and defensibly.</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>Time and attendance verification</strong>: Timeline data shows exactly when a user was actively working on their company laptop — essential for remote work compliance and disputed timecard investigations</li>
+<li><strong>Data theft investigations</strong>: Document the precise moment an employee accessed confidential files before resignation, and correlate with external transfers</li>
+<li><strong>Non-compete and NDA enforcement</strong>: Establish timeline of access to trade secrets and customer data in support of civil litigation</li>
+<li><strong>Misconduct documentation</strong>: Reconstruct what websites, applications, and content a user accessed on company equipment during work hours</li>
+<li><strong>Due process support</strong>: Comprehensive timeline evidence supports defensible termination decisions and reduces litigation risk</li>
+</ul>
+<p><strong>Business Value</strong>: Replace expensive e-discovery processes for simple matters. Give HR teams access to the same quality of evidence previously available only through expensive external forensic consultants.</p>
+<hr />
+<h3 id="healthcare-compliance">Healthcare &amp; Compliance</h3>
+<p><strong>The Challenge</strong>: HIPAA and other healthcare regulations require organizations to audit access to patient records and investigate potential breaches. Traditional audit logs are incomplete — they show which records were queried in the EHR system but miss everything that happened outside the application. Was patient data photographed? Printed? Exported to a personal device?</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>HIPAA breach investigation</strong>: Timeline analysis reconstructs a nurse's or administrator's complete session, showing access to patient records followed by activity in personal email, USB file transfers, or cloud uploads</li>
+<li><strong>PHI exfiltration detection</strong>: Sensitive data scanner automatically flags activity records containing Social Security numbers, medical record numbers, patient names, and other PHI identifiers</li>
+<li><strong>Recall screenshot audit</strong>: For organizations deploying Recall (or investigating on personal Copilot+ PCs), screenshot analysis can confirm whether patient data was visible during screen-sharing sessions, personal browsing, or unauthorized application use</li>
+<li><strong>Compliance reporting</strong>: Generate audit-ready reports showing who accessed what data, when, from which applications, with entity-level granularity</li>
+<li><strong>Incident response timeline</strong>: Produce the breach timeline reports required by HIPAA notification rules within hours of incident discovery</li>
+</ul>
+<p><strong>Business Value</strong>: Meet HIPAA investigation and notification requirements faster. Reduce breach investigation costs. Demonstrate due diligence to regulators.</p>
+<hr />
+<h3 id="financial-services-regulatory-compliance">Financial Services &amp; Regulatory Compliance</h3>
+<p><strong>The Challenge</strong>: Financial institutions face strict regulatory requirements around data access, employee conduct, and market integrity. Compliance teams must investigate potential violations — insider trading, customer data misuse, rogue trading — with evidence that meets regulatory and legal standards.</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>Insider trading investigation</strong>: Correlate an employee's access to material non-public information (MNPI) with subsequent trading activity — Timeline records show exactly when they opened the deal file, for how long, and what else they did immediately after</li>
+<li><strong>Customer data protection</strong>: Identify and document unauthorized access to customer account data, correlating database application activity with external file transfers</li>
+<li><strong>Rogue trading reconstruction</strong>: Rebuild the exact sequence of actions that preceded an unauthorized trade, including research, communications access, and system interactions</li>
+<li><strong>Regulatory examination support</strong>: Produce comprehensive timelines and entity extraction reports for SEC, FINRA, or FCA examinations — formatted to meet regulatory evidentiary standards</li>
+<li><strong>SOC 2 and PCI-DSS audits</strong>: Document access patterns to systems in scope, identify anomalous access, and generate compliance reports</li>
+</ul>
+<p><strong>Business Value</strong>: Reduce cost and time of regulatory investigations. Demonstrate robust monitoring and investigation capabilities to examiners. Support defensible disciplinary actions.</p>
+<hr />
+<h3 id="education-academic-research">Education &amp; Academic Research</h3>
+<p><strong>The Challenge</strong>: Academic institutions face increasing concerns about academic integrity, research data security, and export control compliance. Instructors need to verify that exams were completed independently. Research security officers need to monitor access to controlled technology or ITAR-restricted data. IT security teams need to investigate incidents on research computing systems.</p>
+<p><strong>Vatican Vault's Role</strong>:</p>
+<ul>
+<li><strong>Academic integrity investigations</strong>: Reconstruct a student's or researcher's complete computer session during an exam period — show exactly which applications were open, which websites were visited, and when</li>
+<li><strong>Research security compliance</strong>: Identify researcher access to controlled technology data, flag transfers to personal cloud storage or external devices</li>
+<li><strong>Export control audits</strong>: Surface evidence of access to ITAR or EAR-controlled technical data and reconstruct the full context of that access</li>
+<li><strong>Grant fraud investigation</strong>: Document what research tasks were actually performed and when, compared to claimed work logs</li>
+</ul>
+<hr />
+<h2 id="competitive-landscape">Competitive Landscape</h2>
+<table>
+<thead>
+<tr>
+<th>Capability</th>
+<th>Vatican Vault</th>
+<th>Traditional DFIR Tools</th>
+<th>SIEM/EDR</th>
+<th>Recall-Specific Tools</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Windows Timeline parsing</td>
+<td>Native, comprehensive</td>
+<td>Partial, fragmented</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Windows Recall analysis</td>
+<td>Native, AI-powered</td>
+<td>Limited or none</td>
+<td>None</td>
+<td>Basic extraction only</td>
+</tr>
+<tr>
+<td>Behavioral ML analytics</td>
+<td>Built-in (Isolation Forest, HDBSCAN)</td>
+<td>Rarely</td>
+<td>Yes (high cost)</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Entity extraction (NER)</td>
+<td>20+ entity types, hybrid NLP</td>
+<td>Manual or limited</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Knowledge graphs</td>
+<td>Automated generation</td>
+<td>Manual</td>
+<td>None</td>
+<td>None</td>
+</tr>
+<tr>
+<td>PCAP correlation</td>
+<td>Integrated</td>
+<td>Separate tool</td>
+<td>Separate tool</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Local deployment</td>
+<td>Yes (no cloud required)</td>
+<td>Yes</td>
+<td>Cloud-dependent</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>REST API</td>
+<td>68 endpoints</td>
+<td>Rarely</td>
+<td>Yes</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Report formats</td>
+<td>HTML, PDF, JSON, STIX, MISP, Excel</td>
+<td>Varies</td>
+<td>Varies</td>
+<td>None</td>
+</tr>
+<tr>
+<td>Price point</td>
+<td>Open platform</td>
+<td>$10K–$100K+ licensing</td>
+<td>$50K–$500K/yr</td>
+<td>Free scripts</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="technical-architecture-at-a-glance">Technical Architecture at a Glance</h2>
+<p>Vatican Vault is built for reliability, extensibility, and deployment flexibility:</p>
+<p><strong>Core Stack</strong><br />
+- FastAPI (Python) backend with 68 REST endpoints<br />
+- SQLAlchemy ORM with async support<br />
+- spaCy + sentence-transformers for NLP<br />
+- scikit-learn (Isolation Forest, DBSCAN/HDBSCAN) for ML<br />
+- PyTorch + torchvision for vision features<br />
+- Rich terminal UI + Typer CLI framework</p>
+<p><strong>Deployment Options</strong><br />
+- Single Python script (<code>python vatican.py</code>) — zero configuration<br />
+- Interactive menu CLI (<code>python vatican_vault.py</code>)<br />
+- REST API server (<code>uvicorn app.main:app</code>)<br />
+- Docker Compose (full stack with Redis, Grafana, Prometheus)<br />
+- Cloud storage backends (AWS S3, Azure Blob, Google Cloud Storage)</p>
+<p><strong>Security &amp; Privacy</strong><br />
+- All analysis runs locally by default<br />
+- No telemetry or data collection<br />
+- Optional AI provider integration (Groq, OpenAI, Anthropic) — user-controlled<br />
+- JWT authentication and API key management for the REST API<br />
+- Data redaction capability to anonymize before sharing reports</p>
+<p><strong>Extensibility</strong><br />
+- Plugin-ready AI provider system (add any LLM endpoint)<br />
+- Cloud storage adapter pattern (add any provider)<br />
+- Configurable entity extraction patterns (add custom regex/NLP rules)<br />
+- Report template system (customize output for any organization)</p>
+<hr />
+<h2 id="who-uses-vatican-vault">Who Uses Vatican Vault</h2>
+<p>Vatican Vault serves professionals across the security and investigative spectrum:</p>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Primary Use Case</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>DFIR Analyst</td>
+<td>Incident reconstruction, timeline generation, evidence export</td>
+</tr>
+<tr>
+<td>SOC Analyst (L2/L3)</td>
+<td>Endpoint investigation, insider threat triage</td>
+</tr>
+<tr>
+<td>Law Enforcement Detective</td>
+<td>Criminal investigation, warrant execution analysis</td>
+</tr>
+<tr>
+<td>Counter-Intelligence Officer</td>
+<td>Insider threat assessment, damage assessment</td>
+</tr>
+<tr>
+<td>Corporate Investigator</td>
+<td>Employee misconduct, data theft, HR disputes</td>
+</tr>
+<tr>
+<td>Compliance Officer</td>
+<td>Regulatory audit support, breach investigation</td>
+</tr>
+<tr>
+<td>Penetration Tester</td>
+<td>Post-engagement evidence of access and impact</td>
+</tr>
+<tr>
+<td>Threat Intelligence Analyst</td>
+<td>Entity extraction, IOC generation, behavioral profiling</td>
+</tr>
+<tr>
+<td>Security Researcher</td>
+<td>Windows activity artifact analysis and publication</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="the-market">The Market</h2>
+<ul>
+<li><strong>Global DFIR market</strong>: $7.4 billion (2024), growing at 18% CAGR</li>
+<li><strong>Insider threat detection market</strong>: $4.3 billion (2024), growing at 22% CAGR</li>
+<li><strong>Endpoint security market</strong>: $21 billion (2024)</li>
+<li><strong>eDiscovery market</strong>: $16 billion (2024)</li>
+<li><strong>Windows installed base</strong>: 1.4 billion active devices — every one a potential data source</li>
+</ul>
+<p>Vatican Vault sits at the intersection of these markets with a unique value proposition: it turns infrastructure that already exists — Windows Timeline and Recall databases — into a forensic intelligence platform that requires no new agents, no new hardware, and no new data collection.</p>
+<p>The data is already there. Vatican Vault is the key.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>Vatican Vault is not a point solution. It is a platform.</p>
+<p>It provides security teams with the insider threat visibility they've never had. It gives forensic analysts a unified, intelligent tool that replaces a dozen fragmented scripts. It enables law enforcement to reconstruct digital behavior in hours instead of weeks. It helps compliance teams meet regulatory requirements with evidence they couldn't previously access.</p>
+<p>The technology foundation — Windows Timeline and Recall — exists on over a billion devices today and is expanding. As Recall adoption grows with Copilot+ PC hardware, the value of Vatican Vault's analysis capabilities grows with it.</p>
+<p><strong>Vatican Vault: Your Windows PC is keeping secrets. We make sure the right people can read them.</strong></p>
+<hr />
+<p><em>For demonstrations, partnership inquiries, and technical briefings, contact the Vatican Vault team.</em></p>
+<p><em>For community and open-source collaboration, the platform is available on GitHub.</em></p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>

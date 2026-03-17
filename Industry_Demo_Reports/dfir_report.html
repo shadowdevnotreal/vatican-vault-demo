@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DFIR Investigation Report - DEMO-2026-030-001</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f5f5f5;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 4px solid #c41e3a;
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+        .header .badge {
+            background: #c41e3a;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 15px;
+        }
+        .case-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 6px;
+            margin: 25px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-item .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .info-item .value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .section-number {
+            color: #c41e3a;
+            margin-right: 10px;
+        }
+        .evidence-chain {
+            background: #fff9e6;
+            border-left: 4px solid #ffa500;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .evidence-chain h4 {
+            color: #cc8400;
+            margin-bottom: 12px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #c41e3a;
+        }
+        .stat-box .label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+        .timeline-section {
+            background: #f0f8ff;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .timeline-section h4 {
+            color: #0066cc;
+            margin-bottom: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .capability-badge {
+            display: inline-block;
+            background: #e8f4f8;
+            color: #0066cc;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 3px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge">DIGITAL FORENSICS & INCIDENT RESPONSE</div>
+            <h1>🏛️ Vatican Vault - DFIR Investigation Report</h1>
+            <div class="subtitle">Forensic Timeline Reconstruction & Evidence Analysis</div>
+        </div>
+
+        <div class="case-info">
+            <div class="info-item">
+                <div class="label">Case ID</div>
+                <div class="value">DEMO-2026-030-001</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Subject</div>
+                <div class="value">Test_User_001</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Computer</div>
+                <div class="value">DESKTOP-VV-DEMO</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Report Date</div>
+                <div class="value">2026-03-01</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Classification</div>
+                <div class="value">CONFIDENTIAL</div>
+            </div>
+        </div>
+
+        <div class="evidence-chain">
+            <h4>📋 Evidence Sources</h4>
+            <p><strong>Artifacts Analyzed:</strong> Windows Timeline (ActivitiesCache.db)</p>
+            <p><strong>Chain of Custody:</strong> Evidence acquired, integrity verified via hash validation, analyzed using Vatican Vault v2.0</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">1.</span>Executive Summary</h2>
+            <p>This report presents the findings from a comprehensive digital forensic analysis of the subject endpoint.
+            The investigation utilized Vatican Vault's automated timeline reconstruction, entity extraction, and behavioral
+            analytics capabilities to reconstruct user activity with minute-by-minute precision.</p>
+
+            <div class="stat-grid" style="margin-top:25px;">
+                <div class="stat-box">
+                    <div class="number">0</div>
+                    <div class="label">Activities Analyzed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">75</div>
+                    <div class="label">Unique Applications</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">146</div>
+                    <div class="label">Timeline Span (Days)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">8</div>
+                    <div class="label">Entities Extracted</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">2.</span>Timeline Reconstruction</h2>
+
+            <div class="timeline-section">
+                <h4>⏱️ Activity Timeline Boundaries</h4>
+                <table>
+                    <tr>
+                        <td><strong>First Activity:</strong></td>
+                        <td>2022-10-16 14:32:15</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Last Activity:</strong></td>
+                        <td>2023-03-10 18:45:22</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coverage Period:</strong></td>
+                        <td>146 days of continuous monitoring</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Events:</strong></td>
+                        <td>0 discrete activity records</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>Timeline Methodology:</strong></p>
+            <ul style="margin: 15px 0 15px 25px; line-height:1.8;">
+                <li>Windows Timeline (ActivitiesCache.db) parsed for complete user activity history</li>
+                <li>Every application launch, file access, and web visit timestamped to the second</li>
+                <li>Activity clustering and session reconstruction for behavioral context</li>
+                <li>Cross-correlation with network traffic (if PCAP available) for external communications</li>
+                <li>Entity extraction across all activity records for IOC and relationship mapping</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">3.</span>Entity Extraction & Intelligence</h2>
+            <p><strong>8</strong> entities extracted using Vatican Vault's hybrid NER (Named Entity Recognition) system combining regex patterns and spaCy NLP.</p>
+
+            <p style="margin:15px 0;"><strong>Extracted Entity Categories:</strong></p>
+            <div>
+                <span class="capability-badge">Email Addresses</span>
+                <span class="capability-badge">IP Addresses</span>
+                <span class="capability-badge">URLs & Domains</span>
+                <span class="capability-badge">Credentials</span>
+                <span class="capability-badge">API Keys</span>
+                <span class="capability-badge">File Paths</span>
+                <span class="capability-badge">Person Names</span>
+                <span class="capability-badge">Organizations</span>
+                <span class="capability-badge">Phone Numbers</span>
+                <span class="capability-badge">Credit Cards</span>
+                <span class="capability-badge">SSN/PII</span>
+                <span class="capability-badge">Crypto Wallets</span>
+            </div>
+
+            <p style="margin-top:20px;"><strong>Export Formats Available:</strong></p>
+            <p style="color:#666;">STIX 2.1, MISP, CASE/UCO, GraphML, Neo4j Cypher, D3.js Interactive HTML, JSON, CSV</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">4.</span>Forensic Capabilities Employed</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Analysis Module</th>
+                        <th>Capability</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Timeline Parser</td>
+                        <td>Windows Timeline (ActivitiesCache.db) ingestion and parsing</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Entity Extraction</td>
+                        <td>Hybrid NER (regex + spaCy) - 20+ entity types</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Behavioral Analytics</td>
+                        <td>ML anomaly detection (Isolation Forest, HDBSCAN)</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Knowledge Graph</td>
+                        <td>Entity relationship mapping and visualization</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Sensitive Data Scanner</td>
+                        <td>Credential, PII, and PHI exposure detection</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Network Correlation</td>
+                        <td>PCAP analysis and endpoint-network correlation</td>
+                        <td style="color:#94a3b8; font-weight:600;">○ No PCAP data</td>
+                    </tr>
+                    <tr>
+                        <td>Recall Analysis</td>
+                        <td>Screenshot OCR and visual evidence extraction</td>
+                        <td style="color:#94a3b8; font-weight:600;">○ No Recall data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">5.</span>Investigator Notes & Recommendations</h2>
+
+            <div style="background:#f8f9fa; padding:20px; border-radius:6px; margin:15px 0;">
+                <p><strong>DFIR Value Proposition:</strong></p>
+                <ul style="margin: 10px 0 0 20px; line-height:1.8;">
+                    <li><strong>50-70% reduction in investigation time</strong> - Automated timeline generation replaces days of manual work</li>
+                    <li><strong>Evidentiary quality</strong> - Reports formatted for legal proceedings with chain-of-custody metadata</li>
+                    <li><strong>Zero footprint</strong> - Analysis of database copy leaves no trace on live endpoint</li>
+                    <li><strong>Unified artifact parser</strong> - One tool for Timeline, Recall, and PCAP (no tool fragmentation)</li>
+                    <li><strong>Junior analyst enablement</strong> - Automated capabilities enable junior analysts to produce senior-level work</li>
+                </ul>
+            </div>
+
+            <p style="margin-top:25px;"><strong>Next Steps:</strong></p>
+            <ol style="margin: 10px 0 0 25px; line-height:1.8;">
+                <li>Review extracted entities for indicators of compromise (IOCs)</li>
+                <li>Examine timeline for gaps or anomalous activity patterns</li>
+                <li>Correlate findings with network traffic logs (if available)</li>
+                <li>Export evidence in court-admissible format (CASE/UCO, STIX 2.1)</li>
+                <li>Generate knowledge graph for relationship visualization</li>
+                <li>Prepare detailed technical appendix with raw data for court proceedings</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p><strong>Vatican Vault v2.0</strong> - Digital Forensics Platform</p>
+            <p>Generated: 2026-03-01 23:34:44 UTC</p>
+            <p style="margin-top:10px; font-size:11px;">CONFIDENTIAL - ATTORNEY WORK PRODUCT - For authorized DFIR personnel only</p>
+            <p style="margin-top:5px; font-size:11px; color:#999;">
+                Methodology: Windows Timeline parsing, Hybrid NER, ML anomaly detection, Knowledge graph construction
+            </p>
+        </div>
+    </div>
+</body>
+</html>

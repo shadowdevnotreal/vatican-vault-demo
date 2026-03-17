@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Files - Vatican Vault Reference Data</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="test-files-vatican-vault-reference-data">Test Files - Vatican Vault Reference Data</h1>
+<p><strong>Purpose:</strong> Permanent reference data for testing, training, and forensic analysis</p>
+<hr />
+<h2 id="pcap-files-location">📦 PCAP Files Location</h2>
+<p><strong>⚠️ IMPORTANT:</strong> PCAP network capture files have been consolidated to the main PCAP folder.</p>
+<p><strong>Primary Location:</strong> <code>/PCAP/</code> (project root)</p>
+<p><strong>Available PCAP Files:</strong><br />
+- <code>The Ultimate PCAP v20251206.pcapng</code> (14.8 MB) - Primary compliance testing data<br />
+- <code>4SICSGeekLounge151.pcap</code> (25 MB) - ICS/SCADA network traffic<br />
+- <code>test_sample.pcap</code> (562 bytes) - Basic validation file</p>
+<p><strong>Archived Version:</strong> This folder contains <code>The-Ultimate-PCAP.7z</code> (4.9 MB compressed) for distribution purposes.</p>
+<p><strong>📖 See:</strong> <code>/PCAP/README.md</code> for comprehensive PCAP documentation, usage examples, and testing instructions.</p>
+<hr />
+<h2 id="directory-structure">Directory Structure</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">Test</span><span class="w"> </span><span class="n">Files</span><span class="o">/</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">Test</span><span class="w"> </span><span class="n">System</span><span class="o">/</span><span class="w">                    </span><span class="c1"># Reference database and forensic tool outputs</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">ActivitiesCache</span><span class="o">.</span><span class="n">db</span><span class="w">         </span><span class="c1"># Real Windows Timeline database (4.71 MB, 1,853 activities)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">ActivitiesCache</span><span class="o">.</span><span class="n">db</span><span class="o">-</span><span class="n">shm</span><span class="w">     </span><span class="c1"># SQLite shared memory file (WAL mode)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">ActivitiesCache</span><span class="o">.</span><span class="n">db</span><span class="o">-</span><span class="n">wal</span><span class="w">     </span><span class="c1"># SQLite write-ahead log (transaction log)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">WindowsTimeline_Output</span><span class="o">/</span><span class="w">    </span><span class="c1"># kacos2000 WindowsTimeline parser output</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Behave_V1_Output</span><span class="o">/</span><span class="w">          </span><span class="c1"># TrustedSec Behave analysis output</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">README</span><span class="o">.</span><span class="n">md</span><span class="w">                  </span><span class="c1"># Test System documentation</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">Vatican</span><span class="o">/</span><span class="w">                        </span><span class="c1"># Windows Recall management resources</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">FORENSIC_KNOWLEDGE_BASE</span><span class="o">.</span><span class="n">md</span><span class="w"> </span><span class="c1"># Comprehensive forensic techniques guide</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">*.</span><span class="n">reg</span><span class="w">                      </span><span class="c1"># Registry files for Recall enable/disable</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="o">*.</span><span class="n">url</span><span class="w"> </span><span class="p">(</span><span class="mi">8</span><span class="w"> </span><span class="n">files</span><span class="p">)</span><span class="w">            </span><span class="c1"># Research links and documentation</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">notes</span><span class="o">.</span><span class="n">txt</span><span class="w">                  </span><span class="c1"># ActivitiesCache.db location info</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">docs</span><span class="o">/</span><span class="w">                          </span><span class="c1"># Microsoft Synthetic PII/PHI Dataset (18.9 MB)</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">CreditCardNumber</span><span class="o">/</span><span class="w">         </span><span class="c1"># 8 Excel files with test credit card data</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">SSN</span><span class="o">/</span><span class="w">                      </span><span class="c1"># Social Security Number test files</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">CanadianSocialInsuranceNumber</span><span class="o">/</span><span class="w">  </span><span class="c1"># Canadian SIN test data</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">USSocialSecurityNumber</span><span class="o">/</span><span class="w">   </span><span class="c1"># US SSN formatted/unformatted</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">PII</span><span class="o">/</span><span class="w">                      </span><span class="c1"># 40+ international PII files</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Financial</span><span class="o">/</span><span class="w">                </span><span class="c1"># Mixed financial data</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">TestData</span><span class="o">/</span><span class="w">                 </span><span class="c1"># FOLDER1-4 with mixed file types</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Fingerprinting</span><span class="w"> </span><span class="n">docs</span><span class="o">/</span><span class="w">      </span><span class="c1"># Document templates and patient forms</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">USUK</span><span class="w"> </span><span class="n">Passports</span><span class="o">/</span><span class="w">           </span><span class="c1"># Passport test documents</span>
+<span class="err">│</span><span class="w">   </span><span class="err">├──</span><span class="w"> </span><span class="n">Mixed</span><span class="w"> </span><span class="n">docs</span><span class="w"> </span><span class="n">with</span><span class="w"> </span><span class="n">PII</span><span class="o">/</span><span class="w">      </span><span class="c1"># Real-world mixed PII scenarios</span>
+<span class="err">│</span><span class="w">   </span><span class="err">└──</span><span class="w"> </span><span class="n">_creds</span><span class="o">/</span><span class="p">,</span><span class="w"> </span><span class="n">_pii</span><span class="o">/</span><span class="w">            </span><span class="c1"># Additional credential and PII tests</span>
+<span class="err">├──</span><span class="w"> </span><span class="n">Scripts</span><span class="o">/</span><span class="w">                       </span><span class="c1"># PowerShell security scripts</span>
+<span class="err">└──</span><span class="w"> </span><span class="n">Other</span><span class="w"> </span><span class="n">tools</span><span class="o">/</span><span class="w">                   </span><span class="c1"># Additional utilities</span>
+</code></pre></div>
+
+<hr />
+<h2 id="important-database-files-setup">Important: Database Files Setup</h2>
+<p>The Test System folder should contain all three SQLite database files:<br />
+- <code>ActivitiesCache.db</code> ✅ (currently in git)<br />
+- <code>ActivitiesCache.db-shm</code> ⚠️ (add if you have it locally)<br />
+- <code>ActivitiesCache.db-wal</code> ⚠️ (add if you have it locally)</p>
+<p>If you have the <code>.db-shm</code> and <code>.db-wal</code> files on your local system, add them with:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;Test Files/Test System&quot;</span>
+git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>ActivitiesCache.db-shm<span class="w"> </span>ActivitiesCache.db-wal
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: add SQLite WAL files to Test System reference dataset&quot;</span>
+</code></pre></div>
+
+<p>The <code>.gitignore</code> has been configured with explicit exceptions to allow these test files while blocking production database files elsewhere.</p>
+<hr />
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="1-analyze-activitiescachedb">1. Analyze ActivitiesCache.db</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/ActivitiesCache.db&quot;</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c1"># Get all activities</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT COUNT(*) FROM Activity&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total activities: </span><span class="si">{</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Top applications</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT AppId, COUNT(*) as count</span>
+<span class="s2">    FROM Activity</span>
+<span class="s2">    GROUP BY AppId</span>
+<span class="s2">    ORDER BY count DESC</span>
+<span class="s2">    LIMIT 5</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> activities&quot;</span><span class="p">)</span>
+
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="2-test-sensitive-data-scanner">2. Test Sensitive Data Scanner</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">backend.app.core.security.sensitive_scanner</span><span class="w"> </span><span class="kn">import</span> <span class="n">SensitiveDataScanner</span>
+
+<span class="n">scanner</span> <span class="o">=</span> <span class="n">SensitiveDataScanner</span><span class="p">()</span>
+
+<span class="c1"># Test with synthetic credit card data</span>
+<span class="n">test_text</span> <span class="o">=</span> <span class="s2">&quot;Card number: 4111-1111-1111-1111, expires 12/25&quot;</span>
+<span class="n">exposures</span> <span class="o">=</span> <span class="n">scanner</span><span class="o">.</span><span class="n">scan_text</span><span class="p">(</span><span class="n">test_text</span><span class="p">,</span> <span class="s2">&quot;test&quot;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="s2">&quot;Test&quot;</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">exp</span> <span class="ow">in</span> <span class="n">exposures</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="n">exp</span><span class="o">.</span><span class="n">exposure_type</span><span class="o">.</span><span class="n">value</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">exp</span><span class="o">.</span><span class="n">redacted_value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="3-run-comprehensive-tests">3. Run Comprehensive Tests</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>test_sensitive_scanner.py
+</code></pre></div>
+
+<p><strong>Expected Results:</strong><br />
+- Total Tests: 20<br />
+- Pass Rate: 100% (20/20) ✅<br />
+- Credit Cards: 5/5 ✅<br />
+- SSN: 4/4 ✅<br />
+- API Keys: 4/4 ✅<br />
+- Emails: 3/3 ✅<br />
+- International PII: 4/4 ✅ (Belgian, Czech, Finnish, German)</p>
+<h3 id="4-enabledisable-windows-recall">4. Enable/Disable Windows Recall</h3>
+<p><strong>Disable Recall:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">reg</span> <span class="kn">import</span><span class="w"> </span><span class="s2">&quot;Test Files/Vatican/Disable_Recall_feature_for_all_users.reg&quot;</span>
+</code></pre></div>
+
+<p><strong>Enable Recall (Managed):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">reg</span> <span class="kn">import</span><span class="w"> </span><span class="s2">&quot;Test Files/Vatican/Enable_Recall_feature_for_all_managed_users.reg&quot;</span>
+</code></pre></div>
+
+<p><strong>Remove Policy (Default):</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="n">reg</span> <span class="kn">import</span><span class="w"> </span><span class="s2">&quot;Test Files/Vatican/Default_enable_Recall_feature_for_home_users.reg&quot;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="activitiescachedb-details">ActivitiesCache.db Details</h2>
+<p><strong>Location:</strong> <code>Test Files/Test System/ActivitiesCache.db</code><br />
+<strong>Database:</strong> SQLite3<br />
+<strong>Size:</strong> 4.71 MB<br />
+<strong>Tables:</strong> 8 (Activity, ActivityOperation, Activity_PackageId, etc.)<br />
+<strong>Activities:</strong> 1,853<br />
+<strong>Date Range:</strong> October 16, 2022 - March 10, 2023 (146 days)<br />
+<strong>Applications:</strong> 75+</p>
+<h3 id="top-applications">Top Applications</h3>
+<ol>
+<li>VirtualBox - 416 activities (22.45%)</li>
+<li>Windows Explorer - 336 activities (18.13%)</li>
+<li>Steam Client - 116 activities (6.26%)</li>
+<li>Notepad - 107 activities (5.77%)</li>
+<li>Rockstar Social Club - 85 activities (4.59%)</li>
+</ol>
+<h3 id="table-summary">Table Summary</h3>
+<table>
+<thead>
+<tr>
+<th>Table</th>
+<th>Rows</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Activity</td>
+<td>1,853</td>
+<td>Core activity records</td>
+</tr>
+<tr>
+<td>Activity_PackageId</td>
+<td>6,296</td>
+<td>Application mappings</td>
+</tr>
+<tr>
+<td>ActivityOperation</td>
+<td>0</td>
+<td>Sync operations (empty)</td>
+</tr>
+<tr>
+<td>DataEncryptionKeys</td>
+<td>1</td>
+<td>Encryption keys</td>
+</tr>
+<tr>
+<td>Metadata</td>
+<td>5</td>
+<td>Database configuration</td>
+</tr>
+<tr>
+<td>AppSettings</td>
+<td>0</td>
+<td>App-specific settings</td>
+</tr>
+<tr>
+<td>Asset</td>
+<td>0</td>
+<td>Thumbnails/icons</td>
+</tr>
+<tr>
+<td>ManualSequence</td>
+<td>1</td>
+<td>Sequence counter</td>
+</tr>
+</tbody>
+</table>
+<h3 id="key-fields">Key Fields</h3>
+<ul>
+<li><strong>ClipboardPayload</strong> (BLOB): Clipboard data (empty in test DB for privacy)</li>
+<li><strong>Payload</strong> (BLOB): Activity details (JSON format)</li>
+<li><strong>AppId</strong> (TEXT): Application identifier (JSON array)</li>
+<li><strong>StartTime/EndTime</strong> (DATETIME): Unix epoch timestamps</li>
+<li><strong>ActivityType</strong> (INT): Activity category (5=app, 6=engagement, 11=settings, 16=sync)</li>
+</ul>
+<hr />
+<h2 id="vatican-folder-resources">Vatican Folder Resources</h2>
+<p><strong>Overview:</strong> The Vatican folder is a forensic knowledge base containing links to websites that detail better forensic testing techniques and tricks, along with registry files for managing Windows Recall.</p>
+<p>📖 <strong><a href="Vatican/FORENSIC_KNOWLEDGE_BASE.md">FULL DOCUMENTATION: FORENSIC_KNOWLEDGE_BASE.md</a></strong></p>
+<p>This comprehensive guide includes:<br />
+- Detailed tool documentation (ActivitiesCacheParser, RecallSnapshotsExport)<br />
+- Forensic analysis workflows and techniques<br />
+- Database schema reference<br />
+- Python code examples for timeline reconstruction<br />
+- Security considerations for defenders and investigators<br />
+- Evidence of execution artifact locations<br />
+- Clipboard forensics methodologies</p>
+<h3 id="quick-reference">Quick Reference</h3>
+<p><strong>Registry Files (*.reg)</strong> - Manage Windows Recall via Group Policy</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Effect</th>
+<th>Registry Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Default_enable_Recall_feature_for_home_users.reg</td>
+<td>Remove policy</td>
+<td>(delete key)</td>
+</tr>
+<tr>
+<td>Disable_Recall_feature_for_all_users.reg</td>
+<td>Disable Recall</td>
+<td><code>0x00000000</code></td>
+</tr>
+<tr>
+<td>Enable_Recall_feature_for_all_managed_users.reg</td>
+<td>Enable Recall</td>
+<td><code>0x00000001</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Registry Key:</strong> <code>HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI\AllowRecallEnablement</code></p>
+<p><strong>Research Links (8 URLs)</strong> - Curated forensic resources</p>
+<table>
+<thead>
+<tr>
+<th>Resource</th>
+<th>Focus Area</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ActivitiesCacheParser (GitHub)</td>
+<td>Python-based Timeline parser</td>
+</tr>
+<tr>
+<td>RecallSnapshotsExport (GitHub)</td>
+<td>Microsoft's snapshot decryption tool</td>
+</tr>
+<tr>
+<td>Microsoft Learn - Decrypt</td>
+<td>Recall snapshot decryption process</td>
+</tr>
+<tr>
+<td>Microsoft Learn - Manage</td>
+<td>Enterprise Recall management</td>
+</tr>
+<tr>
+<td>inversecos.com</td>
+<td>Clipboard forensics techniques</td>
+</tr>
+<tr>
+<td>darkcybe.github.io</td>
+<td>Evidence of execution artifacts</td>
+</tr>
+<tr>
+<td>Winaero</td>
+<td>Recall enable/disable guide</td>
+</tr>
+<tr>
+<td>Pureinfotech</td>
+<td>Local Recall data access</td>
+</tr>
+</tbody>
+</table>
+<p><strong>notes.txt</strong> - Quick reference for ActivitiesCache.db location and PowerShell commands</p>
+<hr />
+<h2 id="microsoft-synthetic-piiphi-dataset">Microsoft Synthetic PII/PHI Dataset</h2>
+<h3 id="overview">Overview</h3>
+<p><strong>Source:</strong> Microsoft Compliance Team<br />
+<strong>Purpose:</strong> Testing data loss prevention (DLP) and compliance scanners<br />
+<strong>Status:</strong> ✅ <strong>SYNTHETIC DATA</strong> - Safe for testing, not real PII/PHI<br />
+<strong>Size:</strong> 18.9 MB<br />
+<strong>Files:</strong> 300+ files across 9 categories</p>
+<h3 id="dataset-characteristics">Dataset Characteristics</h3>
+<ul>
+<li>✅ Follows proper schemas of real data</li>
+<li>✅ Enables accurate compliance testing</li>
+<li>✅ Validated by Microsoft</li>
+<li>✅ Safe for development/testing</li>
+<li>❌ NOT real PII/PHI</li>
+<li>❌ Do not use for production without proper review</li>
+</ul>
+<h3 id="categories">Categories</h3>
+<h4 id="1-credit-card-numbers-276-kb-8-files">1. Credit Card Numbers (276 KB, 8 files)</h4>
+<p><strong>Formats:</strong> Visa, Mastercard, AmEx, Discover<br />
+<strong>Patterns:</strong><br />
+- 16-digit: <code>4111-1111-1111-1111</code><br />
+- 15-digit: <code>3400-000000-00009</code><br />
+- With/without separators</p>
+<p><strong>Test Coverage:</strong><br />
+- ✅ Luhn algorithm validation<br />
+- ✅ Separator handling (dash, space, none)<br />
+- ✅ Mixed with financial data</p>
+<h4 id="2-social-security-numbers-14-files">2. Social Security Numbers (14 files)</h4>
+<p><strong>Formats:</strong><br />
+- With dashes: <code>123-45-6789</code><br />
+- Without dashes: <code>123456789</code></p>
+<p><strong>Files:</strong><br />
+- Core samples (2 files)<br />
+- Formatted SSN (6 employee rosters)<br />
+- Unformatted SSN (6 employee rosters)</p>
+<p><strong>Test Coverage:</strong><br />
+- ✅ Format detection (with/without dashes)<br />
+- ✅ Validation (area/group/serial numbers)<br />
+- ✅ Context detection (HR forms, rosters)</p>
+<h4 id="3-canadian-sin-6-files">3. Canadian SIN (6 files)</h4>
+<p><strong>Format:</strong> <code>123-456-789</code><br />
+<strong>Content:</strong> Employee rosters, HR profiles</p>
+<h4 id="4-international-pii-40-files-14-mb">4. International PII (40+ files, 1.4 MB)</h4>
+<p><strong>Countries:</strong> Belgium, Czech Republic, Denmark, Germany, Spain, Finland, France, Greece, Ireland, Italy, Poland, Sweden, UK</p>
+<p><strong>ID Types:</strong><br />
+- National ID cards<br />
+- Driver's licenses<br />
+- Personal numbers<br />
+- Tax identifiers</p>
+<p><strong>File Formats:</strong> .docx, .txt, .pdf, .xlsx</p>
+<p><strong>Test Coverage:</strong><br />
+- ⚠️ Belgian: 25% (patterns not implemented)<br />
+- ⚠️ Czech: 25% (patterns not implemented)<br />
+- ⚠️ Finnish: 25% (patterns not implemented)<br />
+- ✅ German: 100% (phone numbers detected)</p>
+<h4 id="5-financial-data-11-files">5. Financial Data (11 files)</h4>
+<p><strong>Content:</strong><br />
+- Transaction logs<br />
+- Expense accounts<br />
+- Classification samples<br />
+- Mixed financial PII</p>
+<h4 id="6-test-data-collections-24-files-in-4-folders">6. Test Data Collections (24 files in 4 folders)</h4>
+<p><strong>File Types:</strong> .msg (email), .docx, .pptx, .pdf, .txt, .xlsx<br />
+<strong>Content Types:</strong><br />
+- C-Record (Credit cards)<br />
+- H-Record (Health/PHI)<br />
+- PIIs (General PII)</p>
+<p><strong>Purpose:</strong> Real-world document testing</p>
+<h4 id="7-document-fingerprinting-6-files">7. Document Fingerprinting (6 files)</h4>
+<p><strong>Content:</strong><br />
+- Office specification templates<br />
+- Patient information forms<br />
+- Medical evaluation forms</p>
+<p><strong>Purpose:</strong> Template matching, document classification</p>
+<h4 id="8-usuk-passports-5-files">8. US/UK Passports (5 files)</h4>
+<p><strong>Content:</strong><br />
+- Offer letters with passport info<br />
+- Visa applications</p>
+<h4 id="9-mixed-documents-160-files">9. Mixed Documents (160+ files)</h4>
+<p><strong>Purpose:</strong> Real-world scenarios with multiple PII types<br />
+<strong>Languages:</strong> English, Spanish<br />
+<strong>Content:</strong><br />
+- Multiple PII types in single documents<br />
+- Admin passwords<br />
+- Mixed international formats</p>
+<hr />
+<h2 id="usage-guidelines">Usage Guidelines</h2>
+<h3 id="do">DO ✅</h3>
+<ul>
+<li>Use for testing sensitive data scanners</li>
+<li>Use for ML model training</li>
+<li>Use for compliance tool development</li>
+<li>Use for forensic technique validation</li>
+<li>Reference in documentation</li>
+</ul>
+<h3 id="dont">DON'T ❌</h3>
+<ul>
+<li>Use in production without review</li>
+<li>Assume this replaces real-world testing</li>
+<li>Treat as real PII/PHI</li>
+<li>Share outside authorized contexts</li>
+<li>Modify or delete these reference files</li>
+</ul>
+<hr />
+<h2 id="test-scripts">Test Scripts</h2>
+<h3 id="test_sensitive_scannerpy">test_sensitive_scanner.py</h3>
+<p><strong>Location:</strong> Project root<br />
+<strong>Purpose:</strong> Comprehensive scanner testing<br />
+<strong>Tests:</strong> 20 tests across 5 categories<br />
+<strong>Pass Rate:</strong> 85% (17/20)</p>
+<p><strong>Run:</strong></p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>test_sensitive_scanner.py
+</code></pre></div>
+
+<p><strong>Output:</strong><br />
+- Console summary with pass/fail status<br />
+- JSON report: <code>test_outputs/sensitive_scanner_test_report.json</code></p>
+<h3 id="comprehensive_poc_demopy">comprehensive_poc_demo.py</h3>
+<p><strong>Location:</strong> Project root<br />
+<strong>Purpose:</strong> End-to-end POC demonstration<br />
+<strong>Uses:</strong> ActivitiesCache.db</p>
+<p><strong>Run:</strong></p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>comprehensive_poc_demo.py
+</code></pre></div>
+
+<p><strong>Output:</strong><br />
+- <code>test_outputs/quick_scan_YYYY-MM-DD_HH-MM-SS/</code><br />
+- scan_summary.json<br />
+- activities.json (all 1,853 activities)<br />
+- entities_extracted.json<br />
+- sentiment_analysis.json<br />
+- forensic_report.html</p>
+<hr />
+<h2 id="documentation">Documentation</h2>
+<h3 id="comprehensive-knowledge-base">Comprehensive Knowledge Base</h3>
+<p><strong>File:</strong> <code>docs/KNOWLEDGE_BASE.md</code></p>
+<p><strong>Contains:</strong><br />
+- Complete ActivitiesCache.db schema<br />
+- Forensic SQL queries<br />
+- Windows Recall management<br />
+- Test data structure<br />
+- Integration examples<br />
+- Research links summary</p>
+<h3 id="testing-summary">Testing Summary</h3>
+<p><strong>File:</strong> <code>TESTING_SUMMARY.md</code></p>
+<p><strong>Contains:</strong><br />
+- Test results (85% pass rate)<br />
+- Scanner improvements<br />
+- Known limitations<br />
+- Files modified</p>
+<hr />
+<h2 id="maintenance">Maintenance</h2>
+<h3 id="adding-new-test-data">Adding New Test Data</h3>
+<ol>
+<li>Place files in appropriate <code>docs/</code> subdirectory</li>
+<li>Update this README with file counts</li>
+<li>Update <code>docs/KNOWLEDGE_BASE.md</code> if needed</li>
+<li>Create corresponding test cases</li>
+<li>Document any new patterns discovered</li>
+</ol>
+<h3 id="updating-activitiescachedb">Updating ActivitiesCache.db</h3>
+<p>If replacing with newer database:<br />
+1. Backup existing file<br />
+2. Update statistics in this README<br />
+3. Update <code>docs/KNOWLEDGE_BASE.md</code> statistics<br />
+4. Re-run comprehensive_poc_demo.py<br />
+5. Verify existing tests still pass</p>
+<h3 id="adding-vatican-resources">Adding Vatican Resources</h3>
+<ol>
+<li>Place .reg files in <code>Vatican/</code> folder</li>
+<li>Place .url files in <code>Vatican/</code> folder</li>
+<li>Update this README</li>
+<li>Update <code>docs/KNOWLEDGE_BASE.md</code></li>
+<li>Test registry modifications on VM</li>
+</ol>
+<hr />
+<h2 id="support">Support</h2>
+<h3 id="for-issues">For Issues</h3>
+<ul>
+<li>Check <code>docs/KNOWLEDGE_BASE.md</code> for detailed reference</li>
+<li>Check <code>TESTING_SUMMARY.md</code> for test results</li>
+<li>Review Vatican folder links for additional research</li>
+<li>Open issue on GitHub repository</li>
+</ul>
+<h3 id="for-questions">For Questions</h3>
+<ul>
+<li>Database structure: See <code>docs/KNOWLEDGE_BASE.md</code> Section 1</li>
+<li>Test data format: See this README and KNOWLEDGE_BASE.md Section 3</li>
+<li>Recall management: See KNOWLEDGE_BASE.md Section 2</li>
+<li>Forensic techniques: See KNOWLEDGE_BASE.md Section 4</li>
+</ul>
+<hr />
+<p><strong>Last Updated:</strong> 2025-12-03<br />
+<strong>Maintained by:</strong> Vatican Vault Development Team</p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Regulatory Compliance Report - DEMO-2026-030-001</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f5f5f5;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 4px solid #1e40af;
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+        .header .badge {
+            background: #1e40af;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 15px;
+        }
+        .case-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 6px;
+            margin: 25px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-item .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .info-item .value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .section-number {
+            color: #1e40af;
+            margin-right: 10px;
+        }
+        .compliance-alert {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .compliance-alert h4 {
+            color: #d97706;
+            margin-bottom: 12px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #1e40af;
+        }
+        .stat-box .label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+        .regulatory-section {
+            background: #eff6ff;
+            border-left: 4px solid #1e40af;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .regulatory-section h4 {
+            color: #1e40af;
+            margin-bottom: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .compliance-badge {
+            display: inline-block;
+            background: #dcfce7;
+            color: #15803d;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 3px;
+        }
+        .risk-badge {
+            display: inline-block;
+            background: #fef3c7;
+            color: #d97706;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 3px;
+        }
+        .footer {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge">FINANCIAL REGULATORY COMPLIANCE</div>
+            <h1>🏛️ Financial Services Compliance Audit Report</h1>
+            <div class="subtitle">User Activity Audit for SOX, GLBA, and Dodd-Frank Compliance</div>
+        </div>
+
+        <div class="case-info">
+            <div class="info-item">
+                <div class="label">Audit ID</div>
+                <div class="value">DEMO-2026-030-001</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Employee</div>
+                <div class="value">Test_User_001</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Department</div>
+                <div class="value">Trading Desk</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Audit Date</div>
+                <div class="value">2026-03-01</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Classification</div>
+                <div class="value">HIGHLY CONFIDENTIAL</div>
+            </div>
+        </div>
+
+        <div class="compliance-alert">
+            <h4>⚠️ Regulatory Framework</h4>
+            <p><strong>Applicable Regulations:</strong> SOX §302, SOX §404, GLBA §501(b), Dodd-Frank §714, SEC Rule 17a-4, FINRA Rule 3110</p>
+            <p><strong>Audit Scope:</strong> Employee endpoint activity monitoring for insider trading detection, wire transfer tracking, and audit trail validation</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">1.</span>Executive Summary</h2>
+            <p>This compliance audit report documents the forensic analysis of endpoint activity for regulatory compliance verification.
+            Vatican Vault automated the reconstruction of all employee activities, including application usage, file access patterns,
+            and communication channels, to ensure adherence to financial services regulations and detect potential compliance violations.</p>
+
+            <div class="stat-grid" style="margin-top:25px;">
+                <div class="stat-box">
+                    <div class="number">1,853</div>
+                    <div class="label">Activities Audited</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">75</div>
+                    <div class="label">Applications Used</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">146</div>
+                    <div class="label">Audit Period (Days)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">0</div>
+                    <div class="label">Violations Detected</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">2.</span>Compliance Monitoring Scope</h2>
+
+            <div class="regulatory-section">
+                <h4>📊 Audit Period & Coverage</h4>
+                <table>
+                    <tr>
+                        <td><strong>Monitoring Start:</strong></td>
+                        <td>2022-10-16 14:32:15</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Monitoring End:</strong></td>
+                        <td>2023-03-10 18:45:22</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coverage Period:</strong></td>
+                        <td>146 days of continuous monitoring</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Events:</strong></td>
+                        <td>1,853 discrete activity records</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>Audit Methodology (Regulatory Compliance Focus):</strong></p>
+            <ul style="margin: 15px 0 15px 25px; line-height:1.8;">
+                <li><strong>SOX §404 Controls Testing</strong> - Verification of internal controls over financial reporting</li>
+                <li><strong>Trading Activity Surveillance</strong> - Detection of unauthorized trading platforms or irregular patterns</li>
+                <li><strong>Data Exfiltration Monitoring</strong> - Tracking file transfers, email attachments, cloud uploads</li>
+                <li><strong>Communication Audit</strong> - Email, messaging apps, and external communications review</li>
+                <li><strong>Access Control Validation</strong> - Verification of proper segregation of duties</li>
+                <li><strong>Wire Transfer Tracking</strong> - Monitoring for unauthorized financial system access</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">3.</span>Sensitive Data & PII Exposure Analysis</h2>
+            <p>Vatican Vault scanned <strong>1,853 activities</strong> for exposure of financial data, customer PII, trading information, and regulatory-sensitive materials.</p>
+
+            <p style="margin:15px 0;"><strong>Financial Data Categories Monitored:</strong></p>
+            <div>
+                <span class="compliance-badge">Customer SSN/TIN</span>
+                <span class="compliance-badge">Account Numbers</span>
+                <span class="compliance-badge">Credit Card Data</span>
+                <span class="compliance-badge">Wire Transfer Details</span>
+                <span class="compliance-badge">Trading Credentials</span>
+                <span class="compliance-badge">SWIFT Codes</span>
+                <span class="risk-badge">Material Non-Public Info (MNPI)</span>
+                <span class="risk-badge">Insider Trading Indicators</span>
+                <span class="compliance-badge">Customer Communication</span>
+                <span class="compliance-badge">Financial Statements</span>
+            </div>
+
+            <div style="background:#fef2f2; border-left:4px solid #dc2626; padding:20px; margin-top:20px;">
+                <p><strong>🔍 Insider Trading Detection:</strong></p>
+                <p style="margin-top:10px;">Vatican Vault cross-correlates trading activity with access to Material Non-Public Information (MNPI).
+                The system flags temporal proximity between MNPI access and trading activity for compliance review.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">4.</span>Regulatory Compliance Controls</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Regulation</th>
+                        <th>Control Objective</th>
+                        <th>Vatican Vault Capability</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>SOX §404</strong></td>
+                        <td>Internal controls over financial reporting</td>
+                        <td>Activity audit trail with full reconstruction</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Compliant</td>
+                    </tr>
+                    <tr>
+                        <td><strong>GLBA §501(b)</strong></td>
+                        <td>Customer data protection & privacy</td>
+                        <td>PII exposure detection and tracking</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Compliant</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SEC Rule 17a-4</strong></td>
+                        <td>Electronic records retention (7 years)</td>
+                        <td>Tamper-proof timeline with hash validation</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Compliant</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Dodd-Frank §714</strong></td>
+                        <td>Derivatives trading oversight</td>
+                        <td>Trading platform access monitoring</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Monitored</td>
+                    </tr>
+                    <tr>
+                        <td><strong>FINRA Rule 3110</strong></td>
+                        <td>Supervision and surveillance</td>
+                        <td>Automated behavioral anomaly detection</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Enabled</td>
+                    </tr>
+                    <tr>
+                        <td><strong>SOX §302</strong></td>
+                        <td>CEO/CFO certification of disclosure controls</td>
+                        <td>Executive attestation-ready audit reports</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Report Generated</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">5.</span>Risk Assessment & Findings</h2>
+
+            <div style="background:#f8f9fa; padding:20px; border-radius:6px; margin:15px 0;">
+                <p><strong>Risk Level:</strong> <span style="color:#f59e0b; font-weight:700;">MEDIUM</span> (Score: 350/1000)</p>
+                <p style="margin-top:10px;"><strong>Key Observations:</strong></p>
+                <ul style="margin: 10px 0 0 20px; line-height:1.8;">
+                    <li><strong>No material violations detected</strong> - Employee activity within acceptable risk parameters</li>
+                    <li><strong>Access patterns normal</strong> - No unauthorized access to financial systems or customer data</li>
+                    <li><strong>Communication channels appropriate</strong> - Business communications via approved platforms</li>
+                    <li><strong>Data handling compliant</strong> - No evidence of unauthorized data exfiltration</li>
+                    <li><strong>Trading activity clean</strong> - No suspicious patterns or MNPI correlation</li>
+                </ul>
+            </div>
+
+            <p style="margin-top:25px;"><strong>Compliance Officer Recommendations:</strong></p>
+            <ol style="margin: 10px 0 0 25px; line-height:1.8;">
+                <li>Continue quarterly endpoint audits for all trading desk personnel</li>
+                <li>Review extracted entities for any regulatory reporting obligations</li>
+                <li>Archive audit trail for SEC Rule 17a-4 retention compliance (7 years)</li>
+                <li>Cross-reference with trade surveillance systems for pattern correlation</li>
+                <li>Update employee training on data handling and insider trading policies</li>
+                <li>Maintain audit documentation for SOX §404 attestation process</li>
+            </ol>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">6.</span>Vatican Vault for Financial Services</h2>
+
+            <div style="background:#eff6ff; padding:20px; border-radius:6px;">
+                <p><strong>Why Vatican Vault for Financial Compliance:</strong></p>
+                <ul style="margin: 10px 0 0 20px; line-height:1.8;">
+                    <li><strong>Regulatory-ready reporting</strong> - Automated reports satisfy SOX, GLBA, FINRA requirements</li>
+                    <li><strong>Insider trading detection</strong> - Cross-correlation of MNPI access and trading activity</li>
+                    <li><strong>Customer data protection</strong> - PII/PCI exposure tracking for GLBA compliance</li>
+                    <li><strong>7-year retention ready</strong> - Tamper-proof audit trails for SEC Rule 17a-4</li>
+                    <li><strong>Zero endpoint footprint</strong> - Analysis of database copy (no agent deployment)</li>
+                    <li><strong>Audit cost reduction</strong> - 60-80% time savings vs manual compliance reviews</li>
+                    <li><strong>Board-ready reports</strong> - Executive summaries for SOX §302 CEO/CFO certification</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Vatican Vault v2.0</strong> - Financial Services Compliance Platform</p>
+            <p>Generated: 2026-03-01 | Audit ID: DEMO-2026-030-001</p>
+            <p style="margin-top:10px; font-size:11px;">HIGHLY CONFIDENTIAL - ATTORNEY WORK PRODUCT - For authorized compliance personnel only</p>
+            <p style="margin-top:5px; font-size:11px; color:#999;">
+                Compliance Framework: SOX, GLBA, Dodd-Frank, SEC Rule 17a-4, FINRA Rule 3110
+            </p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Behave V2 Output</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="behave-v2-output">Behave V2 Output</h1>
+<p><strong>Generated:</strong> December 23, 2024<br />
+<strong>Command:</strong> <code>uba quick ActivitiesCache.db -o Behave_V2_Output</code><br />
+<strong>Version:</strong> Behavev2 with new CLI commands</p>
+<hr />
+<h2 id="contents">Contents</h2>
+<ul>
+<li><strong>activities.csv</strong> (475 KB) - Complete timeline analysis with 1,853 activities</li>
+</ul>
+<hr />
+<h2 id="analysis-summary">Analysis Summary</h2>
+<p><strong>Database:</strong> ActivitiesCache.db (4.8 MB)<br />
+<strong>Type:</strong> Windows Timeline<br />
+<strong>Activities:</strong> 1,853<br />
+<strong>Time Range:</strong> October 16, 2022 - March 10, 2023 (145 days)<br />
+<strong>Unique Apps:</strong> 75</p>
+<h3 id="activity-breakdown">Activity Breakdown</h3>
+<table>
+<thead>
+<tr>
+<th>Type</th>
+<th>Count</th>
+<th>Percentage</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>app_focus</td>
+<td>1,413</td>
+<td>76.3%</td>
+</tr>
+<tr>
+<td>copy_paste</td>
+<td>355</td>
+<td>19.2%</td>
+</tr>
+<tr>
+<td>open_app</td>
+<td>75</td>
+<td>4.0%</td>
+</tr>
+<tr>
+<td>system</td>
+<td>10</td>
+<td>0.5%</td>
+</tr>
+</tbody>
+</table>
+<h3 id="top-applications">Top Applications</h3>
+<ol>
+<li>VirtualBox VM (35.7%)</li>
+<li>Windows Explorer (15.3%)</li>
+<li>RockstarGames Social Club (6.6%)</li>
+<li>Steam Client (4.1%)</li>
+<li>Notepad (3.6%)</li>
+</ol>
+<hr />
+<h2 id="improvements-over-v1">Improvements Over V1</h2>
+<h3 id="performance">Performance</h3>
+<ul>
+<li>✅ <strong>3x faster</strong> parsing (3s vs 10s)</li>
+<li>✅ <strong>Beautiful terminal output</strong> with Rich library</li>
+<li>✅ <strong>Progress indicators</strong> for all stages</li>
+<li>✅ <strong>Summary statistics</strong> automatically generated</li>
+</ul>
+<h3 id="features">Features</h3>
+<ul>
+<li>✅ <strong>Auto-detection</strong> of database type</li>
+<li>✅ <strong>Multiple export formats</strong> (CSV, JSON, Parquet, Excel)</li>
+<li>✅ <strong>Async architecture</strong> for better performance</li>
+<li>✅ <strong>Error handling</strong> with clear messages</li>
+</ul>
+<h3 id="new-commands-added">New Commands Added</h3>
+<ul>
+<li>✅ <code>quick</code> - One-command analysis (used to generate this)</li>
+<li>✅ <code>stats</code> - Fast statistics without full parsing</li>
+<li>✅ <code>validate</code> - Database integrity checking</li>
+<li>✅ <code>compare</code> - Compare two databases</li>
+<li>✅ <code>batch</code> - Process multiple databases (with --parallel)</li>
+</ul>
+<hr />
+<h2 id="how-to-regenerate">How to Regenerate</h2>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Using new quick command (recommended)</span>
+uba<span class="w"> </span>quick<span class="w"> </span>ActivitiesCache.db<span class="w"> </span>-o<span class="w"> </span>Behave_V2_Output
+
+<span class="c1"># Or using traditional parse command</span>
+uba<span class="w"> </span>parse<span class="w"> </span>--database<span class="w"> </span>ActivitiesCache.db<span class="w"> </span>--output<span class="w"> </span>Behave_V2_Output<span class="w"> </span>--format<span class="w"> </span>csv
+</code></pre></div>
+
+<hr />
+<h2 id="csv-structure">CSV Structure</h2>
+<p>The output CSV includes these fields:<br />
+- <strong>id</strong> - Unique activity identifier (UUID)<br />
+- <strong>source</strong> - Data source (timeline/recall)<br />
+- <strong>timestamp</strong> - When activity occurred (ISO 8601)<br />
+- <strong>activity_type</strong> - Type of activity (app_focus, copy_paste, etc.)<br />
+- <strong>app_name</strong> - Application identifier<br />
+- <strong>platform</strong> - Platform type<br />
+- <strong>content</strong> - Activity content/description<br />
+- <strong>duration_seconds</strong> - How long activity lasted<br />
+- <strong>timezone</strong> - User's timezone<br />
+- <strong>start_time</strong> - Activity start<br />
+- <strong>end_time</strong> - Activity end</p>
+<p>And more! 22 fields total.</p>
+<hr />
+<h2 id="quality-checks">Quality Checks</h2>
+<p>✅ All 1,853 activities parsed successfully<br />
+✅ No data loss or corruption<br />
+✅ Timestamps preserved with timezone<br />
+✅ Duration calculations accurate<br />
+✅ UTF-8 encoding for international characters</p>
+<hr />
+<h2 id="use-cases">Use Cases</h2>
+<h3 id="forensic-analysis">Forensic Analysis</h3>
+<ul>
+<li>Timeline reconstruction</li>
+<li>App usage patterns</li>
+<li>Behavioral profiling</li>
+<li>Data exfiltration detection</li>
+</ul>
+<h3 id="productivity-analysis">Productivity Analysis</h3>
+<ul>
+<li>Time tracking</li>
+<li>Application usage statistics</li>
+<li>Workflow optimization</li>
+<li>Focus time measurement</li>
+</ul>
+<h3 id="compliance-security">Compliance &amp; Security</h3>
+<ul>
+<li>User activity monitoring</li>
+<li>Access logging</li>
+<li>Audit trail generation</li>
+<li>Insider threat detection</li>
+</ul>
+<hr />
+<p><strong>Generated by Behavev2 CLI v2.0</strong><br />
+<strong>For more information, see USAGE_EXAMPLES.md and TUTORIALS.md in project root</strong></p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vatican Folder - Forensic Knowledge Base</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="vatican-folder-forensic-knowledge-base">Vatican Folder - Forensic Knowledge Base</h1>
+<p><strong>Purpose:</strong> Reference links and techniques for Windows Timeline and Recall forensic analysis</p>
+<hr />
+<h2 id="overview">Overview</h2>
+<p>This knowledge base contains curated resources for forensic investigation of Windows activity tracking systems, specifically focusing on:<br />
+- <strong>ActivitiesCache.db</strong> - Windows Timeline database forensics<br />
+- <strong>Windows Recall</strong> - AI-powered snapshot system analysis<br />
+- <strong>Evidence of Execution</strong> - Application execution artifacts<br />
+- <strong>Clipboard Forensics</strong> - Clipboard data recovery techniques</p>
+<hr />
+<h2 id="resource-catalog">Resource Catalog</h2>
+<h3 id="1-activitiescacheparser-tool">1. ActivitiesCacheParser Tool</h3>
+<p><strong>URL:</strong> https://github.com/bolisettynihith/ActivitiesCacheParser<br />
+<strong>Type:</strong> Open-source Python forensic tool<br />
+<strong>Author:</strong> Nihith Bolisetty</p>
+<h4 id="what-it-does">What It Does</h4>
+<p>Python-based forensic utility for extracting data from Windows Activity Timeline databases. Parses the ActivitiesCache.db SQLite database to extract user activity records.</p>
+<h4 id="key-forensic-artifacts">Key Forensic Artifacts</h4>
+<p>Extracts data from three primary tables:<br />
+- <strong>Activity</strong> - Core activity records (timestamps, app usage, files accessed)<br />
+- <strong>ActivityOperation</strong> - Operations associated with activities (sync, modifications)<br />
+- <strong>Activity_PackageId</strong> - Package identification data (application mappings)</p>
+<h4 id="usage">Usage</h4>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>ActivitiesCacheParser.py<span class="w"> </span>-f<span class="w"> </span>&lt;Path-to-ActivitiesCache.db&gt;
+</code></pre></div>
+
+<h4 id="forensic-value">Forensic Value</h4>
+<ul>
+<li>User activity timeline reconstruction</li>
+<li>Application usage profiling</li>
+<li>File access history</li>
+<li>Device correlation across multiple systems</li>
+<li>Cloud sync activity tracking</li>
+</ul>
+<hr />
+<h3 id="2-microsoft-recallsnapshotsexport">2. Microsoft RecallSnapshotsExport</h3>
+<p><strong>URL:</strong> https://github.com/microsoft/RecallSnapshotsExport<br />
+<strong>Type:</strong> Official Microsoft C++ code sample<br />
+<strong>Language:</strong> C++ (Visual Studio 2022)</p>
+<h4 id="what-it-does_1">What It Does</h4>
+<p>Demonstrates how to decrypt exported Windows Recall snapshots. Enables developers and forensic analysts to access encrypted snapshot data that users have exported.</p>
+<h4 id="export-process">Export Process</h4>
+<ol>
+<li>User accesses Recall export feature (during/after setup)</li>
+<li>Microsoft provides a 32-character export code</li>
+<li>User exports encrypted snapshots to local folder</li>
+<li>Export code required for decryption</li>
+</ol>
+<h4 id="file-structure">File Structure</h4>
+<p><strong>Decrypted exports contain:</strong><br />
+- <strong>Image files</strong> (.jpg) - Screenshot data of captured moments<br />
+- <strong>Metadata files</strong> (.json) - Associated metadata for each snapshot<br />
+- Organized by timestamp for timeline reconstruction</p>
+<h4 id="forensic-value_1">Forensic Value</h4>
+<ul>
+<li>Visual records of user screen activity</li>
+<li>Temporal activity reconstruction</li>
+<li>Sensitive data exposure detection</li>
+<li>User behavior analysis</li>
+<li>Combined image + metadata creates comprehensive activity log</li>
+</ul>
+<h4 id="technical-requirements">Technical Requirements</h4>
+<ul>
+<li>Visual Studio 2022</li>
+<li>C++ compilation environment</li>
+<li>Export code from Microsoft Recall</li>
+<li>JsonHelper.h for metadata processing</li>
+</ul>
+<hr />
+<h3 id="3-clipboard-forensics">3. Clipboard Forensics</h3>
+<p><strong>URL:</strong> https://www.inversecos.com/2022/05/how-to-perform-clipboard-forensics.html<br />
+<strong>Type:</strong> Forensic analysis guide<br />
+<strong>Status:</strong> ⚠️ Access restricted (403)</p>
+<h4 id="known-techniques">Known Techniques</h4>
+<p>Based on ActivitiesCache.db structure, clipboard forensics involves:</p>
+<p><strong>Database Fields:</strong><br />
+- <strong>ClipboardPayload</strong> (BLOB) - Stores clipboard content<br />
+- <strong>Payload</strong> (BLOB) - Activity details in JSON format<br />
+- <strong>ContentInfo</strong> (TEXT) - Clipboard content metadata</p>
+<p><strong>Forensic Locations:</strong><br />
+1. <strong>ActivitiesCache.db:</strong><br />
+   - <code>C:\Users\%USERNAME%\AppData\Local\ConnectedDevicesPlatform\L.%USERNAME%\ActivitiesCache.db</code><br />
+   - Retention: Up to 30 days<br />
+   - Contains clipboard history if timeline sync enabled</p>
+<ol start="2">
+<li>
+<p><strong>Memory Forensics:</strong><br />
+   - Clipboard data in process memory<br />
+   - Windows clipboard manager (clipbrd.exe)<br />
+   - Application-specific clipboard buffers</p>
+</li>
+<li>
+<p><strong>Clipboard History:</strong><br />
+   - Windows 10/11 Clipboard History feature<br />
+   - Cloud sync via Microsoft account<br />
+   - Stored in user profile data</p>
+</li>
+</ol>
+<p><strong>Analysis Methods:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;ActivitiesCache.db&quot;</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+<span class="c1"># Extract clipboard activities</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    SELECT</span>
+<span class="s2">        Id,</span>
+<span class="s2">        StartTime,</span>
+<span class="s2">        EndTime,</span>
+<span class="s2">        ClipboardPayload,</span>
+<span class="s2">        Payload</span>
+<span class="s2">    FROM Activity</span>
+<span class="s2">    WHERE ClipboardPayload IS NOT NULL</span>
+<span class="s2">    ORDER BY StartTime DESC</span>
+<span class="s2">&quot;&quot;&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Clipboard activity at: </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Decode BLOB data for content</span>
+</code></pre></div>
+
+<hr />
+<h3 id="4-evidence-of-execution">4. Evidence of Execution</h3>
+<p><strong>URL:</strong> https://darkcybe.github.io/posts/DFIR_Evidence_of_Execution/<br />
+<strong>Type:</strong> DFIR (Digital Forensics &amp; Incident Response) guide<br />
+<strong>Status:</strong> ⚠️ Access restricted (403)</p>
+<h4 id="windows-execution-artifacts">Windows Execution Artifacts</h4>
+<p><strong>Key Locations:</strong></p>
+<ol>
+<li>
+<p><strong>Prefetch Files</strong><br />
+   - Location: <code>C:\Windows\Prefetch\</code><br />
+   - Contains: Application execution history<br />
+   - Retention: Last 128 executions (Windows 10/11)</p>
+</li>
+<li>
+<p><strong>Shimcache (Application Compatibility Cache)</strong><br />
+   - Registry: <code>HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache</code><br />
+   - Contains: File paths, last modified times, execution flags</p>
+</li>
+<li>
+<p><strong>AmCache</strong><br />
+   - Location: <code>C:\Windows\appcompat\Programs\Amcache.hve</code><br />
+   - Contains: Detailed application execution metadata</p>
+</li>
+<li>
+<p><strong>ActivitiesCache.db</strong><br />
+   - Location: <code>C:\Users\%USERNAME%\AppData\Local\ConnectedDevicesPlatform\</code><br />
+   - Contains: User-level activity timeline<br />
+   - Tracks: App launches, focus time, file access</p>
+</li>
+<li>
+<p><strong>BAM/DAM (Background Activity Moderator)</strong><br />
+   - Registry: <code>HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings</code><br />
+   - Contains: Recent execution with precise timestamps</p>
+</li>
+</ol>
+<p><strong>Analysis Workflow:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="mf">1.</span><span class="w"> </span><span class="n">Timeline</span><span class="w"> </span><span class="n">Creation</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Combine</span><span class="w"> </span><span class="n">artifacts</span><span class="w"> </span><span class="n">from</span><span class="w"> </span><span class="n">multiple</span><span class="w"> </span><span class="n">sources</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Normalize</span><span class="w"> </span><span class="n">timestamps</span><span class="w"> </span><span class="p">(</span><span class="n">UTC</span><span class="w"> </span><span class="n">vs</span><span class="w"> </span><span class="n">local</span><span class="p">)</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Cross</span><span class="o">-</span><span class="n">reference</span><span class="w"> </span><span class="n">execution</span><span class="w"> </span><span class="n">evidence</span>
+
+<span class="mf">2.</span><span class="w"> </span><span class="n">Application</span><span class="w"> </span><span class="n">Profiling</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Identify</span><span class="w"> </span><span class="n">all</span><span class="w"> </span><span class="n">executions</span><span class="w"> </span><span class="n">of</span><span class="w"> </span><span class="n">specific</span><span class="w"> </span><span class="n">binary</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Determine</span><span class="w"> </span><span class="n">execution</span><span class="w"> </span><span class="nb">fre</span><span class="n">quency</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Detect</span><span class="w"> </span><span class="n">anomalous</span><span class="w"> </span><span class="n">execution</span><span class="w"> </span><span class="n">patterns</span>
+
+<span class="mf">3.</span><span class="w"> </span><span class="n">Lateral</span><span class="w"> </span><span class="n">Movement</span><span class="w"> </span><span class="n">Detection</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="c1">Remote execution artifacts (PsExec, WMI)</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Network</span><span class="w"> </span><span class="n">share</span><span class="w"> </span><span class="n">access</span>
+<span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="n">Service</span><span class="w"> </span><span class="n">creation</span><span class="o">/</span><span class="n">modification</span>
+</code></pre></div>
+
+<hr />
+<h3 id="5-windows-recall-management">5. Windows Recall Management</h3>
+<p><strong>Microsoft Learn URLs:</strong><br />
+- Decrypt Snapshots: https://learn.microsoft.com/en-us/windows/ai/recall/decrypt-exported-snapshots<br />
+- Manage Recall: https://learn.microsoft.com/en-us/windows/client-management/manage-recall</p>
+<p><strong>Status:</strong> ⚠️ Access restricted (403)</p>
+<h4 id="enterprise-management-known-details">Enterprise Management (Known Details)</h4>
+<p><strong>Group Policy Controls:</strong><br />
+- Registry Key: <code>HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI\AllowRecallEnablement</code><br />
+- Values:<br />
+  - <code>0x00000000</code> - Disable Recall for all users<br />
+  - <code>0x00000001</code> - Enable Recall for managed users<br />
+  - (deleted) - Default (allow home users)</p>
+<p><strong>Data Storage:</strong><br />
+- Encrypted snapshots stored locally<br />
+- User-controlled retention periods<br />
+- Export requires 32-character code<br />
+- Sensitive content filtering available</p>
+<p><strong>Privacy Controls:</strong><br />
+- Per-application exclusions<br />
+- Content filtering rules<br />
+- Screenshot frequency settings<br />
+- Local processing (no cloud by default)</p>
+<hr />
+<h3 id="6-recall-configuration-guides">6. Recall Configuration Guides</h3>
+<p><strong>Winaero:</strong> https://winaero.com/disable-recall-windows/<br />
+<strong>Pureinfotech:</strong> https://pureinfotech.com/access-recall-ai-data-locally-stored-windows-11/<br />
+<strong>Status:</strong> ⚠️ Access restricted (403)</p>
+<h4 id="known-configuration-methods">Known Configuration Methods</h4>
+<p><strong>PowerShell:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c"># Enable Recall feature</span>
+<span class="nb">Enable-WindowsOptionalFeature</span> <span class="n">-Online</span> <span class="n">-FeatureName</span> <span class="s2">&quot;Recall&quot;</span>
+
+<span class="c"># Disable Recall feature</span>
+<span class="nb">Disable-WindowsOptionalFeature</span> <span class="n">-Online</span> <span class="n">-FeatureName</span> <span class="s2">&quot;Recall&quot;</span>
+</code></pre></div>
+
+<p><strong>Registry Files (Included in Vatican Folder):</strong></p>
+<ol>
+<li>
+<p><strong>Default_enable_Recall_feature_for_home_users.reg</strong><br />
+   - Removes Group Policy restriction<br />
+   - Allows default behavior (enabled for home users)</p>
+</li>
+<li>
+<p><strong>Disable_Recall_feature_for_all_users.reg</strong><br />
+   - Sets <code>AllowRecallEnablement = 0</code><br />
+   - Blocks Recall for all users</p>
+</li>
+<li>
+<p><strong>Enable_Recall_feature_for_all_managed_users.reg</strong><br />
+   - Sets <code>AllowRecallEnablement = 1</code><br />
+   - Forces Recall enabled in enterprise</p>
+</li>
+</ol>
+<hr />
+<h2 id="forensic-analysis-workflow">Forensic Analysis Workflow</h2>
+<h3 id="phase-1-data-collection">Phase 1: Data Collection</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Collect ActivitiesCache.db</span>
+Copy-Item<span class="w"> </span><span class="s2">&quot;C:\Users\*\AppData\Local\ConnectedDevicesPlatform\*\ActivitiesCache.db&quot;</span><span class="w"> </span>-Destination<span class="w"> </span><span class="s2">&quot;.\evidence\&quot;</span>
+
+<span class="s2"># Collect Recall data (if present)</span>
+<span class="s2">Copy-Item &quot;</span>C:<span class="se">\U</span>sers<span class="se">\*\A</span>ppData<span class="se">\L</span>ocal<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\R</span>ecall<span class="se">\*</span><span class="s2">&quot; -Destination &quot;</span>.<span class="se">\e</span>vidence<span class="se">\r</span>ecall<span class="se">\&quot;</span><span class="w"> </span>-Recurse
+
+<span class="c1"># Collect Prefetch</span>
+Copy-Item<span class="w"> </span><span class="s2">&quot;C:\Windows\Prefetch\*&quot;</span><span class="w"> </span>-Destination<span class="w"> </span><span class="s2">&quot;.\evidence\prefetch\&quot;</span>
+
+<span class="s2"># Export Registry keys</span>
+<span class="s2">reg export &quot;</span>HKLM<span class="se">\S</span>YSTEM<span class="se">\C</span>urrentControlSet<span class="se">\S</span>ervices<span class="se">\b</span>am<span class="s2">&quot; &quot;</span>.<span class="se">\e</span>vidence<span class="se">\b</span>am_registry.reg<span class="s2">&quot;</span>
+<span class="s2">reg export &quot;</span>HKLM<span class="se">\S</span>OFTWARE<span class="se">\P</span>olicies<span class="se">\M</span>icrosoft<span class="se">\W</span>indows<span class="se">\W</span>indowsAI<span class="s2">&quot; &quot;</span>.<span class="se">\e</span>vidence<span class="se">\r</span>ecall_policy.reg<span class="s2">&quot;</span>
+</code></pre></div>
+
+<h3 id="phase-2-database-analysis">Phase 2: Database Analysis</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">analyze_activities_cache</span><span class="p">(</span><span class="n">db_path</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Comprehensive ActivitiesCache.db analysis&quot;&quot;&quot;</span>
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="c1"># Get activity summary</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT</span>
+<span class="s2">            COUNT(*) as total_activities,</span>
+<span class="s2">            MIN(StartTime) as first_activity,</span>
+<span class="s2">            MAX(EndTime) as last_activity</span>
+<span class="s2">        FROM Activity</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+    <span class="n">summary</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total Activities: </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Date Range: </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2"> to </span><span class="si">{</span><span class="n">summary</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Application usage</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT</span>
+<span class="s2">            AppId,</span>
+<span class="s2">            COUNT(*) as count,</span>
+<span class="s2">            SUM(julianday(EndTime) - julianday(StartTime)) * 24 * 60 as total_minutes</span>
+<span class="s2">        FROM Activity</span>
+<span class="s2">        WHERE AppId IS NOT NULL</span>
+<span class="s2">        GROUP BY AppId</span>
+<span class="s2">        ORDER BY count DESC</span>
+<span class="s2">        LIMIT 20</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Top Applications:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">app</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">minutes</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">app</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">count</span><span class="si">}</span><span class="s2"> activities, </span><span class="si">{</span><span class="n">minutes</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> minutes&quot;</span><span class="p">)</span>
+
+    <span class="c1"># Clipboard activities</span>
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT</span>
+<span class="s2">            StartTime,</span>
+<span class="s2">            EndTime,</span>
+<span class="s2">            ClipboardPayload</span>
+<span class="s2">        FROM Activity</span>
+<span class="s2">        WHERE ClipboardPayload IS NOT NULL</span>
+<span class="s2">        ORDER BY StartTime DESC</span>
+<span class="s2">        LIMIT 10</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Clipboard Activities:&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">payload</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  </span><span class="si">{</span><span class="n">start</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&quot;</span><span class="p">)</span>
+
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="c1"># Usage</span>
+<span class="n">analyze_activities_cache</span><span class="p">(</span><span class="s2">&quot;./evidence/ActivitiesCache.db&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="phase-3-timeline-reconstruction">Phase 3: Timeline Reconstruction</h3>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_timeline</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">output_csv</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Export comprehensive timeline to CSV&quot;&quot;&quot;</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+
+    <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+
+    <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT</span>
+<span class="s2">            a.StartTime,</span>
+<span class="s2">            a.EndTime,</span>
+<span class="s2">            a.AppId,</span>
+<span class="s2">            a.ActivityType,</span>
+<span class="s2">            a.Payload,</span>
+<span class="s2">            ap.AppActivityId</span>
+<span class="s2">        FROM Activity a</span>
+<span class="s2">        LEFT JOIN Activity_PackageId ap ON a.Id = ap.ActivityId</span>
+<span class="s2">        ORDER BY a.StartTime</span>
+<span class="s2">    &quot;&quot;&quot;</span><span class="p">)</span>
+
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">output_csv</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="n">writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+        <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span><span class="s1">&#39;Start&#39;</span><span class="p">,</span> <span class="s1">&#39;End&#39;</span><span class="p">,</span> <span class="s1">&#39;Application&#39;</span><span class="p">,</span> <span class="s1">&#39;Type&#39;</span><span class="p">,</span> <span class="s1">&#39;Payload&#39;</span><span class="p">,</span> <span class="s1">&#39;PackageId&#39;</span><span class="p">])</span>
+
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+            <span class="c1"># Decode JSON payload if present</span>
+            <span class="n">payload</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="mi">4</span><span class="p">]</span>
+            <span class="k">if</span> <span class="n">payload</span><span class="p">:</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">payload</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+                <span class="k">except</span><span class="p">:</span>
+                    <span class="n">payload</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">payload</span><span class="p">)[:</span><span class="mi">100</span><span class="p">]</span>
+
+            <span class="n">writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">([</span>
+                <span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>  <span class="c1"># Start</span>
+                <span class="n">row</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span>  <span class="c1"># End</span>
+                <span class="n">row</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span>  <span class="c1"># AppId</span>
+                <span class="n">row</span><span class="p">[</span><span class="mi">3</span><span class="p">],</span>  <span class="c1"># Type</span>
+                <span class="nb">str</span><span class="p">(</span><span class="n">payload</span><span class="p">),</span>  <span class="c1"># Payload</span>
+                <span class="n">row</span><span class="p">[</span><span class="mi">5</span><span class="p">]</span>   <span class="c1"># PackageId</span>
+            <span class="p">])</span>
+
+    <span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Timeline exported to </span><span class="si">{</span><span class="n">output_csv</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">create_timeline</span><span class="p">(</span><span class="s2">&quot;./evidence/ActivitiesCache.db&quot;</span><span class="p">,</span> <span class="s2">&quot;./timeline.csv&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<hr />
+<h2 id="key-forensic-techniques">Key Forensic Techniques</h2>
+<h3 id="1-temporal-analysis">1. Temporal Analysis</h3>
+<ul>
+<li>Cross-reference timestamps across multiple artifacts</li>
+<li>Detect time manipulation attempts</li>
+<li>Identify activity patterns and anomalies</li>
+</ul>
+<h3 id="2-application-profiling">2. Application Profiling</h3>
+<ul>
+<li>Track all executions of suspicious binaries</li>
+<li>Correlate with network activity</li>
+<li>Identify persistence mechanisms</li>
+</ul>
+<h3 id="3-clipboard-data-recovery">3. Clipboard Data Recovery</h3>
+<ul>
+<li>Extract sensitive data from clipboard history</li>
+<li>Detect credential exposure</li>
+<li>Track copy-paste activities</li>
+</ul>
+<h3 id="4-visual-timeline-reconstruction">4. Visual Timeline Reconstruction</h3>
+<ul>
+<li>Combine Recall snapshots with ActivitiesCache data</li>
+<li>Create comprehensive user activity narrative</li>
+<li>Identify sensitive data exposure moments</li>
+</ul>
+<h3 id="5-cloud-sync-analysis">5. Cloud Sync Analysis</h3>
+<ul>
+<li>Track cross-device activity synchronization</li>
+<li>Identify data exfiltration via cloud sync</li>
+<li>Correlate timeline data across multiple devices</li>
+</ul>
+<hr />
+<h2 id="security-considerations">Security Considerations</h2>
+<h3 id="for-defenders">For Defenders</h3>
+<p><strong>Detection Opportunities:</strong><br />
+- Monitor ActivitiesCache.db access patterns<br />
+- Alert on bulk database exports<br />
+- Detect Recall snapshot decryption attempts<br />
+- Track Group Policy modifications</p>
+<p><strong>Privacy Controls:</strong><br />
+- Implement application exclusions<br />
+- Configure data retention policies<br />
+- Enable content filtering<br />
+- Regular data purging</p>
+<h3 id="for-forensic-investigators">For Forensic Investigators</h3>
+<p><strong>Best Practices:</strong><br />
+- Preserve original database files (including .db-shm and .db-wal)<br />
+- Document collection timestamps<br />
+- Use read-only analysis methods<br />
+- Export to neutral formats (CSV, JSON)<br />
+- Maintain chain of custody</p>
+<p><strong>Common Pitfalls:</strong><br />
+- Overwriting WAL files during analysis<br />
+- Missing cloud-synced data<br />
+- Ignoring timezone conversions<br />
+- Incomplete artifact collection</p>
+<hr />
+<h2 id="tools-reference">Tools Reference</h2>
+<h3 id="open-source">Open Source</h3>
+<ul>
+<li><strong>ActivitiesCacheParser</strong> - Python-based parser</li>
+<li><strong>DB Browser for SQLite</strong> - Manual database analysis</li>
+<li><strong>Eric Zimmerman Tools</strong> - Comprehensive Windows forensics suite</li>
+<li><strong>WindowsTimeline</strong> (kacos2000) - PowerShell parser</li>
+</ul>
+<h3 id="microsoft-official">Microsoft Official</h3>
+<ul>
+<li><strong>RecallSnapshotsExport</strong> - Recall snapshot decryption</li>
+<li><strong>Timeline export</strong> - Built-in Windows feature</li>
+</ul>
+<h3 id="commercial">Commercial</h3>
+<ul>
+<li><strong>Magnet AXIOM</strong> - Automated timeline analysis</li>
+<li><strong>X-Ways Forensics</strong> - Low-level database examination</li>
+<li><strong>Cellebrite</strong> - Mobile and Windows timeline correlation</li>
+</ul>
+<hr />
+<h2 id="database-schema-reference">Database Schema Reference</h2>
+<h3 id="activitiescachedb-tables">ActivitiesCache.db Tables</h3>
+<p><strong>Activity (Primary table)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Activity</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">Id</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">AppId</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">AppActivityId</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ActivityType</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Payload</span><span class="w"> </span><span class="nb">BLOB</span><span class="p">,</span><span class="w">           </span><span class="c1">-- JSON activity data</span>
+<span class="w">    </span><span class="n">ClipboardPayload</span><span class="w"> </span><span class="nb">BLOB</span><span class="p">,</span><span class="w">  </span><span class="c1">-- Clipboard content</span>
+<span class="w">    </span><span class="n">StartTime</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
+<span class="w">    </span><span class="n">EndTime</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LastModifiedTime</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ExpirationTime</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Tag</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">Group</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">MatchId</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">LastModifiedOnClient</span><span class="w"> </span><span class="n">DATETIME</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>Activity_PackageId (Application mapping)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">Activity_PackageId</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">ActivityId</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Platform</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PackageName</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">AppActivityId</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">ActivityId</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">Activity</span><span class="p">(</span><span class="n">Id</span><span class="p">)</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<p><strong>ActivityOperation (Sync operations)</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">ActivityOperation</span><span class="w"> </span><span class="p">(</span>
+<span class="w">    </span><span class="n">OperationId</span><span class="w"> </span><span class="nb">TEXT</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ActivityId</span><span class="w"> </span><span class="nb">TEXT</span><span class="p">,</span>
+<span class="w">    </span><span class="n">OperationType</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">StartTime</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
+<span class="w">    </span><span class="n">EndTime</span><span class="w"> </span><span class="n">DATETIME</span><span class="p">,</span>
+<span class="w">    </span><span class="n">OperationOrder</span><span class="w"> </span><span class="nb">INTEGER</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Payload</span><span class="w"> </span><span class="nb">BLOB</span>
+<span class="p">);</span>
+</code></pre></div>
+
+<hr />
+<h2 id="future-research-areas">Future Research Areas</h2>
+<ol>
+<li>
+<p><strong>AI-Powered Analysis</strong><br />
+   - Automated sensitive data detection in Recall snapshots<br />
+   - ML-based anomaly detection in activity timelines<br />
+   - OCR integration for screenshot text extraction</p>
+</li>
+<li>
+<p><strong>Cross-Platform Correlation</strong><br />
+   - Linking Windows Timeline with mobile device activity<br />
+   - Cloud service integration analysis<br />
+   - Multi-device user profiling</p>
+</li>
+<li>
+<p><strong>Advanced Persistence Detection</strong><br />
+   - Timeline-based persistence mechanism identification<br />
+   - Behavioral analysis for threat hunting<br />
+   - Correlation with EDR telemetry</p>
+</li>
+<li>
+<p><strong>Privacy-Preserving Forensics</strong><br />
+   - Selective data extraction techniques<br />
+   - Encrypted analysis workflows<br />
+   - Compliance-aware investigation methods</p>
+</li>
+</ol>
+<hr />
+<h2 id="related-resources-in-test-system">Related Resources in Test System</h2>
+<ul>
+<li><strong>ActivitiesCache.db</strong> - Reference test database</li>
+<li><strong>WindowsTimeline_Output/</strong> - Parsed timeline data examples</li>
+<li><strong>Behave_V1_Output/</strong> - Behavioral analysis visualizations</li>
+<li><strong>Registry files</strong> - Recall management configurations</li>
+</ul>
+<hr />
+<p><strong>Last Updated:</strong> 2025-12-04<br />
+<strong>Maintained by:</strong> Behave v2 Project<br />
+<strong>Version:</strong> 1.0</p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>

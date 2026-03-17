@@ -1,0 +1,5 @@
+The ActivitiesCache.db file is an SQLite database used by Windows 10 and 11 to track device activity, including application and service usage, files opened, websites browsed, and clipboard content. It is located at C:\Users\%USERNAME%\AppData\Local\ConnectedDevicesPlatform\L.%USERNAME%\ActivitiesCache.db and stores up to 30 days of activity data for the Windows Timeline feature, which can be viewed using tools like DB Browser for SQLite.
+
+
+
+Enable-WindowsOptionalFeature -Online -FeatureName "Recall"

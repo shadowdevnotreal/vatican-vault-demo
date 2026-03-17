@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Incident Response Management Report - DEMO-2026-030-001</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Roboto', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f5f5f5;
+            padding: 30px 20px;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header {
+            border-bottom: 4px solid #dc2626;
+            padding-bottom: 25px;
+            margin-bottom: 35px;
+        }
+        .header .badge {
+            background: #dc2626;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .header h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 8px;
+        }
+        .header .subtitle {
+            color: #666;
+            font-size: 15px;
+        }
+        .case-info {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 6px;
+            margin: 25px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        .info-item .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        .info-item .value {
+            font-size: 15px;
+            font-weight: 600;
+            color: #1a1a1a;
+        }
+        .section {
+            margin: 40px 0;
+        }
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a1a1a;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        .section-number {
+            color: #dc2626;
+            margin-right: 10px;
+        }
+        .alert-box {
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .alert-box h4 {
+            color: #dc2626;
+            margin-bottom: 12px;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .stat-box {
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 20px;
+            text-align: center;
+        }
+        .stat-box .number {
+            font-size: 32px;
+            font-weight: 700;
+            color: #dc2626;
+        }
+        .stat-box .label {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 8px;
+        }
+        .timeline-section {
+            background: #fef3c7;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .timeline-section h4 {
+            color: #f59e0b;
+            margin-bottom: 12px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        th {
+            background: #f8f9fa;
+            padding: 12px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #666;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        tr:hover {
+            background: #f8f9fa;
+        }
+        .capability-badge {
+            display: inline-block;
+            background: #fee2e2;
+            color: #dc2626;
+            padding: 4px 10px;
+            border-radius: 3px;
+            font-size: 11px;
+            font-weight: 600;
+            margin: 3px;
+        }
+        .risk-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+        .risk-high { background: #fee2e2; color: #dc2626; }
+        .risk-medium { background: #fef3c7; color: #f59e0b; }
+        .risk-low { background: #d1fae5; color: #059669; }
+        .footer {
+            margin-top: 50px;
+            padding-top: 25px;
+            border-top: 2px solid #e0e0e0;
+            text-align: center;
+            color: #666;
+            font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="badge">INCIDENT RESPONSE MANAGEMENT</div>
+            <h1>🚨 Vatican Vault - IRM Investigation Report</h1>
+            <div class="subtitle">Rapid Triage & Evidence Preservation</div>
+        </div>
+
+        <div class="case-info">
+            <div class="info-item">
+                <div class="label">Incident ID</div>
+                <div class="value">DEMO-2026-030-001</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Affected User</div>
+                <div class="value">Test_User_001</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Endpoint</div>
+                <div class="value">DESKTOP-VV-DEMO</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Report Date</div>
+                <div class="value">2026-03-17</div>
+            </div>
+            <div class="info-item">
+                <div class="label">Risk Level</div>
+                <div class="value"><span class="risk-badge risk-medium">MEDIUM</span></div>
+            </div>
+        </div>
+
+        <div class="alert-box">
+            <h4>🚨 Incident Summary</h4>
+            <p><strong>Analysis Status:</strong> Automated forensic triage completed</p>
+            <p><strong>Evidence Preservation:</strong> Timeline data secured and analyzed</p>
+            <p><strong>Threat Indicators:</strong> 3 potential indicators identified</p>
+            <p><strong>Risk Score:</strong> 350/1000</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">1.</span>Executive Summary</h2>
+            <p>This Incident Response Management (IRM) report provides rapid triage analysis of the affected endpoint.
+            Vatican Vault's automated timeline reconstruction and entity extraction capabilities enabled immediate
+            identification of key indicators and evidence preservation for deeper investigation.</p>
+
+            <div class="stat-grid" style="margin-top:25px;">
+                <div class="stat-box">
+                    <div class="number">1853</div>
+                    <div class="label">Activities Analyzed</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">75</div>
+                    <div class="label">Applications Tracked</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">146</div>
+                    <div class="label">Timeline Span (Days)</div>
+                </div>
+                <div class="stat-box">
+                    <div class="number">8</div>
+                    <div class="label">Entities Extracted</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">2.</span>Rapid Triage Findings</h2>
+
+            <div class="timeline-section">
+                <h4>⏱️ Incident Timeline</h4>
+                <table>
+                    <tr>
+                        <td><strong>Investigation Start:</strong></td>
+                        <td>2026-03-17T08:19:36</td>
+                    </tr>
+                    <tr>
+                        <td><strong>First Activity Observed:</strong></td>
+                        <td>2022-10-16 14:32:15</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Last Activity Observed:</strong></td>
+                        <td>2023-03-10 18:45:22</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Coverage Period:</strong></td>
+                        <td>146 days of forensic data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Total Events:</strong></td>
+                        <td>1853 discrete activity records</td>
+                    </tr>
+                </table>
+            </div>
+
+            <p><strong>IRM Methodology:</strong></p>
+            <ul style="margin: 15px 0 15px 25px; line-height:1.8;">
+                <li><strong>Automated Evidence Collection</strong> - Windows Timeline (ActivitiesCache.db) secured for analysis</li>
+                <li><strong>Rapid Timeline Reconstruction</strong> - Complete user activity history with second-level precision</li>
+                <li><strong>Entity Extraction</strong> - Automated identification of IOCs, credentials, IPs, URLs, and file paths</li>
+                <li><strong>Behavioral Analysis</strong> - ML-based anomaly detection for suspicious patterns</li>
+                <li><strong>Data Exfiltration Detection</strong> - Network activity correlation and file access tracking</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">3.</span>Entity Extraction & Indicators</h2>
+            <p><strong>8</strong> entities extracted for incident correlation and threat intelligence.</p>
+
+            <p style="margin:15px 0;"><strong>Extracted Entity Categories:</strong></p>
+            <div>
+                <span class="capability-badge">Email Addresses</span>
+                <span class="capability-badge">IP Addresses</span>
+                <span class="capability-badge">URLs & Domains</span>
+                <span class="capability-badge">Credentials</span>
+                <span class="capability-badge">API Keys</span>
+                <span class="capability-badge">File Paths</span>
+                <span class="capability-badge">Suspicious Commands</span>
+                <span class="capability-badge">Persistence Mechanisms</span>
+            </div>
+
+            <p style="margin-top:20px;"><strong>Threat Intelligence Integration:</strong></p>
+            <p style="color:#666;">Entities can be exported to MISP, STIX 2.1, or your SIEM for automated threat correlation and IOC enrichment.</p>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">4.</span>Incident Response Capabilities</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>IR Capability</th>
+                        <th>Description</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Timeline Reconstruction</td>
+                        <td>Automated timeline from Windows artifacts</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Entity Extraction</td>
+                        <td>IOC identification (IPs, domains, emails, credentials)</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Anomaly Detection</td>
+                        <td>ML-based behavioral analysis for suspicious activity</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Lateral Movement Detection</td>
+                        <td>Network activity and remote access tracking</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Data Exfiltration Detection</td>
+                        <td>File access and network egress correlation</td>
+                        <td style="color:#10b981; font-weight:600;">✓ Complete</td>
+                    </tr>
+                    <tr>
+                        <td>Network Correlation</td>
+                        <td>PCAP analysis for C2 and exfiltration detection</td>
+                        <td style="color:#94a3b8; font-weight:600;">○ No PCAP data</td>
+                    </tr>
+                    <tr>
+                        <td>Visual Evidence</td>
+                        <td>Windows Recall screenshot OCR and analysis</td>
+                        <td style="color:#94a3b8; font-weight:600;">○ No Recall data</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">5.</span>IR Manager Notes & Next Steps</h2>
+
+            <div style="background:#f8f9fa; padding:20px; border-radius:6px; margin:15px 0;">
+                <p><strong>IRM Value Proposition:</strong></p>
+                <ul style="margin: 10px 0 0 20px; line-height:1.8;">
+                    <li><strong>Minutes, not hours</strong> - Automated triage reduces initial investigation from 4-6 hours to 15 minutes</li>
+                    <li><strong>Evidence preservation</strong> - Zero-footprint analysis ensures forensic integrity</li>
+                    <li><strong>MTTI reduction</strong> - Mean-time-to-investigate cut by 70% with automated timeline reconstruction</li>
+                    <li><strong>Scalable response</strong> - One analyst can now triage 20+ endpoints per day</li>
+                    <li><strong>Executive reporting</strong> - Professional reports generated automatically for incident briefings</li>
+                </ul>
+            </div>
+
+            <p style="margin-top:25px;"><strong>Recommended Next Steps:</strong></p>
+            <ol style="margin: 10px 0 0 25px; line-height:1.8;">
+                <li>Review extracted entities for known-bad IOCs (compare against threat intelligence feeds)</li>
+                <li>Identify anomalous behavior patterns in timeline for further investigation</li>
+                <li>Correlate with EDR/SIEM logs for broader attack scope identification</li>
+                <li>Escalate to DFIR team if advanced persistent threat (APT) indicators identified</li>
+                <li>Preserve full forensic image if legal action or deeper investigation required</li>
+                <li>Export IOCs to MISP/STIX for organizational threat intelligence sharing</li>
+            </ol>
+        </div>
+
+        <div class="footer">
+            <p><strong>Vatican Vault v2.0</strong> - Incident Response Management Platform</p>
+            <p>Generated: 2026-03-17 08:19:36 UTC</p>
+            <p style="margin-top:10px; font-size:11px;">CONFIDENTIAL - INCIDENT RESPONSE INVESTIGATION - For authorized IR personnel only</p>
+            <p style="margin-top:5px; font-size:11px; color:#999;">
+                Methodology: Automated timeline reconstruction, Entity extraction, Anomaly detection, Risk scoring
+            </p>
+        </div>
+    </div>
+</body>
+</html>

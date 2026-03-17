@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Forensic Report - Test_User_001</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            line-height: 1.6;
+            color: #1f2937;
+            background: #f8fafc;
+            padding: 40px 20px;
+        }
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            padding: 50px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+            border-radius: 8px;
+        }
+        .header {
+            border-bottom: 3px solid #1e293b;
+            padding-bottom: 24px;
+            margin-bottom: 32px;
+        }
+        .header .logo { font-size: 24px; font-weight: 700; color: #0f172a; }
+        .header .subtitle { color: #64748b; font-size: 14px; margin-top: 4px; }
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin: 24px 0;
+            padding: 20px;
+            background: #f1f5f9;
+            border-radius: 8px;
+        }
+        .meta-item { }
+        .meta-item .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
+        .meta-item .value { font-size: 16px; font-weight: 600; color: #0f172a; }
+        .section {
+            margin: 36px 0;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 16px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .risk-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: #f59e0b;
+            color: white;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .risk-meter {
+            height: 8px;
+            background: #e2e8f0;
+            border-radius: 4px;
+            margin: 12px 0;
+            overflow: hidden;
+        }
+        .risk-meter-fill {
+            height: 100%;
+            background: #f59e0b;
+            border-radius: 4px;
+            width: 35.0%;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+        }
+        th {
+            background: #f1f5f9;
+            padding: 10px 14px;
+            text-align: left;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #475569;
+            border-bottom: 2px solid #e2e8f0;
+        }
+        td {
+            padding: 10px 14px;
+            border-bottom: 1px solid #f1f5f9;
+            vertical-align: top;
+        }
+        tr:hover { background: #f8fafc; }
+        code {
+            background: #f1f5f9;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 13px;
+            color: #1e293b;
+        }
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+            margin: 16px 0;
+        }
+        .stat-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 16px;
+            text-align: center;
+        }
+        .stat-card .num { font-size: 28px; font-weight: 700; color: #0f172a; }
+        .stat-card .lbl { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
+        .methodology {
+            background: #f0f9ff;
+            border-left: 4px solid #3b82f6;
+            padding: 16px 20px;
+            border-radius: 0 6px 6px 0;
+            margin: 16px 0;
+        }
+        .footer {
+            margin-top: 48px;
+            padding-top: 24px;
+            border-top: 2px solid #e2e8f0;
+            text-align: center;
+            color: #64748b;
+            font-size: 13px;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .container { box-shadow: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">Vatican Vault - Technical Forensic Report</div>
+            <div class="subtitle">Detailed Analysis Findings &amp; Evidence</div>
+        </div>
+
+        <div class="meta-grid">
+            <div class="meta-item">
+                <div class="label">Subject</div>
+                <div class="value">Test_User_001</div>
+            </div>
+            <div class="meta-item">
+                <div class="label">Computer</div>
+                <div class="value">DESKTOP-VV-DEMO</div>
+            </div>
+            <div class="meta-item">
+                <div class="label">Report Date</div>
+                <div class="value">2026-03-01</div>
+            </div>
+            <div class="meta-item">
+                <div class="label">Classification</div>
+                <div class="value">CONFIDENTIAL</div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">1. Risk Assessment</div>
+            <div class="risk-badge">Risk: MEDIUM</div>
+            <div class="risk-meter"><div class="risk-meter-fill"></div></div>
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="num">350</div>
+                    <div class="lbl">Risk Score (0-1000)</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">3</div>
+                    <div class="lbl">Threat Indicators</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">0</div>
+                    <div class="lbl">Activities Analyzed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="num">75</div>
+                    <div class="lbl">Unique Applications</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">2. Entity Extraction Results</div>
+            <p style="color:#475569; margin-bottom:12px;">
+                <strong>8</strong> entities extracted across
+                <strong>4</strong> categories using hybrid NER (regex + spaCy).
+            </p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Entity Type</th>
+                        <th style="text-align:center;">Count</th>
+                        <th>Sample Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    
+                    <tr>
+                        <td><code>email</code></td>
+                        <td style="text-align:center; font-weight:600;">2</td>
+                        <td style="font-size:13px; color:#64748b;">user@example.com, contact@company.com</td>
+                    </tr>
+                    <tr>
+                        <td><code>url</code></td>
+                        <td style="text-align:center; font-weight:600;">2</td>
+                        <td style="font-size:13px; color:#64748b;">https://www.example.com, https://github.com</td>
+                    </tr>
+                    <tr>
+                        <td><code>file_path</code></td>
+                        <td style="text-align:center; font-weight:600;">2</td>
+                        <td style="font-size:13px; color:#64748b;">C:\Users\Test\Documents\report.docx, C:\Users\Test\Downloads\data.xlsx</td>
+                    </tr>
+                    <tr>
+                        <td><code>ip_address</code></td>
+                        <td style="text-align:center; font-weight:600;">2</td>
+                        <td style="font-size:13px; color:#64748b;">192.168.1.1, 10.0.0.1</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">3. Sensitive Data Exposure</div>
+            <p style="color:#475569; margin-bottom:12px;">
+                <strong>2</strong> instances of sensitive data detected.
+                Values partially redacted for report safety.
+            </p>
+            <table><thead><tr><th>Type</th><th>Value (Redacted)</th><th>Source</th></tr></thead><tbody>
+                    <tr>
+                        <td><code>EMAIL</code></td>
+                        <td><code>exa***om</code></td>
+                        <td style="font-size:13px;">Windows Timeline - Browser activity</td>
+                    </tr>
+                    <tr>
+                        <td><code>FILE_PATH</code></td>
+                        <td><code>C:\***df</code></td>
+                        <td style="font-size:13px;">Windows Timeline - File access</td>
+                    </tr></tbody></table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">4. Analysis Methodology</div>
+            <div class="methodology">
+                <p><strong>Analysis Pipeline:</strong></p>
+                <ol style="margin: 8px 0 0 20px; color: #334155;">
+                    <li>Database ingestion (Windows Timeline / Recall / PCAP)</li>
+                    <li>Activity parsing and normalization</li>
+                    <li>Entity extraction via hybrid NER (regex patterns + spaCy NLP)</li>
+                    <li>Behavioral analysis and anomaly detection (Isolation Forest, HDBSCAN)</li>
+                    <li>Sentiment analysis (VADER, TextBlob, keyword-based)</li>
+                    <li>Risk scoring (multi-factor weighted model)</li>
+                    <li>Knowledge graph construction (entity co-occurrence analysis)</li>
+                    <li>Report generation with evidence chain</li>
+                </ol>
+            </div>
+            <div class="methodology" style="background:#fefce8; border-color:#eab308;">
+                <p><strong>Export Formats Available:</strong></p>
+                <p style="color:#334155; margin-top:6px;">
+                    HTML, PDF, CSV, JSON, Excel, Parquet, STIX 2.1, MISP, CASE/UCO, DFXML,
+                    GraphML, DOT (Graphviz), Neo4j Cypher, D3.js Interactive HTML
+                </p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">5. Evidence Chain</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Step</th>
+                        <th>Action</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Database acquired and integrity verified</td>
+                        <td style="color:#10b981; font-weight:600;">Complete</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Activities parsed and indexed (0 records)</td>
+                        <td style="color:#10b981; font-weight:600;">Complete</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Entity extraction performed (8 entities)</td>
+                        <td style="color:#10b981; font-weight:600;">Complete</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Behavioral analysis and risk scoring</td>
+                        <td style="color:#10b981; font-weight:600;">Complete</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Report generated with findings</td>
+                        <td style="color:#10b981; font-weight:600;">Complete</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            <p><strong>Vatican Vault v2.0</strong> - Digital Forensics Platform</p>
+            <p>Generated: 2026-03-01 23:34:44</p>
+            <p style="margin-top:8px; font-size:12px;">CONFIDENTIAL - For authorized personnel only</p>
+            <p style="font-size:11px; color:#94a3b8; margin-top:4px;">
+                Methodology: Hybrid NER, ML anomaly detection, behavioral clustering, sentiment analysis
+            </p>
+        </div>
+    </div>
+</body>
+</html>

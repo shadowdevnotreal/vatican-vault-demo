@@ -1,0 +1,33 @@
+To complete the processing of the medical claim, I need to make sure the following information is accurate.  Please review the patient information: 
+
+Patient Name: 
+Andrea C. Malinowski
+
+Patient Identifier or SSN: 
+452-12-1232
+
+Billing Address: 
+4582 Little Street
+Akron, OH 44308
+
+
+Patient Name: 
+Shannon K. Miller
+
+Patient Identifier or SSN: 
+537-12-3242
+
+Billing Address: 
+1782 Cody Ridge Road
+Altus, OK 73521
+
+
+Patient Name: 
+Brian C. Welch
+
+Patient Identifier or SSN: 
+647-56-5634
+
+Billing Address: 
+1107 Cecil Street
+Lombard, IL 60148

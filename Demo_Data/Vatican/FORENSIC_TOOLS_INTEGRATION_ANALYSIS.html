@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forensic Tools Integration Analysis</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="forensic-tools-integration-analysis">Forensic Tools Integration Analysis</h1>
+<h2 id="vatican-vault-comprehensive-status-report">Vatican Vault - Comprehensive Status Report</h2>
+<p><strong>Generated:</strong> 2026-02-27<br />
+<strong>Purpose:</strong> Compare documented forensic techniques against implemented tools<br />
+<strong>Status:</strong> Integration Gap Analysis</p>
+<hr />
+<h2 id="executive-summary">Executive Summary</h2>
+<p>This report analyzes the Vatican folder's FORENSIC_KNOWLEDGE_BASE.md against the current Vatican Vault implementation to identify which forensic techniques are integrated and which are missing.</p>
+<h3 id="overall-integration-status">Overall Integration Status</h3>
+<table>
+<thead>
+<tr>
+<th>Category</th>
+<th>Documented</th>
+<th>Implemented</th>
+<th>Missing</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Database Collectors</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Database Parsers</td>
+<td>2</td>
+<td>2</td>
+<td>0</td>
+<td>✅ Complete</td>
+</tr>
+<tr>
+<td>Transfer Protocols</td>
+<td>9</td>
+<td>2</td>
+<td>7</td>
+<td>⚠️ Partial</td>
+</tr>
+<tr>
+<td>Evidence of Execution</td>
+<td>5</td>
+<td>0</td>
+<td>5</td>
+<td>❌ Not Implemented</td>
+</tr>
+<tr>
+<td>Clipboard Forensics</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>❌ Not Implemented</td>
+</tr>
+<tr>
+<td>Registry Analysis</td>
+<td>3</td>
+<td>0</td>
+<td>3</td>
+<td>❌ Not Implemented</td>
+</tr>
+<tr>
+<td>Recall Decryption</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+<td>❌ Not Implemented</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-currently-implemented-tools">1. Currently Implemented Tools ✅</h2>
+<h3 id="11-database-collection-db_collectorpy">1.1 Database Collection (db_collector.py)</h3>
+<p><strong>Status:</strong> ✅ Fully Implemented</p>
+<p><strong>Capabilities:</strong><br />
+- ✅ ActivitiesCache.db collection<br />
+- ✅ Windows Recall (ukg.db) collection<br />
+- ✅ SHA256 hash verification<br />
+- ✅ Chain of custody logging<br />
+- ✅ Multi-user database discovery<br />
+- ✅ Database validation (SQLite integrity check)<br />
+- ✅ Metadata preservation</p>
+<p><strong>Location:</strong> <code>/tools/utilities/db_collector.py</code></p>
+<p><strong>Database Paths Covered:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Timeline</span>
+<span class="o">%</span><span class="n">LocalAppData</span><span class="o">%/</span><span class="n">ConnectedDevicesPlatform</span><span class="o">/*/</span><span class="n">ActivitiesCache</span><span class="o">.</span><span class="n">db</span>
+<span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Users</span><span class="o">/*/</span><span class="n">AppData</span><span class="o">/</span><span class="n">Local</span><span class="o">/</span><span class="n">ConnectedDevicesPlatform</span><span class="o">/*/</span><span class="n">ActivitiesCache</span><span class="o">.</span><span class="n">db</span>
+
+<span class="c1"># Recall</span>
+<span class="o">%</span><span class="n">LocalAppData</span><span class="o">%/</span><span class="n">CoreAIPlatform</span><span class="mf">.00</span><span class="o">/</span><span class="n">UKP</span><span class="o">/*/</span><span class="n">ukg</span><span class="o">.</span><span class="n">db</span>
+<span class="n">C</span><span class="p">:</span><span class="o">/</span><span class="n">Users</span><span class="o">/*/</span><span class="n">AppData</span><span class="o">/</span><span class="n">Local</span><span class="o">/</span><span class="n">CoreAIPlatform</span><span class="mf">.00</span><span class="o">/</span><span class="n">UKP</span><span class="o">/*/</span><span class="n">ukg</span><span class="o">.</span><span class="n">db</span>
+</code></pre></div>
+
+<h3 id="12-database-parsers">1.2 Database Parsers</h3>
+<p><strong>Status:</strong> ✅ Fully Implemented</p>
+<p><strong>Timeline Parser</strong> (<code>timeline_parser.py</code>):<br />
+- ✅ Activity table parsing<br />
+- ✅ ActivityOperation table parsing<br />
+- ✅ Activity_PackageId table parsing<br />
+- ✅ JSON payload extraction<br />
+- ✅ Timestamp conversion<br />
+- ✅ Application mapping</p>
+<p><strong>Recall Parser</strong> (<code>recall_parser.py</code>):<br />
+- ✅ WindowCapture table parsing<br />
+- ✅ Screenshot data extraction<br />
+- ✅ OCR text extraction<br />
+- ✅ Image token analysis<br />
+- ✅ Timestamp conversion<br />
+- ✅ Semantic search support</p>
+<p><strong>Location:</strong> <code>/backend/app/core/database/</code></p>
+<h3 id="13-evidence-transfer-exfil_managerpy">1.3 Evidence Transfer (exfil_manager.py)</h3>
+<p><strong>Status:</strong> ⚠️ Partially Implemented</p>
+<p><strong>Implemented Protocols:</strong><br />
+- ✅ SSH/SCP transfer<br />
+- ✅ SMB/CIFS transfer (Windows &amp; Linux)<br />
+- ✅ Protocol availability detection<br />
+- ✅ Latency-based protocol selection<br />
+- ✅ Transfer logging<br />
+- ✅ Directory transfer (recursive)</p>
+<p><strong>Defined But Not Implemented:</strong><br />
+- ⏳ FTP transfer<br />
+- ⏳ SFTP transfer<br />
+- ⏳ NFS transfer<br />
+- ⏳ HTTP/HTTPS upload<br />
+- ⏳ S3 transfer<br />
+- ⏳ Azure Blob transfer<br />
+- ⏳ Google Drive transfer</p>
+<p><strong>Location:</strong> <code>/tools/utilities/exfil_manager.py</code></p>
+<h3 id="14-forensic-workflow-forensic_collectorpy">1.4 Forensic Workflow (forensic_collector.py)</h3>
+<p><strong>Status:</strong> ✅ Fully Implemented</p>
+<p><strong>Capabilities:</strong><br />
+- ✅ Complete collect + transfer workflow<br />
+- ✅ Authorization confirmation prompts<br />
+- ✅ Case management<br />
+- ✅ Examiner documentation<br />
+- ✅ Auto-protocol detection<br />
+- ✅ Comprehensive reporting<br />
+- ✅ Chain of custody tracking</p>
+<p><strong>Location:</strong> <code>/tools/utilities/forensic_collector.py</code></p>
+<hr />
+<h2 id="2-documented-but-not-implemented">2. Documented But NOT Implemented ❌</h2>
+<h3 id="21-evidence-of-execution-artifacts">2.1 Evidence of Execution Artifacts</h3>
+<p><strong>Source:</strong> FORENSIC_KNOWLEDGE_BASE.md Section 4</p>
+<p><strong>Missing Tools:</strong></p>
+<h4 id="a-prefetch-parser">A. Prefetch Parser</h4>
+<p><strong>Artifact Location:</strong> <code>C:\Windows\Prefetch\</code><br />
+<strong>Data Available:</strong><br />
+- Application execution history<br />
+- Execution count<br />
+- Last execution time<br />
+- Files/directories accessed<br />
+- Retention: Last 128 executions (Windows 10/11)</p>
+<p><strong>Recommendation:</strong> Create <code>prefetch_parser.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PrefetchParser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_prefetch_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pf_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_execution_history</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_run_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+</code></pre></div>
+
+<h4 id="b-shimcache-appcompatcache-parser">B. Shimcache (AppCompatCache) Parser</h4>
+<p><strong>Artifact Location:</strong> Registry<br />
+- <code>HKLM\SYSTEM\CurrentControlSet\Control\Session Manager\AppCompatCache</code></p>
+<p><strong>Data Available:</strong><br />
+- File paths of executed programs<br />
+- Last modified timestamps<br />
+- Execution flags<br />
+- Shimmed applications</p>
+<p><strong>Recommendation:</strong> Create <code>shimcache_parser.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ShimcacheParser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_execution_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_execution_flags</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+</code></pre></div>
+
+<h4 id="c-amcache-parser">C. AmCache Parser</h4>
+<p><strong>Artifact Location:</strong> <code>C:\Windows\appcompat\Programs\Amcache.hve</code></p>
+<p><strong>Data Available:</strong><br />
+- Detailed application execution metadata<br />
+- SHA1 hashes of executables<br />
+- First installation time<br />
+- File size, version, publisher<br />
+- Uninstall entries</p>
+<p><strong>Recommendation:</strong> Create <code>amcache_parser.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AmCacheParser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_amcache_hive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_program_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_execution_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+</code></pre></div>
+
+<h4 id="d-bamdam-parser">D. BAM/DAM Parser</h4>
+<p><strong>Artifact Location:</strong> Registry<br />
+- <code>HKLM\SYSTEM\CurrentControlSet\Services\bam\State\UserSettings</code><br />
+- <code>HKLM\SYSTEM\CurrentControlSet\Services\dam\State\UserSettings</code></p>
+<p><strong>Data Available:</strong><br />
+- Recent execution with precise timestamps<br />
+- Background activity moderation<br />
+- Per-user execution tracking</p>
+<p><strong>Recommendation:</strong> Create <code>bam_dam_parser.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BAMDAMParser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_bam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_dam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_recent_executions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+</code></pre></div>
+
+<h4 id="e-event-log-parser">E. Event Log Parser</h4>
+<p><strong>Artifact Location:</strong> <code>C:\Windows\System32\winevt\Logs\</code></p>
+<p><strong>Data Available:</strong><br />
+- Event ID 4688: Process creation<br />
+- Event ID 4624: Logon events<br />
+- Event ID 4672: Admin logon<br />
+- Event ID 7045: Service installation</p>
+<p><strong>Recommendation:</strong> Create <code>event_log_parser.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EventLogParser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_event_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_process_creation_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_logon_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+</code></pre></div>
+
+<hr />
+<h3 id="22-clipboard-forensics">2.2 Clipboard Forensics</h3>
+<p><strong>Source:</strong> FORENSIC_KNOWLEDGE_BASE.md Section 3</p>
+<p><strong>Missing Capabilities:</strong></p>
+<h4 id="clipboardpayload-extractor">ClipboardPayload Extractor</h4>
+<p><strong>Data Source:</strong> ActivitiesCache.db<br />
+<strong>Database Fields:</strong><br />
+- <code>ClipboardPayload</code> (BLOB) - Clipboard content<br />
+- <code>Payload</code> (BLOB) - Activity details in JSON<br />
+- <code>ContentInfo</code> (TEXT) - Metadata</p>
+<p><strong>SQL Query Needed:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span>
+<span class="w">    </span><span class="n">Id</span><span class="p">,</span>
+<span class="w">    </span><span class="n">StartTime</span><span class="p">,</span>
+<span class="w">    </span><span class="n">EndTime</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ClipboardPayload</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Payload</span>
+<span class="k">FROM</span><span class="w"> </span><span class="n">Activity</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="n">ClipboardPayload</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">StartTime</span><span class="w"> </span><span class="k">DESC</span>
+</code></pre></div>
+
+<p><strong>Recommendation:</strong> Add to <code>timeline_parser.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TimelineParser</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_clipboard_activities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract clipboard history from ActivitiesCache.db&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">decode_clipboard_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode clipboard BLOB data&quot;&quot;&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_clipboard_timeline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate chronological clipboard timeline&quot;&quot;&quot;</span>
+</code></pre></div>
+
+<hr />
+<h3 id="23-windows-recall-advanced-features">2.3 Windows Recall Advanced Features</h3>
+<p><strong>Source:</strong> FORENSIC_KNOWLEDGE_BASE.md Section 2, 5</p>
+<p><strong>Missing Capabilities:</strong></p>
+<h4 id="a-recall-snapshot-decryption">A. Recall Snapshot Decryption</h4>
+<p><strong>Tool Reference:</strong> https://github.com/microsoft/RecallSnapshotsExport<br />
+<strong>Language:</strong> C++ (Visual Studio 2022)</p>
+<p><strong>Current Limitation:</strong><br />
+- Current <code>recall_parser.py</code> reads unencrypted ukg.db<br />
+- Cannot decrypt exported snapshots that require 32-character export code</p>
+<p><strong>Export Structure:</strong></p>
+<div class="codehilite"><pre><span></span><code>Exported_Snapshots/
+├── image_001.jpg          # Encrypted screenshot
+├── image_001_metadata.json  # Encrypted metadata
+├── image_002.jpg
+├── image_002_metadata.json
+└── ...
+</code></pre></div>
+
+<p><strong>Recommendation:</strong> Create C++ integration or Python wrapper</p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RecallSnapshotDecryptor</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decrypt_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encrypted_file</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">decrypt_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_file</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">batch_decrypt_export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">export_dir</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span>
+</code></pre></div>
+
+<h4 id="b-registry-based-recall-management">B. Registry-Based Recall Management</h4>
+<p><strong>Group Policy Keys:</strong><br />
+- <code>HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsAI\AllowRecallEnablement</code></p>
+<p><strong>Values:</strong><br />
+- <code>0x00000000</code> - Disable Recall for all users<br />
+- <code>0x00000001</code> - Enable Recall for managed users<br />
+- (deleted) - Default (allow home users)</p>
+<p><strong>Recommendation:</strong> Create <code>recall_registry_analyzer.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RecallRegistryAnalyzer</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_recall_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">detect_recall_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>  <span class="c1"># enabled/disabled/default</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">export_recall_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+</code></pre></div>
+
+<hr />
+<h3 id="24-additional-transfer-protocols">2.4 Additional Transfer Protocols</h3>
+<p><strong>Source:</strong> exfil_manager.py (defined but not implemented)</p>
+<p><strong>Missing Protocol Implementations:</strong></p>
+<h4 id="a-ftpftps-transfer">A. FTP/FTPS Transfer</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_ftp</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">destination_host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">destination_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">use_tls</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransferStatus</span>
+</code></pre></div>
+
+<h4 id="b-sftp-transfer-paramiko">B. SFTP Transfer (Paramiko)</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_sftp</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">destination_host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">destination_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">username</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">key_file</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">password</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransferStatus</span>
+</code></pre></div>
+
+<h4 id="c-nfs-transfer">C. NFS Transfer</h4>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_nfs</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">nfs_share</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">destination_path</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransferStatus</span>
+</code></pre></div>
+
+<h4 id="d-cloud-storage-integration">D. Cloud Storage Integration</h4>
+<p><strong>S3 Transfer:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_s3</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">bucket_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">object_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">aws_access_key</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">aws_secret_key</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransferStatus</span>
+</code></pre></div>
+
+<p><strong>Azure Blob:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_azure_blob</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">blob_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">connection_string</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransferStatus</span>
+</code></pre></div>
+
+<p><strong>Google Drive:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_google_drive</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">,</span>
+    <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
+    <span class="n">folder_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">credentials_file</span><span class="p">:</span> <span class="nb">str</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TransferStatus</span>
+</code></pre></div>
+
+<hr />
+<h2 id="3-integration-recommendations">3. Integration Recommendations</h2>
+<h3 id="priority-1-critical-missing-tools-implement-first">Priority 1: Critical Missing Tools (Implement First)</h3>
+<ol>
+<li>
+<p><strong>Clipboard Forensics Integration</strong><br />
+   - <strong>Impact:</strong> High - Clipboard data often contains sensitive information<br />
+   - <strong>Effort:</strong> Low - Data already in ActivitiesCache.db<br />
+   - <strong>Implementation:</strong> Add methods to existing <code>timeline_parser.py</code><br />
+   - <strong>Files to Modify:</strong></p>
+<ul>
+<li><code>backend/app/core/database/timeline_parser.py</code></li>
+<li><code>backend/app/api/routes/forensics.py</code> (add API endpoints)</li>
+</ul>
+</li>
+<li>
+<p><strong>Prefetch Parser</strong><br />
+   - <strong>Impact:</strong> High - Critical for execution timeline<br />
+   - <strong>Effort:</strong> Medium - Well-documented format<br />
+   - <strong>Implementation:</strong> New module <code>prefetch_parser.py</code><br />
+   - <strong>Dependencies:</strong> None (pure Python parsing)</p>
+</li>
+<li>
+<p><strong>BAM/DAM Registry Parser</strong><br />
+   - <strong>Impact:</strong> High - Precise execution timestamps<br />
+   - <strong>Effort:</strong> Low - Simple registry parsing<br />
+   - <strong>Implementation:</strong> New module <code>bam_dam_parser.py</code><br />
+   - <strong>Dependencies:</strong> winreg (Windows), regipy (Linux)</p>
+</li>
+</ol>
+<hr />
+<h3 id="priority-2-important-missing-tools">Priority 2: Important Missing Tools</h3>
+<ol start="4">
+<li>
+<p><strong>Shimcache Parser</strong><br />
+   - <strong>Impact:</strong> Medium-High - Long-term execution history<br />
+   - <strong>Effort:</strong> Medium - Registry parsing required<br />
+   - <strong>Implementation:</strong> New module <code>shimcache_parser.py</code><br />
+   - <strong>Dependencies:</strong> regipy or yarp</p>
+</li>
+<li>
+<p><strong>AmCache Parser</strong><br />
+   - <strong>Impact:</strong> Medium - Detailed program metadata<br />
+   - <strong>Effort:</strong> Medium - Registry hive parsing<br />
+   - <strong>Implementation:</strong> New module <code>amcache_parser.py</code><br />
+   - <strong>Dependencies:</strong> Registry parsing library</p>
+</li>
+<li>
+<p><strong>SFTP Transfer Protocol</strong><br />
+   - <strong>Impact:</strong> Medium - Common secure transfer method<br />
+   - <strong>Effort:</strong> Low - Paramiko library well-documented<br />
+   - <strong>Implementation:</strong> Add to <code>exfil_manager.py</code><br />
+   - <strong>Dependencies:</strong> paramiko</p>
+</li>
+</ol>
+<hr />
+<h3 id="priority-3-advanced-features">Priority 3: Advanced Features</h3>
+<ol start="7">
+<li>
+<p><strong>Recall Snapshot Decryption</strong><br />
+   - <strong>Impact:</strong> Medium - Required for exported snapshots only<br />
+   - <strong>Effort:</strong> High - C++ integration or reverse engineering<br />
+   - <strong>Implementation:</strong> C++ wrapper or subprocess call<br />
+   - <strong>Dependencies:</strong> Visual Studio C++ compiler, Microsoft RecallSnapshotsExport</p>
+</li>
+<li>
+<p><strong>Cloud Storage Integration (S3, Azure, GDrive)</strong><br />
+   - <strong>Impact:</strong> Low-Medium - Convenience feature<br />
+   - <strong>Effort:</strong> Medium - API integration required<br />
+   - <strong>Implementation:</strong> Add to <code>exfil_manager.py</code><br />
+   - <strong>Dependencies:</strong> boto3, azure-storage-blob, google-api-python-client</p>
+</li>
+<li>
+<p><strong>Event Log Parser</strong><br />
+   - <strong>Impact:</strong> Medium - Comprehensive timeline analysis<br />
+   - <strong>Effort:</strong> Medium-High - Complex XML parsing<br />
+   - <strong>Implementation:</strong> New module <code>event_log_parser.py</code><br />
+   - <strong>Dependencies:</strong> pyevtx or evtx library</p>
+</li>
+</ol>
+<hr />
+<h2 id="4-implementation-roadmap">4. Implementation Roadmap</h2>
+<h3 id="phase-1-quick-wins-1-2-weeks">Phase 1: Quick Wins (1-2 weeks)</h3>
+<ul>
+<li>✅ Already completed: Database collectors, parsers, basic transfer</li>
+<li>🔲 Add clipboard forensics to timeline_parser.py</li>
+<li>🔲 Implement BAM/DAM registry parser</li>
+<li>🔲 Add SFTP transfer protocol</li>
+</ul>
+<h3 id="phase-2-core-evidence-of-execution-2-3-weeks">Phase 2: Core Evidence of Execution (2-3 weeks)</h3>
+<ul>
+<li>🔲 Create prefetch_parser.py</li>
+<li>🔲 Create shimcache_parser.py</li>
+<li>🔲 Create amcache_parser.py</li>
+<li>🔲 Integrate parsers into main forensic workflow</li>
+</ul>
+<h3 id="phase-3-advanced-features-3-4-weeks">Phase 3: Advanced Features (3-4 weeks)</h3>
+<ul>
+<li>🔲 Event log parser</li>
+<li>🔲 Recall snapshot decryption wrapper</li>
+<li>🔲 Cloud storage transfer protocols</li>
+<li>🔲 Registry analysis tools</li>
+</ul>
+<h3 id="phase-4-polish-documentation-1-week">Phase 4: Polish &amp; Documentation (1 week)</h3>
+<ul>
+<li>🔲 Comprehensive testing</li>
+<li>🔲 API endpoint creation</li>
+<li>🔲 Documentation updates</li>
+<li>🔲 Example workflows</li>
+</ul>
+<hr />
+<h2 id="5-detailed-gap-analysis-by-url">5. Detailed Gap Analysis by URL</h2>
+<h3 id="url-1-activitiescacheparser">URL 1: ActivitiesCacheParser</h3>
+<p><strong>Source:</strong> https://github.com/bolisettynihith/ActivitiesCacheParser</p>
+<p><strong>Documented Capabilities:</strong><br />
+- Extract Activity table<br />
+- Extract ActivityOperation table<br />
+- Extract Activity_PackageId table</p>
+<p><strong>Current Implementation:</strong><br />
+- ✅ All capabilities implemented in <code>timeline_parser.py</code><br />
+- ✅ Plus additional JSON parsing<br />
+- ✅ Plus async iterator support</p>
+<p><strong>Status:</strong> ✅ Complete + Enhanced</p>
+<hr />
+<h3 id="url-2-recallsnapshotsexport">URL 2: RecallSnapshotsExport</h3>
+<p><strong>Source:</strong> https://github.com/microsoft/RecallSnapshotsExport</p>
+<p><strong>Documented Capabilities:</strong><br />
+- Decrypt exported Recall snapshots<br />
+- Parse image files (.jpg)<br />
+- Parse metadata files (.json)</p>
+<p><strong>Current Implementation:</strong><br />
+- ✅ Parse unencrypted ukg.db (live database)<br />
+- ❌ Cannot decrypt exported snapshots<br />
+- ❌ No C++ integration</p>
+<p><strong>Status:</strong> ⚠️ Partial - Live DB only</p>
+<hr />
+<h3 id="url-3-clipboard-forensics">URL 3: Clipboard Forensics</h3>
+<p><strong>Source:</strong> https://www.inversecos.com/2022/05/how-to-perform-clipboard-forensics.html<br />
+<strong>(Access restricted - using documented knowledge)</strong></p>
+<p><strong>Documented Techniques:</strong><br />
+- Extract ClipboardPayload from ActivitiesCache.db<br />
+- Memory forensics for active clipboard<br />
+- Windows Clipboard History analysis</p>
+<p><strong>Current Implementation:</strong><br />
+- ✅ Database access available in timeline_parser<br />
+- ❌ No dedicated clipboard extraction methods<br />
+- ❌ No memory forensics<br />
+- ❌ No Clipboard History parsing</p>
+<p><strong>Status:</strong> ❌ Not Implemented (Database infrastructure ready)</p>
+<hr />
+<h3 id="url-4-evidence-of-execution">URL 4: Evidence of Execution</h3>
+<p><strong>Source:</strong> https://darkcybe.github.io/posts/DFIR_Evidence_of_Execution/<br />
+<strong>(Access restricted - using documented knowledge)</strong></p>
+<p><strong>Documented Artifacts:</strong><br />
+- Prefetch files<br />
+- Shimcache (AppCompatCache)<br />
+- AmCache<br />
+- ActivitiesCache.db<br />
+- BAM/DAM</p>
+<p><strong>Current Implementation:</strong><br />
+- ✅ ActivitiesCache.db (fully implemented)<br />
+- ❌ Prefetch parser<br />
+- ❌ Shimcache parser<br />
+- ❌ AmCache parser<br />
+- ❌ BAM/DAM parser</p>
+<p><strong>Status:</strong> 20% Complete (1 of 5 artifacts)</p>
+<hr />
+<h3 id="url-5-7-windows-recall-management">URL 5-7: Windows Recall Management</h3>
+<p><strong>Sources:</strong><br />
+- https://learn.microsoft.com/en-us/windows/ai/recall/decrypt-exported-snapshots<br />
+- https://learn.microsoft.com/en-us/windows/client-management/manage-recall<br />
+- https://winaero.com/disable-recall-windows/<br />
+<strong>(Access restricted - using documented knowledge)</strong></p>
+<p><strong>Documented Capabilities:</strong><br />
+- Group Policy configuration<br />
+- Registry settings analysis<br />
+- PowerShell enable/disable<br />
+- Export code management</p>
+<p><strong>Current Implementation:</strong><br />
+- ✅ Live Recall database parsing<br />
+- ❌ Registry policy analysis<br />
+- ❌ GPO detection<br />
+- ❌ PowerShell integration<br />
+- ❌ Export decryption</p>
+<p><strong>Status:</strong> ❌ Management features not implemented</p>
+<hr />
+<h2 id="6-code-integration-examples">6. Code Integration Examples</h2>
+<h3 id="example-1-adding-clipboard-forensics">Example 1: Adding Clipboard Forensics</h3>
+<p><strong>File:</strong> <code>backend/app/core/database/timeline_parser.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Add this method to TimelineParser class</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">extract_clipboard_activities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract clipboard activities from ActivitiesCache.db.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of clipboard activity dictionaries with timestamps and content</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">        SELECT</span>
+<span class="s2">            Id,</span>
+<span class="s2">            StartTime,</span>
+<span class="s2">            EndTime,</span>
+<span class="s2">            ClipboardPayload,</span>
+<span class="s2">            Payload,</span>
+<span class="s2">            AppId</span>
+<span class="s2">        FROM Activity</span>
+<span class="s2">        WHERE ClipboardPayload IS NOT NULL</span>
+<span class="s2">        ORDER BY StartTime DESC</span>
+<span class="s2">    &quot;&quot;&quot;</span>
+
+    <span class="n">clipboard_activities</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">cursor</span> <span class="o">=</span> <span class="k">await</span> <span class="bp">self</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="k">await</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+        <span class="n">activity_id</span><span class="p">,</span> <span class="n">start_time</span><span class="p">,</span> <span class="n">end_time</span><span class="p">,</span> <span class="n">clip_payload</span><span class="p">,</span> <span class="n">payload</span><span class="p">,</span> <span class="n">app_id</span> <span class="o">=</span> <span class="n">row</span>
+
+        <span class="c1"># Decode clipboard payload (BLOB)</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">clip_payload</span><span class="p">:</span>
+                <span class="c1"># Try UTF-8 decode first</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="n">clip_payload</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">,</span> <span class="n">errors</span><span class="o">=</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">content</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="k">except</span><span class="p">:</span>
+            <span class="n">content</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&lt;binary data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">clip_payload</span><span class="p">)</span><span class="si">}</span><span class="s2"> bytes&gt;&quot;</span>
+
+        <span class="n">clipboard_activities</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="n">activity_id</span><span class="p">,</span>
+            <span class="s1">&#39;start_time&#39;</span><span class="p">:</span> <span class="n">start_time</span><span class="p">,</span>
+            <span class="s1">&#39;end_time&#39;</span><span class="p">:</span> <span class="n">end_time</span><span class="p">,</span>
+            <span class="s1">&#39;clipboard_content&#39;</span><span class="p">:</span> <span class="n">content</span><span class="p">,</span>
+            <span class="s1">&#39;clipboard_size_bytes&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">clip_payload</span><span class="p">)</span> <span class="k">if</span> <span class="n">clip_payload</span> <span class="k">else</span> <span class="mi">0</span><span class="p">,</span>
+            <span class="s1">&#39;application&#39;</span><span class="p">:</span> <span class="n">app_id</span><span class="p">,</span>
+            <span class="s1">&#39;metadata&#39;</span><span class="p">:</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span> <span class="k">if</span> <span class="n">payload</span> <span class="k">else</span> <span class="p">{}</span>
+        <span class="p">})</span>
+
+    <span class="k">return</span> <span class="n">clipboard_activities</span>
+</code></pre></div>
+
+<p><strong>API Integration:</strong></p>
+<p><strong>File:</strong> <code>backend/app/api/routes/forensics.py</code></p>
+<div class="codehilite"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/timeline/clipboard&quot;</span><span class="p">)</span>
+<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_clipboard_forensics</span><span class="p">(</span>
+    <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+    <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Extract clipboard forensics from Timeline database.</span>
+
+<span class="sd">    Returns clipboard activities with timestamps and content.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">TimelineParser</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
+    <span class="k">await</span> <span class="n">parser</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+
+    <span class="n">clipboard_data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">parser</span><span class="o">.</span><span class="n">extract_clipboard_activities</span><span class="p">()</span>
+    <span class="k">await</span> <span class="n">parser</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s1">&#39;total_activities&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">clipboard_data</span><span class="p">),</span>
+        <span class="s1">&#39;clipboard_history&#39;</span><span class="p">:</span> <span class="n">clipboard_data</span><span class="p">[:</span><span class="n">limit</span><span class="p">]</span>
+    <span class="p">}</span>
+</code></pre></div>
+
+<hr />
+<h3 id="example-2-bamdam-registry-parser">Example 2: BAM/DAM Registry Parser</h3>
+<p><strong>File:</strong> <code>tools/utilities/bam_dam_parser.py</code> (NEW)</p>
+<div class="codehilite"><pre><span></span><code><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">BAM/DAM Registry Parser</span>
+<span class="sd">========================</span>
+
+<span class="sd">Extract execution evidence from Background Activity Moderator (BAM) and</span>
+<span class="sd">Desktop Activity Moderator (DAM) registry keys.</span>
+
+<span class="sd">Provides precise execution timestamps for recent program executions.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">winreg</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">BAMDAMParser</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser for BAM and DAM registry artifacts.&quot;&quot;&quot;</span>
+
+    <span class="n">BAM_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;SYSTEM\CurrentControlSet\Services\bam\State\UserSettings&quot;</span>
+    <span class="n">DAM_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;SYSTEM\CurrentControlSet\Services\dam\State\UserSettings&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize BAM/DAM parser.&quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">executions</span> <span class="o">=</span> <span class="p">[]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_bam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse BAM registry key for execution evidence.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of execution records with timestamps</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BAM_PATH</span><span class="p">,</span> <span class="s2">&quot;BAM&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">parse_dam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parse DAM registry key for execution evidence.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            List of execution records with timestamps</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DAM_PATH</span><span class="p">,</span> <span class="s2">&quot;DAM&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal method to parse registry key.&quot;&quot;&quot;</span>
+        <span class="n">executions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># Open registry key</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">winreg</span><span class="o">.</span><span class="n">OpenKey</span><span class="p">(</span>
+                <span class="n">winreg</span><span class="o">.</span><span class="n">HKEY_LOCAL_MACHINE</span><span class="p">,</span>
+                <span class="n">key_path</span><span class="p">,</span>
+                <span class="mi">0</span><span class="p">,</span>
+                <span class="n">winreg</span><span class="o">.</span><span class="n">KEY_READ</span>
+            <span class="p">)</span>
+
+            <span class="c1"># Enumerate subkeys (user SIDs)</span>
+            <span class="n">num_subkeys</span> <span class="o">=</span> <span class="n">winreg</span><span class="o">.</span><span class="n">QueryInfoKey</span><span class="p">(</span><span class="n">key</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_subkeys</span><span class="p">):</span>
+                <span class="n">sid</span> <span class="o">=</span> <span class="n">winreg</span><span class="o">.</span><span class="n">EnumKey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+                <span class="n">user_key</span> <span class="o">=</span> <span class="n">winreg</span><span class="o">.</span><span class="n">OpenKey</span><span class="p">(</span><span class="n">key</span><span class="p">,</span> <span class="n">sid</span><span class="p">)</span>
+
+                <span class="c1"># Enumerate values (executable paths)</span>
+                <span class="n">num_values</span> <span class="o">=</span> <span class="n">winreg</span><span class="o">.</span><span class="n">QueryInfoKey</span><span class="p">(</span><span class="n">user_key</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+
+                <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_values</span><span class="p">):</span>
+                    <span class="n">exe_path</span><span class="p">,</span> <span class="n">timestamp_bytes</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">winreg</span><span class="o">.</span><span class="n">EnumValue</span><span class="p">(</span><span class="n">user_key</span><span class="p">,</span> <span class="n">j</span><span class="p">)</span>
+
+                    <span class="c1"># Convert Windows FILETIME to datetime</span>
+                    <span class="c1"># BAM/DAM stores 8-byte FILETIME values</span>
+                    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">timestamp_bytes</span><span class="p">)</span> <span class="o">==</span> <span class="mi">8</span><span class="p">:</span>
+                        <span class="n">timestamp_int</span> <span class="o">=</span> <span class="nb">int</span><span class="o">.</span><span class="n">from_bytes</span><span class="p">(</span><span class="n">timestamp_bytes</span><span class="p">,</span> <span class="s1">&#39;little&#39;</span><span class="p">)</span>
+                        <span class="c1"># FILETIME is 100-nanosecond intervals since 1601-01-01</span>
+                        <span class="n">windows_epoch</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1601</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+                        <span class="n">timestamp</span> <span class="o">=</span> <span class="n">windows_epoch</span> <span class="o">+</span> <span class="n">timedelta</span><span class="p">(</span><span class="n">microseconds</span><span class="o">=</span><span class="n">timestamp_int</span> <span class="o">/</span> <span class="mi">10</span><span class="p">)</span>
+
+                        <span class="n">executions</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                            <span class="s1">&#39;source&#39;</span><span class="p">:</span> <span class="n">source</span><span class="p">,</span>
+                            <span class="s1">&#39;user_sid&#39;</span><span class="p">:</span> <span class="n">sid</span><span class="p">,</span>
+                            <span class="s1">&#39;executable_path&#39;</span><span class="p">:</span> <span class="n">exe_path</span><span class="p">,</span>
+                            <span class="s1">&#39;execution_time&#39;</span><span class="p">:</span> <span class="n">timestamp</span><span class="o">.</span><span class="n">isoformat</span><span class="p">(),</span>
+                            <span class="s1">&#39;timestamp_raw&#39;</span><span class="p">:</span> <span class="n">timestamp_int</span>
+                        <span class="p">})</span>
+
+                <span class="n">winreg</span><span class="o">.</span><span class="n">CloseKey</span><span class="p">(</span><span class="n">user_key</span><span class="p">)</span>
+
+            <span class="n">winreg</span><span class="o">.</span><span class="n">CloseKey</span><span class="p">(</span><span class="n">key</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">FileNotFoundError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">warning</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2"> registry key not found&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">PermissionError</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Permission denied accessing </span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2"> registry&quot;</span><span class="p">)</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;💡 Try running with administrator privileges&quot;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error parsing </span><span class="si">{</span><span class="n">source</span><span class="si">}</span><span class="s2"> registry: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">executions</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_executions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Get all execution records from both BAM and DAM.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Combined list of execution records, sorted by time</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">all_executions</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="n">all_executions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_bam_registry</span><span class="p">())</span>
+        <span class="n">all_executions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">parse_dam_registry</span><span class="p">())</span>
+
+        <span class="c1"># Sort by execution time (most recent first)</span>
+        <span class="n">all_executions</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span>
+            <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="s1">&#39;execution_time&#39;</span><span class="p">],</span>
+            <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">all_executions</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Example usage.&quot;&quot;&quot;</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">BAMDAMParser</span><span class="p">()</span>
+
+    <span class="n">executions</span> <span class="o">=</span> <span class="n">parser</span><span class="o">.</span><span class="n">get_all_executions</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Found </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">executions</span><span class="p">)</span><span class="si">}</span><span class="s2"> execution records:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">exec_record</span> <span class="ow">in</span> <span class="n">executions</span><span class="p">[:</span><span class="mi">20</span><span class="p">]:</span>  <span class="c1"># Show first 20</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[</span><span class="si">{</span><span class="n">exec_record</span><span class="p">[</span><span class="s1">&#39;source&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">] </span><span class="si">{</span><span class="n">exec_record</span><span class="p">[</span><span class="s1">&#39;execution_time&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Path: </span><span class="si">{</span><span class="n">exec_record</span><span class="p">[</span><span class="s1">&#39;executable_path&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  User: </span><span class="si">{</span><span class="n">exec_record</span><span class="p">[</span><span class="s1">&#39;user_sid&#39;</span><span class="p">]</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</code></pre></div>
+
+<hr />
+<h2 id="7-testing-requirements">7. Testing Requirements</h2>
+<h3 id="unit-tests-needed">Unit Tests Needed</h3>
+<ol>
+<li>
+<p><strong>test_clipboard_forensics.py</strong><br />
+   - Test ClipboardPayload extraction<br />
+   - Test BLOB decoding<br />
+   - Test empty/null handling</p>
+</li>
+<li>
+<p><strong>test_bam_dam_parser.py</strong><br />
+   - Test registry key parsing<br />
+   - Test timestamp conversion<br />
+   - Test permission handling</p>
+</li>
+<li>
+<p><strong>test_prefetch_parser.py</strong><br />
+   - Test prefetch file parsing<br />
+   - Test execution count extraction<br />
+   - Test timestamp parsing</p>
+</li>
+</ol>
+<h3 id="integration-tests">Integration Tests</h3>
+<ol>
+<li><strong>test_complete_forensic_workflow.py</strong><br />
+   - Test collect → parse → analyze → transfer<br />
+   - Test all artifact types together<br />
+   - Test error handling</li>
+</ol>
+<hr />
+<h2 id="8-documentation-updates-required">8. Documentation Updates Required</h2>
+<ol>
+<li><strong>README.md</strong> - Add new forensic capabilities</li>
+<li><strong>FORENSIC_KNOWLEDGE_BASE.md</strong> - Mark implemented features</li>
+<li><strong>API_DOCUMENTATION.md</strong> - New API endpoints</li>
+<li><strong>USAGE_EXAMPLES.md</strong> - Example workflows with new tools</li>
+</ol>
+<hr />
+<h2 id="9-dependencies-to-add">9. Dependencies to Add</h2>
+<div class="codehilite"><pre><span></span><code><span class="p">#</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">clipboard</span><span class="w"> </span><span class="k">and</span><span class="w"> </span><span class="n">database</span><span class="w"> </span><span class="n">parsing</span><span class="w"> </span><span class="p">(</span><span class="n">already</span><span class="w"> </span><span class="n">have</span><span class="p">)</span>
+<span class="p">#</span><span class="w"> </span><span class="n">sqlite3</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">built</span><span class="o">-</span><span class="n">in</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">registry</span><span class="w"> </span><span class="n">parsing</span><span class="w"> </span><span class="p">(</span><span class="n">Windows</span><span class="p">)</span>
+<span class="p">#</span><span class="w"> </span><span class="n">winreg</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">built</span><span class="o">-</span><span class="n">in</span><span class="w"> </span><span class="n">on</span><span class="w"> </span><span class="n">Windows</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">registry</span><span class="w"> </span><span class="n">parsing</span><span class="w"> </span><span class="p">(</span><span class="n">Linux</span><span class="o">/</span><span class="n">cross</span><span class="o">-</span><span class="n">platform</span><span class="p">)</span>
+<span class="n">regipy</span><span class="o">&gt;=</span><span class="mf">3.1.0</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">SFTP</span><span class="w"> </span><span class="n">transfer</span>
+<span class="n">paramiko</span><span class="o">&gt;=</span><span class="mf">3.0.0</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">cloud</span><span class="w"> </span><span class="n">storage</span><span class="w"> </span><span class="p">(</span><span class="n">optional</span><span class="p">)</span>
+<span class="n">boto3</span><span class="o">&gt;=</span><span class="mf">1.26.0</span><span class="w">              </span><span class="p">#</span><span class="w"> </span><span class="n">AWS</span><span class="w"> </span><span class="n">S3</span>
+<span class="n">azure</span><span class="o">-</span><span class="n">storage</span><span class="o">-</span><span class="n">blob</span><span class="o">&gt;=</span><span class="mf">12.0.0</span><span class="w">  </span><span class="p">#</span><span class="w"> </span><span class="n">Azure</span>
+<span class="n">google</span><span class="o">-</span><span class="n">api</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">client</span><span class="o">&gt;=</span><span class="mf">2.0.0</span><span class="w">  </span><span class="p">#</span><span class="w"> </span><span class="n">Google</span><span class="w"> </span><span class="n">Drive</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="n">prefetch</span><span class="w"> </span><span class="n">parsing</span>
+<span class="n">libscca</span><span class="o">-</span><span class="n">python</span><span class="o">&gt;=</span><span class="mh">20210419</span><span class="w">   </span><span class="p">#</span><span class="w"> </span><span class="nl">Optional:</span><span class="w"> </span><span class="n">C</span><span class="o">-</span><span class="n">based</span><span class="w"> </span><span class="n">parser</span>
+
+<span class="p">#</span><span class="w"> </span><span class="n">For</span><span class="w"> </span><span class="k">event</span><span class="w"> </span><span class="n">log</span><span class="w"> </span><span class="n">parsing</span>
+<span class="n">python</span><span class="o">-</span><span class="n">evtx</span><span class="o">&gt;=</span><span class="mf">0.7.4</span>
+</code></pre></div>
+
+<hr />
+<h2 id="10-conclusion">10. Conclusion</h2>
+<h3 id="summary-statistics">Summary Statistics</h3>
+<ul>
+<li><strong>Total Documented Techniques:</strong> 25</li>
+<li><strong>Fully Implemented:</strong> 8 (32%)</li>
+<li><strong>Partially Implemented:</strong> 3 (12%)</li>
+<li><strong>Not Implemented:</strong> 14 (56%)</li>
+</ul>
+<h3 id="high-impact-quick-wins">High-Impact Quick Wins</h3>
+<p>The following can be implemented quickly with high forensic value:</p>
+<ol>
+<li>
+<p><strong>Clipboard Forensics</strong> (1-2 days)<br />
+   - Data already in ActivitiesCache.db<br />
+   - Just need extraction methods<br />
+   - High value for credential theft detection</p>
+</li>
+<li>
+<p><strong>BAM/DAM Parser</strong> (2-3 days)<br />
+   - Simple registry parsing<br />
+   - Precise execution timestamps<br />
+   - Complements Timeline data</p>
+</li>
+<li>
+<p><strong>SFTP Transfer</strong> (1 day)<br />
+   - Paramiko library well-documented<br />
+   - Common secure transfer method<br />
+   - Enhances evidence transfer options</p>
+</li>
+</ol>
+<h3 id="long-term-goals">Long-Term Goals</h3>
+<ol>
+<li>Complete Evidence of Execution suite (all 5 artifacts)</li>
+<li>Recall snapshot decryption (C++ integration)</li>
+<li>Full cloud storage integration</li>
+<li>Automated timeline correlation</li>
+</ol>
+<hr />
+<p><strong>Next Steps:</strong><br />
+1. Review this analysis with project stakeholders<br />
+2. Prioritize implementation based on investigative needs<br />
+3. Begin Phase 1 implementation (clipboard + BAM/DAM)<br />
+4. Update FORENSIC_KNOWLEDGE_BASE.md with implementation status</p>
+<hr />
+<p><em>Report generated by Vatican Vault Integration Analysis</em><br />
+<em>For questions or updates, see: /home/user/vatican_vault/Test Files/Vatican/</em></p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>

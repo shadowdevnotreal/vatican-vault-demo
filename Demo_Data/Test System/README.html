@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test System - Reference Database and Tool Outputs</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+        }
+        h1 {
+            font-size: 42px;
+            color: #1a1a1a;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
+        }
+        h2 {
+            font-size: 32px;
+            color: #1a1a1a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e0e0e0;
+        }
+        h3 {
+            font-size: 24px;
+            color: #333;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        h4 {
+            font-size: 20px;
+            color: #444;
+            margin-top: 25px;
+            margin-bottom: 12px;
+        }
+        h5 {
+            font-size: 18px;
+            color: #555;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        h6 {
+            font-size: 16px;
+            color: #666;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+        p {
+            color: #555;
+            font-size: 16px;
+            margin-bottom: 16px;
+            line-height: 1.8;
+        }
+        a {
+            color: #667eea;
+            text-decoration: none;
+            border-bottom: 1px solid #667eea;
+            transition: all 0.3s ease;
+        }
+        a:hover {
+            color: #764ba2;
+            border-bottom-color: #764ba2;
+        }
+        ul, ol {
+            margin: 20px 0 20px 30px;
+            color: #555;
+        }
+        li {
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        code {
+            background: #f4f4f4;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'Consolas', 'Monaco', monospace;
+            font-size: 14px;
+            color: #e74c3c;
+        }
+        pre {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 20px 0;
+            line-height: 1.5;
+        }
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+            font-size: 14px;
+        }
+        blockquote {
+            border-left: 4px solid #667eea;
+            padding-left: 20px;
+            margin: 25px 0;
+            color: #666;
+            font-style: italic;
+            background: #f8f9fa;
+            padding: 20px 20px 20px 25px;
+            border-radius: 0 8px 8px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        table tbody tr:hover {
+            background-color: #f8f9fa;
+        }
+        table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        hr {
+            border: none;
+            border-top: 2px solid #e0e0e0;
+            margin: 40px 0;
+        }
+        .badge {
+            display: inline-block;
+            background: #667eea;
+            color: white;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            margin-right: 8px;
+            margin-bottom: 20px;
+        }
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .warning-box {
+            background: #fff3cd;
+            border-left: 4px solid #ff9800;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .success-box {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 20px;
+            margin: 25px 0;
+            border-radius: 4px;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #999;
+            font-size: 14px;
+        }
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        strong {
+            color: #333;
+            font-weight: 600;
+        }
+        em {
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 id="test-system-reference-database-and-tool-outputs">Test System - Reference Database and Tool Outputs</h1>
+<p><strong>Purpose:</strong> Real Windows Timeline database and reference outputs from forensic analysis tools</p>
+<hr />
+<h2 id="quick-start">Quick Start</h2>
+<h3 id="adding-database-files-to-git">Adding Database Files to Git</h3>
+<p>If you have the <code>ActivitiesCache.db-shm</code> and <code>ActivitiesCache.db-wal</code> files on your local system, add them to git with:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;Test Files/Test System&quot;</span>
+git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>ActivitiesCache.db-shm<span class="w"> </span>ActivitiesCache.db-wal
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s2">&quot;feat: add SQLite WAL files to Test System reference dataset&quot;</span>
+</code></pre></div>
+
+<p>The <code>.gitignore</code> has been configured to allow these specific test files while blocking production database files elsewhere.</p>
+<hr />
+<h2 id="contents">Contents</h2>
+<h3 id="1-activitiescachedb">1. ActivitiesCache.db</h3>
+<p><strong>Type:</strong> Windows Timeline Database (SQLite3)<br />
+<strong>Size:</strong> 4.71 MB<br />
+<strong>Source:</strong> Real Windows 10/11 system<br />
+<strong>Activities:</strong> 1,853 activity records<br />
+<strong>Date Range:</strong> October 16, 2022 - March 10, 2023 (146 days)<br />
+<strong>Applications:</strong> 75+ tracked applications</p>
+<p><strong>Location (Original):</strong></p>
+<div class="codehilite"><pre><span></span><code>C:\Users\%USERNAME%\AppData\Local\ConnectedDevicesPlatform\L.%USERNAME%\ActivitiesCache.db
+</code></pre></div>
+
+<p><strong>Tables:</strong><br />
+- Activity (1,853 rows) - Core activity records<br />
+- Activity_PackageId (6,296 rows) - Application mappings<br />
+- ActivityOperation (0 rows) - Sync operations<br />
+- DataEncryptionKeys (1 row) - Encryption keys<br />
+- Metadata (5 rows) - Database configuration<br />
+- AppSettings, Asset, ManualSequence (empty/minimal)</p>
+<p><strong>Top Applications:</strong><br />
+1. VirtualBox - 416 activities (22.45%)<br />
+2. Windows Explorer - 336 activities (18.13%)<br />
+3. Steam Client - 116 activities (6.26%)<br />
+4. Notepad - 107 activities (5.77%)<br />
+5. Rockstar Social Club - 85 activities (4.59%)</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/ActivitiesCache.db&quot;</span><span class="p">)</span>
+<span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+<span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT COUNT(*) FROM Activity&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Total activities: </span><span class="si">{</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchone</span><span class="p">()[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="n">conn</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div>
+
+<p><strong>Database Files (All 3 Required):</strong><br />
+- <code>ActivitiesCache.db</code> - Main database file (4.71 MB)<br />
+- <code>ActivitiesCache.db-shm</code> - Shared memory file (SQLite WAL mode)<br />
+- <code>ActivitiesCache.db-wal</code> - Write-Ahead Log file (transaction log)</p>
+<p><strong>Important:</strong> All three files must be kept together in this folder for testing and demo purposes. While .db-shm and .db-wal are normally temporary files created when a database is opened in WAL mode, these are preserved as part of the reference test dataset to maintain the complete database state.</p>
+<p><strong>Git Configuration:</strong> The <code>.gitignore</code> has been configured with explicit exceptions to allow these Test System database files while blocking production database files elsewhere in the codebase.</p>
+<hr />
+<h3 id="2-windowstimeline_output">2. WindowsTimeline_Output/</h3>
+<p><strong>Tool:</strong> kacos2000's WindowsTimeline Parser<br />
+<strong>Source:</strong> https://github.com/kacos2000/WindowsTimeline<br />
+<strong>Purpose:</strong> Extract and analyze Windows Timeline data</p>
+<p><strong>Output Files:</strong><br />
+- <code>WindowsTimeline.csv</code> (910 KB) - Complete timeline export<br />
+- <code>ApplicationExecutionList.csv</code> (5.3 KB) - Application execution tracking<br />
+- <code>DatabaseActivityPolicies.json</code> (4.1 KB) - Privacy/sync policies<br />
+- <code>Device_info.txt</code> (1.1 KB) - Device information<br />
+- <code>File_Info.csv</code> (530 B) - Database file metadata</p>
+<p><strong>Description:</strong><br />
+This folder contains the output from kacos2000's WindowsTimeline PowerShell script, which parses ActivitiesCache.db and exports forensic artifacts in CSV/JSON format. The tool is specifically designed for DFIR (Digital Forensics and Incident Response) analysis.</p>
+<p><strong>Key Artifacts:</strong><br />
+- <strong>Timeline Data:</strong> Complete activity timeline with timestamps, apps, and metadata<br />
+- <strong>Execution Evidence:</strong> First/last execution times for applications<br />
+- <strong>Privacy Policies:</strong> Cloud sync settings and data retention policies<br />
+- <strong>Device Correlation:</strong> Links activities to specific devices</p>
+<p><strong>Forensic Value:</strong><br />
+- Timeline reconstruction for incident response<br />
+- Application usage profiling<br />
+- Evidence of execution<br />
+- Data exfiltration detection<br />
+- User behavior analysis</p>
+<p><strong>Tool Features:</strong><br />
+- Parses all 8 tables in ActivitiesCache.db<br />
+- Decodes JSON payloads from Activity.Payload BLOB<br />
+- Correlates Activity and Activity_PackageId tables<br />
+- Exports in analyst-friendly CSV format<br />
+- Includes device and policy information</p>
+<p><strong>Usage:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c"># Original command used:</span>
+<span class="p">.\</span><span class="nb">Get-WindowsTimeline</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Path</span> <span class="s2">&quot;ActivitiesCache.db&quot;</span> <span class="n">-Output</span> <span class="s2">&quot;WindowsTimeline_Output&quot;</span>
+</code></pre></div>
+
+<hr />
+<h3 id="3-behave_v1_output">3. Behave_V1_Output/</h3>
+<p><strong>Tool:</strong> TrustedSec's Behave<br />
+<strong>Source:</strong> TrustedSec forensic analysis toolkit<br />
+<strong>Purpose:</strong> Advanced timeline analysis and visualization</p>
+<p><strong>Output Files:</strong><br />
+- <code>gen_report_exported_database.csv</code> (535 KB) - Complete database export<br />
+- <code>gen_report_Activity_Applications.csv</code> (3.5 KB) - Application summary<br />
+- <code>gen_report_ApplicationLaunch_StartTime.csv</code> (7.8 KB) - Launch times<br />
+- <code>gen_report_useractivity_start_and_end.csv</code> (1.6 KB) - Activity windows<br />
+- <code>gen_fig_top10_apps_bars.jpg</code> (288 KB) - Bar chart visualization<br />
+- <code>gen_fig_top10_apps_pie.jpg</code> (295 KB) - Pie chart visualization<br />
+- <code>gen_fig_useractivity_bar.jpg</code> (549 KB) - Activity bar chart<br />
+- <code>gen_fig_useractivity_heatmap.jpg</code> (210 KB) - Activity heatmap<br />
+- <code>Paths_Unique.txt</code> (0 B) - Unique file paths</p>
+<p><strong>Description:</strong><br />
+Behave is TrustedSec's Python-based tool for analyzing Windows Timeline data with advanced visualization capabilities. It generates both CSV reports and graphical representations of user activity patterns.</p>
+<p><strong>Key Features:</strong><br />
+- <strong>Statistical Analysis:</strong> Application usage frequency, time distribution<br />
+- <strong>Visualizations:</strong> Charts, graphs, heatmaps for pattern recognition<br />
+- <strong>Timeline Export:</strong> Complete activity data in structured CSV<br />
+- <strong>Behavioral Profiling:</strong> User activity patterns and anomalies</p>
+<p><strong>Visualizations Included:</strong><br />
+1. <strong>Top 10 Apps (Bar Chart):</strong> Application usage ranked by activity count<br />
+2. <strong>Top 10 Apps (Pie Chart):</strong> Proportional distribution of app usage<br />
+3. <strong>User Activity (Bar Chart):</strong> Activity volume over time<br />
+4. <strong>User Activity (Heatmap):</strong> Temporal patterns and peak usage times</p>
+<p><strong>Forensic Value:</strong><br />
+- Visual pattern recognition for anomaly detection<br />
+- Statistical analysis of user behavior<br />
+- Temporal correlation of activities<br />
+- Evidence presentation for reports<br />
+- Baseline establishment for UEBA</p>
+<p><strong>CSV Reports:</strong><br />
+- <strong>exported_database.csv:</strong> Complete activity records with all metadata<br />
+- <strong>Activity_Applications.csv:</strong> Per-application statistics and metrics<br />
+- <strong>ApplicationLaunch_StartTime.csv:</strong> Execution timeline for all apps<br />
+- <strong>useractivity_start_and_end.csv:</strong> Activity session boundaries</p>
+<hr />
+<h2 id="comparison-windowstimeline-vs-behave">Comparison: WindowsTimeline vs Behave</h2>
+<table>
+<thead>
+<tr>
+<th>Feature</th>
+<th>WindowsTimeline</th>
+<th>Behave</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Language</strong></td>
+<td>PowerShell</td>
+<td>Python</td>
+</tr>
+<tr>
+<td><strong>Output Format</strong></td>
+<td>CSV, JSON, TXT</td>
+<td>CSV, JPG</td>
+</tr>
+<tr>
+<td><strong>Visualizations</strong></td>
+<td>No</td>
+<td>Yes (4 charts)</td>
+</tr>
+<tr>
+<td><strong>Database Coverage</strong></td>
+<td>All 8 tables</td>
+<td>Activity table focused</td>
+</tr>
+<tr>
+<td><strong>Use Case</strong></td>
+<td>Raw data extraction</td>
+<td>Analysis + visualization</td>
+</tr>
+<tr>
+<td><strong>Speed</strong></td>
+<td>Fast</td>
+<td>Slower (generates images)</td>
+</tr>
+<tr>
+<td><strong>Forensic Focus</strong></td>
+<td>Evidence extraction</td>
+<td>Behavioral analysis</td>
+</tr>
+<tr>
+<td><strong>Best For</strong></td>
+<td>Timeline reconstruction</td>
+<td>Pattern recognition</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="usage-in-vatican-vault">Usage in Vatican Vault</h2>
+<h3 id="1-database-analysis">1. Database Analysis</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">backend.app.database.timeline_db</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimelineDatabase</span>
+
+<span class="c1"># Use the test database</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">TimelineDatabase</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/ActivitiesCache.db&quot;</span><span class="p">)</span>
+
+<span class="c1"># Extract activities</span>
+<span class="n">activities</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_activities</span><span class="p">(</span><span class="n">limit</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<span class="n">stats</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">get_app_statistics</span><span class="p">()</span>
+</code></pre></div>
+
+<h3 id="2-csv-import-for-testing">2. CSV Import for Testing</h3>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Load WindowsTimeline CSV export</span>
+<span class="n">timeline_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/WindowsTimeline_Output/WindowsTimeline.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Load Behave export</span>
+<span class="n">behave_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/Behave_V1_Output/gen_report_exported_database.csv&quot;</span><span class="p">)</span>
+
+<span class="c1"># Compare extraction methods</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;WindowsTimeline rows: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">timeline_df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Behave rows: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">behave_df</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="3-reference-for-ml-training">3. Reference for ML Training</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Use as training data for Vatican Vault ML models</span>
+<span class="c1"># - Application classification</span>
+<span class="c1"># - Timeline pattern recognition</span>
+<span class="c1"># - Anomaly detection baseline</span>
+</code></pre></div>
+
+<h3 id="4-validation-testing">4. Validation Testing</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Validate Vatican Vault extraction against known tools</span>
+<span class="c1"># Compare our parser output with WindowsTimeline and Behave</span>
+<span class="c1"># Ensure we extract the same artifacts</span>
+</code></pre></div>
+
+<hr />
+<h2 id="tool-installation">Tool Installation</h2>
+<h3 id="kacos2000-windowstimeline">kacos2000 WindowsTimeline</h3>
+<div class="codehilite"><pre><span></span><code><span class="c"># Clone repository</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">://</span><span class="n">github</span><span class="p">.</span><span class="n">com</span><span class="p">/</span><span class="n">kacos2000</span><span class="p">/</span><span class="n">WindowsTimeline</span>
+
+<span class="c"># Run parser</span>
+<span class="nb">cd </span><span class="n">WindowsTimeline</span>
+<span class="p">.\</span><span class="nb">Get-WindowsTimeline</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Path</span> <span class="s2">&quot;C:\Path\To\ActivitiesCache.db&quot;</span>
+</code></pre></div>
+
+<p><strong>Requirements:</strong><br />
+- PowerShell 5.1+<br />
+- Windows OS<br />
+- Read access to ActivitiesCache.db</p>
+<h3 id="trustedsec-behave">TrustedSec Behave</h3>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Clone repository</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/trustedsec/behave
+
+<span class="c1"># Install dependencies</span>
+pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
+
+<span class="c1"># Run analysis</span>
+python<span class="w"> </span>behave.py<span class="w"> </span>-db<span class="w"> </span><span class="s2">&quot;ActivitiesCache.db&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;output_folder&quot;</span>
+</code></pre></div>
+
+<p><strong>Requirements:</strong><br />
+- Python 3.7+<br />
+- pandas, matplotlib, seaborn<br />
+- SQLite3 library</p>
+<hr />
+<h2 id="forensic-analysis-workflow">Forensic Analysis Workflow</h2>
+<h3 id="step-1-extract-database">Step 1: Extract Database</h3>
+<div class="codehilite"><pre><span></span><code><span class="c"># From target system</span>
+<span class="nb">copy </span><span class="s2">&quot;C:\Users\%USERNAME%\AppData\Local\ConnectedDevicesPlatform\L.%USERNAME%\ActivitiesCache.db&quot;</span> <span class="p">.</span>
+</code></pre></div>
+
+<h3 id="step-2-parse-with-windowstimeline">Step 2: Parse with WindowsTimeline</h3>
+<div class="codehilite"><pre><span></span><code><span class="p">.\</span><span class="nb">Get-WindowsTimeline</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-Path</span> <span class="s2">&quot;ActivitiesCache.db&quot;</span> <span class="n">-Output</span> <span class="s2">&quot;timeline_output&quot;</span>
+</code></pre></div>
+
+<p><strong>Output:</strong> Raw CSV data for timeline reconstruction</p>
+<h3 id="step-3-analyze-with-behave">Step 3: Analyze with Behave</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>behave.py<span class="w"> </span>-db<span class="w"> </span><span class="s2">&quot;ActivitiesCache.db&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;behave_output&quot;</span>
+</code></pre></div>
+
+<p><strong>Output:</strong> Statistical analysis and visualizations</p>
+<h3 id="step-4-analyze-with-vatican-vault">Step 4: Analyze with Vatican Vault</h3>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>vatican_vault.py
+<span class="c1"># Select option 2: Deep Forensic Analysis</span>
+<span class="c1"># Or option 3: Timeline Analysis Only</span>
+</code></pre></div>
+
+<p><strong>Output:</strong> Comprehensive forensic report with:<br />
+- Timeline reconstruction<br />
+- Sensitive data exposure scanning<br />
+- Entity extraction (emails, URLs, credentials)<br />
+- Sentiment analysis for UEBA<br />
+- HTML forensic report</p>
+<hr />
+<h2 id="database-structure-reference">Database Structure Reference</h2>
+<p>See <code>docs/KNOWLEDGE_BASE.md</code> for complete schema documentation including:<br />
+- All 8 table structures with column descriptions<br />
+- Forensic SQL queries for each analysis type<br />
+- Activity type classification<br />
+- Payload BLOB parsing techniques<br />
+- Clipboard data extraction<br />
+- Evidence of execution queries</p>
+<hr />
+<h2 id="best-practices">Best Practices</h2>
+<h3 id="for-testing">For Testing</h3>
+<p>✅ Use ActivitiesCache.db as reference database<br />
+✅ Compare Vatican Vault output with WindowsTimeline CSV<br />
+✅ Validate parsing accuracy against both tools<br />
+✅ Use Behave visualizations to verify pattern detection</p>
+<h3 id="for-training">For Training</h3>
+<p>✅ Use CSV exports for ML model training<br />
+✅ Extract labeled data from known activities<br />
+✅ Build baseline models from clean data<br />
+✅ Test anomaly detection against normal patterns</p>
+<h3 id="for-forensics">For Forensics</h3>
+<p>✅ Cross-reference findings across all three tools<br />
+✅ Use WindowsTimeline for raw data extraction<br />
+✅ Use Behave for visual pattern recognition<br />
+✅ Use Vatican Vault for sensitive data scanning<br />
+✅ Combine outputs in final forensic report</p>
+<hr />
+<h2 id="maintenance">Maintenance</h2>
+<h3 id="updating-test-database">Updating Test Database</h3>
+<p>If replacing ActivitiesCache.db with newer data:<br />
+1. Backup existing database<br />
+2. Copy new ActivitiesCache.db to this folder<br />
+3. Re-run WindowsTimeline parser<br />
+4. Re-run Behave analysis<br />
+5. Update statistics in this README<br />
+6. Update <code>docs/KNOWLEDGE_BASE.md</code><br />
+7. Re-run Vatican Vault tests to ensure compatibility</p>
+<h3 id="regenerating-tool-outputs">Regenerating Tool Outputs</h3>
+<p>To recreate WindowsTimeline or Behave outputs with new database:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># WindowsTimeline</span>
+.<span class="se">\G</span>et-WindowsTimeline.ps1<span class="w"> </span>-Path<span class="w"> </span><span class="s2">&quot;ActivitiesCache.db&quot;</span><span class="w"> </span>-Output<span class="w"> </span><span class="s2">&quot;WindowsTimeline_Output&quot;</span>
+
+<span class="c1"># Behave</span>
+python<span class="w"> </span>behave.py<span class="w"> </span>-db<span class="w"> </span><span class="s2">&quot;ActivitiesCache.db&quot;</span><span class="w"> </span>-o<span class="w"> </span><span class="s2">&quot;Behave_V1_Output&quot;</span>
+</code></pre></div>
+
+<hr />
+<h2 id="reference-links">Reference Links</h2>
+<p><strong>kacos2000 WindowsTimeline:</strong><br />
+- GitHub: https://github.com/kacos2000/WindowsTimeline<br />
+- Blog: https://kacos2000.github.io/</p>
+<p><strong>TrustedSec Behave:</strong><br />
+- GitHub: https://github.com/trustedsec/behave (Note: May be in TrustedSec blog/resources)</p>
+<p><strong>Windows Timeline Forensics:</strong><br />
+- See <code>Test Files/Vatican/</code> folder for additional research links<br />
+- Microsoft documentation on Windows Timeline<br />
+- DFIR blog posts on ActivitiesCache.db analysis</p>
+<hr />
+<p><strong>Last Updated:</strong> 2025-12-03<br />
+<strong>Maintained by:</strong> Vatican Vault Development Team</p>
+        <div class="footer">
+            <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+        </div>
+    </div>
+</body>
+</html>
