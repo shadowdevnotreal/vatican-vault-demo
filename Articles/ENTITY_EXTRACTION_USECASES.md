@@ -83,7 +83,7 @@ python scripts/security_alerting.py \
 │  - Compliance dashboard                                    │
 └─────┬───────────────────────────────────────────┬──────────┘
       │                                           │
-┌─────▼─────┐    ┌────────────┐    ┌─────────────▼─────┐
+┌─────v─────┐    ┌────────────┐    ┌─────────────v─────┐
 │ Worker 1  │    │ Worker 2   │    │    Worker N       │
 │ 8 cores   │    │ 8 cores    │    │    8 cores        │
 │ Scan A-F  │... │ Scan G-M   │... │    Scan N-Z       │
@@ -91,7 +91,7 @@ python scripts/security_alerting.py \
       │                │                       │
       └────────────────┴───────────────────────┘
                        │
-              ┌────────▼─────────┐
+              ┌────────v─────────┐
               │ Results Database │
               │   PostgreSQL     │
               └──────────────────┘
@@ -142,7 +142,7 @@ for dept in departments:
                   │  - Executive dashboard               │
                   └─────┬────────────────────────┬───────┘
                         │                        │
-        ┌───────────────▼──────┐        ┌────────▼──────────────┐
+        ┌───────────────v──────┐        ┌────────v──────────────┐
         │   Region: US-EAST    │        │   Region: EU-WEST     │
         │   - 100 Worker Nodes │        │   - 80 Worker Nodes   │
         │   - Redis Queue      │        │   - Redis Queue       │
@@ -150,7 +150,7 @@ for dept in departments:
         └───────────┬──────────┘        └────────┬──────────────┘
                     │                             │
       ┌─────────────┼─────────────┐   ┌──────────┼───────────┐
-      ▼             ▼             ▼   ▼          ▼           ▼
+      v             v             v   v          v           v
    OnPrem        AWS S3       Azure  OnPrem  Google    Office365
    Storage       Buckets     Blob    Storage  Drive     SharePoint
 ```

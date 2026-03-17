@@ -172,17 +172,17 @@ The **Promo/README.md** now includes:
 
 ```
 Promo/
-├── VC_DEMO_INDEX.html           ⭐ START HERE FOR VCs
-├── VC_DEMO_SUMMARY.md           ⭐ THIS FILE
+├── VC_DEMO_INDEX.html           [*] START HERE FOR VCs
+├── VC_DEMO_SUMMARY.md           [*] THIS FILE
 ├── README.md                     Updated with VC sections
 │
-├── VC_Materials/                ⭐ NEW - Investor package
+├── VC_Materials/                [*] NEW - Investor package
 │   ├── VC_DEMO_PACKAGE.html
 │   ├── EXECUTIVE_SUMMARY_VC.md
 │   ├── VC_EXECUTIVE_SUMMARY.md
 │   └── VC_DEMO_REPORT_2026-02-28.md
 │
-├── Industry_Demo_Reports/       ⭐ NEW - 12 industry reports
+├── Industry_Demo_Reports/       [*] NEW - 12 industry reports
 │   ├── index.html
 │   ├── dfir_report.html
 │   ├── enterprise_soc_report.html

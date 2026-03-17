@@ -90,7 +90,7 @@ python -m http.server 8000
 
 ```
 Promo/Sample_Outputs/
-├── latest → reports/20260228_034136  (symlink)
+├── latest -> reports/20260228_034136  (symlink)
 ├── reports/
 │   ├── 20260228_034136/
 │   │   ├── index.html              (Main report)
