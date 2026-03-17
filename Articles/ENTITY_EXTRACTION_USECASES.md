@@ -78,7 +78,7 @@ python scripts/security_alerting.py \
 ```
 ┌────────────────────────────────────────────────────────────┐
 │              Centralized Scan Controller                   │
-│  - Job scheduling (cron/Airflow)                          │
+│  - Job scheduling (cron/Airflow)                           │
 │  - Result aggregation                                      │
 │  - Compliance dashboard                                    │
 └─────┬───────────────────────────────────────────┬──────────┘
@@ -134,7 +134,7 @@ for dept in departments:
 **Enterprise Architecture:**
 
 ```
-                  ┌─────────────────────────────────────┐
+                  ┌──────────────────────────────────────┐
                   │    Vatican Vault Control Plane       │
                   │  - Global scheduling                 │
                   │  - Policy management                 │

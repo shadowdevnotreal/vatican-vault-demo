@@ -269,7 +269,7 @@ python<span class="w"> </span>scripts/security_alerting.py<span class="w"> </spa
 <p><strong>Architecture:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="err">┌────────────────────────────────────────────────────────────┐</span>
 <span class="err">│</span><span class="w">              </span><span class="n">Centralized</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="n">Controller</span><span class="w">                   </span><span class="err">│</span>
-<span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Job</span><span class="w"> </span><span class="n">scheduling</span><span class="w"> </span><span class="p">(</span><span class="n">cron</span><span class="o">/</span><span class="n">Airflow</span><span class="p">)</span><span class="w">                          </span><span class="err">│</span>
+<span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Job</span><span class="w"> </span><span class="n">scheduling</span><span class="w"> </span><span class="p">(</span><span class="n">cron</span><span class="o">/</span><span class="n">Airflow</span><span class="p">)</span><span class="w">                           </span><span class="err">│</span>
 <span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="n">aggregation</span><span class="w">                                      </span><span class="err">│</span>
 <span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Compliance</span><span class="w"> </span><span class="n">dashboard</span><span class="w">                                    </span><span class="err">│</span>
 <span class="err">└─────┬───────────────────────────────────────────┬──────────┘</span>
@@ -319,7 +319,7 @@ python<span class="w"> </span>scripts/security_alerting.py<span class="w"> </spa
 <h3 id="scenario-4-global-corporation">Scenario 4: Global Corporation</h3>
 <p><strong>Environment:</strong> 50,000 employees, 250,000 endpoints, 500TB data, multi-cloud</p>
 <p><strong>Enterprise Architecture:</strong></p>
-<div class="codehilite"><pre><span></span><code>                  ┌─────────────────────────────────────┐
+<div class="codehilite"><pre><span></span><code>                  ┌──────────────────────────────────────┐
                   │    Vatican Vault Control Plane       │
                   │  - Global scheduling                 │
                   │  - Policy management                 │
