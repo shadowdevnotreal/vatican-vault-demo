@@ -1,7 +1,0 @@
-Python script that attempts to transfer a file to a remote host. The remote host is identified by its IP address, which is stored in the destination_ip variable. The file to be transferred is stored at the path /tmp/file.txt on the local machine.
-
-The script first tries to determine the fastest protocol for file transfer by checking the availability of four different protocols: SSH, FTP, SMB, and NFS, on their respective standard ports. For each protocol, the code creates a socket and uses connect_ex() method to check if the specified port is open on the destination host. If the port is open, it then sends a ping request to the destination host to measure the transfer time. After that, the code attempts to transfer the file using the selected protocol by running a shell command.
-
-Once the fastest protocol has been determined, the code uses the appropriate method to transfer the file. If the fastest protocol is SSH, it uses scp command to transfer the file to the destination host. If the fastest protocol is FTP, it transfers the file using FTP protocol. If the fastest protocol is SMB, it transfers the file using SMB protocol. If the fastest protocol is NFS, it transfers the file using NFS protocol. If none of these protocols are supported, the code outputs an error message.
-
-https://www.buymeacoffee.com/notarealdev
