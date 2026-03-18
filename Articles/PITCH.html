@@ -203,8 +203,49 @@
             color: #666;
         }
     </style>
+
+    <!-- VV Global Nav: injected by _inject_nav.py -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+    <style>
+    .vv-nav {
+        position: sticky; top: 0; z-index: 9999;
+        background: rgba(4, 8, 15, 0.95);
+        border-bottom: 1px solid rgba(0, 212, 255, 0.18);
+        backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 28px; height: 50px;
+        font-family: 'Share Tech Mono', 'Courier New', monospace;
+    }
+    .vv-nav a { text-decoration: none; }
+    .vv-nav-logo {
+        font-family: 'Rajdhani', sans-serif; font-weight: 700;
+        font-size: 0.95em; letter-spacing: 3px; text-transform: uppercase;
+        color: #00d4ff;
+    }
+    .vv-nav-links { display: flex; gap: 4px; align-items: center; }
+    .vv-nav-links a {
+        color: rgba(148, 163, 184, 0.75); font-size: 0.7em;
+        letter-spacing: 1.5px; text-transform: uppercase;
+        padding: 5px 13px; border-radius: 2px;
+        border: 1px solid transparent; transition: all 0.2s;
+    }
+    .vv-nav-links a:hover {
+        color: #00d4ff; background: rgba(0, 212, 255, 0.06);
+        border-color: rgba(0, 212, 255, 0.2);
+    }
+    .vv-nav-back { color: rgba(0, 212, 255, 0.7) !important; }
+    </style>
 </head>
 <body>
+<nav class="vv-nav">
+    <a href="../index.html" class="vv-nav-logo">⬡ Vatican Vault</a>
+    <div class="vv-nav-links">
+        <a href="../index.html">Hub</a>
+        <a href="../index.html#articles" class="vv-nav-back">← Articles</a>
+    </div>
+</nav>
+
     <div class="container">
         <h1 id="vatican-vault">Vatican Vault</h1>
 <h2 id="intelligence-hidden-in-plain-sight-unlocking-windows-activity-data-across-every-industry">Intelligence Hidden in Plain Sight — Unlocking Windows Activity Data Across Every Industry</h2>

@@ -3,199 +3,384 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vatican Vault - Industry Reports Index</title>
+    <title>Vatican Vault — Industry Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --bg:        #04080f;
+            --surface:   rgba(255,255,255,0.025);
+            --surface2:  rgba(0,212,255,0.05);
+            --border:    rgba(0,212,255,0.14);
+            --border-hi: rgba(0,212,255,0.38);
+            --cyan:      #00d4ff;
+            --red:       #ff2244;
+            --green:     #00e5a0;
+            --text:      #dde4ed;
+            --text-dim:  #4e6278;
+            --text-hi:   #f0f6ff;
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
-            min-height: 100vh;
+            font-family: 'Outfit', system-ui, sans-serif;
+            background: var(--bg); color: var(--text);
+            min-height: 100vh; overflow-x: hidden;
         }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            padding: 50px;
-            border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+
+        body::before {
+            content: '';
+            position: fixed; inset: 0;
+            background-image:
+                linear-gradient(rgba(0,212,255,0.025) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.025) 1px, transparent 1px);
+            background-size: 64px 64px;
+            pointer-events: none; z-index: 0;
         }
-        h1 {
-            font-size: 36px;
-            color: #1a1a1a;
-            margin-bottom: 15px;
-            text-align: center;
+
+        /* ── NAV ── */
+        .nav {
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(4,8,15,0.9);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            padding: 0 32px;
+            display: flex; align-items: center; justify-content: space-between;
+            height: 58px;
         }
-        .subtitle {
-            text-align: center;
-            color: #666;
-            margin-bottom: 40px;
-            font-size: 18px;
-        }
-        .report-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .report-card {
-            background: #f8f9fa;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 20px;
-            transition: all 0.3s ease;
+
+        .nav-logo {
+            display: flex; align-items: center; gap: 10px;
             text-decoration: none;
-            color: inherit;
-            display: block;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.76em; font-weight: 700;
+            letter-spacing: 4px; text-transform: uppercase;
+            color: var(--cyan);
         }
-        .report-card:hover {
-            border-color: #667eea;
-            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.2);
-            transform: translateY(-4px);
+
+        .nav-links { display: flex; gap: 4px; }
+
+        .nav-links a {
+            color: var(--text-dim); text-decoration: none;
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.72em; letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 7px 16px; border-radius: 2px;
+            border: 1px solid transparent; transition: all 0.2s;
         }
-        .report-card h3 {
-            font-size: 18px;
-            color: #1a1a1a;
-            margin-bottom: 10px;
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--cyan); border-color: var(--border);
+            background: var(--surface2);
         }
-        .report-card p {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 12px;
+
+        /* ── HEADER ── */
+        .page-header {
+            position: relative; z-index: 1;
+            padding: 70px 40px 50px; text-align: center;
         }
-        .report-card .badge {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 4px 12px;
-            border-radius: 4px;
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
+
+        .page-eyebrow {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7em; letter-spacing: 5px;
+            color: var(--cyan); text-transform: uppercase;
+            margin-bottom: 20px;
+            display: flex; align-items: center; justify-content: center; gap: 14px;
         }
-        .info-box {
-            background: #e8f4f8;
-            border-left: 4px solid #0066cc;
-            padding: 20px;
-            margin: 30px 0;
-            border-radius: 4px;
+
+        .page-eyebrow::before, .page-eyebrow::after {
+            content: ''; width: 40px; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--cyan));
         }
-        .info-box h4 {
-            color: #0066cc;
-            margin-bottom: 10px;
+
+        .page-eyebrow::after {
+            background: linear-gradient(90deg, var(--cyan), transparent);
         }
+
+        .page-header h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700; letter-spacing: 4px; text-transform: uppercase;
+            color: var(--text-hi); margin-bottom: 14px;
+        }
+
+        .page-header h1 span { color: var(--cyan); }
+
+        .page-header p {
+            color: var(--text-dim); font-size: 1em;
+            max-width: 560px; margin: 0 auto; line-height: 1.7;
+        }
+
+        .data-callout {
+            position: relative; z-index: 1;
+            max-width: 800px; margin: 0 auto 60px;
+            padding: 20px 28px;
+            background: rgba(0,212,255,0.04);
+            border: 1px solid rgba(0,212,255,0.15);
+            border-left: 3px solid var(--cyan);
+            border-radius: 2px;
+        }
+
+        .data-callout-label {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65em; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--cyan);
+            margin-bottom: 8px;
+        }
+
+        .data-callout p { color: var(--text-dim); font-size: 0.9em; line-height: 1.6; }
+        .data-callout strong { color: var(--text); }
+
+        /* ── MAIN ── */
+        .main {
+            position: relative; z-index: 1;
+            max-width: 1160px; margin: 0 auto;
+            padding: 0 40px 80px;
+        }
+
+        .section { margin-bottom: 56px; }
+
+        .section-header {
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 24px; padding-bottom: 16px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-num {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65em; letter-spacing: 2px; text-transform: uppercase;
+            color: var(--cyan); background: rgba(0,212,255,0.07);
+            padding: 4px 10px; border-radius: 2px;
+            border: 1px solid rgba(0,212,255,0.18);
+        }
+
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.45em; font-weight: 700;
+            letter-spacing: 2px; text-transform: uppercase;
+            color: var(--text-hi);
+        }
+
+        /* ── CARDS ── */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            background: var(--surface); border: 1px solid var(--border);
+            padding: 22px 22px 38px;
+            text-decoration: none; color: inherit; display: block;
+            transition: border-color 0.25s, background 0.25s, transform 0.25s, box-shadow 0.25s;
+            position: relative; overflow: hidden; border-radius: 2px;
+        }
+
+        .card::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+            transform: scaleX(0); transition: transform 0.35s;
+        }
+
+        .card:hover {
+            border-color: var(--border-hi); background: var(--surface2);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 36px rgba(0,212,255,0.07), 0 0 0 1px rgba(0,212,255,0.08);
+        }
+
+        .card:hover::before { transform: scaleX(1); }
+
+        .card-badge {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.6em; letter-spacing: 2px; text-transform: uppercase;
+            padding: 3px 8px; border-radius: 1px;
+            display: inline-block; margin-bottom: 14px;
+        }
+
+        .badge-cyan  { background: rgba(0,212,255,0.08); color: var(--cyan);  border: 1px solid rgba(0,212,255,0.25); }
+        .badge-dim   { background: rgba(78,98,120,0.18); color: #64748b; border: 1px solid rgba(78,98,120,0.28); }
+
+        .card h3 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.05em; font-weight: 600; letter-spacing: 1px;
+            color: var(--text-hi); margin-bottom: 8px;
+        }
+
+        .card p { color: var(--text-dim); font-size: 0.85em; line-height: 1.6; }
+
+        .card-arrow {
+            position: absolute; bottom: 16px; right: 18px;
+            color: var(--border-hi); font-size: 1em;
+            font-family: 'Share Tech Mono', monospace;
+            transition: transform 0.2s, color 0.2s;
+        }
+
+        .card:hover .card-arrow { transform: translateX(4px); color: var(--cyan); }
+
+        /* ── FOOTER ── */
         .footer {
-            text-align: center;
-            margin-top: 50px;
-            padding-top: 30px;
-            border-top: 2px solid #e0e0e0;
-            color: #666;
+            position: relative; z-index: 1;
+            border-top: 1px solid var(--border);
+            padding: 40px; text-align: center; color: var(--text-dim);
+        }
+
+        .footer-wordmark {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9em; font-weight: 700; letter-spacing: 5px;
+            color: var(--cyan); margin-bottom: 10px;
+        }
+
+        .footer p { font-size: 0.85em; margin: 5px 0; }
+
+        .footer-meta {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.65em; letter-spacing: 2px;
+            margin-top: 20px; color: rgba(78,98,120,0.6);
+        }
+
+        @media (max-width: 600px) {
+            .page-header { padding: 50px 24px 36px; }
+            .main { padding: 0 24px 60px; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏛️ Vatican Vault</h1>
-        <div class="subtitle">Industry-Specific Forensic Reports</div>
 
-        <div class="info-box">
-            <h4>📊 Demo Report Collection</h4>
-            <p>This collection showcases Vatican Vault's industry-specific reporting capabilities.
-            Each report is tailored to the specific needs, terminology, and regulatory requirements
-            of its target audience.</p>
-            <p style="margin-top:10px;"><strong>Based on real data:</strong> 1,853 activities from actual Windows Timeline database (146 days of user activity)</p>
+    <!-- ── NAV ── -->
+    <nav class="nav">
+        <a href="../index.html" class="nav-logo">⬡ Vatican Vault</a>
+        <div class="nav-links">
+            <a href="../index.html">Hub</a>
+            <a href="index.html" class="active">Industry Reports</a>
+            <a href="../VC_Materials/VC_DEMO_PACKAGE.html" target="_blank">VC Package</a>
         </div>
+    </nav>
 
-        <h2 style="margin: 30px 0 20px 0; color:#1a1a1a;">Industry-Specific Reports</h2>
-        <div class="report-grid">
+    <!-- ── PAGE HEADER ── -->
+    <header class="page-header">
+        <div class="page-eyebrow">Industry-Specific Forensic Demonstrations</div>
+        <h1>Industry <span>Reports</span></h1>
+        <p>
+            12 professional forensic reports tailored to specific industries,
+            regulatory frameworks, and audience requirements.
+        </p>
+    </header>
 
-            <a href="dfir_report.html" class="report-card" target="_blank">
-                <h3>DFIR (Digital Forensics & Incident Response)</h3>
-                <p>Specialized forensic report tailored for DFIR (Digital Forensics & Incident Response) use cases</p>
-                <span class="badge">DFIR</span>
-            </a>
-
-            <a href="law_enforcement_report.html" class="report-card" target="_blank">
-                <h3>Law Enforcement & Criminal Investigation</h3>
-                <p>Specialized forensic report tailored for Law Enforcement & Criminal Investigation use cases</p>
-                <span class="badge">LAW</span>
-            </a>
-
-            <a href="financial_report.html" class="report-card" target="_blank">
-                <h3>Financial Services & Regulatory</h3>
-                <p>Specialized forensic report tailored for Financial Services & Regulatory use cases</p>
-                <span class="badge">FINANCIAL</span>
-            </a>
-
-            <a href="irm_report.html" class="report-card" target="_blank">
-                <h3>Incident Response Management</h3>
-                <p>Specialized forensic report tailored for Incident Response Management use cases</p>
-                <span class="badge">IRM</span>
-            </a>
-
-            <a href="pentest_report.html" class="report-card" target="_blank">
-                <h3>Penetration Testing & Red Team</h3>
-                <p>Specialized forensic report tailored for Penetration Testing & Red Team use cases</p>
-                <span class="badge">PENTEST</span>
-            </a>
-
-            <a href="hr_employment_report.html" class="report-card" target="_blank">
-                <h3>HR & Employment Law</h3>
-                <p>Specialized forensic report tailored for HR & Employment Law use cases</p>
-                <span class="badge">HR</span>
-            </a>
-
-            <a href="enterprise_soc_report.html" class="report-card" target="_blank">
-                <h3>Enterprise SOC & Insider Threat</h3>
-                <p>Specialized forensic report tailored for Enterprise SOC & Insider Threat use cases</p>
-                <span class="badge">ENTERPRISE</span>
-            </a>
-
-            <a href="mssp_report.html" class="report-card" target="_blank">
-                <h3>MSSP & Multi-Tenant Forensics</h3>
-                <p>Specialized forensic report tailored for MSSP & Multi-Tenant Forensics use cases</p>
-                <span class="badge">MSSP</span>
-            </a>
-
-            <a href="healthcare_report.html" class="report-card" target="_blank">
-                <h3>Healthcare & HIPAA Compliance</h3>
-                <p>Specialized forensic report tailored for Healthcare & HIPAA Compliance use cases</p>
-                <span class="badge">HEALTHCARE</span>
-            </a>
-
-        </div>
-
-        <h2 style="margin: 40px 0 20px 0; color:#1a1a1a;">Generic Reports (for comparison)</h2>
-        <div class="report-grid">
-
-            <a href="generic_executive_report.html" class="report-card" target="_blank">
-                <h3>Executive Summary</h3>
-                <p>Standard forensic report template</p>
-                <span class="badge" style="background:#94a3b8;">EXECUTIVE</span>
-            </a>
-
-            <a href="generic_technical_report.html" class="report-card" target="_blank">
-                <h3>Technical Report</h3>
-                <p>Standard forensic report template</p>
-                <span class="badge" style="background:#94a3b8;">TECHNICAL</span>
-            </a>
-
-            <a href="generic_compliance_report.html" class="report-card" target="_blank">
-                <h3>Compliance Report</h3>
-                <p>Standard forensic report template</p>
-                <span class="badge" style="background:#94a3b8;">COMPLIANCE</span>
-            </a>
-
-        </div>
-
-        <div class="footer">
-            <p><strong>Vatican Vault v2.0</strong> - Digital Forensics Platform</p>
-            <p>Generated: 2026-03-01 23:34:44</p>
-            <p style="margin-top:10px; font-size:13px;">
-                Total Reports: 12 | Industry Templates: 9 | Generic Templates: 3
-            </p>
-        </div>
+    <!-- ── DATA CALLOUT ── -->
+    <div class="data-callout" style="margin: 0 auto 60px; max-width: 800px; padding: 20px 28px; position: relative; z-index: 1;">
+        <div class="data-callout-label">📊 Data Source</div>
+        <p>
+            <strong>Based on real data:</strong> 1,853 activities extracted from an actual Windows Timeline database
+            covering 146 days of user activity. Each report applies Vatican Vault's AI analysis pipeline
+            to the same dataset — showcasing audience-specific output formats.
+        </p>
     </div>
+
+    <!-- ── MAIN ── -->
+    <main class="main">
+
+        <!-- Industry-Specific Reports -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-num">Industry</span>
+                <h2 class="section-title">Specialized Reports</h2>
+            </div>
+            <div class="cards">
+                <a href="dfir_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">DFIR</span>
+                    <h3>Digital Forensics &amp; Incident Response</h3>
+                    <p>Timeline reconstruction, IOC extraction, and court-admissible evidence packaging.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="law_enforcement_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">Law Enforcement</span>
+                    <h3>Law Enforcement &amp; Criminal Investigation</h3>
+                    <p>Digital evidence discovery and behavioral timeline analysis for criminal proceedings.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="financial_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">Financial</span>
+                    <h3>Financial Services &amp; Regulatory</h3>
+                    <p>Fraud detection, insider trading patterns, and regulatory compliance reporting.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="irm_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">IRM</span>
+                    <h3>Incident Response Management</h3>
+                    <p>Structured incident documentation and root cause analysis for IR teams.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="pentest_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">Pentest</span>
+                    <h3>Penetration Testing &amp; Red Team</h3>
+                    <p>Attacker artifact detection and post-exploitation activity reconstruction.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="hr_employment_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">HR</span>
+                    <h3>HR &amp; Employment Law</h3>
+                    <p>Employee activity investigation for HR incidents and employment disputes.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="enterprise_soc_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">SOC</span>
+                    <h3>Enterprise SOC &amp; Insider Threat</h3>
+                    <p>Continuous behavioral monitoring and insider threat detection at enterprise scale.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="mssp_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">MSSP</span>
+                    <h3>MSSP &amp; Multi-Tenant Forensics</h3>
+                    <p>Multi-client forensic reporting with tenant isolation and white-label output.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="healthcare_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-cyan">Healthcare</span>
+                    <h3>Healthcare &amp; HIPAA Compliance</h3>
+                    <p>PII/PHI detection, patient data tracking, and HIPAA-aligned audit reports.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- Generic / Template Reports -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-num">Generic</span>
+                <h2 class="section-title">Template Reports</h2>
+            </div>
+            <div class="cards">
+                <a href="generic_executive_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-dim">Executive</span>
+                    <h3>Executive Summary</h3>
+                    <p>Standard executive-level forensic summary template for any industry.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="generic_technical_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-dim">Technical</span>
+                    <h3>Technical Report</h3>
+                    <p>Detailed technical forensic report with raw data and methodology documentation.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+                <a href="generic_compliance_report.html" class="card" target="_blank">
+                    <span class="card-badge badge-dim">Compliance</span>
+                    <h3>Compliance Report</h3>
+                    <p>Regulatory compliance audit template with evidence mapping and control tracking.</p>
+                    <span class="card-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ── FOOTER ── -->
+    <footer class="footer">
+        <div class="footer-wordmark">Vatican Vault</div>
+        <p>AI-Powered Windows Forensic Analysis Platform</p>
+        <p><a href="../index.html" style="color: var(--cyan); text-decoration: none;">← Back to Demo Hub</a></p>
+        <div class="footer-meta">Total: 12 Reports · Industry: 9 · Generic: 3 · Generated: March 2026</div>
+    </footer>
+
 </body>
 </html>
