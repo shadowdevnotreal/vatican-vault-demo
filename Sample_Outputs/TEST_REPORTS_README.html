@@ -267,6 +267,21 @@
 </tbody>
 </table>
 <p><em>Note: Low coverage is expected for demo tests as they don't exercise the main application code.</em></p>
+<h2 id="viewing-reports-after-download">🌐 Viewing Reports (After Download)</h2>
+<p><strong>Important:</strong> If you downloaded this repository as a ZIP file, the HTML reports may show blank screens when opened directly due to browser security restrictions.</p>
+<p><strong>Recommended Method:</strong></p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Navigate to the Sample_Outputs directory</span>
+<span class="nb">cd</span><span class="w"> </span>Promo/Sample_Outputs
+
+<span class="c1"># Start a local HTTP server</span>
+python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+
+<p>Then open your browser to:<br />
+- <strong>Main Report:</strong> <code>http://localhost:8000/latest/index.html</code><br />
+- <strong>Coverage:</strong> <code>http://localhost:8000/latest/coverage_html/index.html</code><br />
+- <strong>Pytest Details:</strong> <code>http://localhost:8000/latest/pytest_report.html</code></p>
+<p>For more detailed viewing instructions, see <a href="HOW_TO_VIEW_REPORTS.md">HOW_TO_VIEW_REPORTS.md</a></p>
 <h2 id="report-files">📁 Report Files</h2>
 <p>The test runner generates multiple report formats for comprehensive analysis:</p>
 <h3 id="1-interactive-html-report">1. Interactive HTML Report</h3>
@@ -509,7 +524,7 @@ pytest<span class="w"> </span>--cov<span class="o">=</span>.<span class="w"> </s
 <strong>Platform:</strong> User Behavior Analysis v2.0</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top: 10px;">Generated: 2026-03-17 07:05:42</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
         </div>
     </div>
 </body>

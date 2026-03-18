@@ -245,7 +245,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 4. Notepad - 107 activities (5.77%)<br />
 5. Rockstar Social Club - 85 activities (4.59%)</p>
 <p><strong>Usage:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/ActivitiesCache.db&quot;</span><span class="p">)</span>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
 <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT COUNT(*) FROM Activity&quot;</span><span class="p">)</span>
@@ -388,7 +388,7 @@ Behave is TrustedSec's Python-based tool for analyzing Windows Timeline data wit
 <hr />
 <h2 id="usage-in-vatican-vault">Usage in Vatican Vault</h2>
 <h3 id="1-database-analysis">1. Database Analysis</h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">backend.app.database.timeline_db</span><span class="w"> </span><span class="kn">import</span> <span class="n">TimelineDatabase</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">backend.app.database.timeline_db</span> <span class="kn">import</span> <span class="n">TimelineDatabase</span>
 
 <span class="c1"># Use the test database</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">TimelineDatabase</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/ActivitiesCache.db&quot;</span><span class="p">)</span>
@@ -399,7 +399,7 @@ Behave is TrustedSec's Python-based tool for analyzing Windows Timeline data wit
 </code></pre></div>
 
 <h3 id="2-csv-import-for-testing">2. CSV Import for Testing</h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 
 <span class="c1"># Load WindowsTimeline CSV export</span>
 <span class="n">timeline_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s2">&quot;Test Files/Test System/WindowsTimeline_Output/WindowsTimeline.csv&quot;</span><span class="p">)</span>
@@ -547,7 +547,7 @@ python<span class="w"> </span>behave.py<span class="w"> </span>-db<span class="w
 <strong>Maintained by:</strong> Vatican Vault Development Team</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
         </div>
     </div>
 </body>

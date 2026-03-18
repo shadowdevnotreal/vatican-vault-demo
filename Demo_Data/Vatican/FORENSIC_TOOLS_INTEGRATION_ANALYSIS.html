@@ -360,10 +360,10 @@
 - Files/directories accessed<br />
 - Retention: Last 128 executions (Windows 10/11)</p>
 <p><strong>Recommendation:</strong> Create <code>prefetch_parser.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">PrefetchParser</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_prefetch_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pf_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_execution_history</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_run_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">PrefetchParser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">parse_prefetch_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pf_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+    <span class="k">def</span> <span class="nf">extract_execution_history</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">get_run_count</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">executable</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span>
 </code></pre></div>
 
 <h4 id="b-shimcache-appcompatcache-parser">B. Shimcache (AppCompatCache) Parser</h4>
@@ -375,10 +375,10 @@
 - Execution flags<br />
 - Shimmed applications</p>
 <p><strong>Recommendation:</strong> Create <code>shimcache_parser.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">ShimcacheParser</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_execution_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_execution_flags</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">ShimcacheParser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">extract_execution_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">get_execution_flags</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
 </code></pre></div>
 
 <h4 id="c-amcache-parser">C. AmCache Parser</h4>
@@ -390,10 +390,10 @@
 - File size, version, publisher<br />
 - Uninstall entries</p>
 <p><strong>Recommendation:</strong> Create <code>amcache_parser.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">AmCacheParser</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_amcache_hive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_program_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_execution_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">AmCacheParser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">parse_amcache_hive</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">extract_program_entries</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">get_execution_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">program</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
 </code></pre></div>
 
 <h4 id="d-bamdam-parser">D. BAM/DAM Parser</h4>
@@ -405,10 +405,10 @@
 - Background activity moderation<br />
 - Per-user execution tracking</p>
 <p><strong>Recommendation:</strong> Create <code>bam_dam_parser.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">BAMDAMParser</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_bam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_dam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_recent_executions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">BAMDAMParser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">parse_bam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">parse_dam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">get_recent_executions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
 </code></pre></div>
 
 <h4 id="e-event-log-parser">E. Event Log Parser</h4>
@@ -419,10 +419,10 @@
 - Event ID 4672: Admin logon<br />
 - Event ID 7045: Service installation</p>
 <p><strong>Recommendation:</strong> Create <code>event_log_parser.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">EventLogParser</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_event_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_process_creation_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_logon_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">EventLogParser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">parse_event_log</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">log_file</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">extract_process_creation_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
+    <span class="k">def</span> <span class="nf">extract_logon_events</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]</span>
 </code></pre></div>
 
 <hr />
@@ -448,14 +448,14 @@
 </code></pre></div>
 
 <p><strong>Recommendation:</strong> Add to <code>timeline_parser.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">TimelineParser</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">extract_clipboard_activities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">TimelineParser</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">extract_clipboard_activities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Extract clipboard history from ActivitiesCache.db&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">decode_clipboard_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decode_clipboard_payload</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">blob_data</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Decode clipboard BLOB data&quot;&quot;&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_clipboard_timeline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">get_clipboard_timeline</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate chronological clipboard timeline&quot;&quot;&quot;</span>
 </code></pre></div>
 
@@ -479,10 +479,10 @@
 </code></pre></div>
 
 <p><strong>Recommendation:</strong> Create C++ integration or Python wrapper</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RecallSnapshotDecryptor</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">decrypt_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encrypted_file</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">decrypt_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_file</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">batch_decrypt_export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">export_dir</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">RecallSnapshotDecryptor</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">decrypt_snapshot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">encrypted_file</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bytes</span>
+    <span class="k">def</span> <span class="nf">decrypt_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_file</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+    <span class="k">def</span> <span class="nf">batch_decrypt_export</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">export_dir</span><span class="p">,</span> <span class="n">export_code</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Path</span><span class="p">]</span>
 </code></pre></div>
 
 <h4 id="b-registry-based-recall-management">B. Registry-Based Recall Management</h4>
@@ -493,10 +493,10 @@
 - <code>0x00000001</code> - Enable Recall for managed users<br />
 - (deleted) - Default (allow home users)</p>
 <p><strong>Recommendation:</strong> Create <code>recall_registry_analyzer.py</code></p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">RecallRegistryAnalyzer</span><span class="p">:</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_recall_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">detect_recall_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>  <span class="c1"># enabled/disabled/default</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">export_recall_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">RecallRegistryAnalyzer</span><span class="p">:</span>
+    <span class="k">def</span> <span class="nf">get_recall_policy</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
+    <span class="k">def</span> <span class="nf">detect_recall_status</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span>  <span class="c1"># enabled/disabled/default</span>
+    <span class="k">def</span> <span class="nf">export_recall_configuration</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span>
 </code></pre></div>
 
 <hr />
@@ -504,7 +504,7 @@
 <p><strong>Source:</strong> exfil_manager.py (defined but not implemented)</p>
 <p><strong>Missing Protocol Implementations:</strong></p>
 <h4 id="a-ftpftps-transfer">A. FTP/FTPS Transfer</h4>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_ftp</span><span class="p">(</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">transfer_ftp</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">destination_host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -516,7 +516,7 @@
 </code></pre></div>
 
 <h4 id="b-sftp-transfer-paramiko">B. SFTP Transfer (Paramiko)</h4>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_sftp</span><span class="p">(</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">transfer_sftp</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">destination_host</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -528,7 +528,7 @@
 </code></pre></div>
 
 <h4 id="c-nfs-transfer">C. NFS Transfer</h4>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_nfs</span><span class="p">(</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">transfer_nfs</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">nfs_share</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -538,7 +538,7 @@
 
 <h4 id="d-cloud-storage-integration">D. Cloud Storage Integration</h4>
 <p><strong>S3 Transfer:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_s3</span><span class="p">(</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">transfer_s3</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">bucket_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -549,7 +549,7 @@
 </code></pre></div>
 
 <p><strong>Azure Blob:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_azure_blob</span><span class="p">(</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">transfer_azure_blob</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">container_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -559,7 +559,7 @@
 </code></pre></div>
 
 <p><strong>Google Drive:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">transfer_google_drive</span><span class="p">(</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">transfer_google_drive</span><span class="p">(</span>
     <span class="bp">self</span><span class="p">,</span>
     <span class="n">source_path</span><span class="p">:</span> <span class="n">Path</span><span class="p">,</span>
     <span class="n">folder_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
@@ -757,7 +757,7 @@
 <h3 id="example-1-adding-clipboard-forensics">Example 1: Adding Clipboard Forensics</h3>
 <p><strong>File:</strong> <code>backend/app/core/database/timeline_parser.py</code></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Add this method to TimelineParser class</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">extract_clipboard_activities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">extract_clipboard_activities</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Extract clipboard activities from ActivitiesCache.db.</span>
 
@@ -810,7 +810,7 @@
 <p><strong>API Integration:</strong></p>
 <p><strong>File:</strong> <code>backend/app/api/routes/forensics.py</code></p>
 <div class="codehilite"><pre><span></span><code><span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/timeline/clipboard&quot;</span><span class="p">)</span>
-<span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">get_clipboard_forensics</span><span class="p">(</span>
+<span class="k">async</span> <span class="k">def</span> <span class="nf">get_clipboard_forensics</span><span class="p">(</span>
     <span class="n">db_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
     <span class="n">limit</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">100</span>
 <span class="p">):</span>
@@ -845,25 +845,25 @@
 <span class="sd">Provides precise execution timestamps for recent program executions.</span>
 <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="kn">import</span><span class="w"> </span><span class="nn">winreg</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span class="kn">import</span> <span class="nn">winreg</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">timedelta</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Optional</span>
+<span class="kn">import</span> <span class="nn">logging</span>
 
 <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
 
 
-<span class="k">class</span><span class="w"> </span><span class="nc">BAMDAMParser</span><span class="p">:</span>
+<span class="k">class</span> <span class="nc">BAMDAMParser</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Parser for BAM and DAM registry artifacts.&quot;&quot;&quot;</span>
 
     <span class="n">BAM_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;SYSTEM\CurrentControlSet\Services\bam\State\UserSettings&quot;</span>
     <span class="n">DAM_PATH</span> <span class="o">=</span> <span class="sa">r</span><span class="s2">&quot;SYSTEM\CurrentControlSet\Services\dam\State\UserSettings&quot;</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Initialize BAM/DAM parser.&quot;&quot;&quot;</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">executions</span> <span class="o">=</span> <span class="p">[]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_bam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">parse_bam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse BAM registry key for execution evidence.</span>
 
@@ -872,7 +872,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">BAM_PATH</span><span class="p">,</span> <span class="s2">&quot;BAM&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">parse_dam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">parse_dam_registry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Parse DAM registry key for execution evidence.</span>
 
@@ -881,7 +881,7 @@
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">DAM_PATH</span><span class="p">,</span> <span class="s2">&quot;DAM&quot;</span><span class="p">)</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">_parse_registry_key</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">key_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">source</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Internal method to parse registry key.&quot;&quot;&quot;</span>
         <span class="n">executions</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -937,7 +937,7 @@
 
         <span class="k">return</span> <span class="n">executions</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_executions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
+    <span class="k">def</span> <span class="nf">get_all_executions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="n">Dict</span><span class="p">]:</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Get all execution records from both BAM and DAM.</span>
 
@@ -958,7 +958,7 @@
         <span class="k">return</span> <span class="n">all_executions</span>
 
 
-<span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Example usage.&quot;&quot;&quot;</span>
     <span class="n">parser</span> <span class="o">=</span> <span class="n">BAMDAMParser</span><span class="p">()</span>
 
@@ -1089,7 +1089,7 @@
 <em>For questions or updates, see: /home/user/vatican_vault/Test Files/Vatican/</em></p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
         </div>
     </div>
 </body>

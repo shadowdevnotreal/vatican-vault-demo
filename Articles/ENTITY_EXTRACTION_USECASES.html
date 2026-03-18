@@ -274,7 +274,7 @@ python<span class="w"> </span>scripts/security_alerting.py<span class="w"> </spa
 <span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Compliance</span><span class="w"> </span><span class="n">dashboard</span><span class="w">                                    </span><span class="err">│</span>
 <span class="err">└─────┬───────────────────────────────────────────┬──────────┘</span>
 <span class="w">      </span><span class="err">│</span><span class="w">                                           </span><span class="err">│</span>
-<span class="err">┌─────v─────┐</span><span class="w">    </span><span class="err">┌────────────┐</span><span class="w">     </span><span class="err">┌─────────────v─────┐</span>
+<span class="err">┌─────</span><span class="n">v</span><span class="err">─────┐</span><span class="w">    </span><span class="err">┌────────────┐</span><span class="w">     </span><span class="err">┌─────────────</span><span class="n">v</span><span class="err">─────┐</span>
 <span class="err">│</span><span class="w"> </span><span class="n">Worker</span><span class="w"> </span><span class="mh">1</span><span class="w">  </span><span class="err">│</span><span class="w">    </span><span class="err">│</span><span class="w"> </span><span class="n">Worker</span><span class="w"> </span><span class="mh">2</span><span class="w">   </span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="w">    </span><span class="n">Worker</span><span class="w"> </span><span class="n">N</span><span class="w">       </span><span class="err">│</span>
 <span class="err">│</span><span class="w"> </span><span class="mh">8</span><span class="w"> </span><span class="n">cores</span><span class="w">   </span><span class="err">│</span><span class="w">    </span><span class="err">│</span><span class="w"> </span><span class="mh">8</span><span class="w"> </span><span class="n">cores</span><span class="w">    </span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="w">    </span><span class="mh">8</span><span class="w"> </span><span class="n">cores</span><span class="w">        </span><span class="err">│</span>
 <span class="err">│</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="n">A</span><span class="o">-</span><span class="n">F</span><span class="w">  </span><span class="err">│</span><span class="p">...</span><span class="w"> </span><span class="err">│</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="n">G</span><span class="o">-</span><span class="n">M</span><span class="w">   </span><span class="err">│</span><span class="p">...</span><span class="w">  </span><span class="err">│</span><span class="w">    </span><span class="n">Scan</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="n">Z</span><span class="w">       </span><span class="err">│</span>
@@ -282,7 +282,7 @@ python<span class="w"> </span>scripts/security_alerting.py<span class="w"> </spa
 <span class="w">      </span><span class="err">│</span><span class="w">                </span><span class="err">│</span><span class="w">                       </span><span class="err">│</span>
 <span class="w">      </span><span class="err">└────────────────┴───────────────────────┘</span>
 <span class="w">                       </span><span class="err">│</span>
-<span class="w">              </span><span class="err">┌────────v─────────┐</span>
+<span class="w">              </span><span class="err">┌────────</span><span class="n">v</span><span class="err">─────────┐</span>
 <span class="w">              </span><span class="err">│</span><span class="w"> </span><span class="n">Results</span><span class="w"> </span><span class="n">Database</span><span class="w"> </span><span class="err">│</span>
 <span class="w">              </span><span class="err">│</span><span class="w">   </span><span class="n">PostgreSQL</span><span class="w">     </span><span class="err">│</span>
 <span class="w">              </span><span class="err">└──────────────────┘</span>
@@ -290,13 +290,13 @@ python<span class="w"> </span>scripts/security_alerting.py<span class="w"> </spa
 
 <p><strong>Implementation:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Distributed processing with Celery</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">celery</span><span class="w"> </span><span class="kn">import</span> <span class="n">Celery</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">backend.scripts.batch_entity_extraction</span><span class="w"> </span><span class="kn">import</span> <span class="n">BatchEntityExtractor</span>
+<span class="kn">from</span> <span class="nn">celery</span> <span class="kn">import</span> <span class="n">Celery</span>
+<span class="kn">from</span> <span class="nn">backend.scripts.batch_entity_extraction</span> <span class="kn">import</span> <span class="n">BatchEntityExtractor</span>
 
 <span class="n">app</span> <span class="o">=</span> <span class="n">Celery</span><span class="p">(</span><span class="s1">&#39;entity_extraction&#39;</span><span class="p">,</span> <span class="n">broker</span><span class="o">=</span><span class="s1">&#39;redis://redis-server:6379&#39;</span><span class="p">)</span>
 
 <span class="nd">@app</span><span class="o">.</span><span class="n">task</span>
-<span class="k">def</span><span class="w"> </span><span class="nf">process_department</span><span class="p">(</span><span class="n">department_path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">process_department</span><span class="p">(</span><span class="n">department_path</span><span class="p">):</span>
     <span class="n">extractor</span> <span class="o">=</span> <span class="n">BatchEntityExtractor</span><span class="p">()</span>
     <span class="n">results</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">extract_batch</span><span class="p">(</span><span class="n">root_path</span><span class="o">=</span><span class="n">department_path</span><span class="p">)</span>
     <span class="c1"># Store results in database</span>
@@ -408,9 +408,9 @@ python<span class="w"> </span>scripts/hipaa_report.py<span class="w"> </span><sp
 <p><strong>Challenge:</strong> Global bank with 80,000 employees must ensure zero credit card data in unapproved systems.</p>
 <p><strong>Solution:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># Real-time scanning of email attachments</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">backend.app.core.nlp.entity_extractor</span><span class="w"> </span><span class="kn">import</span> <span class="n">EntityExtractor</span>
+<span class="kn">from</span> <span class="nn">backend.app.core.nlp.entity_extractor</span> <span class="kn">import</span> <span class="n">EntityExtractor</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">scan_email_attachment</span><span class="p">(</span><span class="n">attachment_path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">scan_email_attachment</span><span class="p">(</span><span class="n">attachment_path</span><span class="p">):</span>
     <span class="n">extractor</span> <span class="o">=</span> <span class="n">EntityExtractor</span><span class="p">()</span>
     <span class="n">entities</span> <span class="o">=</span> <span class="n">extractor</span><span class="o">.</span><span class="n">extract_entities</span><span class="p">(</span><span class="n">attachment_path</span><span class="p">)</span>
 
@@ -717,7 +717,7 @@ https://vatican-vault.com/schedule-demo</p>
 <strong>Classification:</strong> Public</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:18</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
         </div>
     </div>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Files Directory</title>
+    <title>CLAUDE.md</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -206,35 +206,58 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="test-files-directory">Test Files Directory</h1>
-<h2 id="4sicsgeeklounge151pcap">4SICSGeekLounge151.pcap</h2>
-<p>This directory should contain the <strong>4SICS ICS Lab PCAP file</strong> for testing the PCAP analysis feature.</p>
-<h3 id="file-details">File Details</h3>
-<ul>
-<li><strong>Name</strong>: <code>4SICSGeekLounge151.pcap</code></li>
-<li><strong>Size</strong>: ~25 MB</li>
-<li><strong>Source</strong>: 4SICS ICS Lab CTF</li>
-<li><strong>Content</strong>: Real ICS/SCADA network traffic</li>
-</ul>
-<h3 id="how-to-add-the-file">How to Add the File</h3>
-<ol>
-<li>Download from the official source or use your verified copy</li>
-<li>Place the file in this directory: <code>Test Files/Test Files/4SICSGeekLounge151.pcap</code></li>
-<li>Verify the file is valid:<br />
-<code>bash
-   file "Test Files/Test Files/4SICSGeekLounge151.pcap"
-   # Should show: "tcpdump capture file" or similar</code></li>
-</ol>
-<h3 id="usage">Usage</h3>
-<p>Once the file is in place, analyze it with:</p>
-<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>cli.main<span class="w"> </span>analyze-pcap<span class="w"> </span><span class="s2">&quot;Test Files/Test Files/4SICSGeekLounge151.pcap&quot;</span><span class="w"> </span>-o<span class="w"> </span>4sics_report.html<span class="w"> </span>--format<span class="w"> </span>html
+        <h1 id="claudemd">CLAUDE.md</h1>
+<p>This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.</p>
+<h2 id="what-this-repository-is">What This Repository Is</h2>
+<p>This is the <strong>Vatican Vault demo/investor package</strong> — a standalone promotional and demonstration bundle for Vatican Vault, an AI-powered Windows forensic analysis platform. It contains pre-generated HTML reports, VC investor materials, demo scripts, and sample data. It is NOT the main application codebase (which lives separately).</p>
+<h2 id="viewing-the-demo">Viewing the Demo</h2>
+<p>HTML files must be served over HTTP (not opened as <code>file://</code>) due to browser CORS restrictions:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Start local server (from repo root)</span>
+python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+<span class="c1"># Then open: http://localhost:8000/</span>
 </code></pre></div>
 
-<h3 id="note">Note</h3>
-<p>The current placeholder file is empty (0 bytes). Please replace it with the actual 25MB PCAP file.</p>
+<p>On Windows: double-click <code>START_DEMO_SERVER.bat</code> — it starts the server and opens the browser automatically.</p>
+<p>Key URLs once the server is running:<br />
+- <code>http://localhost:8000/</code> — Main demo hub<br />
+- <code>http://localhost:8000/VC_Materials/VC_DEMO_PACKAGE.html</code> — Full investor package<br />
+- <code>http://localhost:8000/Industry_Demo_Reports/index.html</code> — 12 industry reports</p>
+<h2 id="tests">Tests</h2>
+<p>The demo test suite in <code>Demo_Tests/</code> is a showcase test suite (demonstrates test reporting, not business logic):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># Run from repo root</span>
+pytest<span class="w"> </span>Demo_Tests/<span class="w"> </span>-v
+
+<span class="c1"># Run a single test</span>
+pytest<span class="w"> </span>Demo_Tests/test_demo.py::TestBasicFunctionality::test_addition<span class="w"> </span>-v
+</code></pre></div>
+
+<h2 id="converting-markdown-to-html">Converting Markdown to HTML</h2>
+<p>When <code>.md</code> files are updated, regenerate their HTML counterparts:</p>
+<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>convert_md_to_html.py
+</code></pre></div>
+
+<p>This requires the <code>markdown</code> Python package (<code>pip install markdown</code>).</p>
+<h2 id="demo-scripts">Demo Scripts</h2>
+<p><code>Demo_Scripts/demo.py</code> and <code>Demo_Scripts/entity_extraction_demo.py</code> import from the main Vatican Vault backend (<code>backend.app.core.*</code>). These scripts only run when the main Vatican Vault application is installed and on the Python path — they are not self-contained.</p>
+<h2 id="repository-structure">Repository Structure</h2>
+<div class="codehilite"><pre><span></span><code>├── VC_Materials/           # Investor documents (HTML)
+├── Industry_Demo_Reports/  # 12 industry-specific forensic reports (HTML)
+├── Articles/               # Narrative pitch and history documents (HTML)
+├── Demo_Data/              # Sample Windows Timeline DB and outputs
+├── Demo_Scripts/           # Python demo scripts (require main Vatican Vault backend)
+├── Demo_Tests/             # Showcase pytest suite for reporting demos
+├── Sample_Outputs/         # Pre-generated test reports and coverage HTML
+├── convert_md_to_html.py   # Converts .md files to styled HTML
+└── START_DEMO_SERVER.bat   # Windows shortcut to start HTTP server
+</code></pre></div>
+
+<h2 id="github-actions">GitHub Actions</h2>
+<p>Two Claude-powered workflows are active:<br />
+- <strong><code>claude.yml</code></strong> — Responds to <code>@claude</code> mentions in issues/PRs<br />
+- <strong><code>claude-code-review.yml</code></strong> — Automatically reviews PRs using Claude</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:23</p>
         </div>
     </div>
 </body>

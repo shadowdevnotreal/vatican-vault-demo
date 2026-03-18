@@ -305,7 +305,7 @@
 </li>
 </ol>
 <p><strong>Analysis Methods:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
 
 <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="s2">&quot;ActivitiesCache.db&quot;</span><span class="p">)</span>
 <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
@@ -454,11 +454,11 @@ Copy-Item<span class="w"> </span><span class="s2">&quot;C:\Windows\Prefetch\*&qu
 </code></pre></div>
 
 <h3 id="phase-2-database-analysis">Phase 2: Database Analysis</h3>
-<div class="codehilite"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">sqlite3</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">datetime</span><span class="w"> </span><span class="kn">import</span> <span class="n">datetime</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">import</span> <span class="nn">sqlite3</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">analyze_activities_cache</span><span class="p">(</span><span class="n">db_path</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">analyze_activities_cache</span><span class="p">(</span><span class="n">db_path</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Comprehensive ActivitiesCache.db analysis&quot;&quot;&quot;</span>
     <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
@@ -515,9 +515,9 @@ Copy-Item<span class="w"> </span><span class="s2">&quot;C:\Windows\Prefetch\*&qu
 </code></pre></div>
 
 <h3 id="phase-3-timeline-reconstruction">Phase 3: Timeline Reconstruction</h3>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">create_timeline</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">output_csv</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">create_timeline</span><span class="p">(</span><span class="n">db_path</span><span class="p">,</span> <span class="n">output_csv</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Export comprehensive timeline to CSV&quot;&quot;&quot;</span>
-    <span class="kn">import</span><span class="w"> </span><span class="nn">csv</span>
+    <span class="kn">import</span> <span class="nn">csv</span>
 
     <span class="n">conn</span> <span class="o">=</span> <span class="n">sqlite3</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">db_path</span><span class="p">)</span>
     <span class="n">cursor</span> <span class="o">=</span> <span class="n">conn</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
@@ -727,7 +727,7 @@ Copy-Item<span class="w"> </span><span class="s2">&quot;C:\Windows\Prefetch\*&qu
 <strong>Version:</strong> 1.0</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top: 10px;">Generated: 2026-03-17 08:48:17</p>
+            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
         </div>
     </div>
 </body>

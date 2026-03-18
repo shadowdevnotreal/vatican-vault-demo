@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Test Files Directory</title>
+    <title>How to View Test Reports</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -206,32 +206,92 @@
 </head>
 <body>
     <div class="container">
-        <h1 id="test-files-directory">Test Files Directory</h1>
-<h2 id="4sicsgeeklounge151pcap">4SICSGeekLounge151.pcap</h2>
-<p>This directory should contain the <strong>4SICS ICS Lab PCAP file</strong> for testing the PCAP analysis feature.</p>
-<h3 id="file-details">File Details</h3>
-<ul>
-<li><strong>Name</strong>: <code>4SICSGeekLounge151.pcap</code></li>
-<li><strong>Size</strong>: ~25 MB</li>
-<li><strong>Source</strong>: 4SICS ICS Lab CTF</li>
-<li><strong>Content</strong>: Real ICS/SCADA network traffic</li>
-</ul>
-<h3 id="how-to-add-the-file">How to Add the File</h3>
-<ol>
-<li>Download from the official source or use your verified copy</li>
-<li>Place the file in this directory: <code>Test Files/Test Files/4SICSGeekLounge151.pcap</code></li>
-<li>Verify the file is valid:<br />
-<code>bash
-   file "Test Files/Test Files/4SICSGeekLounge151.pcap"
-   # Should show: "tcpdump capture file" or similar</code></li>
-</ol>
-<h3 id="usage">Usage</h3>
-<p>Once the file is in place, analyze it with:</p>
-<div class="codehilite"><pre><span></span><code>python<span class="w"> </span>-m<span class="w"> </span>cli.main<span class="w"> </span>analyze-pcap<span class="w"> </span><span class="s2">&quot;Test Files/Test Files/4SICSGeekLounge151.pcap&quot;</span><span class="w"> </span>-o<span class="w"> </span>4sics_report.html<span class="w"> </span>--format<span class="w"> </span>html
+        <h1 id="how-to-view-test-reports">How to View Test Reports</h1>
+<h2 id="quick-start">Quick Start</h2>
+<p>After downloading and extracting the repository, you have several options to view the HTML reports:</p>
+<h3 id="option-1-use-pythons-built-in-http-server-recommended">Option 1: Use Python's Built-in HTTP Server (Recommended)</h3>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>vatican_vault-main/Promo/Sample_Outputs
+python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
 </code></pre></div>
 
-<h3 id="note">Note</h3>
-<p>The current placeholder file is empty (0 bytes). Please replace it with the actual 25MB PCAP file.</p>
+<p>Then open your browser and navigate to:<br />
+- Main Report: <code>http://localhost:8000/reports/20260228_034136/index.html</code><br />
+- Coverage Report: <code>http://localhost:8000/reports/20260228_034136/coverage_html/index.html</code><br />
+- Pytest Report: <code>http://localhost:8000/reports/20260228_034136/pytest_report.html</code></p>
+<h3 id="option-2-use-the-latest-symlink">Option 2: Use the Latest Symlink</h3>
+<p>The <code>latest</code> directory is a symbolic link pointing to the most recent test report:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span>vatican_vault-main/Promo/Sample_Outputs
+python<span class="w"> </span>-m<span class="w"> </span>http.server<span class="w"> </span><span class="m">8000</span>
+</code></pre></div>
+
+<p>Then navigate to: <code>http://localhost:8000/latest/index.html</code></p>
+<h3 id="option-3-direct-file-access-limited">Option 3: Direct File Access (Limited)</h3>
+<p>You can try opening the HTML files directly in your browser, but some features may not work due to browser security restrictions with the <code>file://</code> protocol:</p>
+<ul>
+<li><code>file:///path/to/vatican_vault-main/Promo/Sample_Outputs/reports/20260228_034136/index.html</code></li>
+</ul>
+<p><strong>Note:</strong> Coverage reports require external CSS/JS files and will appear blank when opened via <code>file://</code> protocol. Use Option 1 or 2 instead.</p>
+<h2 id="available-reports">Available Reports</h2>
+<h3 id="1-main-test-report-indexhtml">1. Main Test Report (<code>index.html</code>)</h3>
+<ul>
+<li>Overview of test results</li>
+<li>Test suite breakdown</li>
+<li>Pass/fail statistics</li>
+<li>Links to detailed reports</li>
+</ul>
+<h3 id="2-coverage-report-coverage_htmlindexhtml">2. Coverage Report (<code>coverage_html/index.html</code>)</h3>
+<ul>
+<li>Code coverage metrics</li>
+<li>Line-by-line coverage analysis</li>
+<li>Function and class coverage</li>
+</ul>
+<h3 id="3-pytest-html-report-pytest_reporthtml">3. Pytest HTML Report (<code>pytest_report.html</code>)</h3>
+<ul>
+<li>Detailed pytest output</li>
+<li>Test execution details</li>
+<li>Error traces and logs</li>
+</ul>
+<h3 id="4-demo-report">4. Demo Report</h3>
+<p>View the investor-focused demo report at:<br />
+<code>Promo/VC_Materials/VC_DEMO_REPORT_2026-02-28.html</code></p>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<h3 id="blank-pages-when-opening-html-files">Blank Pages When Opening HTML Files</h3>
+<p><strong>Problem:</strong> HTML files show blank screens when opened directly.</p>
+<p><strong>Solution:</strong> Use a local HTTP server (see Option 1 above). Browser security prevents some features from working with <code>file://</code> URLs.</p>
+<h3 id="symlink-issues-on-windows">Symlink Issues on Windows</h3>
+<p><strong>Problem:</strong> "Dangerous link path was ignored" error when extracting on Windows.</p>
+<p><strong>Solution:</strong><br />
+1. Extract the ZIP file normally<br />
+2. Navigate to <code>Promo/Sample_Outputs/reports/20260228_034136/</code><br />
+3. Use a local HTTP server as described in Option 1</p>
+<p>Alternatively, on Windows you can use:</p>
+<div class="codehilite"><pre><span></span><code>cd vatican_vault-main\Promo\Sample_Outputs
+python -m http.server 8000
+</code></pre></div>
+
+<h3 id="javascript-errors">JavaScript Errors</h3>
+<p><strong>Problem:</strong> Console shows CORS or module loading errors.</p>
+<p><strong>Solution:</strong> Always use a local HTTP server for viewing reports. Never open HTML files directly via <code>file://</code> protocol.</p>
+<h2 id="directory-structure">Directory Structure</h2>
+<div class="codehilite"><pre><span></span><code><span class="n">Promo/Sample_Outputs/</span>
+<span class="n">├── latest -&gt; reports/20260228_034136  (symlink)</span>
+<span class="n">├── reports/</span>
+<span class="n">│   ├── 20260228_034136/</span>
+<span class="n">│   │   ├── index.html              (Main report)</span>
+<span class="n">│   │   ├── pytest_report.html      (Pytest details)</span>
+<span class="n">│   │   ├── coverage_html/</span>
+<span class="n">│   │   │   └── index.html          (Coverage report)</span>
+<span class="n">│   │   ├── coverage.json</span>
+<span class="n">│   │   └── junit.xml</span>
+<span class="n">│   └── index.html                   (Reports index)</span>
+<span class="n">└── TEST_REPORTS_README.md</span>
+</code></pre></div>
+
+<h2 id="need-help">Need Help?</h2>
+<p>If you encounter any issues viewing the reports, please ensure:<br />
+1. Python 3.x is installed<br />
+2. You're running the HTTP server from the correct directory<br />
+3. Port 8000 is not already in use (or use a different port: <code>python -m http.server 8001</code>)</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
             <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
