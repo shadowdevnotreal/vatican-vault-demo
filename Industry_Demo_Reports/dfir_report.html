@@ -1029,5 +1029,203 @@
 })();
 </script>
 
+
+<!-- Vatican Vault Universal Interactivity -->
+<style>
+/* Print button */
+#vv-print-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  background: var(--accent, #00d4ff);
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 0 18px rgba(0,212,255,0.35);
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+#vv-print-btn:hover { opacity: 0.85; box-shadow: 0 0 28px rgba(0,212,255,0.55); }
+
+/* Back-to-top */
+#vv-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 130px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--accent, #00d4ff);
+  color: var(--accent, #00d4ff);
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#vv-top-btn.visible { opacity: 1; pointer-events: auto; }
+
+/* Collapsible sections */
+.vv-collapsible > h2, .section > h2.section-title {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.vv-collapsible > h2::after, .section > h2.section-title::after {
+  content: '▼';
+  position: absolute;
+  right: 0;
+  font-size: 11px;
+  opacity: 0.5;
+  transition: transform 0.25s;
+}
+.vv-collapsed > h2.section-title::after, .vv-collapsed > h2::after {
+  transform: rotate(-90deg);
+}
+.vv-collapsed .section-body { display: none; }
+
+/* Highlight search */
+.vv-highlight { background: rgba(255,200,0,0.35); border-radius: 2px; }
+
+/* Tab navigation */
+.vv-tabs { display: flex; gap: 6px; margin: 18px 0 0 0; flex-wrap: wrap; }
+.vv-tab-btn {
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border, #1e2a38);
+  color: var(--text-muted, #8899aa);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.vv-tab-btn.active {
+  background: var(--accent, #00d4ff);
+  color: #000;
+  border-color: var(--accent, #00d4ff);
+}
+.vv-tab-panel { display: none; }
+.vv-tab-panel.active { display: block; }
+
+/* Filter buttons */
+.vv-filter-row { display: flex; gap: 8px; margin: 14px 0; flex-wrap: wrap; }
+.vv-filter-btn {
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border, #1e2a38);
+  color: var(--text-muted, #8899aa);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.vv-filter-btn.active, .vv-filter-btn:hover {
+  border-color: var(--accent, #00d4ff);
+  color: var(--accent, #00d4ff);
+}
+[data-severity].hidden { display: none; }
+
+/* Expandable table rows */
+.vv-expandable { cursor: pointer; }
+.vv-expandable:hover { background: rgba(255,255,255,0.04) !important; }
+.vv-expand-row { display: none; background: rgba(0,0,0,0.25) !important; }
+.vv-expand-row.open { display: table-row; }
+.vv-expand-row td { padding: 14px 20px; font-size: 13px; color: var(--text-muted, #8899aa); }
+
+@media print {
+  #vv-print-btn, #vv-top-btn, .vv-nav { display: none !important; }
+  .vv-collapsed .section-body { display: block !important; }
+}
+</style>
+
+<button id="vv-print-btn" onclick="window.print()">⎙ PRINT / PDF</button>
+<button id="vv-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ TOP</button>
+
+<script>
+(function(){
+  // Back to top visibility
+  window.addEventListener('scroll', function(){
+    var btn = document.getElementById('vv-top-btn');
+    if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Make sections collapsible
+  document.querySelectorAll('.section').forEach(function(sec){
+    var h2 = sec.querySelector('h2.section-title');
+    if (!h2) return;
+    // Wrap children after h2 in a body div
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var children = Array.from(sec.childNodes).filter(function(n){
+      return n !== h2;
+    });
+    children.forEach(function(c){ body.appendChild(c); });
+    sec.appendChild(body);
+    h2.addEventListener('click', function(){
+      sec.classList.toggle('vv-collapsed');
+    });
+  });
+
+  // Tab navigation helper (call initTabs() after page load for reports that use them)
+  window.vvInitTabs = function(containerSelector){
+    var container = document.querySelector(containerSelector);
+    if (!container) return;
+    var buttons = container.querySelectorAll('.vv-tab-btn');
+    var panels = container.querySelectorAll('.vv-tab-panel');
+    buttons.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        buttons.forEach(function(b){ b.classList.remove('active'); });
+        panels.forEach(function(p){ p.classList.remove('active'); });
+        btn.classList.add('active');
+        panels[i] && panels[i].classList.add('active');
+      });
+    });
+    if (buttons[0]) buttons[0].click();
+  };
+
+  // Severity filter helper
+  window.vvInitFilter = function(attr){
+    document.querySelectorAll('.vv-filter-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var val = btn.dataset.filter;
+        document.querySelectorAll('.vv-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        document.querySelectorAll('[data-severity]').forEach(function(row){
+          if (val === 'all' || row.dataset.severity === val) {
+            row.classList.remove('hidden');
+          } else {
+            row.classList.add('hidden');
+          }
+        });
+      });
+    });
+    var allBtn = document.querySelector('.vv-filter-btn[data-filter="all"]');
+    if (allBtn) allBtn.click();
+  };
+
+  // Expandable table rows
+  window.vvInitExpandRows = function(){
+    document.querySelectorAll('.vv-expandable').forEach(function(row){
+      row.addEventListener('click', function(){
+        var next = row.nextElementSibling;
+        if (next && next.classList.contains('vv-expand-row')) {
+          next.classList.toggle('open');
+        }
+      });
+    });
+  };
+})();
+</script>
+
 </body>
 </html>

@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vatican Vault — ICS/SCADA & OT Security Report</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;600;700&family=Share+Tech+Mono&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --accent: #d97706;        /* Industrial amber */
+  --accent2: #b45309;
+  --bg: #04080f;
+  --surface: #0a1220;
+  --border: #1e2a3e;
+  --text: #d8e8f5;
+  --text-muted: #6b86a0;
+  --danger: #dc2626;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --cyan: #00d4ff;
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html { scroll-behavior:smooth; }
+body { background:var(--bg); color:var(--text); font-family:'Outfit',sans-serif; font-size:14px; line-height:1.7; }
+
+.vv-nav { position:sticky; top:0; z-index:100; display:flex; align-items:center; gap:20px; padding:10px 24px; background:rgba(4,8,15,0.95); border-bottom:1px solid var(--border); backdrop-filter:blur(8px); font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:0.08em; }
+.vv-nav a { color:var(--text-muted); text-decoration:none; transition:color 0.2s; }
+.vv-nav a:hover { color:var(--accent); }
+.vv-nav .sep { color:var(--border); }
+.vv-nav .logo { color:var(--accent); font-weight:700; margin-right:auto; font-family:'Orbitron',sans-serif; font-size:12px; }
+
+.report-header { background:linear-gradient(135deg, #0d1117 0%, #110d08 60%, #080604 100%); border-bottom:1px solid var(--border); padding:48px 40px 36px; position:relative; overflow:hidden; }
+.report-header::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(30,42,62,0.3) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(30,42,62,0.3) 40px); pointer-events:none; }
+.report-header::after { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg,var(--danger),var(--accent),var(--danger)); }
+
+.ot-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(220,38,38,0.12); border:1px solid rgba(220,38,38,0.4); color:var(--danger); padding:5px 14px; font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.18em; margin-bottom:20px; border-radius:2px; }
+h1.report-title { font-family:'Orbitron',sans-serif; font-size:26px; font-weight:900; color:#fff; letter-spacing:0.03em; line-height:1.2; margin-bottom:6px; }
+.report-subtitle { font-family:'Rajdhani',sans-serif; font-size:16px; color:var(--accent); letter-spacing:0.1em; margin-bottom:24px; }
+
+.meta-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin-top:24px; }
+.meta-item { background:rgba(255,255,255,0.04); border:1px solid var(--border); border-top:2px solid var(--accent); padding:12px 16px; border-radius:2px; }
+.meta-label { font-family:'Share Tech Mono',monospace; font-size:9px; letter-spacing:0.18em; color:var(--text-muted); margin-bottom:4px; }
+.meta-value { font-family:'Rajdhani',sans-serif; font-size:15px; font-weight:700; color:#fff; }
+
+.report-body { max-width:1100px; margin:0 auto; padding:40px 40px 80px; }
+
+.toc { background:var(--surface); border:1px solid var(--border); border-left:4px solid var(--accent); padding:24px 28px; margin-bottom:40px; border-radius:2px; }
+.toc h3 { font-family:'Share Tech Mono',monospace; font-size:11px; letter-spacing:0.18em; color:var(--text-muted); margin-bottom:14px; }
+.toc ol { padding-left:20px; }
+.toc li { margin:6px 0; }
+.toc a { color:var(--accent); text-decoration:none; font-size:13px; }
+.toc a:hover { text-decoration:underline; }
+
+.section { margin-bottom:48px; scroll-margin-top:60px; }
+.section-title { font-family:'Rajdhani',sans-serif; font-size:22px; font-weight:700; color:#fff; letter-spacing:0.05em; padding-bottom:10px; border-bottom:1px solid var(--border); margin-bottom:20px; }
+.section-number { color:var(--accent); margin-right:8px; }
+
+.stat-row { display:grid; grid-template-columns:repeat(4,1fr); gap:16px; margin:20px 0; }
+.stat-card { background:var(--surface); border:1px solid var(--border); border-top:3px solid var(--accent); padding:18px 20px; border-radius:2px; text-align:center; }
+.stat-card .val { font-family:'Orbitron',sans-serif; font-size:26px; font-weight:700; color:var(--accent); }
+.stat-card .lbl { font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.12em; color:var(--text-muted); margin-top:4px; }
+
+table { width:100%; border-collapse:collapse; margin:16px 0; font-size:13px; }
+thead tr { background:rgba(255,255,255,0.06); }
+th { padding:10px 14px; text-align:left; font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.12em; color:var(--text-muted); border-bottom:1px solid var(--border); }
+td { padding:10px 14px; border-bottom:1px solid rgba(30,42,62,0.6); }
+tr:hover td { background:rgba(255,255,255,0.02); }
+
+/* Purdue model */
+.purdue { display:flex; flex-direction:column; gap:8px; margin:24px 0; }
+.purdue-level { border:1px solid var(--border); border-left:4px solid; padding:14px 20px; border-radius:2px; position:relative; }
+.purdue-level-label { font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.14em; color:var(--text-muted); margin-bottom:4px; }
+.purdue-level-name { font-family:'Rajdhani',sans-serif; font-size:16px; font-weight:700; }
+.purdue-level-detail { font-size:12px; color:var(--text-muted); margin-top:4px; }
+
+/* Risk bar */
+.risk-bar-wrap { margin:10px 0; }
+.risk-bar-label { display:flex; justify-content:space-between; font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--text-muted); margin-bottom:4px; }
+.risk-bar-track { height:8px; background:rgba(255,255,255,0.08); border-radius:2px; overflow:hidden; }
+.risk-bar-fill { height:100%; border-radius:2px; }
+
+.footer { margin-top:60px; padding:24px 28px; background:var(--surface); border:1px solid var(--border); border-top:2px solid var(--accent); font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--text-muted); border-radius:2px; }
+.footer p { margin:4px 0; }
+
+.vv-filter-row { display:flex; gap:8px; margin:14px 0; flex-wrap:wrap; }
+.vv-filter-btn { padding:6px 14px; background:rgba(255,255,255,0.04); border:1px solid var(--border); color:var(--text-muted); font-family:'Share Tech Mono',monospace; font-size:11px; cursor:pointer; border-radius:2px; transition:all 0.2s; }
+.vv-filter-btn.active, .vv-filter-btn:hover { border-color:var(--accent); color:var(--accent); }
+[data-severity].hidden { display:none; }
+</style>
+</head>
+<body>
+
+<nav class="vv-nav">
+  <span class="logo">VV</span>
+  <a href="../index.html">← Hub</a>
+  <span class="sep">|</span>
+  <a href="index.html">← All Reports</a>
+  <span class="sep">|</span>
+  <span style="color:var(--accent);">ICS/SCADA Report</span>
+</nav>
+
+<header class="report-header">
+  <div class="ot-badge">⚠ CRITICAL INFRASTRUCTURE — OT/ICS SECURITY ASSESSMENT — NERC CIP COMPLIANCE</div>
+  <h1 class="report-title">ICS / SCADA &amp; OT Security<br>Assessment Report</h1>
+  <p class="report-subtitle">NERC CIP · ISA/IEC 62443 · NIST 800-82 Rev. 3 · CISA ICS-CERT</p>
+  <div class="meta-grid">
+    <div class="meta-item"><div class="meta-label">FACILITY TYPE</div><div class="meta-value">Electric Utility</div></div>
+    <div class="meta-item"><div class="meta-label">BULK ELECTRIC SYS</div><div class="meta-value" style="color:var(--danger);">YES — BES Asset</div></div>
+    <div class="meta-item"><div class="meta-label">CIP VERSION</div><div class="meta-value">CIP-013-2</div></div>
+    <div class="meta-item"><div class="meta-label">REPORT DATE</div><div class="meta-value">2026-03-01</div></div>
+    <div class="meta-item"><div class="meta-label">ACTIVITIES ANALYZED</div><div class="meta-value">1,853</div></div>
+    <div class="meta-item"><div class="meta-label">OT ASSETS IN SCOPE</div><div class="meta-value">34</div></div>
+    <div class="meta-item"><div class="meta-label">NERC VIOLATION RISK</div><div class="meta-value" style="color:var(--warning);">MEDIUM</div></div>
+    <div class="meta-item"><div class="meta-label">AUDIT ID</div><div class="meta-value">ICS-2026-030</div></div>
+  </div>
+</header>
+
+<div class="report-body">
+
+  <div class="toc">
+    <h3>TABLE OF CONTENTS</h3>
+    <ol>
+      <li><a href="#s1">Executive Summary</a></li>
+      <li><a href="#s2">Purdue Model Architecture &amp; Network Segmentation</a></li>
+      <li><a href="#s3">NERC CIP Compliance Assessment</a></li>
+      <li><a href="#s4">Threat Analysis &amp; ICS-CERT Intelligence</a></li>
+      <li><a href="#s5">Risk Assessment &amp; Findings</a></li>
+      <li><a href="#s6">Vatican Vault for OT/ICS</a></li>
+      <li><a href="#s7">Reliability Coordinator Attestation</a></li>
+    </ol>
+  </div>
+
+  <div class="section" id="s1">
+    <h2 class="section-title"><span class="section-number">1.</span>Executive Summary</h2>
+    <p>This Operational Technology (OT) / Industrial Control Systems (ICS) security assessment was conducted pursuant to <strong>NERC CIP-002 through CIP-014</strong> reliability standards and <strong>NIST SP 800-82 Rev. 3</strong> (Guide to OT Security). Vatican Vault analyzed <strong>1,853 Windows endpoint activity records</strong> from engineering workstations (EWS), historian servers, and HMI jump servers within the <strong>Bulk Electric System (BES)</strong> cyber system perimeter.</p>
+
+    <div style="background:rgba(220,38,38,0.08); border:1px solid rgba(220,38,38,0.3); border-left:4px solid var(--danger); padding:18px; border-radius:2px; margin:20px 0;">
+      <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.14em; color:var(--danger); margin-bottom:8px;">⚠ CRITICAL INFRASTRUCTURE NOTICE</p>
+      <p style="font-size:13px; line-height:1.8;">Unauthorized access to Bulk Electric System Cyber Systems (BCS) may constitute a federal offense under <strong>18 U.S.C. §1030 (CFAA)</strong> and may trigger mandatory NERC reporting requirements. Any evidence of adversarial activity in OT environments must be reported to <strong>E-ISAC (Electricity ISAC)</strong> and <strong>CISA ICS-CERT</strong> within applicable timeframes.</p>
+    </div>
+
+    <div class="stat-row">
+      <div class="stat-card"><div class="val">1,853</div><div class="lbl">OT ACTIVITIES ANALYZED</div></div>
+      <div class="stat-card"><div class="val">34</div><div class="lbl">BES CYBER ASSETS</div></div>
+      <div class="stat-card"><div class="val" style="color:var(--warning);">3</div><div class="lbl">NERC CIP FINDINGS</div></div>
+      <div class="stat-card"><div class="val" style="color:var(--success);">0</div><div class="lbl">OT DISRUPTIONS</div></div>
+    </div>
+  </div>
+
+  <div class="section" id="s2">
+    <h2 class="section-title"><span class="section-number">2.</span>Purdue Model Architecture &amp; Network Segmentation</h2>
+    <p>The Purdue Enterprise Reference Architecture (PERA) defines security zones for industrial environments. Vatican Vault's analysis was scoped to <strong>Levels 3–4</strong> (IT/OT demilitarized zone and site operations) where Windows endpoint activity data is available. OT protocol traffic (Modbus, DNP3, IEC 61850) is outside Vatican Vault's current scope but is covered by dedicated OT network monitoring.</p>
+
+    <div class="purdue">
+      <div class="purdue-level" style="border-left-color:#6366f1; margin-left:0;">
+        <div class="purdue-level-label">LEVEL 4/5 — ENTERPRISE NETWORK (IT DOMAIN)</div>
+        <div class="purdue-level-name" style="color:#6366f1;">Business Planning &amp; Logistics</div>
+        <div class="purdue-level-detail">ERP, email, internet — Standard IT security controls apply</div>
+      </div>
+      <div class="purdue-level" style="border-left-color:var(--accent); margin-left:30px;">
+        <div class="purdue-level-label">LEVEL 3.5 — DMZ / IDMZ (IT/OT BOUNDARY) ← VATICAN VAULT SCOPE</div>
+        <div class="purdue-level-name" style="color:var(--accent);">Industrial DMZ — Historian, Patch Servers, Remote Access</div>
+        <div class="purdue-level-detail">Vatican Vault analyzed 1,853 activities from IDMZ Windows systems including historian servers and jump hosts</div>
+      </div>
+      <div class="purdue-level" style="border-left-color:var(--warning); margin-left:60px;">
+        <div class="purdue-level-label">LEVEL 3 — OPERATIONS MANAGEMENT (OT DOMAIN)</div>
+        <div class="purdue-level-name" style="color:var(--warning);">Site Operations — DCS, SCADA, Historian</div>
+        <div class="purdue-level-detail">Engineering Workstations (EWS) — Windows systems scoped for Vatican Vault analysis</div>
+      </div>
+      <div class="purdue-level" style="border-left-color:var(--danger); margin-left:90px;">
+        <div class="purdue-level-label">LEVELS 0–2 — PROCESS CONTROL (RESTRICTED)</div>
+        <div class="purdue-level-name" style="color:var(--danger);">Field Devices, PLCs, RTUs, HMIs — Air-gapped/Unidirectional</div>
+        <div class="purdue-level-detail">Outside Vatican Vault scope — Dedicated OT network monitoring (Claroty/Dragos/Nozomi) required</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s3">
+    <h2 class="section-title"><span class="section-number">3.</span>NERC CIP Compliance Assessment</h2>
+    <p>The following <strong>NERC Critical Infrastructure Protection (CIP)</strong> standards were assessed. Non-compliance findings trigger mandatory filing with NERC's Compliance Monitoring and Enforcement Program (CMEP) and can result in penalties up to <strong>$1 million per violation per day</strong> (16 U.S.C. §824o).</p>
+
+    <table>
+      <thead><tr><th>NERC CIP STANDARD</th><th>TITLE</th><th>FINDING</th><th>RISK LEVEL</th></tr></thead>
+      <tbody>
+        <tr data-severity="medium">
+          <td style="font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--accent);">CIP-004-7</td>
+          <td>Personnel &amp; Training</td>
+          <td>2 personnel — CIP training overdue &gt;30 days</td>
+          <td style="color:var(--warning); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">MEDIUM</td>
+        </tr>
+        <tr data-severity="high">
+          <td style="font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--accent);">CIP-005-7</td>
+          <td>Electronic Security Perimeters</td>
+          <td>Unauthorized interactive remote access session detected from external IP</td>
+          <td style="color:var(--danger); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">HIGH</td>
+        </tr>
+        <tr data-severity="medium">
+          <td style="font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--accent);">CIP-007-6</td>
+          <td>System Security Management</td>
+          <td>Security patch P3 overdue — 35 days past 35-day SLA</td>
+          <td style="color:var(--warning); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">MEDIUM</td>
+        </tr>
+        <tr data-severity="low">
+          <td style="font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--success);">CIP-008-6</td>
+          <td>Incident Reporting &amp; Response</td>
+          <td>IR plan current; E-ISAC notification procedures verified</td>
+          <td style="color:var(--success); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">COMPLIANT</td>
+        </tr>
+        <tr data-severity="low">
+          <td style="font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--success);">CIP-010-4</td>
+          <td>Config Change Management</td>
+          <td>Baseline configs documented; no unauthorized changes</td>
+          <td style="color:var(--success); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">COMPLIANT</td>
+        </tr>
+        <tr data-severity="low">
+          <td style="font-family:'Share Tech Mono',monospace; font-size:11px; color:var(--success);">CIP-013-2</td>
+          <td>Supply Chain Risk Management</td>
+          <td>Vendor software inventory complete; Vatican Vault verified</td>
+          <td style="color:var(--success); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">COMPLIANT</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="vv-filter-row">
+      <button class="vv-filter-btn active" data-filter="all">ALL</button>
+      <button class="vv-filter-btn" data-filter="high">HIGH</button>
+      <button class="vv-filter-btn" data-filter="medium">MEDIUM</button>
+      <button class="vv-filter-btn" data-filter="low">COMPLIANT</button>
+    </div>
+  </div>
+
+  <div class="section" id="s4">
+    <h2 class="section-title"><span class="section-number">4.</span>Threat Analysis &amp; ICS-CERT Intelligence</h2>
+    <p>Vatican Vault cross-referenced endpoint activity against <strong>CISA ICS-CERT advisories</strong>, <strong>ICS-STIX indicators</strong>, and known OT threat actor TTPs (DRAGOS, MANDIANT ICS, MITRE ATT&CK for ICS). The Windows endpoint timeline data provides crucial early-warning indicators before adversaries pivot from IT to OT networks.</p>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin:20px 0;">
+      <div style="background:rgba(220,38,38,0.06); border:1px solid rgba(220,38,38,0.3); padding:20px; border-radius:2px;">
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.14em; color:var(--danger); margin-bottom:12px;">ICS THREAT ACTORS PROFILED</p>
+        <ul style="list-style:none; padding:0; font-size:13px;">
+          <li style="padding:6px 0; border-bottom:1px solid rgba(30,42,62,0.5);">ELECTRUM / SANDWORM — Ukrainian power grid TTPs</li>
+          <li style="padding:6px 0; border-bottom:1px solid rgba(30,42,62,0.5);">XENOTIME — Safety system targeting (Triton/TRISIS)</li>
+          <li style="padding:6px 0; border-bottom:1px solid rgba(30,42,62,0.5);">MAGNALLIUM — ICS reconnaissance TTPs</li>
+          <li style="padding:6px 0;">VOLT TYPHOON — Pre-positioning in US critical infra</li>
+        </ul>
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--success); margin-top:12px;">✓ No IOC matches detected in current dataset</p>
+      </div>
+      <div style="background:var(--surface); border:1px solid var(--border); padding:20px; border-radius:2px;">
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.14em; color:var(--text-muted); margin-bottom:12px;">MITRE ATT&CK FOR ICS — TECHNIQUES CHECKED</p>
+        <ul style="list-style:none; padding:0; font-size:12px; font-family:'Share Tech Mono',monospace;">
+          <li style="padding:5px 0; border-bottom:1px solid rgba(30,42,62,0.5); color:var(--success);">T0856 — Spearphishing: No evidence</li>
+          <li style="padding:5px 0; border-bottom:1px solid rgba(30,42,62,0.5); color:var(--success);">T0866 — Exploitation of Remote Services: No evidence</li>
+          <li style="padding:5px 0; border-bottom:1px solid rgba(30,42,62,0.5); color:var(--warning);">T0978 — Valid Accounts: 1 anomalous access pattern</li>
+          <li style="padding:5px 0; border-bottom:1px solid rgba(30,42,62,0.5); color:var(--success);">T0885 — Commonly Used Port: No tunneling detected</li>
+          <li style="padding:5px 0; color:var(--success);">T0862 — Supply Chain Compromise: No evidence</li>
+        </ul>
+      </div>
+    </div>
+
+    <div style="margin:20px 0;">
+      <p><strong>IT→OT Lateral Movement Indicators (Vatican Vault Behavioral Analysis):</strong></p>
+      <div style="margin:14px 0;">
+        <div class="risk-bar-wrap">
+          <div class="risk-bar-label"><span>Remote access to historian/EWS systems</span><span style="color:var(--warning);">ELEVATED — 3 sessions</span></div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" style="width:45%; background:var(--warning);"></div></div>
+        </div>
+        <div class="risk-bar-wrap" style="margin-top:10px;">
+          <div class="risk-bar-label"><span>After-hours OT network access</span><span style="color:var(--warning);">2 incidents</span></div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" style="width:30%; background:var(--warning);"></div></div>
+        </div>
+        <div class="risk-bar-wrap" style="margin-top:10px;">
+          <div class="risk-bar-label"><span>Unauthorized USB activity on EWS</span><span style="color:var(--success);">NONE</span></div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" style="width:0%; background:var(--success);"></div></div>
+        </div>
+        <div class="risk-bar-wrap" style="margin-top:10px;">
+          <div class="risk-bar-label"><span>Engineering software execution anomalies</span><span style="color:var(--success);">NONE</span></div>
+          <div class="risk-bar-track"><div class="risk-bar-fill" style="width:0%; background:var(--success);"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" id="s5">
+    <h2 class="section-title"><span class="section-number">5.</span>Risk Assessment &amp; Findings</h2>
+    <p>Risk levels follow <strong>ISA/IEC 62443-3-3</strong> Security Level (SL) targets and <strong>NIST SP 800-82 Rev. 3</strong> OT risk methodology. NERC CIP violations require self-reporting to the applicable Regional Entity.</p>
+
+    <table>
+      <thead><tr><th>FINDING</th><th>CIP/IEC REF</th><th>IMPACT</th><th>RECOMMENDATION</th></tr></thead>
+      <tbody>
+        <tr><td><strong>F-001:</strong> Unauthorized interactive remote access (CIP-005-7)</td><td style="font-family:'Share Tech Mono',monospace; font-size:11px;">CIP-005-7 R2</td><td style="color:var(--danger); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">HIGH</td><td>Immediate investigation; consider E-ISAC notification; implement MFA for all ESP access</td></tr>
+        <tr><td><strong>F-002:</strong> NERC CIP training overdue — 2 personnel</td><td style="font-family:'Share Tech Mono',monospace; font-size:11px;">CIP-004-7 R2</td><td style="color:var(--warning); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">MEDIUM</td><td>Schedule training within 15 days; remove access until complete</td></tr>
+        <tr><td><strong>F-003:</strong> Security patch P3 overdue (CIP-007-6)</td><td style="font-family:'Share Tech Mono',monospace; font-size:11px;">CIP-007-6 R2</td><td style="color:var(--warning); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">MEDIUM</td><td>Apply patch in next maintenance window; document deviation per CIP-007-6 R2.2</td></tr>
+        <tr><td><strong>F-004:</strong> Anomalous account access pattern on historian</td><td style="font-family:'Share Tech Mono',monospace; font-size:11px;">IEC 62443 SL-2</td><td style="color:var(--warning); font-family:'Share Tech Mono',monospace; font-size:11px; font-weight:700;">MEDIUM</td><td>Investigate T0978 indicator; verify access authorization with system owner</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section" id="s6">
+    <h2 class="section-title"><span class="section-number">6.</span>Vatican Vault for OT/ICS Security</h2>
+    <div style="background:rgba(217,119,6,0.06); border:1px solid rgba(217,119,6,0.25); padding:24px; border-radius:2px;">
+      <p><strong>Why Vatican Vault for Critical Infrastructure:</strong></p>
+      <ul style="margin:14px 0 0 20px; line-height:1.9;">
+        <li><strong>NERC CIP evidence collection</strong> — forensic-grade audit trail for CMEP self-reporting</li>
+        <li><strong>IT/OT boundary monitoring</strong> — detects adversary staging in IDMZ before OT pivot</li>
+        <li><strong>EWS behavioral analysis</strong> — engineer workstation anomalies are early OT attack indicators</li>
+        <li><strong>Supply chain verification (CIP-013)</strong> — confirms only authorized vendor software on OT systems</li>
+        <li><strong>Zero OT footprint</strong> — analyzes database copies from IT network; zero impact on OT operations</li>
+        <li><strong>VOLT TYPHOON detection</strong> — living-off-the-land technique detection via Windows artifact analysis</li>
+        <li><strong>E-ISAC integration ready</strong> — report format compatible with E-ISAC incident submission</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="section" id="s7">
+    <h2 class="section-title"><span class="section-number">7.</span>Reliability Coordinator Attestation</h2>
+    <div class="section-body">
+    <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border); border-left:4px solid var(--danger); padding:24px; border-radius:2px; margin-bottom:20px;">
+      <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.18em; color:var(--text-muted); margin-bottom:12px;">NERC CIP COMPLIANCE ATTESTATION — 16 U.S.C. §824o / FERC ORDER 706</p>
+      <p style="font-size:13px; line-height:1.9;">I, the undersigned Reliability Coordinator / Compliance Manager, hereby attest that this NERC CIP compliance assessment was conducted in accordance with applicable NERC reliability standards (CIP-002 through CIP-014) and FERC Order 706 requirements. All findings identified herein are accurate to the best of my knowledge. NERC CIP violations identified in this report will be self-reported to the applicable Regional Entity within the required timeframe. Vatican Vault's forensic analysis methodology is appropriate for OT/ICS compliance evidence collection as it creates zero operational impact on Bulk Electric System assets.</p>
+    </div>
+
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
+      <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border); padding:20px; border-radius:2px;">
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:14px;">COMPLIANCE MANAGER / RELIABILITY COORDINATOR</p>
+        <div style="border-bottom:1px solid var(--border); height:34px; margin-bottom:8px;"></div>
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Signature / NERC CIP SME</p>
+        <div style="border-bottom:1px solid var(--border); height:34px; margin:16px 0 8px;"></div>
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Date (YYYY-MM-DD)</p>
+      </div>
+      <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border); padding:20px; border-radius:2px;">
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:14px;">OT SECURITY ENGINEER</p>
+        <div style="border-bottom:1px solid var(--border); height:34px; margin-bottom:8px;"></div>
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Signature / GICSP / CSSA</p>
+        <div style="border-bottom:1px solid var(--border); height:34px; margin:16px 0 8px;"></div>
+        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Date Reviewed (YYYY-MM-DD)</p>
+      </div>
+    </div>
+
+    <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border); padding:18px; border-radius:2px;">
+      <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.14em; color:var(--text-muted); margin-bottom:10px;">COMPLIANCE RECORD</p>
+      <div style="font-family:'Share Tech Mono',monospace; font-size:11px; display:grid; grid-template-columns:repeat(4,1fr); gap:14px;">
+        <div><span style="color:var(--text-muted);">REPORT ID</span><br><span style="color:var(--accent);">ICS-2026-030-001</span></div>
+        <div><span style="color:var(--text-muted);">REGIONAL ENTITY</span><br><span style="color:var(--accent);">MRO / RFC</span></div>
+        <div><span style="color:var(--text-muted);">SELF-REPORT DUE</span><br><span style="color:var(--danger);">2026-04-01</span></div>
+        <div><span style="color:var(--text-muted);">E-ISAC NOTIFIED</span><br><span style="color:var(--warning);">PENDING F-001</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <p><strong>Vatican Vault v2.0</strong> — ICS/SCADA &amp; OT Security Platform</p>
+    <p>Generated: 2026-03-01 | Audit ID: ICS-2026-030-001 | Classification: CUI — CRITICAL ENERGY INFRASTRUCTURE INFORMATION (CEII)</p>
+    <p style="margin-top:8px; font-size:10px;">Regulatory Framework: NERC CIP-002–014 · NIST SP 800-82 Rev. 3 · ISA/IEC 62443 · FERC Order 706 · 16 U.S.C. §824o</p>
+  </div>
+
+</div>
+
+<style>
+#vv-print-btn { position:fixed; bottom:28px; right:28px; z-index:9999; background:var(--accent); color:#000; border:none; padding:10px 18px; font-family:'Share Tech Mono',monospace; font-size:12px; font-weight:700; letter-spacing:0.08em; cursor:pointer; border-radius:3px; box-shadow:0 0 18px rgba(217,119,6,0.35); transition:opacity 0.2s; }
+#vv-print-btn:hover { opacity:0.85; }
+#vv-top-btn { position:fixed; bottom:28px; right:140px; z-index:9999; background:rgba(255,255,255,0.08); border:1px solid var(--accent); color:var(--accent); padding:10px 14px; font-size:14px; cursor:pointer; border-radius:3px; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+#vv-top-btn.visible { opacity:1; pointer-events:auto; }
+.section > h2.section-title { cursor:pointer; position:relative; }
+.section > h2.section-title::after { content:'▼'; position:absolute; right:0; font-size:11px; opacity:0.4; transition:transform 0.25s; }
+.vv-collapsed > h2.section-title::after { transform:rotate(-90deg); }
+.vv-collapsed .section-body { display:none; }
+[data-severity].hidden { display:none; }
+@media print { #vv-print-btn, #vv-top-btn, .vv-nav { display:none !important; } }
+</style>
+<button id="vv-print-btn" onclick="window.print()">⎙ PRINT / PDF</button>
+<button id="vv-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ TOP</button>
+<script>
+window.addEventListener('scroll',function(){ var b=document.getElementById('vv-top-btn'); if(b)b.classList.toggle('visible',window.scrollY>400); });
+document.querySelectorAll('.section').forEach(function(sec){ var h2=sec.querySelector('h2.section-title'); if(!h2)return; var body=document.createElement('div'); body.className='section-body'; Array.from(sec.childNodes).filter(function(n){return n!==h2;}).forEach(function(c){body.appendChild(c);}); sec.appendChild(body); h2.addEventListener('click',function(){sec.classList.toggle('vv-collapsed');}); });
+document.querySelectorAll('.vv-filter-btn').forEach(function(btn){ btn.addEventListener('click',function(){ var val=btn.dataset.filter; document.querySelectorAll('.vv-filter-btn').forEach(function(b){b.classList.remove('active');}); btn.classList.add('active'); document.querySelectorAll('[data-severity]').forEach(function(row){ row.classList.toggle('hidden', val!=='all' && row.dataset.severity!==val); }); }); });
+</script>
+</body>
+</html>

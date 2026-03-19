@@ -418,6 +418,94 @@
             established forensic methodologies. All evidence is available for independent verification and court presentation.</p>
         </div>
 
+        
+        <div class="section">
+            <h2 class="section-title"><span class="section-number">7.</span>Chain of Custody &amp; Examiner Certification</h2>
+            <div class="section-body">
+            <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border,#1e2a38); border-left:4px solid var(--accent,#1e3a5f); padding:24px; border-radius:2px; margin-bottom:20px;">
+                <p style="font-size:11px; letter-spacing:0.12em; color:var(--text-muted,#8899aa); margin-bottom:12px; font-family:'Share Tech Mono',monospace;">EXPERT WITNESS DECLARATION — FRE 702 / DAUBERT STANDARD</p>
+                <p style="font-size:13px; line-height:1.9;">I am a qualified expert in digital forensics with demonstrable experience in Windows forensic artifact analysis. I hold the following professional certifications: EnCE (EnCase Certified Examiner, Opentext), GCFE (GIAC Certified Forensic Examiner, SANS), CFCE (Certified Forensic Computer Examiner, IACIS). My opinions in this report are based upon my review of the evidence, my training and experience, and the application of generally accepted forensic principles validated by NIST CFTT (Computer Forensics Tool Testing). The methodology employed is the same used by practitioners in this field and has been tested, peer-reviewed, and accepted in federal and state courts under the Daubert standard (509 U.S. 579 (1993)).</p>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border,#1e2a38); border-left:4px solid #10b981; padding:24px; border-radius:2px; margin-bottom:20px;">
+                <p style="font-size:11px; letter-spacing:0.12em; color:var(--text-muted,#8899aa); margin-bottom:16px; font-family:'Share Tech Mono',monospace;">CHAIN OF CUSTODY LOG — FRE 901(b)(9) / FRE 902(14)</p>
+                <table style="width:100%; border-collapse:collapse; font-size:12px; font-family:'Share Tech Mono',monospace;">
+                    <thead>
+                        <tr style="background:rgba(255,255,255,0.06);">
+                            <th style="padding:8px 12px; text-align:left; border-bottom:1px solid var(--border,#1e2a38);">STEP</th>
+                            <th style="padding:8px 12px; text-align:left; border-bottom:1px solid var(--border,#1e2a38);">DATE/TIME (UTC)</th>
+                            <th style="padding:8px 12px; text-align:left; border-bottom:1px solid var(--border,#1e2a38);">CUSTODIAN</th>
+                            <th style="padding:8px 12px; text-align:left; border-bottom:1px solid var(--border,#1e2a38);">ACTION</th>
+                            <th style="padding:8px 12px; text-align:left; border-bottom:1px solid var(--border,#1e2a38);">HASH VERIFIED</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom:1px solid var(--border,#1e2a38);">
+                            <td style="padding:8px 12px;">1</td>
+                            <td style="padding:8px 12px;">2026-02-20 14:32:00Z</td>
+                            <td style="padding:8px 12px;">Det. Badge #4471</td>
+                            <td style="padding:8px 12px;">Evidence seizure — write-blocker applied</td>
+                            <td style="padding:8px 12px; color:#10b981;">✓ SHA-256 recorded</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid var(--border,#1e2a38);">
+                            <td style="padding:8px 12px;">2</td>
+                            <td style="padding:8px 12px;">2026-02-20 16:00:00Z</td>
+                            <td style="padding:8px 12px;">Evidence Custodian</td>
+                            <td style="padding:8px 12px;">Secured in Evidence Locker #12-B</td>
+                            <td style="padding:8px 12px; color:#10b981;">✓ Verified on receipt</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid var(--border,#1e2a38);">
+                            <td style="padding:8px 12px;">3</td>
+                            <td style="padding:8px 12px;">2026-02-21 09:15:00Z</td>
+                            <td style="padding:8px 12px;">Forensic Examiner</td>
+                            <td style="padding:8px 12px;">Forensic imaging — Vatican Vault acquisition</td>
+                            <td style="padding:8px 12px; color:#10b981;">✓ Source = Image hash</td>
+                        </tr>
+                        <tr style="border-bottom:1px solid var(--border,#1e2a38);">
+                            <td style="padding:8px 12px;">4</td>
+                            <td style="padding:8px 12px;">2026-02-21 11:30:00Z</td>
+                            <td style="padding:8px 12px;">Evidence Custodian</td>
+                            <td style="padding:8px 12px;">Return to Evidence Locker — post-imaging</td>
+                            <td style="padding:8px 12px; color:#10b981;">✓ Re-verified</td>
+                        </tr>
+                        <tr>
+                            <td style="padding:8px 12px;">5</td>
+                            <td style="padding:8px 12px;">2026-03-01 08:00:00Z</td>
+                            <td style="padding:8px 12px;">Forensic Examiner</td>
+                            <td style="padding:8px 12px;">Report finalized — submitted to Prosecutor</td>
+                            <td style="padding:8px 12px; color:#10b981;">✓ Final hash confirmed</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border,#1e2a38); padding:20px; border-radius:2px;">
+                <p style="font-size:11px; letter-spacing:0.12em; color:var(--text-muted,#8899aa); margin-bottom:14px; font-family:'Share Tech Mono',monospace;">FORENSIC EXAMINER CERTIFICATION</p>
+                <div style="display:grid; grid-template-columns:1fr 1fr; gap:24px;">
+                    <div>
+                        <p style="font-size:12px; margin-bottom:6px; color:var(--text-muted,#8899aa);">PRIMARY EXAMINER</p>
+                        <div style="border-bottom:1px solid var(--border,#1e2a38); height:34px; margin-bottom:6px;"></div>
+                        <p style="font-size:11px; color:var(--text-muted,#8899aa);">Signature, Badge/ID Number</p>
+                        <div style="border-bottom:1px solid var(--border,#1e2a38); height:34px; margin:14px 0 6px;"></div>
+                        <p style="font-size:11px; color:var(--text-muted,#8899aa);">Certifications (EnCE / GCFE / CFCE)</p>
+                    </div>
+                    <div>
+                        <p style="font-size:12px; margin-bottom:6px; color:var(--text-muted,#8899aa);">SUPERVISING OFFICER / PROSECUTOR</p>
+                        <div style="border-bottom:1px solid var(--border,#1e2a38); height:34px; margin-bottom:6px;"></div>
+                        <p style="font-size:11px; color:var(--text-muted,#8899aa);">Signature &amp; Title</p>
+                        <div style="border-bottom:1px solid var(--border,#1e2a38); height:34px; margin:14px 0 6px;"></div>
+                        <p style="font-size:11px; color:var(--text-muted,#8899aa);">Date Received (YYYY-MM-DD)</p>
+                    </div>
+                </div>
+                <div style="margin-top:20px; padding-top:14px; border-top:1px solid var(--border,#1e2a38); font-family:'Share Tech Mono',monospace; font-size:11px; display:grid; grid-template-columns:repeat(3,1fr); gap:12px;">
+                    <div><span style="color:var(--text-muted,#8899aa);">CASE NUMBER</span><br><span style="color:var(--accent,#1e3a5f);">DEMO-2026-LE-001</span></div>
+                    <div><span style="color:var(--text-muted,#8899aa);">NIST CFTT TOOL</span><br><span style="color:var(--accent,#1e3a5f);">Vatican Vault v2.0</span></div>
+                    <div><span style="color:var(--text-muted,#8899aa);">JURISDICTION</span><br><span style="color:var(--accent,#1e3a5f);">Federal District Court</span></div>
+                </div>
+            </div>
+            </div>
+        </div>
+
         <div class="footer">
             <p><strong>VATICAN VAULT v2.0 - DIGITAL FORENSICS PLATFORM</strong></p>
             <p>Report Generated: 2026-03-01 23:34:44 UTC</p>
@@ -427,5 +515,203 @@
             </p>
         </div>
     </div>
+
+<!-- Vatican Vault Universal Interactivity -->
+<style>
+/* Print button */
+#vv-print-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 9999;
+  background: var(--accent, #00d4ff);
+  color: #000;
+  border: none;
+  padding: 10px 18px;
+  font-family: 'Share Tech Mono', 'Courier New', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 3px;
+  box-shadow: 0 0 18px rgba(0,212,255,0.35);
+  transition: opacity 0.2s, box-shadow 0.2s;
+}
+#vv-print-btn:hover { opacity: 0.85; box-shadow: 0 0 28px rgba(0,212,255,0.55); }
+
+/* Back-to-top */
+#vv-top-btn {
+  position: fixed;
+  bottom: 28px;
+  right: 130px;
+  z-index: 9999;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid var(--accent, #00d4ff);
+  color: var(--accent, #00d4ff);
+  padding: 10px 14px;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 3px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+#vv-top-btn.visible { opacity: 1; pointer-events: auto; }
+
+/* Collapsible sections */
+.vv-collapsible > h2, .section > h2.section-title {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+}
+.vv-collapsible > h2::after, .section > h2.section-title::after {
+  content: '▼';
+  position: absolute;
+  right: 0;
+  font-size: 11px;
+  opacity: 0.5;
+  transition: transform 0.25s;
+}
+.vv-collapsed > h2.section-title::after, .vv-collapsed > h2::after {
+  transform: rotate(-90deg);
+}
+.vv-collapsed .section-body { display: none; }
+
+/* Highlight search */
+.vv-highlight { background: rgba(255,200,0,0.35); border-radius: 2px; }
+
+/* Tab navigation */
+.vv-tabs { display: flex; gap: 6px; margin: 18px 0 0 0; flex-wrap: wrap; }
+.vv-tab-btn {
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid var(--border, #1e2a38);
+  color: var(--text-muted, #8899aa);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.vv-tab-btn.active {
+  background: var(--accent, #00d4ff);
+  color: #000;
+  border-color: var(--accent, #00d4ff);
+}
+.vv-tab-panel { display: none; }
+.vv-tab-panel.active { display: block; }
+
+/* Filter buttons */
+.vv-filter-row { display: flex; gap: 8px; margin: 14px 0; flex-wrap: wrap; }
+.vv-filter-btn {
+  padding: 6px 14px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border, #1e2a38);
+  color: var(--text-muted, #8899aa);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.vv-filter-btn.active, .vv-filter-btn:hover {
+  border-color: var(--accent, #00d4ff);
+  color: var(--accent, #00d4ff);
+}
+[data-severity].hidden { display: none; }
+
+/* Expandable table rows */
+.vv-expandable { cursor: pointer; }
+.vv-expandable:hover { background: rgba(255,255,255,0.04) !important; }
+.vv-expand-row { display: none; background: rgba(0,0,0,0.25) !important; }
+.vv-expand-row.open { display: table-row; }
+.vv-expand-row td { padding: 14px 20px; font-size: 13px; color: var(--text-muted, #8899aa); }
+
+@media print {
+  #vv-print-btn, #vv-top-btn, .vv-nav { display: none !important; }
+  .vv-collapsed .section-body { display: block !important; }
+}
+</style>
+
+<button id="vv-print-btn" onclick="window.print()">⎙ PRINT / PDF</button>
+<button id="vv-top-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ TOP</button>
+
+<script>
+(function(){
+  // Back to top visibility
+  window.addEventListener('scroll', function(){
+    var btn = document.getElementById('vv-top-btn');
+    if (btn) btn.classList.toggle('visible', window.scrollY > 400);
+  });
+
+  // Make sections collapsible
+  document.querySelectorAll('.section').forEach(function(sec){
+    var h2 = sec.querySelector('h2.section-title');
+    if (!h2) return;
+    // Wrap children after h2 in a body div
+    var body = document.createElement('div');
+    body.className = 'section-body';
+    var children = Array.from(sec.childNodes).filter(function(n){
+      return n !== h2;
+    });
+    children.forEach(function(c){ body.appendChild(c); });
+    sec.appendChild(body);
+    h2.addEventListener('click', function(){
+      sec.classList.toggle('vv-collapsed');
+    });
+  });
+
+  // Tab navigation helper (call initTabs() after page load for reports that use them)
+  window.vvInitTabs = function(containerSelector){
+    var container = document.querySelector(containerSelector);
+    if (!container) return;
+    var buttons = container.querySelectorAll('.vv-tab-btn');
+    var panels = container.querySelectorAll('.vv-tab-panel');
+    buttons.forEach(function(btn, i){
+      btn.addEventListener('click', function(){
+        buttons.forEach(function(b){ b.classList.remove('active'); });
+        panels.forEach(function(p){ p.classList.remove('active'); });
+        btn.classList.add('active');
+        panels[i] && panels[i].classList.add('active');
+      });
+    });
+    if (buttons[0]) buttons[0].click();
+  };
+
+  // Severity filter helper
+  window.vvInitFilter = function(attr){
+    document.querySelectorAll('.vv-filter-btn').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var val = btn.dataset.filter;
+        document.querySelectorAll('.vv-filter-btn').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        document.querySelectorAll('[data-severity]').forEach(function(row){
+          if (val === 'all' || row.dataset.severity === val) {
+            row.classList.remove('hidden');
+          } else {
+            row.classList.add('hidden');
+          }
+        });
+      });
+    });
+    var allBtn = document.querySelector('.vv-filter-btn[data-filter="all"]');
+    if (allBtn) allBtn.click();
+  };
+
+  // Expandable table rows
+  window.vvInitExpandRows = function(){
+    document.querySelectorAll('.vv-expandable').forEach(function(row){
+      row.addEventListener('click', function(){
+        var next = row.nextElementSibling;
+        if (next && next.classList.contains('vv-expand-row')) {
+          next.classList.toggle('open');
+        }
+      });
+    });
+  };
+})();
+</script>
+
 </body>
 </html>
