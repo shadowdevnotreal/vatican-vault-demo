@@ -232,20 +232,6 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     <div class="vv-chart-foot">SIU investigation phase completion</div>
   </div>
 </div>
-<script>
-(function(){
-  function _initCharts(){
-    if(typeof Chart==='undefined')return;
-    var A='#0d6efd',D='rgba(13,110,253,.18)';
-    new Chart(document.getElementById('ins-radar'),{type:'radar',data:{labels:['Digital Contradiction','Claim Timing','Social Media','Behavioral Shift','Financial Pressure','Prior Claims','Witness Discrepancy','Document Integrity'],datasets:[{label:'Fraud Score',data:[82,91,76,88,74,65,79,83],backgroundColor:'rgba(13,110,253,.2)',borderColor:A,pointBackgroundColor:A,pointRadius:4},{label:'Baseline',data:[20,20,20,20,20,20,20,20],backgroundColor:'rgba(100,116,139,.1)',borderColor:'rgba(100,116,139,.4)',pointRadius:0,borderDash:[4,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{r:{min:0,max:100,grid:{color:'rgba(30,42,62,.5)'},angleLines:{color:'rgba(30,42,62,.5)'},ticks:{backdropColor:'transparent',color:'#6b86a0',font:{size:9}}}}}});
-    new Chart(document.getElementById('ins-tl'),{type:'line',data:{labels:['Pre-Claim -8w','Pre-Claim -7w','Pre-Claim -6w','Pre-Claim -5w','Pre-Claim -4w','Pre-Claim -3w','Pre-Claim -2w','Pre-Claim -1w','Claim Date','Post +1w','Post +2w','Post +3w','Post +4w','Post +5w'],datasets:[{label:'Activity Level',data:[42,45,47,51,48,63,79,112,98,87,134,156,143,127],borderColor:A,backgroundColor:D,fill:true,tension:.3,pointRadius:4,pointBackgroundColor:A},{label:'Baseline Average',data:[44,44,44,44,44,44,44,44,44,44,44,44,44,44],borderColor:'rgba(100,116,139,.5)',borderDash:[4,4],fill:false,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{x:{ticks:{font:{size:8}}},y:{title:{display:true,text:'Events/Day',color:'#6b86a0',font:{size:10}}}}}});
-    new Chart(document.getElementById('ins-cat'),{type:'doughnut',data:{labels:['Staged Accident','Exaggerated Injury','Provider Fraud','Identity Fraud','Arson/Property','Opportunistic'],datasets:[{data:[34,28,18,11,6,3],backgroundColor:['rgba(220,38,38,.85)','rgba(245,158,11,.8)','rgba(13,110,253,.8)','rgba(99,102,241,.75)','rgba(217,119,6,.75)','rgba(100,116,139,.6)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:8},boxWidth:8}}}}});
-    new Chart(document.getElementById('ins-app'),{type:'bar',data:{labels:['Legal Research','Claim Mgmt SW','Social Media','Messaging','Browser','Document Edit','Finance Apps'],datasets:[{label:'Sessions',data:[187,143,312,267,198,134,89],backgroundColor:A,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:8}}},y:{}}}});
-    new Chart(document.getElementById('ins-prog'),{type:'bar',data:{labels:['Evidence Collection','Digital Forensics','Witness Interviews','Financial Review','Medical Records','Expert Consult','SIU Referral'],datasets:[{label:'Complete %',data:[100,100,87,74,91,62,44],backgroundColor:['rgba(16,185,129,.8)','rgba(16,185,129,.8)','rgba(245,158,11,.8)','rgba(245,158,11,.7)','rgba(16,185,129,.8)','rgba(245,158,11,.65)','rgba(13,110,253,.7)'],borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}}});
-  }
-  window._vvInsCharts = _initCharts;
-})();
-</script>
 <h2 class="section-title"><span class="section-number">2.</span>Digital Activity Analysis — Behavioral Indicators</h2>
     <p>Vatican Vault's Windows Timeline analysis reveals the claimant's digital behavior during the claimed disability period. Activity patterns inconsistent with the claimed condition are flagged as fraud indicators per <strong>NICB ISO (Insurance Services Office) Fraud Indicators</strong> and state SIU guidelines.</p>
 
@@ -845,17 +831,13 @@ document.querySelectorAll('.vv-filter-btn').forEach(function(btn){ btn.addEventL
 
 <script src="../theme.js"></script>
 <script>
-/* Direct chart init — runs after all inline scripts including collapsible JS */
-(function(){
-  function tryInit(n){
-    if(typeof Chart!=='undefined' && window._vvInsCharts){
-      window._vvInsCharts();
-    } else if(n>0){
-      setTimeout(function(){tryInit(n-1);},100);
-    }
-  }
-  tryInit(20);
-})();
+/* Insurance Fraud charts — direct inline init at end of body */
+var _A='#0d6efd',_D='rgba(13,110,253,.18)';
+new Chart(document.getElementById('ins-radar'),{type:'radar',data:{labels:['Digital Contradiction','Claim Timing','Social Media','Behavioral Shift','Financial Pressure','Prior Claims','Witness Discrepancy','Document Integrity'],datasets:[{label:'Fraud Score',data:[82,91,76,88,74,65,79,83],backgroundColor:'rgba(13,110,253,.2)',borderColor:_A,pointBackgroundColor:_A,pointRadius:4},{label:'Baseline',data:[20,20,20,20,20,20,20,20],backgroundColor:'rgba(100,116,139,.1)',borderColor:'rgba(100,116,139,.4)',pointRadius:0,borderDash:[4,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{r:{min:0,max:100,grid:{color:'rgba(30,42,62,.5)'},angleLines:{color:'rgba(30,42,62,.5)'},ticks:{backdropColor:'transparent',color:'#6b86a0',font:{size:9}}}}}});
+new Chart(document.getElementById('ins-tl'),{type:'line',data:{labels:['Pre-Claim -8w','Pre-Claim -7w','Pre-Claim -6w','Pre-Claim -5w','Pre-Claim -4w','Pre-Claim -3w','Pre-Claim -2w','Pre-Claim -1w','Claim Date','Post +1w','Post +2w','Post +3w','Post +4w','Post +5w'],datasets:[{label:'Activity Level',data:[42,45,47,51,48,63,79,112,98,87,134,156,143,127],borderColor:_A,backgroundColor:_D,fill:true,tension:.3,pointRadius:4,pointBackgroundColor:_A},{label:'Baseline Average',data:[44,44,44,44,44,44,44,44,44,44,44,44,44,44],borderColor:'rgba(100,116,139,.5)',borderDash:[4,4],fill:false,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{x:{ticks:{font:{size:8}}},y:{title:{display:true,text:'Events/Day',color:'#6b86a0',font:{size:10}}}}}});
+new Chart(document.getElementById('ins-cat'),{type:'doughnut',data:{labels:['Staged Accident','Exaggerated Injury','Provider Fraud','Identity Fraud','Arson/Property','Opportunistic'],datasets:[{data:[34,28,18,11,6,3],backgroundColor:['rgba(220,38,38,.85)','rgba(245,158,11,.8)','rgba(13,110,253,.8)','rgba(99,102,241,.75)','rgba(217,119,6,.75)','rgba(100,116,139,.6)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:8},boxWidth:8}}}}});
+new Chart(document.getElementById('ins-app'),{type:'bar',data:{labels:['Legal Research','Claim Mgmt SW','Social Media','Messaging','Browser','Document Edit','Finance Apps'],datasets:[{label:'Sessions',data:[187,143,312,267,198,134,89],backgroundColor:_A,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:8}}},y:{}}}});
+new Chart(document.getElementById('ins-prog'),{type:'bar',data:{labels:['Evidence Collection','Digital Forensics','Witness Interviews','Financial Review','Medical Records','Expert Consult','SIU Referral'],datasets:[{label:'Complete %',data:[100,100,87,74,91,62,44],backgroundColor:['rgba(16,185,129,.8)','rgba(16,185,129,.8)','rgba(245,158,11,.8)','rgba(245,158,11,.7)','rgba(16,185,129,.8)','rgba(245,158,11,.65)','rgba(13,110,253,.7)'],borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}}});
 </script>
 </body>
 </html>
