@@ -243,7 +243,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     new Chart(document.getElementById('ins-app'),{type:'bar',data:{labels:['Legal Research','Claim Mgmt SW','Social Media','Messaging','Browser','Document Edit','Finance Apps'],datasets:[{label:'Sessions',data:[187,143,312,267,198,134,89],backgroundColor:A,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:8}}},y:{}}}});
     new Chart(document.getElementById('ins-prog'),{type:'bar',data:{labels:['Evidence Collection','Digital Forensics','Witness Interviews','Financial Review','Medical Records','Expert Consult','SIU Referral'],datasets:[{label:'Complete %',data:[100,100,87,74,91,62,44],backgroundColor:['rgba(16,185,129,.8)','rgba(16,185,129,.8)','rgba(245,158,11,.8)','rgba(245,158,11,.7)','rgba(16,185,129,.8)','rgba(245,158,11,.65)','rgba(13,110,253,.7)'],borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}}});
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',_initCharts);else _initCharts();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(_initCharts,80);});else setTimeout(_initCharts,80);
 })();
 </script>
 <h2 class="section-title"><span class="section-number">2.</span>Digital Activity Analysis — Behavioral Indicators</h2>

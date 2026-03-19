@@ -296,7 +296,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 .vv-chart-row{display:grid;gap:18px;margin:20px 0}
 .vv-chart-row.c2{grid-template-columns:1fr 1fr}
 .vv-chart-row.c3{grid-template-columns:1fr 1fr 1fr}
-.vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px}
+.vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px;min-width:0;overflow:hidden}
 .vv-chart-lbl{font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim,#6b86a0);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border,#1e2a3e)}
 .vv-chart-c{position:relative;width:100%;overflow:hidden}
 .vv-chart-c.h180{height:180px}.vv-chart-c.h220{height:220px}.vv-chart-c.h260{height:260px}.vv-chart-c.h300{height:300px}
@@ -433,7 +433,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     new Chart(document.getElementById('mssp-sev'),{type:'doughnut',data:{labels:['Critical','High','Medium','Low','Informational'],datasets:[{data:[23,87,241,412,1090],backgroundColor:['#dc2626','#f59e0b',A,'rgba(8,145,178,.6)','rgba(100,116,139,.5)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}}}});
     new Chart(document.getElementById('mssp-cat'),{type:'doughnut',data:{labels:['Initial Access','Execution','Persistence','Privilege Esc.','Defense Evasion','Credential Access','Discovery','Lateral Movement','Exfiltration'],datasets:[{data:[187,143,124,98,112,89,76,43,27],backgroundColor:['rgba(220,38,38,.85)','rgba(220,38,38,.75)','rgba(245,158,11,.8)','rgba(245,158,11,.7)','rgba(8,145,178,.8)','rgba(8,145,178,.7)','rgba(99,102,241,.75)','rgba(99,102,241,.65)','rgba(100,116,139,.6)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:8},boxWidth:8}}}}});
     new Chart(document.getElementById('mssp-mttd'),{type:'line',data:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],datasets:[{label:'MTTD (hrs)',data:[4.2,3.8,3.1,2.7,2.3,1.9],borderColor:A,backgroundColor:D,fill:true,tension:.4,pointRadius:4,pointBackgroundColor:A}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'Hours',color:'#6b86a0',font:{size:10}}}}}});
-    new Chart(document.getElementById('mssp-sla'),{type:'bar',data:{labels:['Tier 1 (Critical)','Tier 2 (High)','Tier 3 (Medium)','Tier 4 (Low)'],datasets:[{label:'SLA Met %',data:[98.7,99.1,99.6,99.9],backgroundColor:[A,A,A,A],borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:95,max:100,ticks:{callback:function(v){return v+'%'}}}}}});
+    new Chart(document.getElementById('mssp-sla'),{type:'bar',data:{labels:['Tier 1 (Critical)','Tier 2 (High)','Tier 3 (Medium)','Tier 4 (Low)'],datasets:[{label:'SLA Met %',data:[98.7,99.1,99.6,99.9],backgroundColor:[A,A,A,A],borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:96,max:100,ticks:{callback:function(v){return v+'%'},stepSize:1},grid:{color:'rgba(30,42,62,.5)'}}}}});
   });
 })();
 </script>

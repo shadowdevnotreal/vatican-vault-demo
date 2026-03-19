@@ -380,7 +380,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     new Chart(document.getElementById('gc-domain'),{type:'bar',data:{labels:['Access Control','Data Protection','Audit & Log','Incident Response','Risk Management','Vendor Mgmt','Change Control','Business Continuity'],datasets:[{label:'Implemented %',data:[88,82,91,74,79,68,84,72],backgroundColor:A,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}}});
     new Chart(document.getElementById('gc-remed'),{type:'bar',data:{labels:['Quick Win (<1w)','Short Term (1-4w)','Medium Term (1-3m)','Long Term (3-6m)','Strategic (6m+)'],datasets:[{label:'Findings',data:[8,14,21,11,4],backgroundColor:['rgba(16,185,129,.8)','rgba(245,158,11,.8)',A,'rgba(245,158,11,.65)','rgba(220,38,38,.7)'],borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{title:{display:true,text:'# Findings',color:'#6b86a0',font:{size:10}}}}}});
   }
-  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',_initCharts);else _initCharts();
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(_initCharts,80);});else setTimeout(_initCharts,80);
 })();
 </script>
 

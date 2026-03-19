@@ -326,8 +326,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
             <div class="subtitle">Executive Security Report</div>
         </div>
 
-        <h1 style="font-size: 32px; color: #111827; margin-bottom: 10px;">Security Assessment Summary</h1>
-        <p style="color: #6b7280; font-size: 16px; margin-bottom: 30px;">
+        <h1 style="font-size: 32px; color: var(--text, #e2e8f0); margin-bottom: 10px;">Security Assessment Summary</h1>
+        <p style="color: var(--text-muted, #94a3b8); font-size: 16px; margin-bottom: 30px;">
             <strong>User:</strong> Test_User_001 &nbsp;|&nbsp;
             <strong>Computer:</strong> DESKTOP-VV-DEMO &nbsp;|&nbsp;
             <strong>Date:</strong> 2026-03-01
@@ -411,9 +411,129 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
             </ol>
         </div>
 
+        <div class="section">
+            <h2 class="section-title">Executive Sign-Off &amp; Certification</h2>
+            <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border,#1e2a38); border-left:4px solid var(--accent,#00d4ff); padding:24px; border-radius:2px; margin-bottom:20px;">
+                <p style="font-size:11px; letter-spacing:0.12em; color:var(--text-muted,#8899aa); margin-bottom:12px; font-family:'Share Tech Mono',monospace;">EXECUTIVE SECURITY ASSESSMENT ATTESTATION</p>
+                <p style="font-size:13px; line-height:1.9;">This Executive Security Assessment Report has been reviewed and approved by authorized personnel. The findings, risk ratings, and recommendations contained herein represent the collective judgment of the security assessment team and have been prepared in accordance with applicable security frameworks and organizational risk tolerance guidelines. This report is confidential and intended solely for the use of authorized executive leadership.</p>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px;">
+                <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border,#1e2a38); padding:20px; border-radius:2px;">
+                    <p style="font-size:11px; letter-spacing:0.1em; color:var(--text-muted,#8899aa); margin-bottom:14px; font-family:'Share Tech Mono',monospace;">CISO / SECURITY DIRECTOR</p>
+                    <div class="vv-sig-block">
+                        <div class="vv-sig-container">
+                            <div class="vv-sig-fields">
+                                <div>
+                                    <div class="vv-sig-field-label">SIGNATURE / CISSP / CISM</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                    <div>
+                                        <div class="vv-sig-field-label">DATE SIGNED</div>
+                                        <input type="date" class="vv-date-input">
+                                    </div>
+                                    <div>
+                                        <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                        <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                        </div>
+                        <div class="vv-locked-badge">
+                            <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                            <span class="vv-lock-timestamp"></span>
+                            <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                        </div>
+                    </div>
+                    <div class="vv-sig-block" style="margin-top:14px;">
+                        <div class="vv-sig-container">
+                            <div class="vv-sig-fields">
+                                <div>
+                                    <div class="vv-sig-field-label">LEAD SECURITY ANALYST</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                    <div>
+                                        <div class="vv-sig-field-label">DATE SIGNED</div>
+                                        <input type="date" class="vv-date-input">
+                                    </div>
+                                    <div>
+                                        <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                        <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                        </div>
+                        <div class="vv-locked-badge">
+                            <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                            <span class="vv-lock-timestamp"></span>
+                            <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                        </div>
+                    </div>
+                </div>
+                <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border,#1e2a38); padding:20px; border-radius:2px;">
+                    <p style="font-size:11px; letter-spacing:0.1em; color:var(--text-muted,#8899aa); margin-bottom:14px; font-family:'Share Tech Mono',monospace;">EXECUTIVE ACKNOWLEDGMENT</p>
+                    <div class="vv-sig-block">
+                        <div class="vv-sig-container">
+                            <div class="vv-sig-fields">
+                                <div>
+                                    <div class="vv-sig-field-label">CIO / CTO / EXECUTIVE SPONSOR</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                    <div>
+                                        <div class="vv-sig-field-label">DATE SIGNED</div>
+                                        <input type="date" class="vv-date-input">
+                                    </div>
+                                    <div>
+                                        <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                        <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                        </div>
+                        <div class="vv-locked-badge">
+                            <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                            <span class="vv-lock-timestamp"></span>
+                            <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                        </div>
+                    </div>
+                    <div class="vv-sig-block" style="margin-top:14px;">
+                        <div class="vv-sig-container">
+                            <div class="vv-sig-fields">
+                                <div>
+                                    <div class="vv-sig-field-label">RISK OWNER / DEPARTMENT HEAD</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                                </div>
+                                <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                    <div>
+                                        <div class="vv-sig-field-label">DATE SIGNED</div>
+                                        <input type="date" class="vv-date-input">
+                                    </div>
+                                    <div>
+                                        <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                        <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                        </div>
+                        <div class="vv-locked-badge">
+                            <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                            <span class="vv-lock-timestamp"></span>
+                            <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="footer">
             <p><strong>Vatican Vault v2.0</strong> - Digital Forensics Platform</p>
-            <p>Generated: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}</p>
+            <p>Generated: 2026-03-01</p>
             <p style="margin-top: 10px; font-size: 12px;">CONFIDENTIAL - For authorized personnel only</p>
         </div>
     </div>
