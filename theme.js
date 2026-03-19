@@ -1,18 +1,20 @@
-/* Vatican Vault — Site-wide Light/Dark Theme Toggle v2
-   Include with: <script src="/theme.js"></script> or <script src="../theme.js"></script> */
+/* Vatican Vault — Site-wide Light/Dark Theme Toggle v3 */
 (function () {
-  var KEY = 'vv-theme';
+  var KEY   = 'vv-theme';
   var LIGHT = 'vv-light';
-  var html = document.documentElement;
+  var html  = document.documentElement;
 
-  /* ── Inject CSS ──────────────────────────────────────────────────────── */
+  /* ── CSS ─────────────────────────────────────────────────────────────── */
   var css = `
 html.vv-light { --bg:#f2f5f9; --surface:#ffffff; --border:#d1d8e0; --text:#1a202c; --text-muted:#64748b; --text-dim:#64748b; --text-mid:#374151; }
 html.vv-light body { background:#f2f5f9 !important; color:#1a202c !important; }
-html.vv-light .vv-nav { background:rgba(242,245,249,0.97) !important; border-bottom-color:#d1d8e0 !important; }
+html.vv-light .nav,html.vv-light .vv-nav { background:rgba(242,245,249,0.97) !important; border-bottom-color:#d1d8e0 !important; }
+html.vv-light .nav-links a { color:#475569 !important; }
+html.vv-light .nav-links a:hover,html.vv-light .nav-links a.active { color:var(--accent,#0d6efd) !important; background:rgba(13,110,253,0.06) !important; border-color:#d1d8e0 !important; }
 html.vv-light .vv-nav a { color:#475569 !important; }
 html.vv-light .vv-nav a:hover { color:var(--accent,#0d6efd) !important; }
 html.vv-light .vv-nav .logo { color:var(--accent,#0d6efd) !important; }
+html.vv-light .nav-logo { color:var(--accent,#00d4ff) !important; }
 html.vv-light .report-header,html.vv-light header.report-header { background:linear-gradient(135deg,#e2e8f2 0%,#f2f5f9 100%) !important; border-bottom-color:#d1d8e0 !important; }
 html.vv-light .report-header::before { opacity:0.3 !important; }
 html.vv-light .vv-chart-card { background:#ffffff !important; border-color:#d1d8e0 !important; }
@@ -44,47 +46,37 @@ html.vv-light .attestation { border-color:#d1d8e0 !important; background:#ffffff
 html.vv-light .risk-bar-track { background:rgba(0,0,0,0.08) !important; }
 html.vv-light strong { color:#1a202c !important; }
 html.vv-light .section-number { color:var(--accent,#0d6efd) !important; }
-html.vv-light .vv-collapsible > h2 { background:rgba(0,0,0,0.03) !important; }
-html.vv-light .vv-collapsible > h2:hover { background:rgba(0,0,0,0.06) !important; }
+html.vv-light .card { background:rgba(0,0,0,0.03) !important; border-color:#d1d8e0 !important; }
 html.vv-light .evidence-chain,html.vv-light .timeline-section { background:#ffffff !important; border-color:#d1d8e0 !important; }
-/* ── Theme toggle button ── */
+
+/* ── Theme toggle button base style ── */
 #vv-theme-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 5px 12px;
-  background: rgba(0,212,255,0.10);
-  border: 1px solid var(--accent, #00d4ff);
-  color: var(--accent, #00d4ff);
+  gap: 5px;
+  padding: 5px 13px;
+  background: rgba(0,212,255,0.08);
+  border: 1px solid rgba(0,212,255,0.55);
+  color: #00d4ff;
   border-radius: 3px;
   font-family: 'Share Tech Mono', 'Courier New', monospace;
-  font-size: 11px;
+  font-size: 0.68em;
   font-weight: 700;
-  letter-spacing: 0.1em;
-  cursor: pointer;
-  transition: background 0.2s, opacity 0.2s;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  cursor: pointer;
   white-space: nowrap;
-  line-height: 1.4;
+  line-height: 1.5;
+  transition: background 0.2s, border-color 0.2s;
+  flex-shrink: 0;
 }
-#vv-theme-btn:hover { background: rgba(0,212,255,0.2); }
+#vv-theme-btn:hover { background: rgba(0,212,255,0.18); }
 html.vv-light #vv-theme-btn {
-  background: rgba(13,110,253,0.08);
-  border-color: var(--accent, #0d6efd);
-  color: var(--accent, #0d6efd);
+  background: rgba(13,110,253,0.07);
+  border-color: rgba(13,110,253,0.45);
+  color: #0d6efd;
 }
-html.vv-light #vv-theme-btn:hover { background: rgba(13,110,253,0.15); }
-/* Fallback: if nav not found, float it at top-right */
-#vv-theme-btn.vv-theme-floating {
-  position: fixed;
-  top: 12px;
-  right: 20px;
-  z-index: 10000;
-  padding: 7px 14px;
-  font-size: 12px;
-  box-shadow: 0 2px 12px rgba(0,212,255,0.25);
-}
-html.vv-light #vv-theme-btn.vv-theme-floating { box-shadow: 0 2px 12px rgba(13,110,253,0.18); }
+html.vv-light #vv-theme-btn:hover { background: rgba(13,110,253,0.14); }
 @media print { #vv-theme-btn { display:none !important; } }
 `;
   var styleEl = document.createElement('style');
@@ -92,12 +84,10 @@ html.vv-light #vv-theme-btn.vv-theme-floating { box-shadow: 0 2px 12px rgba(13,1
   styleEl.textContent = css;
   (document.head || document.documentElement).appendChild(styleEl);
 
-  /* ── Apply saved preference before first paint ───────────────────────── */
-  if (localStorage.getItem(KEY) === 'light') {
-    html.classList.add(LIGHT);
-  }
+  /* ── Apply saved theme before first paint ────────────────────────────── */
+  if (localStorage.getItem(KEY) === 'light') html.classList.add(LIGHT);
 
-  /* ── Create button ───────────────────────────────────────────────────── */
+  /* ── Build button ────────────────────────────────────────────────────── */
   function buildBtn() {
     if (document.getElementById('vv-theme-btn')) return;
     var isLight = html.classList.contains(LIGHT);
@@ -106,40 +96,44 @@ html.vv-light #vv-theme-btn.vv-theme-floating { box-shadow: 0 2px 12px rgba(13,1
     btn.id = 'vv-theme-btn';
     btn.setAttribute('aria-label', 'Toggle light/dark mode');
     btn.innerHTML = isLight
-      ? '<span style="font-size:14px">☀</span> LIGHT MODE'
-      : '<span style="font-size:14px">◑</span> DARK MODE';
-    btn.title = 'Toggle light / dark mode';
+      ? '<span style="font-size:13px;line-height:1">☀</span> Light'
+      : '<span style="font-size:13px;line-height:1">◑</span> Dark';
 
     btn.onclick = function () {
       var nowLight = html.classList.toggle(LIGHT);
       localStorage.setItem(KEY, nowLight ? 'light' : 'dark');
       btn.innerHTML = nowLight
-        ? '<span style="font-size:14px">☀</span> LIGHT MODE'
-        : '<span style="font-size:14px">◑</span> DARK MODE';
+        ? '<span style="font-size:13px;line-height:1">☀</span> Light'
+        : '<span style="font-size:13px;line-height:1">◑</span> Dark';
     };
 
-    /* Try to inject into .vv-nav */
-    var nav = document.querySelector('.vv-nav');
-    if (nav) {
-      /* Push to the far right of the nav */
-      btn.style.marginLeft = 'auto';
-      /* If logo already has margin-right:auto, we need a wrapper span */
-      var logo = nav.querySelector('.logo');
-      if (logo && logo.style.marginRight === 'auto') {
-        logo.style.marginRight = '';
-        btn.style.marginLeft = 'auto';
-      }
-      nav.appendChild(btn);
+    /* ── Try to inject into nav ─────────────────────────────────────────
+       Priority order:
+       1. .nav-links  (index.html style — append as last link)
+       2. .vv-nav     (report pages  — append at far right)
+       3. Floating fallback at top-right
+    ──────────────────────────────────────────────────────────────────── */
+    var navLinks = document.querySelector('.nav-links');
+    var vvNav    = document.querySelector('.vv-nav');
+
+    if (navLinks) {
+      /* Separate the button slightly from the nav links */
+      btn.style.marginLeft = '12px';
+      navLinks.appendChild(btn);
+    } else if (vvNav) {
+      /* Push to far right — logo already has margin-right:auto */
+      vvNav.appendChild(btn);
     } else {
-      /* No nav — float it at top-right */
-      btn.classList.add('vv-theme-floating');
+      /* Fallback: fixed top-right, well clear of any nav */
+      btn.style.cssText = [
+        'position:fixed', 'top:12px', 'right:20px', 'z-index:10000',
+        'padding:6px 14px', 'font-size:11px',
+        'box-shadow:0 2px 12px rgba(0,212,255,0.25)'
+      ].join(';');
       document.body.appendChild(btn);
     }
   }
 
-  if (document.body) {
-    buildBtn();
-  } else {
-    document.addEventListener('DOMContentLoaded', buildBtn);
-  }
+  if (document.body) buildBtn();
+  else document.addEventListener('DOMContentLoaded', buildBtn);
 })();
