@@ -231,6 +231,41 @@ tr:hover td { background: rgba(255,255,255,0.02); }
 /* ── Attestation ── */
 
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function(){function d(){if(typeof Chart==='undefined')return;var C=Chart.defaults;
+C.color='#6b86a0';C.borderColor='#1e2a3e';
+C.plugins.legend.labels.color='#d8e8f5';
+C.plugins.legend.labels.font={family:"'Share Tech Mono',monospace",size:11};
+C.plugins.tooltip.backgroundColor='rgba(4,8,15,.97)';
+C.plugins.tooltip.borderColor='#1e2a3e';C.plugins.tooltip.borderWidth=1;
+C.plugins.tooltip.titleColor='#00d4ff';C.plugins.tooltip.bodyColor='#d8e8f5';
+C.plugins.tooltip.titleFont={family:"'Share Tech Mono',monospace",size:10};
+C.plugins.tooltip.bodyFont={family:"'Share Tech Mono',monospace",size:10};
+C.scale.grid.color='rgba(30,42,62,.7)';
+C.scale.ticks.color='#6b86a0';
+C.scale.ticks.font={family:"'Share Tech Mono',monospace",size:10};}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',d);else d();
+})();</script>
+<style>
+/* VV Interactive Charts */
+.vv-chart-row{display:grid;gap:18px;margin:20px 0}
+.vv-chart-row.c2{grid-template-columns:1fr 1fr}
+.vv-chart-row.c3{grid-template-columns:1fr 1fr 1fr}
+.vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px}
+.vv-chart-lbl{font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim,#6b86a0);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border,#1e2a3e)}
+.vv-chart-c{position:relative}
+.vv-chart-c.h180{height:180px}.vv-chart-c.h220{height:220px}.vv-chart-c.h260{height:260px}.vv-chart-c.h300{height:300px}
+.vv-chart-foot{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);text-align:center;margin-top:8px;opacity:.7}
+.vv-real-hdr{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:#10b981;border:1px solid rgba(16,185,129,.3);background:rgba(16,185,129,.06);padding:4px 12px;border-radius:2px;margin-bottom:14px}
+.vv-real-hdr::before{content:'◉';font-size:.8em}
+.vv-real-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.vv-real-img-wrap{border:1px solid var(--border,#1e2a3e);border-radius:2px;overflow:hidden;background:#000}
+.vv-real-img-wrap img{width:100%;height:auto;display:block}
+.vv-real-img-cap{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);padding:7px 12px;border-top:1px solid var(--border,#1e2a3e)}
+@media(max-width:720px){.vv-chart-row.c2,.vv-chart-row.c3,.vv-real-img-grid{grid-template-columns:1fr}}
+@media print{.vv-chart-c canvas{max-width:100%!important}}
+</style>
 </head>
 <body>
 
@@ -337,7 +372,50 @@ tr:hover td { background: rgba(255,255,255,0.02); }
   </div>
 
   <div class="section" id="s2">
-    <h2 class="section-title"><span class="section-number">2.</span>System Characterization &amp; FIPS 199 Categorization</h2>
+    
+<div class="vv-chart-row c2">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">NIST SP 800-53 Rev.5 — Control Family Status</div>
+    <div class="vv-chart-c h300"><canvas id="gov-ctrl"></canvas></div>
+    <div class="vv-chart-foot">18 control families assessed across AC, AT, AU, CA, CM, CP, IA, IR, MA, MP, PE, PL, PM, PS, RA, SA, SC, SI</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Continuous Monitoring (ConMon) — Key Metrics</div>
+    <div class="vv-chart-c h300"><canvas id="gov-conmon"></canvas></div>
+    <div class="vv-chart-foot">FISMA metrics: patching, vuln remediation, plan of action milestones</div>
+  </div>
+</div>
+<div class="vv-chart-row c3">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">POA&M Risk Priority</div>
+    <div class="vv-chart-c h180"><canvas id="gov-poam"></canvas></div>
+    <div class="vv-chart-foot">Open POA&M items by severity</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">FIPS 199 Impact Categorization</div>
+    <div class="vv-chart-c h180"><canvas id="gov-fips"></canvas></div>
+    <div class="vv-chart-foot">Confidentiality / Integrity / Availability</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Authorization Status</div>
+    <div class="vv-chart-c h180"><canvas id="gov-auth"></canvas></div>
+    <div class="vv-chart-foot">ATO / IATT / Denied / Pending</div>
+  </div>
+</div>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(typeof Chart==='undefined')return;
+    var A='#1a56db',D='rgba(26,86,219,.18)';
+    new Chart(document.getElementById('gov-ctrl'),{type:'bar',data:{labels:['AC','AT','AU','CA','CM','CP','IA','IR','MA','MP','PE','PL','PM','PS','RA','SA','SC','SI'],datasets:[{label:'Implemented',data:[91,88,95,82,89,84,93,78,87,90,92,80,85,88,83,86,94,89],backgroundColor:A,borderRadius:2},{label:'Partial',data:[7,9,4,12,8,11,5,15,10,7,6,14,11,9,13,10,4,8],backgroundColor:'rgba(245,158,11,.7)',borderRadius:2},{label:'Not Impl.',data:[2,3,1,6,3,5,2,7,3,3,2,6,4,3,4,4,2,3],backgroundColor:'rgba(220,38,38,.7)',borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,scales:{x:{stacked:true},y:{stacked:true,max:100,ticks:{callback:function(v){return v+'%'}}}},plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}}}});
+    new Chart(document.getElementById('gov-conmon'),{type:'line',data:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],datasets:[{label:'Patch Compliance %',data:[87,89,91,88,93,95],borderColor:A,backgroundColor:D,fill:false,tension:.3,pointRadius:4},{label:'Vuln Remediation %',data:[72,76,81,84,88,91],borderColor:'#10b981',backgroundColor:'transparent',fill:false,tension:.3,pointRadius:4,borderDash:[4,3]},{label:'POA&M Closure %',data:[61,65,70,74,79,83],borderColor:'#f59e0b',backgroundColor:'transparent',fill:false,tension:.3,pointRadius:4,borderDash:[2,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{y:{min:50,max:100,ticks:{callback:function(v){return v+'%'}}}}}});
+    new Chart(document.getElementById('gov-poam'),{type:'doughnut',data:{labels:['Critical','High','Moderate','Low'],datasets:[{data:[3,11,24,18],backgroundColor:['#dc2626','#f59e0b',A,'#10b981'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}}}});
+    new Chart(document.getElementById('gov-fips'),{type:'bar',data:{labels:['Confidentiality','Integrity','Availability'],datasets:[{label:'Current',data:[85,91,88],backgroundColor:[A,'rgba(16,185,129,.8)','rgba(245,158,11,.8)'],borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}});
+    new Chart(document.getElementById('gov-auth'),{type:'doughnut',data:{labels:['Full ATO','IATT','Under Review','Pending'],datasets:[{data:[1,0,0,0],backgroundColor:[A,'rgba(245,158,11,.8)','rgba(239,68,68,.8)','rgba(100,116,139,.6)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}}}});
+  });
+})();
+</script>
+<h2 class="section-title"><span class="section-number">2.</span>System Characterization &amp; FIPS 199 Categorization</h2>
     <p>Per <strong>FIPS Publication 199</strong> (Standards for Security Categorization of Federal Information and Information Systems) and <strong>NIST SP 800-60 Vol. II</strong>, the information system is categorized as follows:</p>
 
     <table style="margin-top:16px;">

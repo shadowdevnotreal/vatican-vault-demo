@@ -275,6 +275,41 @@
     }
     .vv-nav-back { color: rgba(0, 212, 255, 0.7) !important; }
     </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function(){function d(){if(typeof Chart==='undefined')return;var C=Chart.defaults;
+C.color='#6b86a0';C.borderColor='#1e2a3e';
+C.plugins.legend.labels.color='#d8e8f5';
+C.plugins.legend.labels.font={family:"'Share Tech Mono',monospace",size:11};
+C.plugins.tooltip.backgroundColor='rgba(4,8,15,.97)';
+C.plugins.tooltip.borderColor='#1e2a3e';C.plugins.tooltip.borderWidth=1;
+C.plugins.tooltip.titleColor='#00d4ff';C.plugins.tooltip.bodyColor='#d8e8f5';
+C.plugins.tooltip.titleFont={family:"'Share Tech Mono',monospace",size:10};
+C.plugins.tooltip.bodyFont={family:"'Share Tech Mono',monospace",size:10};
+C.scale.grid.color='rgba(30,42,62,.7)';
+C.scale.ticks.color='#6b86a0';
+C.scale.ticks.font={family:"'Share Tech Mono',monospace",size:10};}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',d);else d();
+})();</script>
+<style>
+/* VV Interactive Charts */
+.vv-chart-row{display:grid;gap:18px;margin:20px 0}
+.vv-chart-row.c2{grid-template-columns:1fr 1fr}
+.vv-chart-row.c3{grid-template-columns:1fr 1fr 1fr}
+.vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px}
+.vv-chart-lbl{font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim,#6b86a0);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border,#1e2a3e)}
+.vv-chart-c{position:relative}
+.vv-chart-c.h180{height:180px}.vv-chart-c.h220{height:220px}.vv-chart-c.h260{height:260px}.vv-chart-c.h300{height:300px}
+.vv-chart-foot{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);text-align:center;margin-top:8px;opacity:.7}
+.vv-real-hdr{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:#10b981;border:1px solid rgba(16,185,129,.3);background:rgba(16,185,129,.06);padding:4px 12px;border-radius:2px;margin-bottom:14px}
+.vv-real-hdr::before{content:'◉';font-size:.8em}
+.vv-real-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.vv-real-img-wrap{border:1px solid var(--border,#1e2a3e);border-radius:2px;overflow:hidden;background:#000}
+.vv-real-img-wrap img{width:100%;height:auto;display:block}
+.vv-real-img-cap{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);padding:7px 12px;border-top:1px solid var(--border,#1e2a3e)}
+@media(max-width:720px){.vv-chart-row.c2,.vv-chart-row.c3,.vv-real-img-grid{grid-template-columns:1fr}}
+@media print{.vv-chart-c canvas{max-width:100%!important}}
+</style>
 </head>
 <body>
 <nav class="vv-nav">
@@ -359,7 +394,50 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><span class="section-number">2.</span>Forensic Analysis Methodology</h2>
+            
+<div class="vv-chart-row c2">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Threat Alert Volume — Monitoring Period</div>
+    <div class="vv-chart-c h220"><canvas id="mssp-tl"></canvas></div>
+    <div class="vv-chart-foot">Endpoint activity events correlated across client estate</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Alert Severity Distribution</div>
+    <div class="vv-chart-c h220"><canvas id="mssp-sev"></canvas></div>
+    <div class="vv-chart-foot">SOC 2 Type II monitored alert classification</div>
+  </div>
+</div>
+<div class="vv-chart-row c3">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Threat Category Breakdown</div>
+    <div class="vv-chart-c h180"><canvas id="mssp-cat"></canvas></div>
+    <div class="vv-chart-foot">MITRE ATT&CK tactic distribution</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Mean Time to Detect (MTTD)</div>
+    <div class="vv-chart-c h180"><canvas id="mssp-mttd"></canvas></div>
+    <div class="vv-chart-foot">Detection latency trend (hours)</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Client SLA Compliance</div>
+    <div class="vv-chart-c h180"><canvas id="mssp-sla"></canvas></div>
+    <div class="vv-chart-foot">SLA adherence by tier</div>
+  </div>
+</div>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(typeof Chart==='undefined')return;
+    var A='#0891b2',D='rgba(8,145,178,.18)';
+    new Chart(document.getElementById('mssp-tl'),{type:'line',data:{labels:['Oct W3','Oct W4','Nov W1','Nov W2','Nov W3','Nov W4','Dec W1','Dec W2','Dec W3','Dec W4','Jan W1','Jan W2','Jan W3','Jan W4','Jan W5','Feb W1','Feb W2','Feb W3','Feb W4','Mar W1','Mar W2'],datasets:[{label:'Alerts',data:[72,85,78,95,91,98,103,94,98,65,52,82,89,97,95,99,108,102,84,71,94],borderColor:A,backgroundColor:D,fill:true,tension:.35,pointRadius:3,pointBackgroundColor:A}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,42,62,.5)'}},y:{grid:{color:'rgba(30,42,62,.5)'}}}}});
+    new Chart(document.getElementById('mssp-sev'),{type:'doughnut',data:{labels:['Critical','High','Medium','Low','Informational'],datasets:[{data:[23,87,241,412,1090],backgroundColor:['#dc2626','#f59e0b',A,'rgba(8,145,178,.6)','rgba(100,116,139,.5)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:9},boxWidth:10}}}}});
+    new Chart(document.getElementById('mssp-cat'),{type:'doughnut',data:{labels:['Initial Access','Execution','Persistence','Privilege Esc.','Defense Evasion','Credential Access','Discovery','Lateral Movement','Exfiltration'],datasets:[{data:[187,143,124,98,112,89,76,43,27],backgroundColor:['rgba(220,38,38,.85)','rgba(220,38,38,.75)','rgba(245,158,11,.8)','rgba(245,158,11,.7)','rgba(8,145,178,.8)','rgba(8,145,178,.7)','rgba(99,102,241,.75)','rgba(99,102,241,.65)','rgba(100,116,139,.6)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:8},boxWidth:8}}}}});
+    new Chart(document.getElementById('mssp-mttd'),{type:'line',data:{labels:['Oct','Nov','Dec','Jan','Feb','Mar'],datasets:[{label:'MTTD (hrs)',data:[4.2,3.8,3.1,2.7,2.3,1.9],borderColor:A,backgroundColor:D,fill:true,tension:.4,pointRadius:4,pointBackgroundColor:A}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{title:{display:true,text:'Hours',color:'#6b86a0',font:{size:10}}}}}});
+    new Chart(document.getElementById('mssp-sla'),{type:'bar',data:{labels:['Tier 1 (Critical)','Tier 2 (High)','Tier 3 (Medium)','Tier 4 (Low)'],datasets:[{label:'SLA Met %',data:[98.7,99.1,99.6,99.9],backgroundColor:[A,A,A,A],borderRadius:3}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{min:95,max:100,ticks:{callback:function(v){return v+'%'}}}}}});
+  });
+})();
+</script>
+<h2 class="section-title"><span class="section-number">2.</span>Forensic Analysis Methodology</h2>
 
             <p><strong>MSSP Standardized Analysis Framework:</strong></p>
             <ul style="margin: 15px 0 15px 25px; line-height:1.8;">

@@ -450,6 +450,41 @@
             .page { padding: 0 12px 60px; }
         }
     </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function(){function d(){if(typeof Chart==='undefined')return;var C=Chart.defaults;
+C.color='#6b86a0';C.borderColor='#1e2a3e';
+C.plugins.legend.labels.color='#d8e8f5';
+C.plugins.legend.labels.font={family:"'Share Tech Mono',monospace",size:11};
+C.plugins.tooltip.backgroundColor='rgba(4,8,15,.97)';
+C.plugins.tooltip.borderColor='#1e2a3e';C.plugins.tooltip.borderWidth=1;
+C.plugins.tooltip.titleColor='#00d4ff';C.plugins.tooltip.bodyColor='#d8e8f5';
+C.plugins.tooltip.titleFont={family:"'Share Tech Mono',monospace",size:10};
+C.plugins.tooltip.bodyFont={family:"'Share Tech Mono',monospace",size:10};
+C.scale.grid.color='rgba(30,42,62,.7)';
+C.scale.ticks.color='#6b86a0';
+C.scale.ticks.font={family:"'Share Tech Mono',monospace",size:10};}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',d);else d();
+})();</script>
+<style>
+/* VV Interactive Charts */
+.vv-chart-row{display:grid;gap:18px;margin:20px 0}
+.vv-chart-row.c2{grid-template-columns:1fr 1fr}
+.vv-chart-row.c3{grid-template-columns:1fr 1fr 1fr}
+.vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px}
+.vv-chart-lbl{font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim,#6b86a0);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border,#1e2a3e)}
+.vv-chart-c{position:relative}
+.vv-chart-c.h180{height:180px}.vv-chart-c.h220{height:220px}.vv-chart-c.h260{height:260px}.vv-chart-c.h300{height:300px}
+.vv-chart-foot{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);text-align:center;margin-top:8px;opacity:.7}
+.vv-real-hdr{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:#10b981;border:1px solid rgba(16,185,129,.3);background:rgba(16,185,129,.06);padding:4px 12px;border-radius:2px;margin-bottom:14px}
+.vv-real-hdr::before{content:'◉';font-size:.8em}
+.vv-real-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.vv-real-img-wrap{border:1px solid var(--border,#1e2a3e);border-radius:2px;overflow:hidden;background:#000}
+.vv-real-img-wrap img{width:100%;height:auto;display:block}
+.vv-real-img-cap{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);padding:7px 12px;border-top:1px solid var(--border,#1e2a3e)}
+@media(max-width:720px){.vv-chart-row.c2,.vv-chart-row.c3,.vv-real-img-grid{grid-template-columns:1fr}}
+@media print{.vv-chart-c canvas{max-width:100%!important}}
+</style>
 </head>
 <body>
 
@@ -797,6 +832,30 @@
         </div>
     </section>
 
+
+<div class="section" style="margin:36px 0;">
+  <h2 class="section-title"><span class="section-number" style="background:#00d4ff;color:#000;">◉</span>Real Vatican Vault System Output — Behavioral Analysis Engine v1.0</h2>
+  <div class="vv-real-hdr">Live System Output · Vatican Vault Behavioral Analysis Engine · Demo Endpoint</div>
+  <p style="color:var(--text-mid,#8899aa);margin-bottom:16px;font-size:.9em;">The following visualizations were generated directly by the Vatican Vault backend processing the real demo endpoint's <code>ActivitiesCache.db</code>. 1,853 activities across 75 applications reconstructed from Windows Activity Cache — authentic system output, not mock data.</p>
+  <div class="vv-real-img-grid">
+    <div class="vv-real-img-wrap">
+      <img src="../Demo_Data/Test%20System/Behave_V1_Output/gen_fig_top10_apps_bars.jpg" alt="Top 10 Applications" loading="lazy">
+      <div class="vv-real-img-cap">TOP 10 APPLICATIONS BY ACTIVITY FREQUENCY · 1,853 activities · 75 apps detected</div>
+    </div>
+    <div class="vv-real-img-wrap">
+      <img src="../Demo_Data/Test%20System/Behave_V1_Output/gen_fig_top10_apps_pie.jpg" alt="App Distribution" loading="lazy">
+      <div class="vv-real-img-cap">APPLICATION DISTRIBUTION · Windows Activity Cache extraction · Oct 2022 – Mar 2023</div>
+    </div>
+    <div class="vv-real-img-wrap">
+      <img src="../Demo_Data/Test%20System/Behave_V1_Output/gen_fig_useractivity_bar.jpg" alt="User Activity" loading="lazy">
+      <div class="vv-real-img-cap">USER ACTIVITY BAR CHART · 146-day monitoring window · Behavioral reconstruction</div>
+    </div>
+    <div class="vv-real-img-wrap">
+      <img src="../Demo_Data/Test%20System/Behave_V1_Output/gen_fig_useractivity_heatmap.jpg" alt="Activity Heatmap" loading="lazy">
+      <div class="vv-real-img-cap">USER ACTIVITY HEATMAP · Day × Hour pattern analysis · Vatican Vault v1.0</div>
+    </div>
+  </div>
+</div>
     <!-- ── 5. Forensic Capabilities ── -->
     <section class="section" id="s5">
         <div class="section-header">

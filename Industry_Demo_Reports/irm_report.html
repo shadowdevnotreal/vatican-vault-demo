@@ -275,6 +275,41 @@
     }
     .vv-nav-back { color: rgba(0, 212, 255, 0.7) !important; }
     </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function(){function d(){if(typeof Chart==='undefined')return;var C=Chart.defaults;
+C.color='#6b86a0';C.borderColor='#1e2a3e';
+C.plugins.legend.labels.color='#d8e8f5';
+C.plugins.legend.labels.font={family:"'Share Tech Mono',monospace",size:11};
+C.plugins.tooltip.backgroundColor='rgba(4,8,15,.97)';
+C.plugins.tooltip.borderColor='#1e2a3e';C.plugins.tooltip.borderWidth=1;
+C.plugins.tooltip.titleColor='#00d4ff';C.plugins.tooltip.bodyColor='#d8e8f5';
+C.plugins.tooltip.titleFont={family:"'Share Tech Mono',monospace",size:10};
+C.plugins.tooltip.bodyFont={family:"'Share Tech Mono',monospace",size:10};
+C.scale.grid.color='rgba(30,42,62,.7)';
+C.scale.ticks.color='#6b86a0';
+C.scale.ticks.font={family:"'Share Tech Mono',monospace",size:10};}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',d);else d();
+})();</script>
+<style>
+/* VV Interactive Charts */
+.vv-chart-row{display:grid;gap:18px;margin:20px 0}
+.vv-chart-row.c2{grid-template-columns:1fr 1fr}
+.vv-chart-row.c3{grid-template-columns:1fr 1fr 1fr}
+.vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px}
+.vv-chart-lbl{font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim,#6b86a0);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border,#1e2a3e)}
+.vv-chart-c{position:relative}
+.vv-chart-c.h180{height:180px}.vv-chart-c.h220{height:220px}.vv-chart-c.h260{height:260px}.vv-chart-c.h300{height:300px}
+.vv-chart-foot{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);text-align:center;margin-top:8px;opacity:.7}
+.vv-real-hdr{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:#10b981;border:1px solid rgba(16,185,129,.3);background:rgba(16,185,129,.06);padding:4px 12px;border-radius:2px;margin-bottom:14px}
+.vv-real-hdr::before{content:'◉';font-size:.8em}
+.vv-real-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.vv-real-img-wrap{border:1px solid var(--border,#1e2a3e);border-radius:2px;overflow:hidden;background:#000}
+.vv-real-img-wrap img{width:100%;height:auto;display:block}
+.vv-real-img-cap{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);padding:7px 12px;border-top:1px solid var(--border,#1e2a3e)}
+@media(max-width:720px){.vv-chart-row.c2,.vv-chart-row.c3,.vv-real-img-grid{grid-template-columns:1fr}}
+@media print{.vv-chart-c canvas{max-width:100%!important}}
+</style>
 </head>
 <body>
 <nav class="vv-nav">
@@ -350,7 +385,44 @@
         </div>
 
         <div class="section">
-            <h2 class="section-title"><span class="section-number">2.</span>Rapid Triage Findings</h2>
+            
+<div class="vv-chart-row c2">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Incident Activity Timeline (Real Endpoint Data)</div>
+    <div class="vv-chart-c h220"><canvas id="irm-tl"></canvas></div>
+    <div class="vv-chart-foot">1,853 activities reconstructed from Windows Activity Cache · Vatican Vault v2.0</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Windows Activity Type Distribution (Real Data)</div>
+    <div class="vv-chart-c h220"><canvas id="irm-types"></canvas></div>
+    <div class="vv-chart-foot">Source: DatabaseActivityPolicies.json · 11 activity types tracked across 41 policies</div>
+  </div>
+</div>
+<div class="vv-chart-row c2">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Entity Extraction — IOC Categories</div>
+    <div class="vv-chart-c h220"><canvas id="irm-ioc"></canvas></div>
+    <div class="vv-chart-foot">CIRCIA P.L. 117-263 reportable indicator categories</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Response Phase Completion</div>
+    <div class="vv-chart-c h220"><canvas id="irm-phase"></canvas></div>
+    <div class="vv-chart-foot">NIST SP 800-61 Rev.3 incident response lifecycle</div>
+  </div>
+</div>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(typeof Chart==='undefined')return;
+    var A='#dc2626',D='rgba(220,38,38,.18)';
+    new Chart(document.getElementById('irm-tl'),{type:'line',data:{labels:['Oct W3','Oct W4','Nov W1','Nov W2','Nov W3','Nov W4','Dec W1','Dec W2','Dec W3','Dec W4','Jan W1','Jan W2','Jan W3','Jan W4','Jan W5','Feb W1','Feb W2','Feb W3','Feb W4','Mar W1','Mar W2'],datasets:[{label:'Activities',data:[72,85,78,95,91,98,103,94,98,65,52,82,89,97,95,99,108,102,84,71,94],borderColor:A,backgroundColor:D,fill:true,tension:.35,pointRadius:3,pointBackgroundColor:A}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{grid:{color:'rgba(30,42,62,.5)'}},y:{grid:{color:'rgba(30,42,62,.5)'}}}}});
+    new Chart(document.getElementById('irm-types'),{type:'bar',data:{labels:['App Focus','Doc Access','Web Browse','File Ops','Clipboard','Network','App Launch','Media Play','Device Sync','Phone/Call','Other'],datasets:[{label:'Events',data:[412,287,198,167,143,124,108,98,76,54,186],backgroundColor:A,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{}}}});
+    new Chart(document.getElementById('irm-ioc'),{type:'doughnut',data:{labels:['File Hashes','IP Addresses','Domain Names','Registry Keys','Process Names','URLs','Email Addrs','User Accounts'],datasets:[{data:[247,183,156,134,112,98,76,47],backgroundColor:['rgba(220,38,38,.85)','rgba(220,38,38,.75)','rgba(245,158,11,.8)','rgba(245,158,11,.7)','rgba(37,99,235,.8)','rgba(37,99,235,.7)','rgba(99,102,241,.75)','rgba(16,185,129,.75)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:9},boxWidth:10}}}}});
+    new Chart(document.getElementById('irm-phase'),{type:'bar',data:{labels:['Detection','Analysis','Containment','Eradication','Recovery','Post-Incident'],datasets:[{label:'Complete %',data:[100,100,94,88,76,62],backgroundColor:['rgba(16,185,129,.8)','rgba(16,185,129,.8)','rgba(16,185,129,.8)','rgba(245,158,11,.8)','rgba(245,158,11,.8)','rgba(220,38,38,.7)'],borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}});
+  });
+})();
+</script>
+<h2 class="section-title"><span class="section-number">2.</span>Rapid Triage Findings</h2>
 
             <div class="timeline-section">
                 <h4>⏱️ Incident Timeline</h4>

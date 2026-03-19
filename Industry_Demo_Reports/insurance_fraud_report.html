@@ -90,6 +90,41 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 .vv-filter-btn.active, .vv-filter-btn:hover { border-color:var(--accent); color:var(--accent); }
 [data-indicator].hidden { display:none; }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<script>
+(function(){function d(){if(typeof Chart==='undefined')return;var C=Chart.defaults;
+C.color='#6b86a0';C.borderColor='#1e2a3e';
+C.plugins.legend.labels.color='#d8e8f5';
+C.plugins.legend.labels.font={family:"'Share Tech Mono',monospace",size:11};
+C.plugins.tooltip.backgroundColor='rgba(4,8,15,.97)';
+C.plugins.tooltip.borderColor='#1e2a3e';C.plugins.tooltip.borderWidth=1;
+C.plugins.tooltip.titleColor='#00d4ff';C.plugins.tooltip.bodyColor='#d8e8f5';
+C.plugins.tooltip.titleFont={family:"'Share Tech Mono',monospace",size:10};
+C.plugins.tooltip.bodyFont={family:"'Share Tech Mono',monospace",size:10};
+C.scale.grid.color='rgba(30,42,62,.7)';
+C.scale.ticks.color='#6b86a0';
+C.scale.ticks.font={family:"'Share Tech Mono',monospace",size:10};}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',d);else d();
+})();</script>
+<style>
+/* VV Interactive Charts */
+.vv-chart-row{display:grid;gap:18px;margin:20px 0}
+.vv-chart-row.c2{grid-template-columns:1fr 1fr}
+.vv-chart-row.c3{grid-template-columns:1fr 1fr 1fr}
+.vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px}
+.vv-chart-lbl{font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim,#6b86a0);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border,#1e2a3e)}
+.vv-chart-c{position:relative}
+.vv-chart-c.h180{height:180px}.vv-chart-c.h220{height:220px}.vv-chart-c.h260{height:260px}.vv-chart-c.h300{height:300px}
+.vv-chart-foot{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);text-align:center;margin-top:8px;opacity:.7}
+.vv-real-hdr{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:#10b981;border:1px solid rgba(16,185,129,.3);background:rgba(16,185,129,.06);padding:4px 12px;border-radius:2px;margin-bottom:14px}
+.vv-real-hdr::before{content:'◉';font-size:.8em}
+.vv-real-img-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+.vv-real-img-wrap{border:1px solid var(--border,#1e2a3e);border-radius:2px;overflow:hidden;background:#000}
+.vv-real-img-wrap img{width:100%;height:auto;display:block}
+.vv-real-img-cap{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);padding:7px 12px;border-top:1px solid var(--border,#1e2a3e)}
+@media(max-width:720px){.vv-chart-row.c2,.vv-chart-row.c3,.vv-real-img-grid{grid-template-columns:1fr}}
+@media print{.vv-chart-c canvas{max-width:100%!important}}
+</style>
 </head>
 <body>
 
@@ -167,7 +202,50 @@ tr:hover td { background:rgba(255,255,255,0.02); }
   </div>
 
   <div class="section" id="s2">
-    <h2 class="section-title"><span class="section-number">2.</span>Digital Activity Analysis — Behavioral Indicators</h2>
+    
+<div class="vv-chart-row c2">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Fraud Indicator Radar — Multi-Dimensional Analysis</div>
+    <div class="vv-chart-c h260"><canvas id="ins-radar"></canvas></div>
+    <div class="vv-chart-foot">NICB-aligned fraud indicator scoring across 8 dimensions</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Behavioral Anomaly Timeline</div>
+    <div class="vv-chart-c h260"><canvas id="ins-tl"></canvas></div>
+    <div class="vv-chart-foot">Digital activity reconstruction · Vatican Vault v2.0</div>
+  </div>
+</div>
+<div class="vv-chart-row c3">
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Fraud Category Distribution</div>
+    <div class="vv-chart-c h180"><canvas id="ins-cat"></canvas></div>
+    <div class="vv-chart-foot">Indicator classification by fraud type</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Application Behavior Pattern</div>
+    <div class="vv-chart-c h180"><canvas id="ins-app"></canvas></div>
+    <div class="vv-chart-foot">Suspicious application usage during claim period</div>
+  </div>
+  <div class="vv-chart-card">
+    <div class="vv-chart-lbl">Investigation Progress</div>
+    <div class="vv-chart-c h180"><canvas id="ins-prog"></canvas></div>
+    <div class="vv-chart-foot">SIU investigation phase completion</div>
+  </div>
+</div>
+<script>
+(function(){
+  document.addEventListener('DOMContentLoaded',function(){
+    if(typeof Chart==='undefined')return;
+    var A='#0d6efd',D='rgba(13,110,253,.18)';
+    new Chart(document.getElementById('ins-radar'),{type:'radar',data:{labels:['Digital Contradiction','Claim Timing','Social Media','Behavioral Shift','Financial Pressure','Prior Claims','Witness Discrepancy','Document Integrity'],datasets:[{label:'Fraud Score',data:[82,91,76,88,74,65,79,83],backgroundColor:'rgba(13,110,253,.2)',borderColor:A,pointBackgroundColor:A,pointRadius:4},{label:'Baseline',data:[20,20,20,20,20,20,20,20],backgroundColor:'rgba(100,116,139,.1)',borderColor:'rgba(100,116,139,.4)',pointRadius:0,borderDash:[4,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{r:{min:0,max:100,grid:{color:'rgba(30,42,62,.5)'},angleLines:{color:'rgba(30,42,62,.5)'},ticks:{backdropColor:'transparent',color:'#6b86a0',font:{size:9}}}}}});
+    new Chart(document.getElementById('ins-tl'),{type:'line',data:{labels:['Pre-Claim -8w','Pre-Claim -7w','Pre-Claim -6w','Pre-Claim -5w','Pre-Claim -4w','Pre-Claim -3w','Pre-Claim -2w','Pre-Claim -1w','Claim Date','Post +1w','Post +2w','Post +3w','Post +4w','Post +5w'],datasets:[{label:'Activity Level',data:[42,45,47,51,48,63,79,112,98,87,134,156,143,127],borderColor:A,backgroundColor:D,fill:true,tension:.3,pointRadius:4,pointBackgroundColor:A},{label:'Baseline Average',data:[44,44,44,44,44,44,44,44,44,44,44,44,44,44],borderColor:'rgba(100,116,139,.5)',borderDash:[4,4],fill:false,pointRadius:0}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{x:{ticks:{font:{size:8}}},y:{title:{display:true,text:'Events/Day',color:'#6b86a0',font:{size:10}}}}}});
+    new Chart(document.getElementById('ins-cat'),{type:'doughnut',data:{labels:['Staged Accident','Exaggerated Injury','Provider Fraud','Identity Fraud','Arson/Property','Opportunistic'],datasets:[{data:[34,28,18,11,6,3],backgroundColor:['rgba(220,38,38,.85)','rgba(245,158,11,.8)','rgba(13,110,253,.8)','rgba(99,102,241,.75)','rgba(217,119,6,.75)','rgba(100,116,139,.6)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'bottom',labels:{font:{size:8},boxWidth:8}}}}});
+    new Chart(document.getElementById('ins-app'),{type:'bar',data:{labels:['Legal Research','Claim Mgmt SW','Social Media','Messaging','Browser','Document Edit','Finance Apps'],datasets:[{label:'Sessions',data:[187,143,312,267,198,134,89],backgroundColor:A,borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:8}}},y:{}}}});
+    new Chart(document.getElementById('ins-prog'),{type:'bar',data:{labels:['Evidence Collection','Digital Forensics','Witness Interviews','Financial Review','Medical Records','Expert Consult','SIU Referral'],datasets:[{label:'Complete %',data:[100,100,87,74,91,62,44],backgroundColor:['rgba(16,185,129,.8)','rgba(16,185,129,.8)','rgba(245,158,11,.8)','rgba(245,158,11,.7)','rgba(16,185,129,.8)','rgba(245,158,11,.65)','rgba(13,110,253,.7)'],borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}}});
+  });
+})();
+</script>
+<h2 class="section-title"><span class="section-number">2.</span>Digital Activity Analysis — Behavioral Indicators</h2>
     <p>Vatican Vault's Windows Timeline analysis reveals the claimant's digital behavior during the claimed disability period. Activity patterns inconsistent with the claimed condition are flagged as fraud indicators per <strong>NICB ISO (Insurance Services Office) Fraud Indicators</strong> and state SIU guidelines.</p>
 
     <div class="fraud-indicators">
