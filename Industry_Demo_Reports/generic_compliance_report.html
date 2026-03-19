@@ -298,7 +298,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 .vv-chart-row.c3{grid-template-columns:1fr 1fr 1fr}
 .vv-chart-card{background:rgba(255,255,255,0.025);border:1px solid var(--border,#1e2a3e);border-radius:2px;padding:18px}
 .vv-chart-lbl{font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:var(--text-dim,#6b86a0);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border,#1e2a3e)}
-.vv-chart-c{position:relative}
+.vv-chart-c{position:relative;width:100%;overflow:hidden}
 .vv-chart-c.h180{height:180px}.vv-chart-c.h220{height:220px}.vv-chart-c.h260{height:260px}.vv-chart-c.h300{height:300px}
 .vv-chart-foot{font-family:'Share Tech Mono',monospace;font-size:.57em;letter-spacing:1px;color:var(--text-dim,#6b86a0);text-align:center;margin-top:8px;opacity:.7}
 .vv-real-hdr{display:inline-flex;align-items:center;gap:8px;font-family:'Share Tech Mono',monospace;font-size:.62em;letter-spacing:2px;text-transform:uppercase;color:#10b981;border:1px solid rgba(16,185,129,.3);background:rgba(16,185,129,.06);padding:4px 12px;border-radius:2px;margin-bottom:14px}
@@ -345,7 +345,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
             </tr>
         </table>
 
-        <h2>
+        <h2 class="section-title">Compliance Findings</h2>
 <div class="vv-chart-row c2">
   <div class="vv-chart-card">
     <div class="vv-chart-lbl">Framework Control Coverage Radar</div>
@@ -372,17 +372,17 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 </div>
 <script>
 (function(){
-  document.addEventListener('DOMContentLoaded',function(){
+  function _initCharts(){
     if(typeof Chart==='undefined')return;
     var A='#6366f1',D='rgba(99,102,241,.18)';
     new Chart(document.getElementById('gc-radar'),{type:'radar',data:{labels:['Identify','Protect','Detect','Respond','Recover','Govern'],datasets:[{label:'Current State',data:[82,78,74,71,68,80],backgroundColor:'rgba(99,102,241,.2)',borderColor:A,pointBackgroundColor:A,pointRadius:4},{label:'Target State',data:[95,95,90,90,88,95],backgroundColor:'rgba(16,185,129,.1)',borderColor:'rgba(16,185,129,.6)',pointBackgroundColor:'rgba(16,185,129,.6)',pointRadius:4,borderDash:[4,4]}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'top',labels:{font:{size:10},boxWidth:12}}},scales:{r:{min:0,max:100,grid:{color:'rgba(30,42,62,.5)'},angleLines:{color:'rgba(30,42,62,.5)'},ticks:{backdropColor:'transparent',color:'#6b86a0',font:{size:9}}}}}});
     new Chart(document.getElementById('gc-sev'),{type:'doughnut',data:{labels:['Critical','High','Medium','Low','Informational','Compliant'],datasets:[{data:[3,9,18,24,12,87],backgroundColor:['#dc2626','#f59e0b',A,'rgba(99,102,241,.6)','rgba(100,116,139,.5)','rgba(16,185,129,.8)'],borderWidth:1,borderColor:'#0a1220'}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{position:'right',labels:{font:{size:10},boxWidth:12}}}}});
     new Chart(document.getElementById('gc-domain'),{type:'bar',data:{labels:['Access Control','Data Protection','Audit & Log','Incident Response','Risk Management','Vendor Mgmt','Change Control','Business Continuity'],datasets:[{label:'Implemented %',data:[88,82,91,74,79,68,84,72],backgroundColor:A,borderRadius:2}]},options:{indexAxis:'y',responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{min:0,max:100,ticks:{callback:function(v){return v+'%'}}}}}}});
     new Chart(document.getElementById('gc-remed'),{type:'bar',data:{labels:['Quick Win (<1w)','Short Term (1-4w)','Medium Term (1-3m)','Long Term (3-6m)','Strategic (6m+)'],datasets:[{label:'Findings',data:[8,14,21,11,4],backgroundColor:['rgba(16,185,129,.8)','rgba(245,158,11,.8)',A,'rgba(245,158,11,.65)','rgba(220,38,38,.7)'],borderRadius:2}]},options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{x:{ticks:{font:{size:9}}},y:{title:{display:true,text:'# Findings',color:'#6b86a0',font:{size:10}}}}}});
-  });
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',_initCharts);else _initCharts();
 })();
 </script>
-Compliance Findings</h2>
 
         <div class="finding">
             <h3>⚠️ Data Protection Concern</h3>
@@ -460,7 +460,7 @@ Compliance Findings</h2>
 #vv-top-btn {
   position: fixed;
   bottom: 28px;
-  right: 130px;
+  right: 175px;
   z-index: 9999;
   background: rgba(255,255,255,0.08);
   border: 1px solid var(--accent, #00d4ff);
@@ -1013,5 +1013,6 @@ Compliance Findings</h2>
 })();
 </script>
 
+<script src="../theme.js"></script>
 </body>
 </html>
