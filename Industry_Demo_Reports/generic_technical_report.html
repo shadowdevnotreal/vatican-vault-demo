@@ -10,12 +10,12 @@
         :root {
             --accent:     #334155;
             --accent-dim: rgba(51,65,85,0.1);
-            --bg:         #f7f8fa;
-            --surface:    #ffffff;
-            --border:     #e4e8ef;
-            --text:       #1a2030;
-            --text-mid:   #4a5568;
-            --text-dim:   #8896a8;
+            --bg:         #04080f;
+            --surface:    #0a1220;
+            --border:     #1e2a3e;
+            --text:       #d8e8f5;
+            --text-mid:   #8899aa;
+            --text-dim:   #6b86a0;
             --green:      #10b981;
             --amber:      #f59e0b;
             --mono:       'Share Tech Mono', 'Courier New', monospace;
@@ -59,7 +59,7 @@
             border-top: 4px solid var(--accent);
             border-radius: 2px;
             padding: 44px 48px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 24px rgba(0,0,0,0.5);
         }
         .header {
             padding-bottom: 24px;
@@ -82,7 +82,7 @@
         .header .subtitle { color: var(--text-dim); font-size: 0.9em; }
         /* ── Case info grid ── */
         .case-info {
-            background: #f1f4f8;
+            background: rgba(255,255,255,0.04);
             border: 1px solid var(--border);
             padding: 20px 24px;
             border-radius: 2px; margin: 24px 0;
@@ -143,9 +143,9 @@
             padding: 18px 22px; margin: 18px 0;
             border-radius: 0 2px 2px 0; border-left: 3px solid;
         }
-        .evidence-chain { background: #fefce8; border-color: #f59e0b; }
+        .evidence-chain { background: rgba(245,158,11,0.08); border-color: #f59e0b; }
         .evidence-chain h4 { color: #92400e; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
-        .timeline-section { background: #eff6ff; border-color: #2563eb; }
+        .timeline-section { background: rgba(26,86,219,0.08); border-color: var(--accent); }
         .timeline-section h4 { color: #1e40af; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
         .methodology { background: #f0f9ff; border-color: #3b82f6; }
         /* ── Risk meter ── */
@@ -165,7 +165,7 @@
         }
         /* ── Tables ── */
         table { width: 100%; border-collapse: collapse; margin: 16px 0; }
-        thead tr { background: #f1f4f8; }
+        thead tr { background: rgba(255,255,255,0.04); }
         th {
             padding: 11px 14px; text-align: left;
             font-family: var(--mono);
@@ -197,7 +197,7 @@
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 16px; margin: 20px 0;
             padding: 18px 22px;
-            background: #f1f4f8;
+            background: rgba(255,255,255,0.04);
             border: 1px solid var(--border); border-radius: 2px;
         }
         .meta-item { }
@@ -208,10 +208,10 @@
         }
         .meta-item .value { font-size: 0.95em; font-weight: 600; color: var(--text); }
         /* ── Compliance boxes ── */
-        .info-box { background: #eff6ff; border-left: 3px solid #2563eb; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
+        .info-box { background: rgba(26,86,219,0.08); border-left: 3px solid #2563eb; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
         .info-box h4 { color: #1e40af; font-family: 'Rajdhani', sans-serif; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em; }
-        .warning-box { background: #fefce8; border-left: 3px solid #f59e0b; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
-        .success-box { background: #f0fdf4; border-left: 3px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
+        .warning-box { background: rgba(245,158,11,0.08); border-left: 3px solid #f59e0b; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
+        .success-box { background: rgba(16,185,129,0.08); border-left: 3px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
         /* ── Attestation ── */
         .attestation { border: 1px solid var(--border); padding: 24px; margin: 20px 0; border-radius: 2px; }
         /* ── Footer ── */
@@ -233,12 +233,12 @@
         ul, ol { margin: 10px 0 10px 24px; color: var(--text-mid); line-height: 1.8; }
         strong { color: var(--text); font-weight: 600; }
         code {
-            background: #f1f4f8; padding: 2px 7px; border-radius: 2px;
+            background: rgba(255,255,255,0.04); padding: 2px 7px; border-radius: 2px;
             font-family: var(--mono); font-size: 0.85em; color: #1e293b;
         }
         @media print {
             .vv-nav { display: none; }
-            body { background: white; padding: 0; font-size: 13px; }
+            body { background: var(--surface); padding: 0; font-size: 13px; }
             .container { box-shadow: none; border: none; }
         }
     </style>
@@ -661,6 +661,256 @@
       });
     });
   };
+})();
+</script>
+
+
+<!-- VV Signature & Lock Widget -->
+<style>
+.vv-sig-block {
+  border: 1px solid var(--border, #1e2a3e);
+  padding: 0;
+  margin: 4px 0 0 0;
+  border-radius: 2px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+.vv-sig-block.locked {
+  border-color: #10b981;
+  background: rgba(16,185,129,0.04);
+}
+.vv-sig-input-row {
+  display: flex; align-items: center; gap: 0;
+}
+.vv-sig-text {
+  flex: 1;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border, #1e2a3e);
+  color: var(--text, #d8e8f5);
+  font-family: 'Georgia', serif;
+  font-size: 16px;
+  font-style: italic;
+  padding: 8px 12px;
+  outline: none;
+  transition: border-color 0.2s;
+  width: 100%;
+  display: block;
+}
+.vv-sig-text:focus { border-color: var(--accent, #00d4ff); }
+.vv-sig-text::placeholder { font-family: 'Share Tech Mono', monospace; font-size: 12px; font-style: normal; color: var(--text-muted, #6b86a0); }
+.vv-sig-text[readonly] {
+  color: #10b981;
+  font-style: italic;
+  font-size: 18px;
+  border-bottom-color: #10b981;
+  cursor: not-allowed;
+}
+.vv-date-input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border, #1e2a3e);
+  color: var(--text, #d8e8f5);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  padding: 8px 12px;
+  outline: none;
+  width: 100%;
+  display: block;
+  transition: border-color 0.2s;
+  color-scheme: dark;
+}
+.vv-date-input:focus { border-color: var(--accent, #00d4ff); }
+.vv-date-input[readonly] {
+  color: #10b981;
+  border-bottom-color: #10b981;
+  cursor: not-allowed;
+}
+.vv-lock-btn {
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 10px 0;
+  background: transparent;
+  border: 1px solid var(--accent, #00d4ff);
+  color: var(--accent, #00d4ff);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all 0.2s;
+}
+.vv-lock-btn:hover { background: rgba(0,212,255,0.08); }
+.vv-lock-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.vv-locked-badge {
+  display: none;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(16,185,129,0.1);
+  border-top: 1px solid rgba(16,185,129,0.3);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: #10b981;
+}
+.vv-locked-badge.visible { display: flex; }
+.vv-sig-container { padding: 16px; }
+.vv-sig-fields { display: grid; gap: 12px; margin-bottom: 12px; }
+.vv-sig-field-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--text-muted, #6b86a0);
+  margin-bottom: 4px;
+}
+.vv-sig-unlock-btn {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  background: none;
+  border: none;
+  color: rgba(16,185,129,0.5);
+  cursor: pointer;
+  margin-left: auto;
+  padding: 2px 6px;
+}
+.vv-sig-unlock-btn:hover { color: #10b981; }
+@media print {
+  .vv-lock-btn, .vv-sig-unlock-btn { display: none !important; }
+  .vv-sig-text { border-bottom: 1px solid rgba(0,0,0,0.2) !important; }
+}
+</style>
+<script>
+(function(){
+  // Initialize all signature blocks
+  document.addEventListener('DOMContentLoaded', function() {
+    initSigBlocks();
+    loadSigState();
+  });
+  // Also try immediately in case DOM is ready
+  if (document.readyState !== 'loading') {
+    setTimeout(function() { initSigBlocks(); loadSigState(); }, 50);
+  }
+
+  function initSigBlocks() {
+    document.querySelectorAll('.vv-sig-block').forEach(function(block) {
+      var lockBtn = block.querySelector('.vv-lock-btn');
+      if (!lockBtn) return;
+      lockBtn.addEventListener('click', function() { lockBlock(block); });
+
+      var unlockBtn = block.querySelector('.vv-sig-unlock-btn');
+      if (unlockBtn) {
+        unlockBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          if (confirm('Unlock and clear this signature?')) { unlockBlock(block); }
+        });
+      }
+
+      // Set today's date on any date inputs
+      var today = new Date().toISOString().split('T')[0];
+      block.querySelectorAll('.vv-date-input:not([readonly])').forEach(function(d) {
+        if (!d.value) d.value = today;
+      });
+    });
+  }
+
+  function lockBlock(block) {
+    var sigs = block.querySelectorAll('.vv-sig-text');
+    var dates = block.querySelectorAll('.vv-date-input');
+    var hasAllSigs = true;
+
+    sigs.forEach(function(s) {
+      if (!s.value.trim()) hasAllSigs = false;
+    });
+    if (!hasAllSigs) {
+      alert('Please enter all required signatures before locking.');
+      return;
+    }
+
+    // Lock all inputs
+    sigs.forEach(function(s) { s.readOnly = true; });
+    dates.forEach(function(d) { d.readOnly = true; });
+
+    // Visual lock state
+    block.classList.add('locked');
+    var lockBtn = block.querySelector('.vv-lock-btn');
+    if (lockBtn) lockBtn.disabled = true;
+
+    var badge = block.querySelector('.vv-locked-badge');
+    if (badge) {
+      badge.classList.add('visible');
+      var ts = badge.querySelector('.vv-lock-timestamp');
+      if (ts) ts.textContent = new Date().toISOString().replace('T',' ').slice(0,19) + ' UTC';
+    }
+
+    // Save state to localStorage
+    saveSigState();
+  }
+
+  function unlockBlock(block) {
+    block.querySelectorAll('.vv-sig-text').forEach(function(s) { s.readOnly = false; s.value = ''; });
+    block.querySelectorAll('.vv-date-input').forEach(function(d) { d.readOnly = false; });
+    block.classList.remove('locked');
+    var lockBtn = block.querySelector('.vv-lock-btn');
+    if (lockBtn) lockBtn.disabled = false;
+    var badge = block.querySelector('.vv-locked-badge');
+    if (badge) badge.classList.remove('visible');
+    saveSigState();
+  }
+
+  function getSigKey() {
+    return 'vv_sigs_' + window.location.pathname.replace(/[^a-z0-9]/gi, '_');
+  }
+
+  function saveSigState() {
+    var state = [];
+    document.querySelectorAll('.vv-sig-block').forEach(function(block, i) {
+      var entry = { idx: i, locked: block.classList.contains('locked'), sigs: [], dates: [] };
+      block.querySelectorAll('.vv-sig-text').forEach(function(s) { entry.sigs.push(s.value); });
+      block.querySelectorAll('.vv-date-input').forEach(function(d) { entry.dates.push(d.value); });
+      var badge = block.querySelector('.vv-lock-timestamp');
+      entry.timestamp = badge ? badge.textContent : '';
+      state.push(entry);
+    });
+    try { localStorage.setItem(getSigKey(), JSON.stringify(state)); } catch(e) {}
+  }
+
+  function loadSigState() {
+    var raw;
+    try { raw = localStorage.getItem(getSigKey()); } catch(e) { return; }
+    if (!raw) return;
+    var state;
+    try { state = JSON.parse(raw); } catch(e) { return; }
+    var blocks = document.querySelectorAll('.vv-sig-block');
+    state.forEach(function(entry) {
+      var block = blocks[entry.idx];
+      if (!block) return;
+      var sigs = block.querySelectorAll('.vv-sig-text');
+      var dates = block.querySelectorAll('.vv-date-input');
+      entry.sigs.forEach(function(v, i) { if (sigs[i]) sigs[i].value = v; });
+      entry.dates.forEach(function(v, i) { if (dates[i]) dates[i].value = v; });
+      if (entry.locked) {
+        sigs.forEach(function(s) { s.readOnly = true; });
+        dates.forEach(function(d) { d.readOnly = true; });
+        block.classList.add('locked');
+        var lockBtn = block.querySelector('.vv-lock-btn');
+        if (lockBtn) lockBtn.disabled = true;
+        var badge = block.querySelector('.vv-locked-badge');
+        if (badge) {
+          badge.classList.add('visible');
+          var ts = badge.querySelector('.vv-lock-timestamp');
+          if (ts && entry.timestamp) ts.textContent = entry.timestamp;
+        }
+      }
+    });
+  }
 })();
 </script>
 

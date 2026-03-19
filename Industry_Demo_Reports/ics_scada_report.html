@@ -322,17 +322,113 @@ tr:hover td { background:rgba(255,255,255,0.02); }
     <div style="display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-bottom:20px;">
       <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border); padding:20px; border-radius:2px;">
         <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:14px;">COMPLIANCE MANAGER / RELIABILITY COORDINATOR</p>
-        <div style="border-bottom:1px solid var(--border); height:34px; margin-bottom:8px;"></div>
-        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Signature / NERC CIP SME</p>
-        <div style="border-bottom:1px solid var(--border); height:34px; margin:16px 0 8px;"></div>
-        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Date (YYYY-MM-DD)</p>
+        <div class="vv-sig-block">
+                    <div class="vv-sig-container">
+                        <div class="vv-sig-fields">
+                            <div>
+                                <div class="vv-sig-field-label">SIGNATURE / NERC CIP SME</div>
+                                <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <div>
+                                    <div class="vv-sig-field-label">DATE SIGNED</div>
+                                    <input type="date" class="vv-date-input">
+                                </div>
+                                <div>
+                                    <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                    </div>
+                    <div class="vv-locked-badge">
+                        <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                        <span class="vv-lock-timestamp"></span>
+                        <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                    </div>
+                </div>
+        <div class="vv-sig-block">
+                    <div class="vv-sig-container">
+                        <div class="vv-sig-fields">
+                            <div>
+                                <div class="vv-sig-field-label">DATE (YYYY-MM-DD)</div>
+                                <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <div>
+                                    <div class="vv-sig-field-label">DATE SIGNED</div>
+                                    <input type="date" class="vv-date-input">
+                                </div>
+                                <div>
+                                    <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                    </div>
+                    <div class="vv-locked-badge">
+                        <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                        <span class="vv-lock-timestamp"></span>
+                        <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                    </div>
+                </div>
       </div>
       <div style="background:rgba(255,255,255,0.04); border:1px solid var(--border); padding:20px; border-radius:2px;">
         <p style="font-family:'Share Tech Mono',monospace; font-size:10px; letter-spacing:0.1em; color:var(--text-muted); margin-bottom:14px;">OT SECURITY ENGINEER</p>
-        <div style="border-bottom:1px solid var(--border); height:34px; margin-bottom:8px;"></div>
-        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Signature / GICSP / CSSA</p>
-        <div style="border-bottom:1px solid var(--border); height:34px; margin:16px 0 8px;"></div>
-        <p style="font-family:'Share Tech Mono',monospace; font-size:10px; color:var(--text-muted);">Date Reviewed (YYYY-MM-DD)</p>
+        <div class="vv-sig-block">
+                    <div class="vv-sig-container">
+                        <div class="vv-sig-fields">
+                            <div>
+                                <div class="vv-sig-field-label">SIGNATURE / GICSP / CSSA</div>
+                                <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <div>
+                                    <div class="vv-sig-field-label">DATE SIGNED</div>
+                                    <input type="date" class="vv-date-input">
+                                </div>
+                                <div>
+                                    <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                    </div>
+                    <div class="vv-locked-badge">
+                        <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                        <span class="vv-lock-timestamp"></span>
+                        <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                    </div>
+                </div>
+        <div class="vv-sig-block">
+                    <div class="vv-sig-container">
+                        <div class="vv-sig-fields">
+                            <div>
+                                <div class="vv-sig-field-label">DATE REVIEWED (YYYY-MM-DD)</div>
+                                <input type="text" class="vv-sig-text" placeholder="Type full name to sign" autocomplete="off" spellcheck="false">
+                            </div>
+                            <div style="display:grid; grid-template-columns:1fr 1fr; gap:12px;">
+                                <div>
+                                    <div class="vv-sig-field-label">DATE SIGNED</div>
+                                    <input type="date" class="vv-date-input">
+                                </div>
+                                <div>
+                                    <div class="vv-sig-field-label">TITLE / CREDENTIALS</div>
+                                    <input type="text" class="vv-sig-text" placeholder="Title, certifications..." autocomplete="off">
+                                </div>
+                            </div>
+                        </div>
+                        <button class="vv-lock-btn">🔐 &nbsp; SIGN &amp; LOCK ATTESTATION</button>
+                    </div>
+                    <div class="vv-locked-badge">
+                        <span>✓ DIGITALLY SIGNED &amp; LOCKED</span>
+                        <span class="vv-lock-timestamp"></span>
+                        <button class="vv-sig-unlock-btn" title="Unlock">✕ unlock</button>
+                    </div>
+                </div>
       </div>
     </div>
 
