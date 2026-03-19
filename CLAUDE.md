@@ -21,7 +21,7 @@ On Windows: double-click `START_DEMO_SERVER.bat` — it starts the server and op
 Key URLs once the server is running:
 - `http://localhost:8000/` — Main demo hub
 - `http://localhost:8000/VC_Materials/VC_DEMO_PACKAGE.html` — Full investor package
-- `http://localhost:8000/Industry_Demo_Reports/index.html` — 12 industry reports
+- `http://localhost:8000/Industry_Demo_Reports/index.html` — 16 industry reports
 
 ## Tests
 
@@ -53,7 +53,7 @@ This requires the `markdown` Python package (`pip install markdown`).
 
 ```
 ├── VC_Materials/           # Investor documents (HTML)
-├── Industry_Demo_Reports/  # 12 industry-specific forensic reports (HTML)
+├── Industry_Demo_Reports/  # 16 industry-specific forensic reports (HTML)
 ├── Articles/               # Narrative pitch and history documents (HTML)
 ├── Demo_Data/              # Sample Windows Timeline DB and outputs
 ├── Demo_Scripts/           # Python demo scripts (require main Vatican Vault backend)
