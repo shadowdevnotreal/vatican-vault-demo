@@ -3,208 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readme</title>
+    <title>Demo Scripts - Readme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 40px 20px;
-            min-height: 100vh;
-            line-height: 1.6;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            padding: 60px;
-            border-radius: 16px;
-            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
-        }
-        h1 {
-            font-size: 42px;
-            color: #1a1a1a;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 3px solid #667eea;
-        }
-        h2 {
-            font-size: 32px;
-            color: #1a1a1a;
-            margin-top: 40px;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #e0e0e0;
-        }
-        h3 {
-            font-size: 24px;
-            color: #333;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-        h4 {
-            font-size: 20px;
-            color: #444;
-            margin-top: 25px;
-            margin-bottom: 12px;
-        }
-        h5 {
-            font-size: 18px;
-            color: #555;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-        h6 {
-            font-size: 16px;
-            color: #666;
-            margin-top: 15px;
-            margin-bottom: 8px;
-        }
-        p {
-            color: #555;
-            font-size: 16px;
-            margin-bottom: 16px;
-            line-height: 1.8;
-        }
-        a {
-            color: #667eea;
-            text-decoration: none;
-            border-bottom: 1px solid #667eea;
-            transition: all 0.3s ease;
-        }
-        a:hover {
-            color: #764ba2;
-            border-bottom-color: #764ba2;
-        }
-        ul, ol {
-            margin: 20px 0 20px 30px;
-            color: #555;
-        }
-        li {
-            margin-bottom: 10px;
-            line-height: 1.7;
-        }
-        code {
-            background: #f4f4f4;
-            padding: 3px 8px;
-            border-radius: 4px;
-            font-family: 'Consolas', 'Monaco', monospace;
-            font-size: 14px;
-            color: #e74c3c;
-        }
-        pre {
-            background: #2d2d2d;
-            color: #f8f8f2;
-            padding: 20px;
-            border-radius: 8px;
-            overflow-x: auto;
-            margin: 20px 0;
-            line-height: 1.5;
-        }
-        pre code {
-            background: none;
-            color: inherit;
-            padding: 0;
-            font-size: 14px;
-        }
-        blockquote {
-            border-left: 4px solid #667eea;
-            padding-left: 20px;
-            margin: 25px 0;
-            color: #666;
-            font-style: italic;
-            background: #f8f9fa;
-            padding: 20px 20px 20px 25px;
-            border-radius: 0 8px 8px 0;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 25px 0;
-            font-size: 15px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-        table thead {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-        }
-        table th {
-            padding: 15px;
-            text-align: left;
-            font-weight: 600;
-        }
-        table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        table tbody tr:hover {
-            background-color: #f8f9fa;
-        }
-        table tbody tr:last-child td {
-            border-bottom: none;
-        }
-        hr {
-            border: none;
-            border-top: 2px solid #e0e0e0;
-            margin: 40px 0;
-        }
-        .badge {
-            display: inline-block;
-            background: #667eea;
-            color: white;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-right: 8px;
-            margin-bottom: 20px;
-        }
-        .info-box {
-            background: #e8f4f8;
-            border-left: 4px solid #0066cc;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        .warning-box {
-            background: #fff3cd;
-            border-left: 4px solid #ff9800;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        .success-box {
-            background: #d4edda;
-            border-left: 4px solid #28a745;
-            padding: 20px;
-            margin: 25px 0;
-            border-radius: 4px;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 2px solid #e0e0e0;
-            color: #999;
-            font-size: 14px;
-        }
-        img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        strong {
-            color: #333;
-            font-weight: 600;
-        }
-        em {
-            color: #666;
-        }
+        :root { --bg:#04080f; --surface:#0a1220; --border:#1e2a3e; --text:#d8e8f5; --text-muted:#6b86a0; --accent:#00d4ff; }
+        html.vv-light { --bg:#f2f5f9; --surface:#ffffff; --border:#d1d8e0; --text:#1a202c; --text-muted:#64748b; --accent:#0d6efd; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Outfit','Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.7; }
+        .vv-nav { display:flex; align-items:center; gap:20px; padding:0 28px; height:54px; background:rgba(4,8,15,0.97); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+        html.vv-light .vv-nav { background:rgba(242,245,249,0.97) !important; border-bottom-color:#d1d8e0 !important; }
+        .vv-nav .logo { font-family:'Share Tech Mono','Courier New',monospace; font-size:14px; font-weight:900; color:var(--accent); letter-spacing:2px; margin-right:auto; }
+        .vv-nav a { font-family:'Share Tech Mono','Courier New',monospace; font-size:11px; color:var(--text-muted); text-decoration:none; border-bottom:none; letter-spacing:0.08em; }
+        .vv-nav a:hover { color:var(--accent); border-bottom:none; }
+        .container { max-width:960px; margin:0 auto; padding:48px 40px 80px; }
+        h1 { font-family:'Rajdhani','Segoe UI',sans-serif; font-size:34px; font-weight:700; color:var(--text); margin-bottom:24px; padding-bottom:14px; border-bottom:1px solid var(--border); }
+        h2 { font-family:'Rajdhani','Segoe UI',sans-serif; font-size:24px; font-weight:700; color:var(--text); margin-top:36px; margin-bottom:12px; padding-bottom:8px; border-bottom:1px solid var(--border); }
+        h3 { font-family:'Rajdhani','Segoe UI',sans-serif; font-size:19px; font-weight:600; color:var(--text); margin-top:26px; margin-bottom:10px; }
+        h4,h5,h6 { font-family:'Rajdhani','Segoe UI',sans-serif; color:var(--text); margin-top:18px; margin-bottom:8px; }
+        p { color:var(--text); font-size:15px; margin-bottom:14px; line-height:1.8; }
+        a { color:var(--accent); text-decoration:none; border-bottom:1px solid rgba(0,212,255,.25); transition:border-color .2s; }
+        a:hover { border-bottom-color:var(--accent); }
+        html.vv-light a { border-bottom-color:rgba(13,110,253,.25) !important; }
+        ul,ol { margin:14px 0 14px 26px; color:var(--text); font-size:15px; }
+        li { margin-bottom:7px; line-height:1.7; }
+        code { background:rgba(0,212,255,.08); color:var(--accent); padding:2px 7px; border-radius:2px; font-family:'Share Tech Mono','Courier New',monospace; font-size:13px; border:1px solid rgba(0,212,255,.18); }
+        html.vv-light code { background:rgba(13,110,253,.07) !important; border-color:rgba(13,110,253,.2) !important; }
+        pre { background:var(--surface); border:1px solid var(--border); border-left:3px solid var(--accent); padding:20px; border-radius:2px; overflow-x:auto; margin:20px 0; }
+        html.vv-light pre { background:#f8fafc !important; border-color:#d1d8e0 !important; }
+        pre code { background:none; color:var(--text); padding:0; border:none; font-size:13px; }
+        blockquote { border-left:3px solid var(--accent); padding:14px 20px; margin:20px 0; background:rgba(0,212,255,.04); color:var(--text-muted); font-style:italic; border-radius:0 2px 2px 0; }
+        html.vv-light blockquote { background:rgba(13,110,253,.04) !important; }
+        table { width:100%; border-collapse:collapse; margin:20px 0; font-size:14px; }
+        thead tr { background:rgba(0,212,255,.08); }
+        html.vv-light thead tr { background:rgba(13,110,253,.07) !important; }
+        th { padding:11px 14px; text-align:left; color:var(--text); border-bottom:1px solid var(--border); font-family:'Share Tech Mono','Courier New',monospace; font-size:10px; letter-spacing:.1em; text-transform:uppercase; }
+        td { padding:9px 14px; border-bottom:1px solid rgba(30,42,62,.6); color:var(--text); font-size:14px; }
+        html.vv-light td { border-bottom-color:rgba(209,216,224,.6) !important; }
+        tbody tr:hover { background:rgba(255,255,255,.02); }
+        html.vv-light tbody tr:hover { background:rgba(0,0,0,.02) !important; }
+        hr { border:none; border-top:1px solid var(--border); margin:36px 0; }
+        strong { color:var(--text); font-weight:600; }
+        em { color:var(--text-muted); }
+        img { max-width:100%; height:auto; border-radius:2px; margin:20px 0; }
+        .footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--border); color:var(--text-muted); font-size:12px; font-family:'Share Tech Mono','Courier New',monospace; letter-spacing:.05em; }
+        @media(max-width:600px){.container{padding:24px 16px 60px;}}
     </style>
 </head>
 <body>
+    <nav class="vv-nav">
+        <span class="logo">VV</span>
+        <a href="../index.html">&#8592; Back to Hub</a>
+    </nav>
     <div class="container">
         <p>"""<br />
 Example scripts and demo applications.</p>
@@ -212,8 +63,9 @@ Example scripts and demo applications.</p>
 """</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top: 10px;">Generated: 2026-03-17 21:36:24</p>
+            <p style="margin-top:8px;">Generated: 2026-03-17 21:36:24</p>
         </div>
     </div>
+    <script src="../theme.js"></script>
 </body>
 </html>

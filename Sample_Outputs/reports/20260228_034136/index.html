@@ -4,261 +4,99 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Test Report - 20260228_034136</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        :root { --bg:#04080f; --surface:#0a1220; --border:#1e2a3e; --text:#d8e8f5; --text-muted:#6b86a0; --accent:#00d4ff; }
+        html.vv-light { --bg:#f2f5f9; --surface:#ffffff; --border:#d1d8e0; --text:#1a202c; --text-muted:#64748b; --accent:#0d6efd; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Outfit','Segoe UI',sans-serif; background:var(--bg); color:var(--text); min-height:100vh; line-height:1.7; }
+        .vv-nav { display:flex; align-items:center; gap:20px; padding:0 28px; height:54px; background:rgba(4,8,15,0.97); border-bottom:1px solid var(--border); position:sticky; top:0; z-index:100; }
+        html.vv-light .vv-nav { background:rgba(242,245,249,0.97) !important; border-bottom-color:#d1d8e0 !important; }
+        .vv-nav .logo { font-family:'Share Tech Mono','Courier New',monospace; font-size:14px; font-weight:900; color:var(--accent); letter-spacing:2px; margin-right:auto; }
+        .vv-nav a { font-family:'Share Tech Mono','Courier New',monospace; font-size:11px; color:var(--text-muted); text-decoration:none; border-bottom:none; letter-spacing:0.08em; }
+        .vv-nav a:hover { color:var(--accent); border-bottom:none; }
 
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            min-height: 100vh;
-        }
+        .page-wrap { max-width:1200px; margin:0 auto; padding:32px 32px 80px; }
 
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
+        .header { background:var(--surface); border:1px solid var(--border); border-top:2px solid var(--accent); border-radius:2px; padding:28px 32px; margin-bottom:20px; }
+        .header h1 { font-family:'Rajdhani','Segoe UI',sans-serif; font-size:32px; font-weight:700; color:var(--text); margin-bottom:6px; }
+        .timestamp { font-family:'Share Tech Mono','Courier New',monospace; font-size:13px; color:var(--text-muted); letter-spacing:0.05em; }
 
-        .header {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
+        .stats-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:16px; margin-bottom:20px; }
+        .stat-card { background:var(--surface); border:1px solid var(--border); border-radius:2px; padding:22px; transition:border-color .2s; }
+        .stat-card:hover { border-color:var(--accent); }
+        .stat-card h3 { font-family:'Share Tech Mono','Courier New',monospace; color:var(--text-muted); font-size:10px; text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px; font-weight:400; }
+        .stat-value { font-family:'Rajdhani','Segoe UI',sans-serif; font-size:48px; font-weight:700; margin-bottom:4px; line-height:1; }
+        .stat-label { font-family:'Share Tech Mono','Courier New',monospace; color:var(--text-muted); font-size:11px; letter-spacing:0.05em; }
 
-        .header h1 {
-            color: #2d3748;
-            font-size: 2.5em;
-            margin-bottom: 10px;
-        }
+        .passed { color:#00d4ff; }
+        .failed { color:#ff4d6d; }
+        .skipped { color:#f4a261; }
+        .coverage { color:#00d4ff; }
 
-        .timestamp {
-            color: #718096;
-            font-size: 1.1em;
-        }
+        html.vv-light .passed { color:#0d6efd; }
+        html.vv-light .failed { color:#dc3545; }
+        html.vv-light .skipped { color:#fd7e14; }
+        html.vv-light .coverage { color:#0d6efd; }
 
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 20px;
-        }
+        .progress-bar { width:100%; height:8px; background:rgba(255,255,255,.06); border-radius:1px; overflow:hidden; margin-top:12px; }
+        html.vv-light .progress-bar { background:rgba(0,0,0,.08); }
+        .progress-fill { height:100%; background:var(--accent); transition:width 1s ease; display:flex; align-items:center; justify-content:center; color:transparent; font-weight:bold; font-size:10px; }
 
-        .stat-card {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transition: transform 0.3s ease;
-        }
+        .test-suites { background:var(--surface); border:1px solid var(--border); border-radius:2px; padding:28px; margin-bottom:20px; }
+        .test-suites h2 { font-family:'Rajdhani','Segoe UI',sans-serif; color:var(--text); margin-bottom:18px; font-size:22px; font-weight:700; padding-bottom:10px; border-bottom:1px solid var(--border); }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
+        .suite { border:1px solid var(--border); border-radius:2px; margin-bottom:12px; overflow:hidden; }
+        .suite-header { background:rgba(255,255,255,.02); padding:14px 18px; cursor:pointer; display:flex; justify-content:space-between; align-items:center; transition:background .2s; }
+        html.vv-light .suite-header { background:rgba(0,0,0,.02); }
+        .suite-header:hover { background:rgba(0,212,255,.04); }
+        html.vv-light .suite-header:hover { background:rgba(13,110,253,.04) !important; }
+        .suite-name { font-family:'Share Tech Mono','Courier New',monospace; font-weight:600; color:var(--text); font-size:13px; letter-spacing:0.05em; }
+        .suite-stats { display:flex; gap:14px; font-size:12px; font-family:'Share Tech Mono','Courier New',monospace; }
 
-        .stat-card h3 {
-            color: #718096;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            letter-spacing: 1px;
-        }
+        .suite-body { max-height:0; overflow:hidden; transition:max-height 0.3s ease; }
+        .suite-body.expanded { max-height:4000px; }
 
-        .stat-value {
-            font-size: 3em;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
+        .test-case { padding:10px 18px; border-top:1px solid rgba(30,42,62,.5); display:flex; justify-content:space-between; align-items:center; }
+        html.vv-light .test-case { border-top-color:rgba(209,216,224,.5); }
+        .test-case:nth-child(even) { background:rgba(255,255,255,.01); }
+        html.vv-light .test-case:nth-child(even) { background:rgba(0,0,0,.015); }
 
-        .stat-label {
-            color: #a0aec0;
-            font-size: 0.9em;
-        }
+        .test-name { flex:1; font-family:'Share Tech Mono','Courier New',monospace; font-size:12px; color:var(--text-muted); }
+        .test-status { padding:3px 10px; border-radius:2px; font-size:10px; font-weight:600; margin-left:10px; font-family:'Share Tech Mono','Courier New',monospace; letter-spacing:.05em; text-transform:uppercase; }
+        .status-passed { background:rgba(0,212,255,.1); color:var(--accent); border:1px solid rgba(0,212,255,.2); }
+        html.vv-light .status-passed { background:rgba(13,110,253,.08) !important; color:#0d6efd !important; border-color:rgba(13,110,253,.2) !important; }
+        .status-failed { background:rgba(255,77,109,.1); color:#ff4d6d; border:1px solid rgba(255,77,109,.2); }
+        html.vv-light .status-failed { background:rgba(220,53,69,.08) !important; color:#dc3545 !important; border-color:rgba(220,53,69,.2) !important; }
+        .status-skipped { background:rgba(244,162,97,.1); color:#f4a261; border:1px solid rgba(244,162,97,.2); }
+        html.vv-light .status-skipped { background:rgba(253,126,20,.08) !important; color:#fd7e14 !important; border-color:rgba(253,126,20,.2) !important; }
 
-        .passed { color: #48bb78; }
-        .failed { color: #f56565; }
-        .skipped { color: #ed8936; }
-        .coverage { color: #4299e1; }
+        .test-time { font-family:'Share Tech Mono','Courier New',monospace; color:var(--text-muted); font-size:11px; margin-left:10px; }
 
-        .progress-bar {
-            width: 100%;
-            height: 30px;
-            background: #e2e8f0;
-            border-radius: 15px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
+        .links { background:var(--surface); border:1px solid var(--border); border-radius:2px; padding:24px; }
+        .links h2 { font-family:'Rajdhani','Segoe UI',sans-serif; color:var(--text); margin-bottom:14px; font-size:20px; font-weight:700; padding-bottom:10px; border-bottom:1px solid var(--border); }
+        .link-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:12px; }
+        .link-button { display:block; padding:13px 18px; background:rgba(0,212,255,.08); color:var(--accent); text-decoration:none; border-radius:2px; text-align:center; font-family:'Share Tech Mono','Courier New',monospace; font-size:12px; font-weight:600; letter-spacing:.05em; border:1px solid rgba(0,212,255,.2); transition:background .2s, border-color .2s; }
+        .link-button:hover { background:rgba(0,212,255,.15); border-color:var(--accent); }
+        html.vv-light .link-button { background:rgba(13,110,253,.07) !important; color:#0d6efd !important; border-color:rgba(13,110,253,.2) !important; }
+        html.vv-light .link-button:hover { background:rgba(13,110,253,.14) !important; border-color:#0d6efd !important; }
 
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, #48bb78, #38a169);
-            transition: width 1s ease;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
+        @keyframes fadeIn { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+        .fade-in { animation:fadeIn 0.4s ease forwards; }
 
-        .test-suites {
-            background: white;
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 20px;
-        }
-
-        .test-suites h2 {
-            color: #2d3748;
-            margin-bottom: 20px;
-            font-size: 1.8em;
-        }
-
-        .suite {
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-
-        .suite-header {
-            background: #f7fafc;
-            padding: 15px 20px;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .suite-header:hover {
-            background: #edf2f7;
-        }
-
-        .suite-name {
-            font-weight: 600;
-            color: #2d3748;
-            font-size: 1.1em;
-        }
-
-        .suite-stats {
-            display: flex;
-            gap: 15px;
-            font-size: 0.9em;
-        }
-
-        .suite-body {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-        }
-
-        .suite-body.expanded {
-            max-height: 2000px;
-        }
-
-        .test-case {
-            padding: 12px 20px;
-            border-top: 1px solid #e2e8f0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .test-case:nth-child(even) {
-            background: #f7fafc;
-        }
-
-        .test-name {
-            flex: 1;
-            font-family: 'Monaco', 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-
-        .test-status {
-            padding: 4px 12px;
-            border-radius: 12px;
-            font-size: 0.85em;
-            font-weight: 600;
-            margin-left: 10px;
-        }
-
-        .status-passed {
-            background: #c6f6d5;
-            color: #22543d;
-        }
-
-        .status-failed {
-            background: #fed7d7;
-            color: #742a2a;
-        }
-
-        .status-skipped {
-            background: #feebc8;
-            color: #7c2d12;
-        }
-
-        .test-time {
-            color: #718096;
-            font-size: 0.85em;
-            margin-left: 10px;
-        }
-
-        .links {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .links h2 {
-            color: #2d3748;
-            margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .link-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .link-button {
-            display: block;
-            padding: 15px 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 8px;
-            text-align: center;
-            font-weight: 600;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .link-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .fade-in {
-            animation: fadeIn 0.5s ease forwards;
-        }
+        @media(max-width:600px){.page-wrap{padding:20px 14px 60px;}}
     </style>
 </head>
 <body>
-    <div class="container">
+    <nav class="vv-nav">
+        <span class="logo">VV</span>
+        <a href="../../../index.html">&#8592; Back to Hub</a>
+    </nav>
+    <div class="page-wrap">
         <div class="header fade-in">
-            <h1>🧪 Test Report</h1>
+            <h1>Test Report</h1>
             <div class="timestamp">Generated: 2026-02-28 03:41:53</div>
         </div>
 
@@ -289,294 +127,294 @@
                 <div class="stat-value coverage">0.0%</div>
                 <div class="stat-label">1 / 13033 lines</div>
                 <div class="progress-bar">
-                    <div class="progress-fill" style="width: 0.007672830507174096%; background: linear-gradient(90deg, #4299e1, #3182ce)">0.0%</div>
+                    <div class="progress-fill" style="width: 0.007672830507174096%">0.0%</div>
                 </div>
             </div>
         </div>
 
         <div class="test-suites fade-in" style="animation-delay: 0.5s">
-            <h2>📋 Test Suites</h2>
-            
+            <h2>Test Suites</h2>
+
             <div class="suite">
                 <div class="suite-header">
                     <div class="suite-name">pytest</div>
                     <div class="suite-stats">
-                        <span class="passed">✓ 32</span>
-                        <span class="failed">✗ 0</span>
-                        <span class="skipped">⊘ 0</span>
-                        <span>⏱ 10.99s</span>
+                        <span class="passed">&#10003; 32</span>
+                        <span class="failed">&#10007; 0</span>
+                        <span class="skipped">&#8856; 0</span>
+                        <span style="color:var(--text-muted)">&#9201; 10.99s</span>
                     </div>
                 </div>
                 <div class="suite-body">
-                    
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBasicFunctionality.test_addition</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.002s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.002s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBasicFunctionality.test_subtraction</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBasicFunctionality.test_multiplication</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBasicFunctionality.test_division</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBasicFunctionality.test_string_operations</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestDataStructures.test_list_operations</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestDataStructures.test_dict_operations</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestDataStructures.test_set_operations</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestTimestampGeneration.test_current_timestamp</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestTimestampGeneration.test_timestamp_formatting</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestFileOperations.test_path_operations</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestFileOperations.test_temp_directory</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.002s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.002s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestMathOperations.test_power</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestMathOperations.test_modulo</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestMathOperations.test_floor_division</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBooleanLogic.test_and_operator</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBooleanLogic.test_or_operator</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestBooleanLogic.test_not_operator</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestExceptionHandling.test_value_error_handling</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.002s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.002s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestExceptionHandling.test_key_error_handling</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestExceptionHandling.test_zero_division_error</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestPerformance.test_list_comprehension_performance</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.TestPerformance.test_string_concatenation_performance</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_double[1-2]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_double[2-4]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_double[3-6]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_double[4-8]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_double[5-10]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_string_length[hello-5]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_string_length[world-5]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_string_length[test-4]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
             <div class="test-case">
                 <div class="test-name">standalone_tests.test_demo.test_parametrized_string_length[pytest-6]</div>
                 <div style="display: flex; align-items: center;">
-                    <span class="test-time">⏱ 0.001s</span>
-                    <span class="test-status status-passed">✓ PASSED</span>
+                    <span class="test-time">&#9201; 0.001s</span>
+                    <span class="test-status status-passed">&#10003; PASSED</span>
                 </div>
             </div>
-            
+
                 </div>
             </div>
-            
+
         </div>
 
         <div class="links fade-in" style="animation-delay: 0.6s">
-            <h2>📊 Detailed Reports</h2>
+            <h2>Detailed Reports</h2>
             <div class="link-grid">
-                <a href="pytest_report.html" class="link-button">📄 Pytest Report</a>
-                <a href="coverage_html/index.html" class="link-button">📈 Coverage Report</a>
-                <a href="junit.xml" class="link-button">📋 JUnit XML</a>
-                <a href="coverage.json" class="link-button">🔍 Coverage JSON</a>
+                <a href="pytest_report.html" class="link-button">&#128196; Pytest Report</a>
+                <a href="coverage_html/index.html" class="link-button">&#128200; Coverage Report</a>
+                <a href="junit.xml" class="link-button">&#128203; JUnit XML</a>
+                <a href="coverage.json" class="link-button">&#128269; Coverage JSON</a>
             </div>
         </div>
     </div>
@@ -601,5 +439,6 @@
             });
         });
     </script>
+    <script src="../../../theme.js"></script>
 </body>
 </html>
