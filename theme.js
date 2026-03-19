@@ -47,7 +47,10 @@ html.vv-light .risk-bar-track { background:rgba(0,0,0,0.08) !important; }
 html.vv-light strong { color:#1a202c !important; }
 html.vv-light .section-number { color:var(--accent,#0d6efd) !important; }
 html.vv-light .card { background:rgba(0,0,0,0.03) !important; border-color:#d1d8e0 !important; }
-html.vv-light .evidence-chain,html.vv-light .timeline-section { background:#ffffff !important; border-color:#d1d8e0 !important; }
+html.vv-light .evidence-chain,html.vv-light .timeline-section,html.vv-light .methodology { background:#f8fafc !important; border-color:#d1d8e0 !important; }
+html.vv-light .evidence-chain h4 { color:#92400e !important; }
+html.vv-light .timeline-section h4 { color:#1e40af !important; }
+html.vv-light .methodology { background:#f0f9ff !important; border-color:#3b82f6 !important; }
 
 /* ── Theme toggle button base style ── */
 #vv-theme-btn {

@@ -144,10 +144,10 @@
             border-radius: 0 2px 2px 0; border-left: 3px solid;
         }
         .evidence-chain { background: rgba(245,158,11,0.08); border-color: #f59e0b; }
-        .evidence-chain h4 { color: #92400e; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
+        .evidence-chain h4 { color: #f59e0b; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
         .timeline-section { background: rgba(26,86,219,0.08); border-color: var(--accent); }
-        .timeline-section h4 { color: #1e40af; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
-        .methodology { background: #f0f9ff; border-color: #3b82f6; }
+        .timeline-section h4 { color: var(--accent); font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
+        .methodology { background: rgba(59,130,246,0.07); border-color: #3b82f6; }
         /* ── Risk meter ── */
         .risk-badge {
             display: inline-block;
@@ -388,22 +388,22 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
                     <tr>
                         <td><code>email</code></td>
                         <td style="text-align:center; font-weight:600;">2</td>
-                        <td style="font-size:13px; color:#64748b;">user@example.com, contact@company.com</td>
+                        <td style="font-size:13px; color:var(--text-muted);">user@example.com, contact@company.com</td>
                     </tr>
                     <tr>
                         <td><code>url</code></td>
                         <td style="text-align:center; font-weight:600;">2</td>
-                        <td style="font-size:13px; color:#64748b;">https://www.example.com, https://github.com</td>
+                        <td style="font-size:13px; color:var(--text-muted);">https://www.example.com, https://github.com</td>
                     </tr>
                     <tr>
                         <td><code>file_path</code></td>
                         <td style="text-align:center; font-weight:600;">2</td>
-                        <td style="font-size:13px; color:#64748b;">C:\Users\Test\Documents\report.docx, C:\Users\Test\Downloads\data.xlsx</td>
+                        <td style="font-size:13px; color:var(--text-muted);">C:\Users\Test\Documents\report.docx, C:\Users\Test\Downloads\data.xlsx</td>
                     </tr>
                     <tr>
                         <td><code>ip_address</code></td>
                         <td style="text-align:center; font-weight:600;">2</td>
-                        <td style="font-size:13px; color:#64748b;">192.168.1.1, 10.0.0.1</td>
+                        <td style="font-size:13px; color:var(--text-muted);">192.168.1.1, 10.0.0.1</td>
                     </tr>
                 </tbody>
             </table>
@@ -443,7 +443,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
                     <li>Report generation with evidence chain</li>
                 </ol>
             </div>
-            <div class="methodology" style="background:#fefce8; border-color:#eab308;">
+            <div class="methodology" style="background:#fefce8; border-color:#eab308; color:#713f12;">
                 <p><strong>Export Formats Available:</strong></p>
                 <p style="color:#334155; margin-top:6px;">
                     HTML, PDF, CSV, JSON, Excel, Parquet, STIX 2.1, MISP, CASE/UCO, DFXML,
