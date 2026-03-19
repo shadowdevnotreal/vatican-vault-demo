@@ -4,139 +4,242 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Technical Forensic Report - Test_User_001</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            line-height: 1.6;
-            color: #1f2937;
-            background: #f8fafc;
-            padding: 40px 20px;
+        :root {
+            --accent:     #7c3aed;
+            --accent-dim: rgba(124,58,237,0.1);
+            --bg:         #f7f8fa;
+            --surface:    #ffffff;
+            --border:     #e4e8ef;
+            --text:       #1a2030;
+            --text-mid:   #4a5568;
+            --text-dim:   #8896a8;
+            --green:      #10b981;
+            --amber:      #f59e0b;
+            --mono:       'Share Tech Mono', 'Courier New', monospace;
         }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Outfit', system-ui, sans-serif;
+            background: var(--bg); color: var(--text);
+            font-size: 15px; line-height: 1.65;
+            padding: 32px 20px 80px;
+        }
+        .vv-nav {
+            position: sticky; top: 0; z-index: 9999;
+            background: rgba(4, 8, 15, 0.96);
+            border-bottom: 1px solid rgba(0, 212, 255, 0.18);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0 28px; height: 50px;
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+        }
+        .vv-nav a { text-decoration: none; }
+        .vv-nav-logo {
+            font-family: 'Rajdhani', sans-serif; font-weight: 700;
+            font-size: 0.95em; letter-spacing: 3px; text-transform: uppercase; color: #00d4ff;
+        }
+        .vv-nav-links { display: flex; gap: 4px; align-items: center; }
+        .vv-nav-links a {
+            color: rgba(148, 163, 184, 0.75); font-size: 0.7em;
+            letter-spacing: 1.5px; text-transform: uppercase;
+            padding: 5px 13px; border-radius: 2px;
+            border: 1px solid transparent; transition: all 0.2s;
+        }
+        .vv-nav-links a:hover { color: #00d4ff; background: rgba(0,212,255,0.06); border-color: rgba(0,212,255,0.2); }
+        .vv-nav-back { color: rgba(0, 212, 255, 0.7) !important; }
+        /* ── Layout ── */
         .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: white;
-            padding: 50px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.07);
-            border-radius: 8px;
+            max-width: 1080px; margin: 0 auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 4px solid var(--accent);
+            border-radius: 2px;
+            padding: 44px 48px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
         }
         .header {
-            border-bottom: 3px solid #1e293b;
             padding-bottom: 24px;
-            margin-bottom: 32px;
+            margin-bottom: 28px;
+            border-bottom: 1px solid var(--border);
         }
-        .header .logo { font-size: 24px; font-weight: 700; color: #0f172a; }
-        .header .subtitle { color: #64748b; font-size: 14px; margin-top: 4px; }
-        .meta-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 16px;
-            margin: 24px 0;
-            padding: 20px;
-            background: #f1f5f9;
-            border-radius: 8px;
-        }
-        .meta-item { }
-        .meta-item .label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; color: #64748b; }
-        .meta-item .value { font-size: 16px; font-weight: 600; color: #0f172a; }
-        .section {
-            margin: 36px 0;
-        }
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #0f172a;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .risk-badge {
-            display: inline-block;
-            padding: 8px 20px;
-            background: #f59e0b;
-            color: white;
-            border-radius: 6px;
-            font-weight: 700;
-            font-size: 18px;
-        }
-        .risk-meter {
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            margin: 12px 0;
-            overflow: hidden;
-        }
-        .risk-meter-fill {
-            height: 100%;
-            background: #f59e0b;
-            border-radius: 4px;
-            width: 35.0%;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 12px 0;
-        }
-        th {
-            background: #f1f5f9;
-            padding: 10px 14px;
-            text-align: left;
-            font-size: 12px;
+        .header .badge {
+            background: var(--accent); color: white;
+            padding: 5px 14px; border-radius: 2px;
+            font-family: var(--mono);
+            font-size: 0.65em; letter-spacing: 2px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            color: #475569;
-            border-bottom: 2px solid #e2e8f0;
+            display: inline-block; margin-bottom: 14px;
         }
-        td {
-            padding: 10px 14px;
-            border-bottom: 1px solid #f1f5f9;
-            vertical-align: top;
+        .header h1 {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.75em; font-weight: 700; letter-spacing: 0.5px;
+            color: var(--text); margin-bottom: 6px;
         }
-        tr:hover { background: #f8fafc; }
-        code {
-            background: #f1f5f9;
-            padding: 2px 6px;
-            border-radius: 3px;
-            font-size: 13px;
-            color: #1e293b;
+        .header .subtitle { color: var(--text-dim); font-size: 0.9em; }
+        /* ── Case info grid ── */
+        .case-info {
+            background: #f1f4f8;
+            border: 1px solid var(--border);
+            padding: 20px 24px;
+            border-radius: 2px; margin: 24px 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 16px 24px;
         }
+        .info-item .label {
+            font-family: var(--mono);
+            font-size: 0.62em; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-dim); margin-bottom: 4px;
+        }
+        .info-item .value {
+            font-size: 0.95em; font-weight: 600; color: var(--text);
+        }
+        /* ── Sections ── */
+        .section { margin: 36px 0; }
+        .section-title {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 1.2em; font-weight: 700; letter-spacing: 1px;
+            color: var(--text); margin-bottom: 16px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 10px;
+        }
+        .section-number {
+            background: var(--accent); color: white;
+            font-family: var(--mono); font-size: 0.68em;
+            letter-spacing: 1px;
+            padding: 3px 8px; border-radius: 1px;
+        }
+        /* ── Stat boxes ── */
         .stat-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
-            margin: 16px 0;
+            grid-template-columns: repeat(auto-fit, minmax(155px, 1fr));
+            gap: 14px; margin: 20px 0;
         }
-        .stat-card {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 16px;
-            text-align: center;
+        .stat-box {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-top: 3px solid var(--accent);
+            padding: 18px 14px; text-align: center;
+            border-radius: 2px;
         }
-        .stat-card .num { font-size: 28px; font-weight: 700; color: #0f172a; }
-        .stat-card .lbl { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; }
-        .methodology {
-            background: #f0f9ff;
-            border-left: 4px solid #3b82f6;
-            padding: 16px 20px;
-            border-radius: 0 6px 6px 0;
-            margin: 16px 0;
+        .stat-box .number {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 2em; font-weight: 700;
+            color: var(--accent); line-height: 1; display: block;
         }
+        .stat-box .label {
+            font-family: var(--mono);
+            font-size: 0.6em; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--text-dim);
+            margin-top: 6px; display: block;
+        }
+        /* ── Evidence chain / callout ── */
+        .evidence-chain, .timeline-section, .methodology {
+            padding: 18px 22px; margin: 18px 0;
+            border-radius: 0 2px 2px 0; border-left: 3px solid;
+        }
+        .evidence-chain { background: #fefce8; border-color: #f59e0b; }
+        .evidence-chain h4 { color: #92400e; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
+        .timeline-section { background: #eff6ff; border-color: #2563eb; }
+        .timeline-section h4 { color: #1e40af; font-family: 'Rajdhani', sans-serif; letter-spacing: 1px; margin-bottom: 8px; text-transform: uppercase; font-size: 0.85em; }
+        .methodology { background: #f0f9ff; border-color: #3b82f6; }
+        /* ── Risk meter ── */
+        .risk-badge {
+            display: inline-block;
+            padding: 7px 20px; background: var(--amber);
+            color: white; border-radius: 2px;
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 700; font-size: 1.1em; letter-spacing: 1px;
+        }
+        .risk-meter {
+            height: 10px; background: var(--border);
+            border-radius: 5px; margin: 14px 0; overflow: hidden;
+        }
+        .risk-meter-fill {
+            height: 100%; border-radius: 5px; background: var(--amber);
+        }
+        /* ── Tables ── */
+        table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        thead tr { background: #f1f4f8; }
+        th {
+            padding: 11px 14px; text-align: left;
+            font-family: var(--mono);
+            font-size: 0.64em; letter-spacing: 1.5px;
+            text-transform: uppercase; color: var(--text-dim);
+            border-bottom: 2px solid var(--border);
+        }
+        td {
+            padding: 11px 14px;
+            border-bottom: 1px solid #f0f3f8;
+            font-size: 0.93em; color: var(--text-mid);
+        }
+        tr:hover td { background: #f7f9fc; }
+        tr:last-child td { border-bottom: none; }
+        /* ── Badges ── */
+        .capability-badge, .phi-badge, .compliance-badge, .risk-badge-small {
+            display: inline-block;
+            padding: 3px 10px; border-radius: 2px;
+            font-family: var(--mono);
+            font-size: 0.7em; letter-spacing: 1px;
+            margin: 3px;
+        }
+        .capability-badge { background: var(--accent-dim); color: var(--accent); border: 1px solid rgba(124,58,237,0.25); }
+        .phi-badge { background: #fee2e2; color: #991b1b; border: 1px solid #fca5a5; }
+        .compliance-badge { background: #d1fae5; color: #065f46; border: 1px solid #6ee7b7; }
+        /* ── Meta grid ── */
+        .meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px; margin: 20px 0;
+            padding: 18px 22px;
+            background: #f1f4f8;
+            border: 1px solid var(--border); border-radius: 2px;
+        }
+        .meta-item { }
+        .meta-item .label {
+            font-family: var(--mono);
+            font-size: 0.62em; letter-spacing: 2px;
+            text-transform: uppercase; color: var(--text-dim); margin-bottom: 3px;
+        }
+        .meta-item .value { font-size: 0.95em; font-weight: 600; color: var(--text); }
+        /* ── Compliance boxes ── */
+        .info-box { background: #eff6ff; border-left: 3px solid #2563eb; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
+        .info-box h4 { color: #1e40af; font-family: 'Rajdhani', sans-serif; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; font-size: 0.85em; }
+        .warning-box { background: #fefce8; border-left: 3px solid #f59e0b; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
+        .success-box { background: #f0fdf4; border-left: 3px solid #10b981; padding: 16px 20px; margin: 16px 0; border-radius: 0 2px 2px 0; }
+        /* ── Attestation ── */
+        .attestation { border: 1px solid var(--border); padding: 24px; margin: 20px 0; border-radius: 2px; }
+        /* ── Footer ── */
         .footer {
-            margin-top: 48px;
-            padding-top: 24px;
-            border-top: 2px solid #e2e8f0;
-            text-align: center;
-            color: #64748b;
-            font-size: 13px;
+            margin-top: 52px; padding-top: 22px;
+            border-top: 1px solid var(--border);
+            display: flex; justify-content: space-between; align-items: flex-end;
+            color: var(--text-dim);
+        }
+        .footer-brand {
+            font-family: 'Rajdhani', sans-serif;
+            font-size: 0.9em; font-weight: 600; letter-spacing: 1px; color: var(--text-mid);
+        }
+        .footer-meta {
+            font-family: var(--mono);
+            font-size: 0.65em; letter-spacing: 1px; text-align: right; line-height: 2;
+        }
+        p { color: var(--text-mid); margin-bottom: 12px; line-height: 1.75; }
+        ul, ol { margin: 10px 0 10px 24px; color: var(--text-mid); line-height: 1.8; }
+        strong { color: var(--text); font-weight: 600; }
+        code {
+            background: #f1f4f8; padding: 2px 7px; border-radius: 2px;
+            font-family: var(--mono); font-size: 0.85em; color: #1e293b;
         }
         @media print {
-            body { background: white; padding: 0; }
-            .container { box-shadow: none; }
+            .vv-nav { display: none; }
+            body { background: white; padding: 0; font-size: 13px; }
+            .container { box-shadow: none; border: none; }
         }
     </style>
 
@@ -221,7 +324,7 @@
                     <div class="lbl">Threat Indicators</div>
                 </div>
                 <div class="stat-card">
-                    <div class="num">0</div>
+                    <div class="num">1,853</div>
                     <div class="lbl">Activities Analyzed</div>
                 </div>
                 <div class="stat-card">
@@ -332,7 +435,7 @@
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Activities parsed and indexed (0 records)</td>
+                        <td>Activities parsed and indexed (1,853 records)</td>
                         <td style="color:#10b981; font-weight:600;">Complete</td>
                     </tr>
                     <tr>
