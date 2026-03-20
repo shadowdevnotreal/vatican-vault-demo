@@ -278,25 +278,25 @@ python<span class="w"> </span>scripts/security_alerting.py<span class="w"> </spa
 <h3 id="scenario-3-mid-size-enterprise">Scenario 3: Mid-Size Enterprise</h3>
 <p><strong>Environment:</strong> 200-person company, 10,000 endpoints, 5TB of file shares</p>
 <p><strong>Architecture:</strong></p>
-<div class="codehilite"><pre><span></span><code><span class="err">┌────────────────────────────────────────────────────────────┐</span>
-<span class="err">│</span><span class="w">              </span><span class="n">Centralized</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="n">Controller</span><span class="w">                   </span><span class="err">│</span>
-<span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Job</span><span class="w"> </span><span class="n">scheduling</span><span class="w"> </span><span class="p">(</span><span class="n">cron</span><span class="o">/</span><span class="n">Airflow</span><span class="p">)</span><span class="w">                           </span><span class="err">│</span>
-<span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Result</span><span class="w"> </span><span class="n">aggregation</span><span class="w">                                      </span><span class="err">│</span>
-<span class="err">│</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">Compliance</span><span class="w"> </span><span class="n">dashboard</span><span class="w">                                    </span><span class="err">│</span>
-<span class="err">└─────┬───────────────────────────────────────────┬──────────┘</span>
-<span class="w">      </span><span class="err">│</span><span class="w">                                           </span><span class="err">│</span>
-<span class="err">┌─────</span><span class="n">v</span><span class="err">─────┐</span><span class="w">    </span><span class="err">┌────────────┐</span><span class="w">     </span><span class="err">┌─────────────</span><span class="n">v</span><span class="err">─────┐</span>
-<span class="err">│</span><span class="w"> </span><span class="n">Worker</span><span class="w"> </span><span class="mh">1</span><span class="w">  </span><span class="err">│</span><span class="w">    </span><span class="err">│</span><span class="w"> </span><span class="n">Worker</span><span class="w"> </span><span class="mh">2</span><span class="w">   </span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="w">    </span><span class="n">Worker</span><span class="w"> </span><span class="n">N</span><span class="w">       </span><span class="err">│</span>
-<span class="err">│</span><span class="w"> </span><span class="mh">8</span><span class="w"> </span><span class="n">cores</span><span class="w">   </span><span class="err">│</span><span class="w">    </span><span class="err">│</span><span class="w"> </span><span class="mh">8</span><span class="w"> </span><span class="n">cores</span><span class="w">    </span><span class="err">│</span><span class="w">     </span><span class="err">│</span><span class="w">    </span><span class="mh">8</span><span class="w"> </span><span class="n">cores</span><span class="w">        </span><span class="err">│</span>
-<span class="err">│</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="n">A</span><span class="o">-</span><span class="n">F</span><span class="w">  </span><span class="err">│</span><span class="p">...</span><span class="w"> </span><span class="err">│</span><span class="w"> </span><span class="n">Scan</span><span class="w"> </span><span class="n">G</span><span class="o">-</span><span class="n">M</span><span class="w">   </span><span class="err">│</span><span class="p">...</span><span class="w">  </span><span class="err">│</span><span class="w">    </span><span class="n">Scan</span><span class="w"> </span><span class="n">N</span><span class="o">-</span><span class="n">Z</span><span class="w">       </span><span class="err">│</span>
-<span class="err">└─────┬─────┘</span><span class="w">    </span><span class="err">└─────┬──────┘</span><span class="w">     </span><span class="err">└──────────┬────────┘</span>
-<span class="w">      </span><span class="err">│</span><span class="w">                </span><span class="err">│</span><span class="w">                       </span><span class="err">│</span>
-<span class="w">      </span><span class="err">└────────────────┴───────────────────────┘</span>
-<span class="w">                       </span><span class="err">│</span>
-<span class="w">              </span><span class="err">┌────────</span><span class="n">v</span><span class="err">─────────┐</span>
-<span class="w">              </span><span class="err">│</span><span class="w"> </span><span class="n">Results</span><span class="w"> </span><span class="n">Database</span><span class="w"> </span><span class="err">│</span>
-<span class="w">              </span><span class="err">│</span><span class="w">   </span><span class="n">PostgreSQL</span><span class="w">     </span><span class="err">│</span>
-<span class="w">              </span><span class="err">└──────────────────┘</span>
+<div class="codehilite"><pre><span></span><code>┌────────────────────────────────────────────────────────────┐
+│              Centralized Scan Controller                   │
+│  - Job scheduling (cron/Airflow)                           │
+│  - Result aggregation                                      │
+│  - Compliance dashboard                                    │
+└─────┬───────────────────────────────────────────┬──────────┘
+      │                                           │
+┌─────v─────┐    ┌────────────┐     ┌─────────────v─────┐
+│ Worker 1  │    │ Worker 2   │     │    Worker N       │
+│ 8 cores   │    │ 8 cores    │     │    8 cores        │
+│ Scan A-F  │... │ Scan G-M   │...  │    Scan N-Z       │
+└─────┬─────┘    └─────┬──────┘     └──────────┬────────┘
+      │                │                       │
+      └────────────────┴───────────────────────┘
+                       │
+              ┌────────v─────────┐
+              │ Results Database │
+              │   PostgreSQL     │
+              └──────────────────┘
 </code></pre></div>
 
 <p><strong>Implementation:</strong></p>

@@ -71,6 +71,24 @@ html.vv-light .card p { color:#0f172a !important; }
 html.vv-light .card-arrow { color:#0f172a !important; }
 html.vv-light .badge-dim { color:#0f172a !important; background:rgba(30,41,59,0.08) !important; border-color:rgba(30,41,59,0.2) !important; }
 html.vv-light .footer-meta { color:#0f172a !important; }
+html.vv-light .btn-primary { color:#ffffff !important; background:#0d6efd !important; }
+html.vv-light .btn-primary:hover { box-shadow:0 0 24px rgba(13,110,253,0.35) !important; }
+html.vv-light .btn-outline { color:#0d6efd !important; border-color:#0d6efd !important; }
+html.vv-light .btn-outline:hover { background:rgba(13,110,253,0.07) !important; }
+html.vv-light tr:hover td { background:rgba(0,0,0,0.03) !important; }
+html.vv-light pre { background:#f1f5f9 !important; border-color:#c8d3e0 !important; color:#0f172a !important; }
+html.vv-light pre code { color:#0f172a !important; }
+html.vv-light code { background:rgba(13,110,253,0.07) !important; color:#0d6efd !important; border-color:rgba(13,110,253,0.2) !important; }
+html.vv-light .info-box { background:rgba(13,110,253,0.06) !important; border-color:#2563eb !important; color:#0f172a !important; }
+html.vv-light .warning-box { background:rgba(245,158,11,0.08) !important; border-color:#d97706 !important; color:#0f172a !important; }
+html.vv-light .success-box { background:rgba(16,185,129,0.08) !important; border-color:#059669 !important; color:#0f172a !important; }
+html.vv-light .vv-real-img-wrap { background:#e2e8f0 !important; }
+html.vv-light blockquote { background:rgba(13,110,253,0.04) !important; color:#0f172a !important; border-left-color:#0d6efd !important; }
+html.vv-light .phi-badge { background:rgba(220,38,38,0.08) !important; color:#991b1b !important; }
+html.vv-light .compliance-badge { background:rgba(5,150,105,0.08) !important; color:#065f46 !important; }
+html.vv-light .callout-evidence .callout-title { color:#9a3412 !important; }
+html.vv-light .callout-info .callout-title { color:#1e40af !important; }
+html.vv-light .nav-logo { color:#0d6efd !important; }
 
 /* ── Theme toggle button base style ── */
 #vv-theme-btn {
