@@ -239,7 +239,7 @@
             content: '';
             position: absolute; top: -2px; left: 0; right: 0; height: 2px;
             background: linear-gradient(90deg, transparent 0%, #00d4ff 40%, #00d4ff 60%, transparent 100%);
-            box-shadow: 0 0 30px 8px rgba(0,212,255,0.3);
+            box-shadow: 0 0 40px 12px rgba(0,212,255,0.5);
             animation: splashScan 1.8s 0.1s ease-in-out forwards;
             opacity: 0;
         }
@@ -255,8 +255,8 @@
             content: '';
             position: absolute; inset: 0;
             background-image:
-                linear-gradient(rgba(0,212,255,0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0,212,255,0.03) 1px, transparent 1px);
+                linear-gradient(rgba(0,212,255,0.06) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,212,255,0.06) 1px, transparent 1px);
             background-size: 48px 48px;
             opacity: 0;
             animation: splashGrid 1s 0.3s ease forwards;
@@ -266,9 +266,9 @@
         /* Radial glow behind logo */
         .vv-splash-glow {
             position: absolute;
-            width: 400px; height: 400px;
+            width: 500px; height: 500px;
             border-radius: 50%;
-            background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(0,212,255,0.15) 0%, rgba(0,212,255,0.04) 40%, transparent 70%);
             opacity: 0;
             animation: splashGlow 1.2s 0.4s ease forwards;
         }
@@ -284,18 +284,18 @@
         }
         .vv-splash-logo svg {
             width: 100%; height: 100%;
-            filter: drop-shadow(0 0 20px rgba(0,212,255,0.4));
+            filter: drop-shadow(0 0 30px rgba(0,212,255,0.6)) drop-shadow(0 0 60px rgba(0,212,255,0.2));
         }
         .vv-splash-logo .shield-path {
             fill: none;
-            stroke: #00d4ff;
-            stroke-width: 1.5;
+            stroke: #33e0ff;
+            stroke-width: 2;
             stroke-dasharray: 200;
             stroke-dashoffset: 200;
             animation: drawShield 1.2s 0.2s cubic-bezier(0.4,0,0.2,1) forwards;
         }
         .vv-splash-logo .v-letter {
-            fill: #00d4ff;
+            fill: #33e0ff;
             opacity: 0;
             animation: splashV 0.5s 1.0s ease forwards;
         }
@@ -326,18 +326,18 @@
         }
         @keyframes splashWord1 {
             from { color: rgba(240,246,255,0); letter-spacing: 20px; filter: blur(8px); }
-            to   { color: #f0f6ff; letter-spacing: 14px; filter: blur(0); }
+            to   { color: #ffffff; letter-spacing: 14px; filter: blur(0); text-shadow: 0 0 40px rgba(255,255,255,0.15); }
         }
         @keyframes splashWord2 {
             from { color: rgba(0,212,255,0); letter-spacing: 20px; filter: blur(8px); }
-            to   { color: #00d4ff; letter-spacing: 14px; filter: blur(0); }
+            to   { color: #33e0ff; letter-spacing: 14px; filter: blur(0); text-shadow: 0 0 40px rgba(0,212,255,0.4); }
         }
 
         /* Divider line */
         .vv-splash-line {
             position: relative; z-index: 2;
             width: 0; height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0,212,255,0.6), transparent);
+            background: linear-gradient(90deg, transparent, #33e0ff, transparent);
             margin-top: 22px;
             animation: splashLine 0.5s 1.3s ease forwards;
         }
@@ -348,26 +348,27 @@
         /* Terminal log area */
         .vv-splash-terminal {
             position: relative; z-index: 2;
-            margin-top: 28px;
-            padding: 16px 24px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(0,212,255,0.12);
+            margin-top: 32px;
+            padding: 18px 28px;
+            background: rgba(0,8,20,0.7);
+            border: 1px solid rgba(0,212,255,0.25);
             border-radius: 4px;
-            min-width: min(420px, 80vw);
-            max-width: 480px;
+            min-width: min(460px, 85vw);
+            max-width: 520px;
             text-align: left;
             opacity: 0;
+            box-shadow: 0 0 30px rgba(0,212,255,0.06), inset 0 0 30px rgba(0,0,0,0.3);
             animation: splashTermIn 0.4s 1.4s ease forwards;
         }
         .vv-splash-terminal::before {
-            content: 'SYSTEM';
+            content: 'VATICAN VAULT // SYSTEM BOOT';
             display: block;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 9px; letter-spacing: 2px;
-            color: rgba(0,212,255,0.4);
-            margin-bottom: 10px;
-            padding-bottom: 6px;
-            border-bottom: 1px solid rgba(0,212,255,0.08);
+            font-size: 9px; letter-spacing: 2.5px;
+            color: rgba(0,212,255,0.7);
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid rgba(0,212,255,0.15);
         }
         @keyframes splashTermIn {
             from { opacity: 0; transform: translateY(8px); }
@@ -376,28 +377,34 @@
 
         .vv-term-line {
             font-family: 'Share Tech Mono', 'Courier New', monospace;
-            font-size: 0.78em; letter-spacing: 0.5px;
-            line-height: 1.9;
-            color: #4e6278;
+            font-size: 0.82em; letter-spacing: 0.5px;
+            line-height: 2.0;
+            color: #5a7a94;
             white-space: nowrap;
             overflow: hidden;
         }
         .vv-term-line .prompt {
-            color: #00d4ff;
-            margin-right: 6px;
+            color: #33e0ff;
+            margin-right: 8px;
             user-select: none;
+            font-weight: 700;
         }
         .vv-term-line .ok {
-            color: #10b981;
+            color: #34d399;
+            font-weight: 700;
         }
         .vv-term-line.active {
+            color: #c8d9e8;
+        }
+        .vv-term-line.done-line {
             color: #8899aa;
         }
         .vv-term-cursor {
-            display: inline-block; width: 8px; height: 1.15em;
-            background: #00d4ff;
+            display: inline-block; width: 9px; height: 1.2em;
+            background: #33e0ff;
             vertical-align: text-bottom;
             margin-left: 2px;
+            box-shadow: 0 0 8px rgba(0,212,255,0.5);
             animation: splashBlink 0.5s step-end infinite;
         }
         @keyframes splashBlink {
@@ -409,7 +416,7 @@
         .vv-splash-corner {
             position: absolute; z-index: 2;
             width: 32px; height: 32px;
-            border-color: rgba(0,212,255,0.25);
+            border-color: rgba(0,212,255,0.4);
             border-style: solid;
             border-width: 0;
             opacity: 0;
@@ -435,9 +442,9 @@
             cursor: pointer;
         }
         @keyframes splashSkip {
-            to { color: rgba(78,98,120,0.5); }
+            to { color: rgba(120,150,180,0.6); }
         }
-        .vv-splash-skip:hover { color: #00d4ff !important; }
+        .vv-splash-skip:hover { color: #33e0ff !important; }
 
         /* ━━━━━━━━━━━━━━━━━━━━━━ BUTTONS ━━━━━━━━━━━━━━━━━━━━━━ */
         .btn-primary {
@@ -970,11 +977,12 @@
             var term = document.getElementById('vv-term');
             var dismissed = false;
             var lines = [
-                { text: 'Initializing forensic engine...',     ok: 'OK' },
-                { text: 'Loading 68 REST API endpoints...',    ok: 'READY' },
+                { text: 'Initializing forensic engine...',          ok: 'OK' },
+                { text: 'Loading 68 REST API endpoints...',         ok: 'READY' },
                 { text: 'Mounting 16 industry report templates...', ok: 'LOADED' },
-                { text: 'Connecting AI analysis pipeline...',  ok: 'ONLINE' },
-                { text: 'System ready.',                       ok: null }
+                { text: 'Connecting AI analysis pipeline...',       ok: 'ONLINE' },
+                { text: 'Validating encryption keys...',            ok: 'SECURE' },
+                { text: 'All systems operational.',                 ok: null, final: true }
             ];
             var li = 0, ci = 0;
             var currentLine = null;
@@ -989,7 +997,6 @@
             }
 
             function createLine() {
-                /* Remove cursor from previous line */
                 if (cursor && cursor.parentNode) cursor.parentNode.removeChild(cursor);
 
                 currentLine = document.createElement('div');
@@ -1012,6 +1019,7 @@
 
             function finishLine() {
                 currentLine.classList.remove('active');
+                currentLine.classList.add('done-line');
                 if (cursor && cursor.parentNode) cursor.parentNode.removeChild(cursor);
 
                 if (lines[li].ok) {
@@ -1020,47 +1028,53 @@
                     ok.textContent = ' [' + lines[li].ok + ']';
                     currentLine.appendChild(ok);
                 }
+
+                /* Final line gets bright styling */
+                if (lines[li].final) {
+                    currentLine.style.color = '#33e0ff';
+                    currentLine.style.textShadow = '0 0 12px rgba(0,212,255,0.5)';
+                }
             }
 
             function typeChar() {
                 if (dismissed) return;
 
+                /* All lines done — wait, then dismiss */
                 if (li >= lines.length) {
-                    setTimeout(dismiss, 600);
+                    setTimeout(dismiss, 1000);
                     return;
                 }
 
-                /* Start a new line */
                 if (ci === 0) createLine();
 
                 if (ci < lines[li].text.length) {
                     currentSpan.textContent = lines[li].text.substring(0, ci + 1);
                     ci++;
-                    /* Typing speed: 45-70ms per char for natural feel */
-                    var delay = 45 + Math.random() * 25;
-                    /* Brief pause after punctuation */
+                    /* Typing speed: 50-80ms per char — deliberate, readable pace */
+                    var delay = 50 + Math.random() * 30;
                     var ch = lines[li].text[ci - 1];
-                    if (ch === '.' || ch === ',') delay += 80;
+                    if (ch === '.' || ch === ',') delay += 120;
+                    if (ch === ' ') delay += 15;
                     setTimeout(typeChar, delay);
                 } else {
-                    /* Line complete — show status tag, pause, then next line */
                     finishLine();
                     li++;
                     ci = 0;
-                    setTimeout(typeChar, 350);
+                    /* Longer pause between lines for readability */
+                    setTimeout(typeChar, 500);
                 }
             }
 
-            /* Start typing after terminal fades in (1.4s anim + 0.3s buffer) */
-            setTimeout(typeChar, 1800);
+            /* Start typing after terminal fades in */
+            setTimeout(typeChar, 1900);
 
-            /* Click or key to skip */
+            /* Click or key to skip — only for impatient users */
             splash.addEventListener('click', dismiss);
             document.addEventListener('keydown', function(e) {
                 if (!dismissed && (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape')) dismiss();
             });
-            /* Safety fallback — generous to let all lines finish */
-            setTimeout(dismiss, 12000);
+
+            /* NO safety timeout — the sequence runs to completion */
         })();
 
         if (window.location.protocol === 'file:') {
