@@ -27,7 +27,7 @@ Located in `Promo/VC_Materials/`:
 ### 🏢 Industry Demo Reports (New Folder)
 Located in `Promo/Industry_Demo_Reports/`:
 - **index.html** - Professional index page for all reports
-- **12 Industry Reports** covering:
+- **16 Industry Reports** covering:
   - DFIR (Digital Forensics & Incident Response)
   - Enterprise SOC (Security Operations Center)
   - Law Enforcement
@@ -182,12 +182,12 @@ Promo/
 │   ├── VC_EXECUTIVE_SUMMARY.md
 │   └── VC_DEMO_REPORT_2026-02-28.md
 │
-├── Industry_Demo_Reports/       [*] NEW - 12 industry reports
+├── Industry_Demo_Reports/       [*] NEW - 16 industry reports
 │   ├── index.html
 │   ├── dfir_report.html
 │   ├── enterprise_soc_report.html
 │   ├── law_enforcement_report.html
-│   └── ... (9 more reports)
+│   └── ... (13 more reports)
 │
 ├── Articles/                    Platform narrative & use cases
 │   ├── HISTORY.md

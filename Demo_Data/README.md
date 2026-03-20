@@ -459,5 +459,5 @@ If replacing with newer database:
 
 ---
 
-**Last Updated:** 2025-12-03
+**Last Updated:** 2026-03-20
 **Maintained by:** Vatican Vault Development Team

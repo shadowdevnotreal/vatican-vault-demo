@@ -42,7 +42,7 @@ Professional HTML reports showcasing Vatican Vault for specific industries.
 
 | File | Description |
 |------|-------------|
-| `index.html` | **START HERE** - Browse all 12 industry-specific demo reports |
+| `index.html` | **START HERE** - Browse all 16 industry-specific demo reports |
 | `dfir_report.html` | Digital Forensics & Incident Response investigation report |
 | `enterprise_soc_report.html` | Enterprise Security Operations Center insider threat report |
 | `law_enforcement_report.html` | Criminal investigation and evidence discovery report |

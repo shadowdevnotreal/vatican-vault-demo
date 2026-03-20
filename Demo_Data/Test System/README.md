@@ -370,5 +370,5 @@ python behave.py -db "ActivitiesCache.db" -o "Behave_V1_Output"
 
 ---
 
-**Last Updated:** 2025-12-03
+**Last Updated:** 2026-03-20
 **Maintained by:** Vatican Vault Development Team

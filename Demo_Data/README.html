@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
     <title>Test Files - Vatican Vault Reference Data</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,15 +60,15 @@
         <h1 id="test-files-vatican-vault-reference-data">Test Files - Vatican Vault Reference Data</h1>
 <p><strong>Purpose:</strong> Permanent reference data for testing, training, and forensic analysis</p>
 <hr />
-<h2 id="pcap-files-location">PCAP Files Location</h2>
-<p><strong>IMPORTANT:</strong> PCAP network capture files have been consolidated to the main PCAP folder.</p>
+<h2 id="pcap-files-location">📦 PCAP Files Location</h2>
+<p><strong>⚠️ IMPORTANT:</strong> PCAP network capture files have been consolidated to the main PCAP folder.</p>
 <p><strong>Primary Location:</strong> <code>/PCAP/</code> (project root)</p>
 <p><strong>Available PCAP Files:</strong><br />
 - <code>The Ultimate PCAP v20251206.pcapng</code> (14.8 MB) - Primary compliance testing data<br />
 - <code>4SICSGeekLounge151.pcap</code> (25 MB) - ICS/SCADA network traffic<br />
 - <code>test_sample.pcap</code> (562 bytes) - Basic validation file</p>
 <p><strong>Archived Version:</strong> This folder contains <code>The-Ultimate-PCAP.7z</code> (4.9 MB compressed) for distribution purposes.</p>
-<p><strong>See:</strong> <code>/PCAP/README.md</code> for comprehensive PCAP documentation, usage examples, and testing instructions.</p>
+<p><strong>📖 See:</strong> <code>/PCAP/README.md</code> for comprehensive PCAP documentation, usage examples, and testing instructions.</p>
 <hr />
 <h2 id="directory-structure">Directory Structure</h2>
 <div class="codehilite"><pre><span></span><code><span class="n">Test</span><span class="w"> </span><span class="n">Files</span><span class="o">/</span>
@@ -104,9 +103,9 @@
 <hr />
 <h2 id="important-database-files-setup">Important: Database Files Setup</h2>
 <p>The Test System folder should contain all three SQLite database files:<br />
-- <code>ActivitiesCache.db</code> (currently in git)<br />
-- <code>ActivitiesCache.db-shm</code> (add if you have it locally)<br />
-- <code>ActivitiesCache.db-wal</code> (add if you have it locally)</p>
+- <code>ActivitiesCache.db</code> ✅ (currently in git)<br />
+- <code>ActivitiesCache.db-shm</code> ⚠️ (add if you have it locally)<br />
+- <code>ActivitiesCache.db-wal</code> ⚠️ (add if you have it locally)</p>
 <p>If you have the <code>.db-shm</code> and <code>.db-wal</code> files on your local system, add them with:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span><span class="w"> </span><span class="s2">&quot;Test Files/Test System&quot;</span>
 git<span class="w"> </span>add<span class="w"> </span>-f<span class="w"> </span>ActivitiesCache.db-shm<span class="w"> </span>ActivitiesCache.db-wal
@@ -159,12 +158,12 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 
 <p><strong>Expected Results:</strong><br />
 - Total Tests: 20<br />
-- Pass Rate: 100% (20/20)<br />
-- Credit Cards: 5/5<br />
-- SSN: 4/4<br />
-- API Keys: 4/4<br />
-- Emails: 3/3<br />
-- International PII: 4/4 (Belgian, Czech, Finnish, German)</p>
+- Pass Rate: 100% (20/20) ✅<br />
+- Credit Cards: 5/5 ✅<br />
+- SSN: 4/4 ✅<br />
+- API Keys: 4/4 ✅<br />
+- Emails: 3/3 ✅<br />
+- International PII: 4/4 ✅ (Belgian, Czech, Finnish, German)</p>
 <h3 id="4-enabledisable-windows-recall">4. Enable/Disable Windows Recall</h3>
 <p><strong>Disable Recall:</strong></p>
 <div class="codehilite"><pre><span></span><code><span class="n">reg</span><span class="w"> </span><span class="kn">import</span><span class="w"> </span><span class="s2">&quot;Test Files/Vatican/Disable_Recall_feature_for_all_users.reg&quot;</span>
@@ -258,7 +257,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <hr />
 <h2 id="vatican-folder-resources">Vatican Folder Resources</h2>
 <p><strong>Overview:</strong> The Vatican folder is a forensic knowledge base containing links to websites that detail better forensic testing techniques and tricks, along with registry files for managing Windows Recall.</p>
-<p><strong><a href="Vatican/FORENSIC_KNOWLEDGE_BASE.md">FULL DOCUMENTATION: FORENSIC_KNOWLEDGE_BASE.md</a></strong></p>
+<p>📖 <strong><a href="Vatican/FORENSIC_KNOWLEDGE_BASE.md">FULL DOCUMENTATION: FORENSIC_KNOWLEDGE_BASE.md</a></strong></p>
 <p>This comprehensive guide includes:<br />
 - Detailed tool documentation (ActivitiesCacheParser, RecallSnapshotsExport)<br />
 - Forensic analysis workflows and techniques<br />
@@ -345,17 +344,17 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <h3 id="overview">Overview</h3>
 <p><strong>Source:</strong> Microsoft Compliance Team<br />
 <strong>Purpose:</strong> Testing data loss prevention (DLP) and compliance scanners<br />
-<strong>Status:</strong> <strong>SYNTHETIC DATA</strong> - Safe for testing, not real PII/PHI<br />
+<strong>Status:</strong> ✅ <strong>SYNTHETIC DATA</strong> - Safe for testing, not real PII/PHI<br />
 <strong>Size:</strong> 18.9 MB<br />
 <strong>Files:</strong> 300+ files across 9 categories</p>
 <h3 id="dataset-characteristics">Dataset Characteristics</h3>
 <ul>
-<li>Follows proper schemas of real data</li>
-<li>Enables accurate compliance testing</li>
-<li>Validated by Microsoft</li>
-<li>Safe for development/testing</li>
-<li>NOT real PII/PHI</li>
-<li>Do not use for production without proper review</li>
+<li>✅ Follows proper schemas of real data</li>
+<li>✅ Enables accurate compliance testing</li>
+<li>✅ Validated by Microsoft</li>
+<li>✅ Safe for development/testing</li>
+<li>❌ NOT real PII/PHI</li>
+<li>❌ Do not use for production without proper review</li>
 </ul>
 <h3 id="categories">Categories</h3>
 <h4 id="1-credit-card-numbers-276-kb-8-files">1. Credit Card Numbers (276 KB, 8 files)</h4>
@@ -365,9 +364,9 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 - 15-digit: <code>3400-000000-00009</code><br />
 - With/without separators</p>
 <p><strong>Test Coverage:</strong><br />
-- Luhn algorithm validation<br />
-- Separator handling (dash, space, none)<br />
-- Mixed with financial data</p>
+- ✅ Luhn algorithm validation<br />
+- ✅ Separator handling (dash, space, none)<br />
+- ✅ Mixed with financial data</p>
 <h4 id="2-social-security-numbers-14-files">2. Social Security Numbers (14 files)</h4>
 <p><strong>Formats:</strong><br />
 - With dashes: <code>123-45-6789</code><br />
@@ -377,9 +376,9 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 - Formatted SSN (6 employee rosters)<br />
 - Unformatted SSN (6 employee rosters)</p>
 <p><strong>Test Coverage:</strong><br />
-- Format detection (with/without dashes)<br />
-- Validation (area/group/serial numbers)<br />
-- Context detection (HR forms, rosters)</p>
+- ✅ Format detection (with/without dashes)<br />
+- ✅ Validation (area/group/serial numbers)<br />
+- ✅ Context detection (HR forms, rosters)</p>
 <h4 id="3-canadian-sin-6-files">3. Canadian SIN (6 files)</h4>
 <p><strong>Format:</strong> <code>123-456-789</code><br />
 <strong>Content:</strong> Employee rosters, HR profiles</p>
@@ -392,10 +391,10 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 - Tax identifiers</p>
 <p><strong>File Formats:</strong> .docx, .txt, .pdf, .xlsx</p>
 <p><strong>Test Coverage:</strong><br />
-- Belgian: 25% (patterns not implemented)<br />
-- Czech: 25% (patterns not implemented)<br />
-- Finnish: 25% (patterns not implemented)<br />
-- German: 100% (phone numbers detected)</p>
+- ⚠️ Belgian: 25% (patterns not implemented)<br />
+- ⚠️ Czech: 25% (patterns not implemented)<br />
+- ⚠️ Finnish: 25% (patterns not implemented)<br />
+- ✅ German: 100% (phone numbers detected)</p>
 <h4 id="5-financial-data-11-files">5. Financial Data (11 files)</h4>
 <p><strong>Content:</strong><br />
 - Transaction logs<br />
@@ -428,7 +427,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 - Mixed international formats</p>
 <hr />
 <h2 id="usage-guidelines">Usage Guidelines</h2>
-<h3 id="do">DO</h3>
+<h3 id="do">DO ✅</h3>
 <ul>
 <li>Use for testing sensitive data scanners</li>
 <li>Use for ML model training</li>
@@ -436,7 +435,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <li>Use for forensic technique validation</li>
 <li>Reference in documentation</li>
 </ul>
-<h3 id="dont">DON'T</h3>
+<h3 id="dont">DON'T ❌</h3>
 <ul>
 <li>Use in production without review</li>
 <li>Assume this replaces real-world testing</li>
@@ -537,7 +536,7 @@ git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </sp
 <strong>Maintained by:</strong> Vatican Vault Development Team</p>
         <div class="footer">
             <p>Vatican Vault v2.0 — Digital Forensics Platform</p>
-            <p style="margin-top:8px;">Generated: 2026-03-17 21:36:24</p>
+            <p style="margin-top:8px;">Generated: 2026-03-20 18:45:02</p>
         </div>
     </div>
     <script src="../theme.js"></script>
