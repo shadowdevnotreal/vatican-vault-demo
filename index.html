@@ -223,6 +223,82 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
+        /* ━━━━━━━━━━━━━━━━━━━━━━ SPLASH INTRO ━━━━━━━━━━━━━━━━━━━━━━ */
+        .vv-splash {
+            position: fixed; inset: 0; z-index: 10000;
+            background: #04080f;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            transition: opacity 0.6s ease, visibility 0.6s;
+        }
+        .vv-splash.done { opacity: 0; visibility: hidden; pointer-events: none; }
+
+        .vv-splash-hex {
+            width: 72px; height: 72px;
+            border: 2px solid rgba(0,212,255,0);
+            transform: rotate(30deg) scale(0.4);
+            display: flex; align-items: center; justify-content: center;
+            animation: splashHex 1.2s 0.1s cubic-bezier(0.16,1,0.3,1) forwards;
+        }
+        .vv-splash-hex span {
+            transform: rotate(-30deg);
+            font-size: 1.8em; color: rgba(0,212,255,0);
+            animation: splashIcon 0.8s 0.4s ease forwards;
+        }
+        @keyframes splashHex {
+            0%   { border-color: rgba(0,212,255,0); transform: rotate(30deg) scale(0.4); box-shadow: none; }
+            50%  { border-color: #00d4ff; transform: rotate(30deg) scale(1.1); box-shadow: 0 0 40px rgba(0,212,255,0.4); }
+            100% { border-color: #00d4ff; transform: rotate(30deg) scale(1); box-shadow: 0 0 20px rgba(0,212,255,0.2); }
+        }
+        @keyframes splashIcon {
+            from { color: rgba(0,212,255,0); }
+            to   { color: #00d4ff; }
+        }
+
+        .vv-splash-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(1.6rem, 5vw, 2.8rem);
+            font-weight: 900; letter-spacing: 10px; text-transform: uppercase;
+            color: rgba(240,246,255,0);
+            margin-top: 24px;
+            animation: splashTitle 0.8s 0.6s ease forwards;
+        }
+        .vv-splash-title em {
+            font-style: normal; color: rgba(0,212,255,0);
+            animation: splashTitleAccent 0.8s 0.8s ease forwards;
+        }
+        @keyframes splashTitle {
+            from { color: rgba(240,246,255,0); transform: translateY(10px); letter-spacing: 18px; }
+            to   { color: #f0f6ff; transform: translateY(0); letter-spacing: 10px; }
+        }
+        @keyframes splashTitleAccent {
+            from { color: rgba(0,212,255,0); }
+            to   { color: #00d4ff; }
+        }
+
+        .vv-splash-line {
+            width: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, #00d4ff, transparent);
+            margin-top: 20px;
+            animation: splashLine 0.6s 1.1s ease forwards;
+        }
+        @keyframes splashLine {
+            from { width: 0; }
+            to   { width: min(280px, 60vw); }
+        }
+
+        .vv-splash-sub {
+            font-family: 'Share Tech Mono', monospace;
+            font-size: 0.7em; letter-spacing: 4px; text-transform: uppercase;
+            color: rgba(78,98,120,0);
+            margin-top: 14px;
+            animation: splashSub 0.5s 1.4s ease forwards;
+        }
+        @keyframes splashSub {
+            from { color: rgba(78,98,120,0); transform: translateY(6px); }
+            to   { color: #4e6278; transform: translateY(0); }
+        }
+
         /* ━━━━━━━━━━━━━━━━━━━━━━ BUTTONS ━━━━━━━━━━━━━━━━━━━━━━ */
         .btn-primary {
             display: inline-flex; align-items: center; gap: 8px;
@@ -455,6 +531,14 @@
     </style>
 </head>
 <body>
+
+    <!-- ── SPLASH INTRO ── -->
+    <div class="vv-splash" id="vv-splash">
+        <div class="vv-splash-hex"><span>⬡</span></div>
+        <div class="vv-splash-title">Vatican<em>Vault</em></div>
+        <div class="vv-splash-line"></div>
+        <div class="vv-splash-sub">AI Forensic Intelligence</div>
+    </div>
 
     <!-- ── NAV ── -->
     <nav class="nav">
@@ -721,6 +805,23 @@
     </footer>
 
     <script>
+        /* ── Splash dismiss ── */
+        (function(){
+            var splash = document.getElementById('vv-splash');
+            if (!splash) return;
+            /* Only show splash once per session */
+            if (sessionStorage.getItem('vv-splash-seen')) {
+                splash.style.display = 'none';
+            } else {
+                var dismiss = function() {
+                    splash.classList.add('done');
+                    sessionStorage.setItem('vv-splash-seen', '1');
+                };
+                setTimeout(dismiss, 2400);
+                splash.addEventListener('click', dismiss);
+            }
+        })();
+
         if (window.location.protocol === 'file:') {
             document.getElementById('fileWarning').style.display = 'block';
         } else {

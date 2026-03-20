@@ -585,8 +585,8 @@
 
   var style = document.createElement('style');
   style.textContent = `
-    .vv-tour-overlay { position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.55); opacity:0; transition:opacity 0.3s; pointer-events:auto; }
-    .vv-tour-overlay.active { opacity:1; }
+    .vv-tour-overlay { position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.55); opacity:0; transition:opacity 0.3s; pointer-events:none; }
+    .vv-tour-overlay.active { opacity:1; pointer-events:auto; }
     .vv-tour-highlight { position:absolute; z-index:9999; border:2px solid var(--cyan); border-radius:4px; box-shadow:0 0 0 9999px rgba(0,0,0,0.55), 0 0 20px rgba(0,212,255,0.3); pointer-events:none; transition:all 0.35s ease; }
     .vv-tour-tip { position:absolute; z-index:10000; max-width:340px; padding:16px 20px; background:rgba(4,8,15,0.96); border:1px solid var(--cyan); border-radius:4px; color:var(--text); font-family:'Outfit',system-ui,sans-serif; font-size:0.88em; line-height:1.6; box-shadow:0 8px 32px rgba(0,0,0,0.5); opacity:0; transition:opacity 0.3s, transform 0.3s; }
     .vv-tour-tip.show { opacity:1; transform:translateY(0) !important; }
@@ -692,8 +692,9 @@
     current = -1;
   }
 
-  /* Close tour on Escape */
+  /* Close tour on Escape or overlay click */
   document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && current >= 0) endTour(); });
+  document.addEventListener('click', function(e){ if (current >= 0 && e.target === overlay) endTour(); });
 })();
 </script>
 </body>
