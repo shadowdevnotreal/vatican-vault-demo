@@ -91,6 +91,46 @@ html.vv-light .callout-evidence .callout-title { color:#9a3412 !important; }
 html.vv-light .callout-info .callout-title { color:#1e40af !important; }
 html.vv-light .nav-logo { color:#0d6efd !important; }
 
+/* ── Enhanced print stylesheet (all pages) ── */
+@media print {
+  @page { margin: 18mm 15mm 18mm 15mm; }
+  body { background: #fff !important; color: #111 !important; font-size: 11pt !important; line-height: 1.5 !important; }
+  .vv-nav, .nav, .nav-bar, #vv-print-btn, #vv-top-btn, #vv-theme-btn, .vv-lock-btn, .vv-sig-unlock-btn { display: none !important; }
+  .vv-collapsed .section-body { display: block !important; }
+  .section, .finding, .attestation, .vv-sig-block { break-inside: avoid; }
+  table { break-inside: avoid; }
+  h2, h3 { break-after: avoid; }
+  .report-header, header.report-header { break-after: avoid; }
+  .footer, .report-footer { break-before: avoid; page-break-before: avoid; }
+  .vv-chart-c canvas { max-width: 100% !important; }
+  .vv-sig-text { border-bottom: 1px solid rgba(0,0,0,0.3) !important; background: transparent !important; }
+  .vv-date-input { border-bottom: 1px solid rgba(0,0,0,0.3) !important; background: transparent !important; }
+  .stat-card, .meta-item, .card { border-color: #ccc !important; }
+  a { color: #111 !important; text-decoration: underline !important; }
+  pre, code { background: #f5f5f5 !important; border-color: #ccc !important; }
+  * { box-shadow: none !important; text-shadow: none !important; }
+}
+
+/* ── LIVE data pulse indicator ── */
+.vv-live-badge {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: 'Share Tech Mono', monospace; font-size: 10px;
+  letter-spacing: 1.5px; text-transform: uppercase;
+  color: #10b981; opacity: 0.85;
+}
+.vv-live-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: #10b981;
+  animation: vvPulse 2s ease-in-out infinite;
+}
+@keyframes vvPulse {
+  0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(16,185,129,0.5); }
+  50% { opacity: 0.6; box-shadow: 0 0 0 5px rgba(16,185,129,0); }
+}
+html.vv-light .vv-live-badge { color: #059669; }
+html.vv-light .vv-live-dot { background: #059669; }
+@media print { .vv-live-badge { display: none !important; } }
+
 /* ── Smooth theme transition (only after first paint) ── */
 html.vv-transitions, html.vv-transitions *, html.vv-transitions *::before, html.vv-transitions *::after {
   transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
@@ -184,4 +224,65 @@ html.vv-light #vv-theme-btn:hover { background: rgba(13,110,253,0.14); }
 
   if (document.body) buildBtn();
   else document.addEventListener('DOMContentLoaded', buildBtn);
+
+  /* ── Accessibility: aria attributes + skip-nav ──────────────────────── */
+  function a11y() {
+    /* Skip-nav link */
+    var main = document.querySelector('main, .page, .report-body, .main');
+    if (main && !document.getElementById('vv-skip')) {
+      if (!main.id) main.id = 'vv-main-content';
+      var skip = document.createElement('a');
+      skip.id = 'vv-skip';
+      skip.href = '#' + main.id;
+      skip.textContent = 'Skip to main content';
+      skip.style.cssText = 'position:absolute;top:-100px;left:8px;z-index:99999;background:#04080f;color:#00d4ff;padding:8px 16px;font-size:13px;border:1px solid #00d4ff;border-radius:2px;text-decoration:none;transition:top 0.2s;';
+      skip.addEventListener('focus', function(){ skip.style.top = '8px'; });
+      skip.addEventListener('blur', function(){ skip.style.top = '-100px'; });
+      document.body.insertBefore(skip, document.body.firstChild);
+    }
+
+    /* aria-expanded on collapsible sections */
+    document.querySelectorAll('.section').forEach(function(sec) {
+      var h2 = sec.querySelector('h2.section-title');
+      if (!h2) return;
+      var isCollapsed = sec.classList.contains('vv-collapsed');
+      h2.setAttribute('role', 'button');
+      h2.setAttribute('tabindex', '0');
+      h2.setAttribute('aria-expanded', !isCollapsed);
+      var body = sec.querySelector('.section-body');
+      if (body) {
+        if (!body.id) body.id = 'vv-sec-' + Math.random().toString(36).substr(2,6);
+        h2.setAttribute('aria-controls', body.id);
+      }
+      /* Update aria on toggle — wrap existing click handler */
+      h2.addEventListener('click', function() {
+        setTimeout(function() {
+          h2.setAttribute('aria-expanded', !sec.classList.contains('vv-collapsed'));
+        }, 10);
+      });
+      h2.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); h2.click(); }
+      });
+    });
+
+    /* Nav landmark */
+    var nav = document.querySelector('.vv-nav, .nav');
+    if (nav && !nav.getAttribute('role')) nav.setAttribute('role', 'navigation');
+    if (nav) nav.setAttribute('aria-label', 'Main navigation');
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function(){ setTimeout(a11y, 100); });
+  else setTimeout(a11y, 100);
+
+  /* ── Inject LIVE badge into report nav ─────────────────────────────── */
+  function addLiveBadge() {
+    var nav = document.querySelector('.vv-nav-links');
+    if (!nav || document.querySelector('.vv-live-badge')) return;
+    var badge = document.createElement('span');
+    badge.className = 'vv-live-badge';
+    badge.innerHTML = '<span class="vv-live-dot"></span> LIVE DATA';
+    badge.style.marginLeft = '10px';
+    nav.appendChild(badge);
+  }
+  if (document.body) addLiveBadge();
+  else document.addEventListener('DOMContentLoaded', addLiveBadge);
 })();

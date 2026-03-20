@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    <title>Vatican Vault — Compare Reports</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:       #04080f;
+            --surface:  rgba(255,255,255,0.025);
+            --border:   rgba(0,212,255,0.14);
+            --cyan:     #00d4ff;
+            --text:     #dde4ed;
+            --text-dim: #4e6278;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:'Outfit',system-ui,sans-serif; background:var(--bg); color:var(--text); height:100vh; display:flex; flex-direction:column; overflow:hidden; }
+
+        .compare-nav {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:0 24px; height:48px; background:rgba(4,8,15,0.95);
+            border-bottom:1px solid var(--border); flex-shrink:0;
+        }
+        .compare-nav a {
+            font-family:'Orbitron',sans-serif; font-size:0.68em; font-weight:700;
+            letter-spacing:3px; text-transform:uppercase; color:var(--cyan); text-decoration:none;
+        }
+        .compare-labels {
+            display:flex; gap:24px; font-family:'Share Tech Mono',monospace;
+            font-size:0.7em; letter-spacing:1px; color:var(--text-dim);
+        }
+        .compare-labels span { max-width:320px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+        .compare-labels .left-lbl { color:var(--cyan); }
+        .compare-labels .vs { color:var(--text-dim); opacity:0.5; }
+        .compare-back {
+            font-family:'Share Tech Mono',monospace; font-size:0.7em; letter-spacing:1px;
+            color:var(--text-dim); text-decoration:none; border:1px solid var(--border);
+            padding:4px 12px; border-radius:2px; transition:all 0.2s;
+        }
+        .compare-back:hover { color:var(--cyan); border-color:var(--cyan); }
+
+        .compare-container { flex:1; display:flex; gap:0; overflow:hidden; }
+        .compare-pane { flex:1; position:relative; border-right:1px solid var(--border); }
+        .compare-pane:last-child { border-right:none; }
+        .compare-pane iframe { width:100%; height:100%; border:none; background:#fff; }
+        .compare-divider {
+            width:3px; background:var(--cyan); cursor:col-resize; flex-shrink:0;
+            position:relative; z-index:5; opacity:0.5; transition:opacity 0.2s;
+        }
+        .compare-divider:hover { opacity:1; }
+
+        .compare-empty {
+            display:flex; align-items:center; justify-content:center;
+            height:100%; font-family:'Share Tech Mono',monospace;
+            font-size:0.85em; color:var(--text-dim); text-align:center; padding:40px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="compare-nav">
+        <a href="index.html">⬡ Vatican Vault</a>
+        <div class="compare-labels">
+            <span class="left-lbl" id="left-label">—</span>
+            <span class="vs">vs</span>
+            <span id="right-label">—</span>
+        </div>
+        <a href="index.html" class="compare-back">← Back to Reports</a>
+    </nav>
+    <div class="compare-container" id="compare-container">
+        <!-- Filled by JS -->
+    </div>
+
+<script>
+(function(){
+    var params = new URLSearchParams(window.location.search);
+    var left = params.get('left');
+    var right = params.get('right');
+    var container = document.getElementById('compare-container');
+
+    /* Allowed reports (prevent loading arbitrary URLs) */
+    var allowed = [
+        'dfir_report.html','law_enforcement_report.html','financial_report.html',
+        'irm_report.html','pentest_report.html','hr_employment_report.html',
+        'enterprise_soc_report.html','mssp_report.html','healthcare_report.html',
+        'government_fisma_report.html','legal_ediscovery_report.html',
+        'ics_scada_report.html','insurance_fraud_report.html',
+        'generic_executive_report.html','generic_technical_report.html','generic_compliance_report.html'
+    ];
+
+    function safe(url) { return url && allowed.indexOf(url) !== -1; }
+
+    if (!safe(left) || !safe(right)) {
+        container.innerHTML = '<div class="compare-empty">Select two reports from the <a href="index.html" style="color:var(--cyan)">Reports Index</a> to compare them side by side.</div>';
+        return;
+    }
+
+    /* Title extraction from filename */
+    function titleFromFile(f) {
+        return f.replace('.html','').replace(/_/g,' ').replace(/\b\w/g, function(c){ return c.toUpperCase(); });
+    }
+    document.getElementById('left-label').textContent = titleFromFile(left);
+    document.getElementById('right-label').textContent = titleFromFile(right);
+    document.title = 'Compare: ' + titleFromFile(left) + ' vs ' + titleFromFile(right);
+
+    container.innerHTML =
+        '<div class="compare-pane"><iframe src="' + left + '" title="Left report"></iframe></div>' +
+        '<div class="compare-divider" id="divider"></div>' +
+        '<div class="compare-pane"><iframe src="' + right + '" title="Right report"></iframe></div>';
+
+    /* Resizable divider */
+    var divider = document.getElementById('divider');
+    var panes = container.querySelectorAll('.compare-pane');
+    var dragging = false;
+
+    divider.addEventListener('mousedown', function(e){
+        dragging = true;
+        document.body.style.cursor = 'col-resize';
+        e.preventDefault();
+    });
+    document.addEventListener('mousemove', function(e){
+        if (!dragging) return;
+        var rect = container.getBoundingClientRect();
+        var pct = ((e.clientX - rect.left) / rect.width) * 100;
+        pct = Math.max(20, Math.min(80, pct));
+        panes[0].style.flex = 'none';
+        panes[0].style.width = pct + '%';
+        panes[1].style.flex = 'none';
+        panes[1].style.width = (100 - pct) + '%';
+    });
+    document.addEventListener('mouseup', function(){ dragging = false; document.body.style.cursor = ''; });
+})();
+</script>
+</body>
+</html>

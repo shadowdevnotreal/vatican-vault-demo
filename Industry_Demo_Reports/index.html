@@ -277,6 +277,16 @@
         </p>
     </header>
 
+    <!-- ── SEARCH BAR ── -->
+    <div class="vv-search-bar" style="position:relative;z-index:1;max-width:520px;margin:0 auto 32px;padding:0 40px;">
+        <div style="position:relative;">
+            <input id="vv-search" type="text" placeholder="Search reports — try HIPAA, fraud, DFIR, executive…" autocomplete="off"
+                   style="width:100%;padding:12px 16px 12px 42px;background:var(--surface);border:1px solid var(--border);border-radius:3px;color:var(--text);font-family:'Outfit',system-ui,sans-serif;font-size:0.92em;outline:none;transition:border-color 0.2s;">
+            <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text-dim);font-size:1.1em;pointer-events:none;">⌕</span>
+        </div>
+        <div id="vv-search-count" style="font-family:'Share Tech Mono',monospace;font-size:0.65em;letter-spacing:1.5px;color:var(--text-dim);margin-top:8px;text-align:center;opacity:0;transition:opacity 0.2s;"></div>
+    </div>
+
     <!-- ── DATA CALLOUT ── -->
     <div class="data-callout" style="margin: 0 auto 60px; max-width: 800px; padding: 20px 28px; position: relative; z-index: 1;">
         <div class="data-callout-label">📊 Data Source</div>
@@ -427,5 +437,264 @@
     </footer>
 
 <script src="../theme.js"></script>
+<script>
+/* ── T3-9: Global Search ──────────────────────────────────────────── */
+(function(){
+  var input = document.getElementById('vv-search');
+  var countEl = document.getElementById('vv-search-count');
+  if (!input) return;
+  var cards = Array.from(document.querySelectorAll('.card'));
+  var sections = Array.from(document.querySelectorAll('.section'));
+
+  input.addEventListener('input', function(){
+    var q = input.value.trim().toLowerCase();
+    if (!q) {
+      cards.forEach(function(c){ c.style.display = ''; });
+      sections.forEach(function(s){ s.style.display = ''; });
+      countEl.style.opacity = '0';
+      return;
+    }
+    var visible = 0;
+    cards.forEach(function(c){
+      var text = c.textContent.toLowerCase();
+      var match = text.indexOf(q) !== -1;
+      c.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    /* Hide sections that have zero visible cards */
+    sections.forEach(function(s){
+      var anyVisible = Array.from(s.querySelectorAll('.card')).some(function(c){ return c.style.display !== 'none'; });
+      s.style.display = anyVisible ? '' : 'none';
+    });
+    countEl.textContent = visible + ' of ' + cards.length + ' reports';
+    countEl.style.opacity = '1';
+  });
+
+  /* Focus shortcut: Ctrl+K or / */
+  document.addEventListener('keydown', function(e){
+    if ((e.ctrlKey && e.key === 'k') || (e.key === '/' && e.target.tagName !== 'INPUT' && e.target.tagName !== 'TEXTAREA')) {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+  input.addEventListener('focus', function(){ input.style.borderColor = 'var(--cyan)'; });
+  input.addEventListener('blur', function(){ input.style.borderColor = 'var(--border)'; });
+})();
+
+/* ── T3-10: Compare View ──────────────────────────────────────────── */
+(function(){
+  var style = document.createElement('style');
+  style.textContent = `
+    .vv-compare-toggle { position:relative; }
+    .vv-compare-check { position:absolute; top:8px; right:8px; width:20px; height:20px; border-radius:50%; border:2px solid var(--border); background:var(--surface); cursor:pointer; z-index:2; display:flex; align-items:center; justify-content:center; font-size:12px; color:transparent; transition:all 0.2s; }
+    .vv-compare-check:hover { border-color:var(--cyan); }
+    .vv-compare-check.selected { background:var(--cyan); border-color:var(--cyan); color:#000; }
+    .vv-compare-bar { position:fixed; bottom:0; left:0; right:0; z-index:200; background:rgba(4,8,15,0.95); backdrop-filter:blur(16px); border-top:1px solid var(--cyan); padding:12px 24px; display:flex; align-items:center; justify-content:center; gap:16px; transform:translateY(100%); transition:transform 0.3s; }
+    .vv-compare-bar.visible { transform:translateY(0); }
+    .vv-compare-bar span { font-family:'Share Tech Mono',monospace; font-size:0.75em; letter-spacing:1px; color:var(--text); }
+    .vv-compare-go { padding:8px 20px; background:var(--cyan); color:#000; font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.85em; letter-spacing:2px; text-transform:uppercase; border:none; border-radius:2px; cursor:pointer; transition:opacity 0.2s; }
+    .vv-compare-go:disabled { opacity:0.4; cursor:default; }
+    .vv-compare-go:not(:disabled):hover { opacity:0.85; }
+    .vv-compare-reset { padding:8px 16px; background:transparent; border:1px solid var(--border); color:var(--text-dim); font-family:'Share Tech Mono',monospace; font-size:0.7em; letter-spacing:1px; cursor:pointer; border-radius:2px; }
+    html.vv-light .vv-compare-bar { background:rgba(242,245,249,0.97); border-top-color:#0d6efd; }
+    html.vv-light .vv-compare-check.selected { background:#0d6efd; border-color:#0d6efd; }
+    html.vv-light .vv-compare-go { background:#0d6efd; color:#fff; }
+  `;
+  document.head.appendChild(style);
+
+  var selected = [];
+  var cards = Array.from(document.querySelectorAll('.card'));
+
+  /* Add checkboxes to each card */
+  cards.forEach(function(card){
+    var check = document.createElement('span');
+    check.className = 'vv-compare-check';
+    check.title = 'Select for comparison';
+    check.innerHTML = '✓';
+    card.style.position = 'relative';
+    card.appendChild(check);
+
+    check.addEventListener('click', function(e){
+      e.preventDefault();
+      e.stopPropagation();
+      var href = card.getAttribute('href');
+      var idx = selected.indexOf(href);
+      if (idx !== -1) {
+        selected.splice(idx, 1);
+        check.classList.remove('selected');
+      } else if (selected.length < 2) {
+        selected.push(href);
+        check.classList.add('selected');
+      }
+      updateBar();
+    });
+  });
+
+  /* Compare bar */
+  var bar = document.createElement('div');
+  bar.className = 'vv-compare-bar';
+  bar.innerHTML = '<span id="vv-compare-label">Select 2 reports to compare</span> <button class="vv-compare-go" id="vv-compare-go" disabled>Compare Side by Side</button> <button class="vv-compare-reset" id="vv-compare-reset">Clear</button>';
+  document.body.appendChild(bar);
+
+  var goBtn = document.getElementById('vv-compare-go');
+  var resetBtn = document.getElementById('vv-compare-reset');
+  var label = document.getElementById('vv-compare-label');
+
+  function getTitle(href) {
+    var c = cards.find(function(c){ return c.getAttribute('href') === href; });
+    return c ? c.querySelector('h3').textContent : href;
+  }
+
+  function updateBar() {
+    bar.classList.toggle('visible', selected.length > 0);
+    if (selected.length === 0) {
+      label.textContent = 'Select 2 reports to compare';
+    } else if (selected.length === 1) {
+      label.textContent = '1 selected: ' + getTitle(selected[0]) + ' — pick one more';
+    } else {
+      label.textContent = getTitle(selected[0]) + ' vs ' + getTitle(selected[1]);
+    }
+    goBtn.disabled = selected.length < 2;
+  }
+
+  goBtn.addEventListener('click', function(){
+    if (selected.length < 2) return;
+    var url = 'compare.html?left=' + encodeURIComponent(selected[0]) + '&right=' + encodeURIComponent(selected[1]);
+    window.open(url, '_blank');
+  });
+
+  resetBtn.addEventListener('click', function(){
+    selected = [];
+    document.querySelectorAll('.vv-compare-check.selected').forEach(function(c){ c.classList.remove('selected'); });
+    updateBar();
+  });
+})();
+
+/* ── T3-11: Guided Tour ───────────────────────────────────────────── */
+(function(){
+  var steps = [
+    { sel:'.nav', text:'Navigation bar — switch between the Demo Hub, Industry Reports, and VC Package. Toggle light/dark theme here.', pos:'bottom' },
+    { sel:'#vv-search', text:'Search bar — instantly filter all 16 reports by keyword. Try "HIPAA", "fraud", or "executive". Use Ctrl+K as a shortcut.', pos:'bottom' },
+    { sel:'.section:first-of-type .card:first-child', text:'Report cards — click any card to open the full interactive report in a new tab. Each report is tailored to a specific industry.', pos:'bottom' },
+    { sel:'.vv-compare-check', text:'Comparison mode — click the circle on any two cards to compare reports side by side.', pos:'left' },
+    { sel:'.data-callout', text:'All 16 reports are generated from the same real Windows Timeline database — 1,853 activities across 146 days.', pos:'top' }
+  ];
+  var current = -1;
+  var overlay, tooltip;
+
+  var style = document.createElement('style');
+  style.textContent = `
+    .vv-tour-overlay { position:fixed; inset:0; z-index:9998; background:rgba(0,0,0,0.55); opacity:0; transition:opacity 0.3s; pointer-events:auto; }
+    .vv-tour-overlay.active { opacity:1; }
+    .vv-tour-highlight { position:absolute; z-index:9999; border:2px solid var(--cyan); border-radius:4px; box-shadow:0 0 0 9999px rgba(0,0,0,0.55), 0 0 20px rgba(0,212,255,0.3); pointer-events:none; transition:all 0.35s ease; }
+    .vv-tour-tip { position:absolute; z-index:10000; max-width:340px; padding:16px 20px; background:rgba(4,8,15,0.96); border:1px solid var(--cyan); border-radius:4px; color:var(--text); font-family:'Outfit',system-ui,sans-serif; font-size:0.88em; line-height:1.6; box-shadow:0 8px 32px rgba(0,0,0,0.5); opacity:0; transition:opacity 0.3s, transform 0.3s; }
+    .vv-tour-tip.show { opacity:1; transform:translateY(0) !important; }
+    .vv-tour-actions { display:flex; justify-content:space-between; align-items:center; margin-top:12px; }
+    .vv-tour-step { font-family:'Share Tech Mono',monospace; font-size:0.7em; color:var(--text-dim); letter-spacing:1px; }
+    .vv-tour-btns { display:flex; gap:6px; }
+    .vv-tour-btn { padding:5px 14px; font-family:'Rajdhani',sans-serif; font-weight:600; font-size:0.82em; letter-spacing:1px; text-transform:uppercase; border:none; border-radius:2px; cursor:pointer; }
+    .vv-tour-next { background:var(--cyan); color:#000; }
+    .vv-tour-skip { background:transparent; border:1px solid var(--border); color:var(--text-dim); }
+    .vv-tour-start { position:fixed; bottom:24px; right:24px; z-index:100; padding:10px 18px; background:rgba(0,212,255,0.10); border:1px solid var(--cyan); border-radius:3px; color:var(--cyan); font-family:'Share Tech Mono',monospace; font-size:0.7em; letter-spacing:1.5px; text-transform:uppercase; cursor:pointer; transition:background 0.2s; }
+    .vv-tour-start:hover { background:rgba(0,212,255,0.20); }
+    html.vv-light .vv-tour-tip { background:rgba(255,255,255,0.97); border-color:#0d6efd; }
+    html.vv-light .vv-tour-highlight { border-color:#0d6efd; box-shadow:0 0 0 9999px rgba(0,0,0,0.45), 0 0 20px rgba(13,110,253,0.3); }
+    html.vv-light .vv-tour-next { background:#0d6efd; color:#fff; }
+    html.vv-light .vv-tour-start { border-color:#0d6efd; color:#0d6efd; background:rgba(13,110,253,0.06); }
+    @media print { .vv-tour-start { display:none !important; } }
+  `;
+  document.head.appendChild(style);
+
+  /* Start button */
+  var startBtn = document.createElement('button');
+  startBtn.className = 'vv-tour-start';
+  startBtn.textContent = '? Tour';
+  document.body.appendChild(startBtn);
+
+  startBtn.addEventListener('click', function(){ startTour(); });
+
+  function startTour() {
+    current = -1;
+    if (!overlay) {
+      overlay = document.createElement('div');
+      overlay.className = 'vv-tour-overlay';
+      document.body.appendChild(overlay);
+    }
+    overlay.classList.add('active');
+    startBtn.style.display = 'none';
+    nextStep();
+  }
+
+  function nextStep() {
+    current++;
+    if (current >= steps.length) { endTour(); return; }
+    showStep(steps[current]);
+  }
+
+  function showStep(step) {
+    var el = document.querySelector(step.sel);
+    if (!el) { nextStep(); return; }
+
+    el.scrollIntoView({ behavior:'smooth', block:'center' });
+
+    setTimeout(function(){
+      var rect = el.getBoundingClientRect();
+      var pad = 6;
+
+      /* Highlight */
+      var hl = document.querySelector('.vv-tour-highlight');
+      if (!hl) { hl = document.createElement('div'); hl.className = 'vv-tour-highlight'; document.body.appendChild(hl); }
+      hl.style.top = (rect.top + window.scrollY - pad) + 'px';
+      hl.style.left = (rect.left + window.scrollX - pad) + 'px';
+      hl.style.width = (rect.width + pad*2) + 'px';
+      hl.style.height = (rect.height + pad*2) + 'px';
+
+      /* Tooltip */
+      if (tooltip) tooltip.remove();
+      tooltip = document.createElement('div');
+      tooltip.className = 'vv-tour-tip';
+      tooltip.innerHTML = '<div>' + step.text + '</div>' +
+        '<div class="vv-tour-actions"><span class="vv-tour-step">' + (current+1) + '/' + steps.length + '</span>' +
+        '<div class="vv-tour-btns"><button class="vv-tour-btn vv-tour-skip">Skip</button>' +
+        '<button class="vv-tour-btn vv-tour-next">' + (current < steps.length - 1 ? 'Next' : 'Finish') + '</button></div></div>';
+      document.body.appendChild(tooltip);
+
+      /* Position tooltip */
+      var tipRect = tooltip.getBoundingClientRect();
+      if (step.pos === 'bottom') {
+        tooltip.style.top = (rect.bottom + window.scrollY + 12) + 'px';
+        tooltip.style.left = Math.max(16, rect.left + window.scrollX + rect.width/2 - tipRect.width/2) + 'px';
+        tooltip.style.transform = 'translateY(-8px)';
+      } else if (step.pos === 'top') {
+        tooltip.style.top = (rect.top + window.scrollY - tipRect.height - 12) + 'px';
+        tooltip.style.left = Math.max(16, rect.left + window.scrollX + rect.width/2 - tipRect.width/2) + 'px';
+        tooltip.style.transform = 'translateY(8px)';
+      } else {
+        tooltip.style.top = (rect.top + window.scrollY) + 'px';
+        tooltip.style.left = (rect.left + window.scrollX - tipRect.width - 14) + 'px';
+        tooltip.style.transform = 'translateY(-8px)';
+      }
+
+      requestAnimationFrame(function(){ tooltip.classList.add('show'); });
+
+      tooltip.querySelector('.vv-tour-next').addEventListener('click', nextStep);
+      tooltip.querySelector('.vv-tour-skip').addEventListener('click', endTour);
+    }, 350);
+  }
+
+  function endTour() {
+    if (overlay) overlay.classList.remove('active');
+    var hl = document.querySelector('.vv-tour-highlight');
+    if (hl) hl.remove();
+    if (tooltip) { tooltip.remove(); tooltip = null; }
+    startBtn.style.display = '';
+    current = -1;
+  }
+
+  /* Close tour on Escape */
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && current >= 0) endTour(); });
+})();
+</script>
 </body>
 </html>
