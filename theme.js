@@ -16,7 +16,7 @@
 
 html.vv-light { --bg:#f2f5f9; --surface:#ffffff; --border:#c8d3e0; --text:#0f172a; --text-muted:#0f172a; --text-dim:#0f172a; --text-mid:#0f172a; }
 html.vv-light body { background:#f2f5f9 !important; color:#0f172a !important; }
-html.vv-light .nav,html.vv-light .vv-nav { background:rgba(242,245,249,0.97) !important; border-bottom-color:#c8d3e0 !important; }
+html.vv-light .nav,html.vv-light .vv-nav,html.vv-light .nav-bar { background:rgba(242,245,249,0.97) !important; border-bottom-color:#c8d3e0 !important; }
 html.vv-light .nav-links a { color:#0f172a !important; border-color:#475569 !important; background:rgba(15,23,42,0.04) !important; }
 html.vv-light .nav-links a:hover,html.vv-light .nav-links a.active { color:#0d6efd !important; border-color:#0d6efd !important; background:rgba(13,110,253,0.10) !important; box-shadow:0 0 8px rgba(13,110,253,0.15) !important; }
 html.vv-light .vv-nav a { color:#0f172a !important; }
