@@ -345,24 +345,60 @@
             to { width: min(320px, 65vw); }
         }
 
-        /* Status line with typing effect */
-        .vv-splash-status {
+        /* Terminal log area */
+        .vv-splash-terminal {
             position: relative; z-index: 2;
+            margin-top: 28px;
+            padding: 16px 24px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid rgba(0,212,255,0.12);
+            border-radius: 4px;
+            min-width: min(420px, 80vw);
+            max-width: 480px;
+            text-align: left;
+            opacity: 0;
+            animation: splashTermIn 0.4s 1.4s ease forwards;
+        }
+        .vv-splash-terminal::before {
+            content: 'SYSTEM';
+            display: block;
             font-family: 'Share Tech Mono', monospace;
-            font-size: 0.68em; letter-spacing: 3px; text-transform: uppercase;
-            color: rgba(78,98,120,0);
-            margin-top: 16px;
-            animation: splashStatus 0.4s 1.5s ease forwards;
+            font-size: 9px; letter-spacing: 2px;
+            color: rgba(0,212,255,0.4);
+            margin-bottom: 10px;
+            padding-bottom: 6px;
+            border-bottom: 1px solid rgba(0,212,255,0.08);
         }
-        .vv-splash-status .cursor {
-            display: inline-block; width: 7px; height: 1.1em;
-            background: #00d4ff; margin-left: 4px;
+        @keyframes splashTermIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .vv-term-line {
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            font-size: 0.78em; letter-spacing: 0.5px;
+            line-height: 1.9;
+            color: #4e6278;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+        .vv-term-line .prompt {
+            color: #00d4ff;
+            margin-right: 6px;
+            user-select: none;
+        }
+        .vv-term-line .ok {
+            color: #10b981;
+        }
+        .vv-term-line.active {
+            color: #8899aa;
+        }
+        .vv-term-cursor {
+            display: inline-block; width: 8px; height: 1.15em;
+            background: #00d4ff;
             vertical-align: text-bottom;
-            animation: splashBlink 0.6s 1.5s step-end infinite;
-        }
-        @keyframes splashStatus {
-            from { color: rgba(78,98,120,0); transform: translateY(6px); }
-            to   { color: #4e6278; transform: translateY(0); }
+            margin-left: 2px;
+            animation: splashBlink 0.5s step-end infinite;
         }
         @keyframes splashBlink {
             0%, 100% { opacity: 1; }
@@ -395,7 +431,7 @@
             font-family: 'Share Tech Mono', monospace;
             font-size: 0.55em; letter-spacing: 2px; text-transform: uppercase;
             color: rgba(78,98,120,0);
-            animation: splashSkip 0.3s 2.0s ease forwards;
+            animation: splashSkip 0.3s 2.5s ease forwards;
             cursor: pointer;
         }
         @keyframes splashSkip {
@@ -653,9 +689,7 @@
             <span class="w1">Vatican</span><span class="w2">Vault</span>
         </div>
         <div class="vv-splash-line"></div>
-        <div class="vv-splash-status">
-            <span id="vv-splash-text"></span><span class="cursor"></span>
-        </div>
+        <div class="vv-splash-terminal" id="vv-term"></div>
         <div class="vv-splash-skip" id="vv-splash-skip">click to enter</div>
     </div>
 
@@ -924,7 +958,7 @@
     </footer>
 
     <script>
-        /* ── Splash dismiss + typing effect ── */
+        /* ── Splash dismiss + typewriter terminal ── */
         (function(){
             var splash = document.getElementById('vv-splash');
             if (!splash) return;
@@ -932,9 +966,20 @@
                 splash.style.display = 'none';
                 return;
             }
-            var textEl = document.getElementById('vv-splash-text');
-            var messages = ['Initializing forensic engine', 'Loading 68 API endpoints', 'System ready'];
-            var mi = 0, ci = 0, dismissed = false;
+
+            var term = document.getElementById('vv-term');
+            var dismissed = false;
+            var lines = [
+                { text: 'Initializing forensic engine...',     ok: 'OK' },
+                { text: 'Loading 68 REST API endpoints...',    ok: 'READY' },
+                { text: 'Mounting 16 industry report templates...', ok: 'LOADED' },
+                { text: 'Connecting AI analysis pipeline...',  ok: 'ONLINE' },
+                { text: 'System ready.',                       ok: null }
+            ];
+            var li = 0, ci = 0;
+            var currentLine = null;
+            var currentSpan = null;
+            var cursor = null;
 
             function dismiss() {
                 if (dismissed) return;
@@ -943,33 +988,79 @@
                 sessionStorage.setItem('vv-splash-seen', '1');
             }
 
-            /* Typing animation — starts at 1.6s to sync with status line fade-in */
-            function typeNext() {
-                if (dismissed || mi >= messages.length) return;
-                if (ci <= messages[mi].length) {
-                    textEl.textContent = messages[mi].substring(0, ci);
-                    ci++;
-                    setTimeout(typeNext, 30 + Math.random() * 20);
-                } else {
-                    /* Pause, then next message */
-                    mi++;
-                    ci = 0;
-                    if (mi >= messages.length) {
-                        setTimeout(dismiss, 500);
-                    } else {
-                        setTimeout(typeNext, 400);
-                    }
+            function createLine() {
+                /* Remove cursor from previous line */
+                if (cursor && cursor.parentNode) cursor.parentNode.removeChild(cursor);
+
+                currentLine = document.createElement('div');
+                currentLine.className = 'vv-term-line active';
+
+                var prompt = document.createElement('span');
+                prompt.className = 'prompt';
+                prompt.textContent = '>';
+                currentLine.appendChild(prompt);
+
+                currentSpan = document.createElement('span');
+                currentLine.appendChild(currentSpan);
+
+                cursor = document.createElement('span');
+                cursor.className = 'vv-term-cursor';
+                currentLine.appendChild(cursor);
+
+                term.appendChild(currentLine);
+            }
+
+            function finishLine() {
+                currentLine.classList.remove('active');
+                if (cursor && cursor.parentNode) cursor.parentNode.removeChild(cursor);
+
+                if (lines[li].ok) {
+                    var ok = document.createElement('span');
+                    ok.className = 'ok';
+                    ok.textContent = ' [' + lines[li].ok + ']';
+                    currentLine.appendChild(ok);
                 }
             }
-            setTimeout(typeNext, 1600);
+
+            function typeChar() {
+                if (dismissed) return;
+
+                if (li >= lines.length) {
+                    setTimeout(dismiss, 600);
+                    return;
+                }
+
+                /* Start a new line */
+                if (ci === 0) createLine();
+
+                if (ci < lines[li].text.length) {
+                    currentSpan.textContent = lines[li].text.substring(0, ci + 1);
+                    ci++;
+                    /* Typing speed: 45-70ms per char for natural feel */
+                    var delay = 45 + Math.random() * 25;
+                    /* Brief pause after punctuation */
+                    var ch = lines[li].text[ci - 1];
+                    if (ch === '.' || ch === ',') delay += 80;
+                    setTimeout(typeChar, delay);
+                } else {
+                    /* Line complete — show status tag, pause, then next line */
+                    finishLine();
+                    li++;
+                    ci = 0;
+                    setTimeout(typeChar, 350);
+                }
+            }
+
+            /* Start typing after terminal fades in (1.4s anim + 0.3s buffer) */
+            setTimeout(typeChar, 1800);
 
             /* Click or key to skip */
             splash.addEventListener('click', dismiss);
             document.addEventListener('keydown', function(e) {
                 if (!dismissed && (e.key === 'Enter' || e.key === ' ' || e.key === 'Escape')) dismiss();
             });
-            /* Safety fallback */
-            setTimeout(dismiss, 5000);
+            /* Safety fallback — generous to let all lines finish */
+            setTimeout(dismiss, 12000);
         })();
 
         if (window.location.protocol === 'file:') {
