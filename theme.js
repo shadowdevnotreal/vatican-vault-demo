@@ -86,6 +86,7 @@ html.vv-light .vv-real-img-wrap { background:#e2e8f0 !important; }
 html.vv-light blockquote { background:rgba(13,110,253,0.04) !important; color:#0f172a !important; border-left-color:#0d6efd !important; }
 html.vv-light .phi-badge { background:rgba(220,38,38,0.08) !important; color:#991b1b !important; }
 html.vv-light .compliance-badge { background:rgba(5,150,105,0.08) !important; color:#065f46 !important; }
+html.vv-light .methodology { color:#0f172a !important; }
 html.vv-light .callout-evidence .callout-title { color:#9a3412 !important; }
 html.vv-light .callout-info .callout-title { color:#1e40af !important; }
 html.vv-light .nav-logo { color:#0d6efd !important; }

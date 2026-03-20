@@ -371,7 +371,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
         <div class="section">
             <div class="section-title">2. Entity Extraction Results</div>
-            <p style="color:#475569; margin-bottom:12px;">
+            <p style="color:var(--text); margin-bottom:12px;">
                 <strong>8</strong> entities extracted across
                 <strong>4</strong> categories using hybrid NER (regex + spaCy).
             </p>
@@ -411,7 +411,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 
         <div class="section">
             <div class="section-title">3. Sensitive Data Exposure</div>
-            <p style="color:#475569; margin-bottom:12px;">
+            <p style="color:var(--text); margin-bottom:12px;">
                 <strong>2</strong> instances of sensitive data detected.
                 Values partially redacted for report safety.
             </p>
@@ -443,9 +443,9 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
                     <li>Report generation with evidence chain</li>
                 </ol>
             </div>
-            <div class="methodology" style="background:#fefce8; border-color:#eab308; color:#713f12;">
+            <div class="methodology" >
                 <p><strong>Export Formats Available:</strong></p>
-                <p style="color:#334155; margin-top:6px;">
+                <p style="color:var(--text); margin-top:6px;">
                     HTML, PDF, CSV, JSON, Excel, Parquet, STIX 2.1, MISP, CASE/UCO, DFXML,
                     GraphML, DOT (Graphviz), Neo4j Cypher, D3.js Interactive HTML
                 </p>
@@ -680,7 +680,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
             <p><strong>Vatican Vault v2.0</strong> - Digital Forensics Platform</p>
             <p>Generated: 2026-03-01 23:34:44</p>
             <p style="margin-top:8px; font-size:12px;">CONFIDENTIAL - For authorized personnel only</p>
-            <p style="font-size:11px; color:#94a3b8; margin-top:4px;">
+            <p style="font-size:11px; color:var(--text-muted); margin-top:4px;">
                 Methodology: Hybrid NER, ML anomaly detection, behavioral clustering, sentiment analysis
             </p>
         </div>
