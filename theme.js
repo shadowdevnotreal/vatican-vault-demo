@@ -91,6 +91,16 @@ html.vv-light .callout-evidence .callout-title { color:#9a3412 !important; }
 html.vv-light .callout-info .callout-title { color:#1e40af !important; }
 html.vv-light .nav-logo { color:#0d6efd !important; }
 
+/* ── Light mode: fix inline hardcoded colors across reports ── */
+html.vv-light [style*="background:#1a1a1a"] { background:#f1f5f9 !important; border-color:#059669 !important; }
+html.vv-light [style*="background:#ecfdf5"] { background:#e0f2fe !important; }
+html.vv-light [style*="color:#0f0"] { color:#047857 !important; }
+html.vv-light [style*="color:#ff6b6b"] { color:#dc2626 !important; }
+html.vv-light [style*="color:#fff"] { color:#0f172a !important; }
+html.vv-light [style*="background:rgba(255,255,255,0.04)"] { background:rgba(0,0,0,0.02) !important; }
+html.vv-light [style*="color:var(--green,#0f0)"] { color:#047857 !important; }
+html.vv-light [style*="color:var(--text-muted,#8899aa)"] { color:#475569 !important; }
+
 /* ── Enhanced print stylesheet (all pages) ── */
 @media print {
   @page { margin: 18mm 15mm 18mm 15mm; }
