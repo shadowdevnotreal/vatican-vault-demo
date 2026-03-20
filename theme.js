@@ -182,7 +182,8 @@ html.vv-light #vv-theme-btn:hover { background: rgba(13,110,253,0.14); }
   (document.head || document.documentElement).appendChild(styleEl);
 
   /* ── Apply saved theme before first paint ────────────────────────────── */
-  if (localStorage.getItem(KEY) === 'light') html.classList.add(LIGHT);
+  /* Default to light mode; only go dark if user explicitly chose it */
+  if (localStorage.getItem(KEY) !== 'dark') html.classList.add(LIGHT);
 
   /* ── Build button ────────────────────────────────────────────────────── */
   function buildBtn() {
