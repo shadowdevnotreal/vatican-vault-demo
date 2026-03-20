@@ -6,25 +6,25 @@
 
   /* ── CSS ─────────────────────────────────────────────────────────────── */
   var css = `
-/* ── Dark mode nav — boosted visibility (applies unless .vv-light overrides) ── */
-.nav-links a { color: #94a3b8 !important; border-color: rgba(0,212,255,0.28) !important; }
-.nav-links a:hover, .nav-links a.active { color: #00d4ff !important; border-color: rgba(0,212,255,0.65) !important; background: rgba(0,212,255,0.07) !important; }
-.vv-nav-links a { color: #94a3b8 !important; border-color: rgba(0,212,255,0.25) !important; }
-.vv-nav-links a:hover { color: #00d4ff !important; border-color: rgba(0,212,255,0.6) !important; background: rgba(0,212,255,0.07) !important; }
-.vv-nav-back { color: #00d4ff !important; }
-#vv-theme-btn { border-color: rgba(0,212,255,0.7) !important; }
+/* ── Dark mode nav — high-visibility buttons ── */
+.nav-links a { color: #e2e8f0 !important; border-color: rgba(0,212,255,0.50) !important; background: rgba(0,212,255,0.06) !important; }
+.nav-links a:hover, .nav-links a.active { color: #00d4ff !important; border-color: #00d4ff !important; background: rgba(0,212,255,0.14) !important; box-shadow: 0 0 12px rgba(0,212,255,0.2) !important; }
+.vv-nav-links a { color: #e2e8f0 !important; border-color: rgba(0,212,255,0.50) !important; background: rgba(0,212,255,0.06) !important; }
+.vv-nav-links a:hover { color: #00d4ff !important; border-color: #00d4ff !important; background: rgba(0,212,255,0.14) !important; box-shadow: 0 0 12px rgba(0,212,255,0.2) !important; }
+.vv-nav-back { color: #00d4ff !important; border-color: rgba(0,212,255,0.50) !important; }
+#vv-theme-btn { border-color: #00d4ff !important; }
 
 html.vv-light { --bg:#f2f5f9; --surface:#ffffff; --border:#c8d3e0; --text:#0f172a; --text-muted:#0f172a; --text-dim:#0f172a; --text-mid:#0f172a; }
 html.vv-light body { background:#f2f5f9 !important; color:#0f172a !important; }
 html.vv-light .nav,html.vv-light .vv-nav { background:rgba(242,245,249,0.97) !important; border-bottom-color:#c8d3e0 !important; }
-html.vv-light .nav-links a { color:#0f172a !important; border-color:#94a3b8 !important; }
-html.vv-light .nav-links a:hover,html.vv-light .nav-links a.active { color:#0d6efd !important; background:rgba(13,110,253,0.08) !important; border-color:#0d6efd !important; }
+html.vv-light .nav-links a { color:#0f172a !important; border-color:#475569 !important; background:rgba(15,23,42,0.04) !important; }
+html.vv-light .nav-links a:hover,html.vv-light .nav-links a.active { color:#0d6efd !important; border-color:#0d6efd !important; background:rgba(13,110,253,0.10) !important; box-shadow:0 0 8px rgba(13,110,253,0.15) !important; }
 html.vv-light .vv-nav a { color:#0f172a !important; }
 html.vv-light .vv-nav a:hover { color:#0d6efd !important; }
-html.vv-light .vv-nav-links a { color:#0f172a !important; border-color:#94a3b8 !important; }
-html.vv-light .vv-nav-links a:hover { color:#0d6efd !important; border-color:#0d6efd !important; background:rgba(13,110,253,0.07) !important; }
-html.vv-light .vv-nav-back { color:#1d4ed8 !important; }
-html.vv-light #vv-theme-btn { border-color: rgba(13,110,253,0.8) !important; }
+html.vv-light .vv-nav-links a { color:#0f172a !important; border-color:#475569 !important; background:rgba(15,23,42,0.04) !important; }
+html.vv-light .vv-nav-links a:hover { color:#0d6efd !important; border-color:#0d6efd !important; background:rgba(13,110,253,0.10) !important; box-shadow:0 0 8px rgba(13,110,253,0.15) !important; }
+html.vv-light .vv-nav-back { color:#1d4ed8 !important; border-color:#1d4ed8 !important; }
+html.vv-light #vv-theme-btn { border-color:#0d6efd !important; }
 html.vv-light .vv-nav .logo { color:var(--accent,#0d6efd) !important; }
 html.vv-light .nav-logo { color:var(--accent,#00d4ff) !important; }
 html.vv-light .report-header,html.vv-light header.report-header { background:linear-gradient(135deg,#e2e8f2 0%,#f2f5f9 100%) !important; border-bottom-color:#c8d3e0 !important; }
@@ -96,7 +96,7 @@ html.vv-light .footer-meta { color:#0f172a !important; }
 #vv-theme-btn:hover { background: rgba(0,212,255,0.18); }
 html.vv-light #vv-theme-btn {
   background: rgba(13,110,253,0.07);
-  border-color: rgba(13,110,253,0.45);
+  border-color: #0d6efd;
   color: #0d6efd;
 }
 html.vv-light #vv-theme-btn:hover { background: rgba(13,110,253,0.14); }
