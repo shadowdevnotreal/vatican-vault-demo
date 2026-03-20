@@ -93,12 +93,13 @@ tr:hover td { background:rgba(255,255,255,0.02); }
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
 <script>
 (function(){function d(){if(typeof Chart==='undefined')return;var C=Chart.defaults;
-C.color='#6b86a0';C.borderColor='#1e2a3e';
-C.plugins.legend.labels.color='#d8e8f5';
+var L=document.documentElement.classList.contains('vv-light');
+C.color=L?'#475569':'#6b86a0';C.borderColor=L?'#c8d3e0':'#1e2a3e';
+C.plugins.legend.labels.color=L?'#0f172a':'#d8e8f5';
 C.plugins.legend.labels.font={family:"'Share Tech Mono',monospace",size:11};
-C.plugins.tooltip.backgroundColor='rgba(4,8,15,.97)';
-C.plugins.tooltip.borderColor='#1e2a3e';C.plugins.tooltip.borderWidth=1;
-C.plugins.tooltip.titleColor='#00d4ff';C.plugins.tooltip.bodyColor='#d8e8f5';
+C.plugins.tooltip.backgroundColor=L?'rgba(15,23,42,.95)':'rgba(4,8,15,.97)';
+C.plugins.tooltip.borderColor=L?'#c8d3e0':'#1e2a3e';C.plugins.tooltip.borderWidth=1;
+C.plugins.tooltip.titleColor=L?'#0d6efd':'#00d4ff';C.plugins.tooltip.bodyColor=L?'#0f172a':'#d8e8f5';
 C.plugins.tooltip.titleFont={family:"'Share Tech Mono',monospace",size:10};
 C.plugins.tooltip.bodyFont={family:"'Share Tech Mono',monospace",size:10};
 C.scale.grid.color='rgba(30,42,62,.7)';
