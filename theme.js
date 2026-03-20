@@ -91,6 +91,11 @@ html.vv-light .callout-evidence .callout-title { color:#9a3412 !important; }
 html.vv-light .callout-info .callout-title { color:#1e40af !important; }
 html.vv-light .nav-logo { color:#0d6efd !important; }
 
+/* ── Smooth theme transition (only after first paint) ── */
+html.vv-transitions, html.vv-transitions *, html.vv-transitions *::before, html.vv-transitions *::after {
+  transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease !important;
+}
+
 /* ── Theme toggle button base style ── */
 #vv-theme-btn {
   display: inline-flex;
@@ -142,6 +147,7 @@ html.vv-light #vv-theme-btn:hover { background: rgba(13,110,253,0.14); }
       : '<span style="font-size:13px;line-height:1">◑</span> Dark';
 
     btn.onclick = function () {
+      html.classList.add('vv-transitions');
       var nowLight = html.classList.toggle(LIGHT);
       localStorage.setItem(KEY, nowLight ? 'light' : 'dark');
       btn.innerHTML = nowLight
